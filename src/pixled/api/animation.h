@@ -5,11 +5,35 @@
 
 typedef unsigned long Time;
 namespace api {
-	template<typename rgb_array_t>
-		class Animation {
-			public:
-				virtual rgb_array_t& next() = 0;
-				virtual rgb_array_t& prev() = 0;
-		};
+	class AnimationRuntime {
+		public:
+			virtual unsigned long time() = 0;
+			virtual void next() = 0;
+			virtual void prev() = 0;
+	};
+
+	class Position {
+
+	};
+
+/*
+ *    class View {
+ *        public:
+ *            virtual int position(int time) = 0;
+ *
+ *    };
+ *
+ *    template<int x>
+ *    class StaticView : public View {
+ *        public:
+ *            int position(int time) {return x;}
+ *    };
+ */
+
+	template<typename color_t>
+	class Animation {
+		public:
+			virtual void compute(color_t& color, int x, int time) = 0;
+	};
 }
 #endif

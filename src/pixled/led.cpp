@@ -1,7 +1,7 @@
 #include "led.h"
 
 namespace base {
-	void Color::setRgb(int r, int g, int b) {
+	void Color::setRgb(uint8_t r, uint8_t g, uint8_t b) {
 
 	}
 

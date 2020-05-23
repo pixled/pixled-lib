@@ -24,7 +24,6 @@ install(FILES
 install(FILES
 	src/pixled/animation.h
 	src/pixled/led.h
-	src/pixled/output.h
 	DESTINATION include/pixled
 	)
 	

@@ -5,20 +5,44 @@
 #include "led.h"
 
 namespace base {
-	template<typename rgb_array_t, typename strip_t>
-		class Animation : public api::Animation<rgb_array_t> {
+
+	template<typename color_t>
+	class RgbAnimation {
+
+
+	};
+
+	template<typename color_t, typename strip_t>
+		class AnimationRuntime : public api::AnimationRuntime {
 			private:
+				api::Animation<color_t>& animation;
+				unsigned long _time = 0;
 				strip_t strip;
-				rgb_array_t output;
+				uint8_t* output;
 
 			public:
-				rgb_array_t& next() override {
-					strip.toRgbArray(output);
-					return output;
+				// TODO : default anim
+				AnimationRuntime(int length, api::Animation<color_t>& animation)
+					: strip(length), animation(animation) {
+
 				}
-				rgb_array_t& prev() override {
-					strip.toRgbArray(output);
-					return output;
+				unsigned long time() override {
+					return _time;
+				}
+
+				void next() override {
+					_time++;
+					for(int x = 0; x < strip.getLength(); x ++) {
+						animation.compute(strip[x].color(), x, _time);
+					}
+					strip.toArray(output);
+				}
+				void prev() override {
+					_time--;
+					for(int x = 0; x < strip.getLength(); x ++) {
+						animation.compute(strip[x].color(), x, _time);
+					}
+					strip.toArray(output);
 				}
 		};
 }

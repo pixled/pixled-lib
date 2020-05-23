@@ -1,39 +1,38 @@
 #ifndef LED_API_H
 #define LED_API_H
+#include <cstdint>
 #include "output.h"
 
 namespace api {
 	class Color {
 		public:
-			virtual int red() = 0;
-			virtual int green() = 0;
-			virtual int blue() = 0;
+			virtual uint8_t red() const = 0;
+			virtual uint8_t green() const = 0;
+			virtual uint8_t blue() const = 0;
 
-			virtual float hue() = 0;
-			virtual float saturation() = 0;
-			virtual float value() = 0;
+			virtual float hue() const = 0;
+			virtual float saturation() const = 0;
+			virtual float value() const = 0;
 
-			virtual void setRgb(int, int, int) = 0;
+			virtual void setRgb(uint8_t, uint8_t, uint8_t) = 0;
 			virtual void setHsv(float, float, float) = 0;
 	};
 
+	template<typename color_t>
 	class Led {
 		public:
-			virtual Color& color() = 0;
-
-
+			virtual color_t& color() = 0;
+			virtual const color_t& color() const = 0;
 	};
-	template<int _length, typename led_t, typename rgb_array_t>
+
+	template<typename led_t>
 		class Strip {
 			public:
-				static constexpr int length() {return _length;}
-				static_assert(
-					Strip::length() == rgb_array_t::length(),
-					"The specified rgb_array_t length does not correspond to Strip length.");
-			public:
-				virtual led_t& operator[](int i) = 0;
+				virtual uint16_t getLength() const = 0;
+				virtual void setLength(uint16_t ) = 0;
+				virtual led_t& operator[](uint16_t i) = 0;
 
-				virtual void toRgbArray(rgb_array_t& output) = 0;
+				virtual void toArray(uint8_t* output) = 0;
 
 		};
 }

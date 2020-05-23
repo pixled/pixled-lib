@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "api/led.h"
-#include "output.h"
 
 namespace base {
 
@@ -25,44 +24,70 @@ namespace base {
 
 
 		public:
-		int red() override {return rgb.r;}
-		int green() override {return rgb.g;}
-		int blue() override {return rgb.b;}
+		uint8_t red() const override {return rgb.r;}
+		uint8_t green() const override {return rgb.g;}
+		uint8_t blue() const override {return rgb.b;}
 
-		float hue() override {return hsv.h;}
-		float saturation() override {return hsv.s;}
-		float value() override {return hsv.v;}
+		float hue() const override {return hsv.h;}
+		float saturation() const override {return hsv.s;}
+		float value() const override {return hsv.v;}
 
-		void setRgb(int r, int g, int b) override;
+		void setRgb(uint8_t r, uint8_t g, uint8_t b) override;
 		void setHsv(float, float, float) override;
 	};
 
-	template<typename Color>
-		class Led : public api::Led {
+	template<typename color_t>
+		class Led : public api::Led<color_t> {
 			private:
-				Color _color;
+				color_t _color;
 			public:
-				Color& color() override {
-					return _color;
+				color_t& color() override {
+					return color;
+				}
+
+				const color_t& color() const override {
+					return color;
 				}
 		};
 
-	template<int _length, typename led_t, typename rgb_array_t>
-		class Strip : public api::Strip<_length, led_t, rgb_array_t> {
+	template<typename led_t>
+		class Strip : public api::Strip<led_t> {
 			private:
-				led_t leds[_length];
+				uint16_t length;
+				led_t* leds;
 
 			public:
-				led_t& operator[](int i) override {
+
+				Strip(uint16_t length) : length(length) {
+					leds = new led_t[length];
+				}
+
+				Strip(const Strip& other) = delete;
+				Strip& operator=(const Strip&) = delete;
+				Strip& operator=(Strip&&) = delete;
+
+				void setLength(uint16_t length) override {
+					this->length = length;
+				}
+				uint16_t getLength() const override {
+					return length;
+				}
+
+				led_t& operator[](uint16_t i) override {
 					return leds[i];
 				}
 
-				void toRgbArray(rgb_array_t& output) override {
-					for(int i = 0; i < _length; i++) {
-						api::Color& color = leds[i].color();
-						rgb _rgb = rgb(color.red(), color.green(), color.blue());
-						output[i] = _rgb;
+				void toArray(uint8_t* output) override {
+					for(uint16_t i = 0; i < length; i++) {
+						const auto& color = leds[i].color();
+						output[3*i+R] = color.red();
+						output[3*i+G] = color.green();
+						output[3*i+B] = color.blue();
 					}
+				}
+
+				~Strip() {
+					delete[] leds;
 				}
 		};
 }
