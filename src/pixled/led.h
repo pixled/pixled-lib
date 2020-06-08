@@ -77,12 +77,13 @@ namespace base {
 					return leds[i];
 				}
 
-				void toArray(uint8_t* output) override {
+				void toArray(api::OutputFormat& format, uint8_t* output) override {
 					for(uint16_t i = 0; i < length; i++) {
 						const auto& color = leds[i].color();
-						output[3*i+R] = color.red();
-						output[3*i+G] = color.green();
-						output[3*i+B] = color.blue();
+						format.write(color, &output[3*i]);
+						//output[3*i+R] = color.red();
+						//output[3*i+G] = color.green();
+						//output[3*i+B] = color.blue();
 					}
 				}
 

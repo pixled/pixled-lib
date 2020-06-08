@@ -32,7 +32,7 @@ namespace api {
 				virtual void setLength(uint16_t ) = 0;
 				virtual led_t& operator[](uint16_t i) = 0;
 
-				virtual void toArray(uint8_t* output) = 0;
+				virtual void toArray(api::OutputFormat& format, uint8_t* output) = 0;
 
 		};
 }
