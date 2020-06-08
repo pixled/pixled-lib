@@ -30,10 +30,9 @@ namespace api {
  *    };
  */
 
-	template<typename color_t>
 	class Animation {
 		public:
-			virtual void compute(color_t& color, int x, int time) = 0;
+			virtual void compute(Color& color, int x, int time) = 0;
 	};
 }
 #endif

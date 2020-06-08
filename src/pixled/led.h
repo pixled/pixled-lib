@@ -36,60 +36,55 @@ namespace base {
 		void setHsv(float, float, float) override;
 	};
 
-	template<typename color_t>
-		class Led : public api::Led<color_t> {
-			private:
-				color_t _color;
-			public:
-				color_t& color() override {
-					return color;
+	class Led : public api::Led {
+		private:
+			Color _color;
+		public:
+			Color& color() override {
+				return _color;
+			}
+
+			const Color& color() const override {
+				return _color;
+			}
+	};
+
+	class Strip : public api::Strip {
+		private:
+			uint16_t length;
+			Led* leds;
+
+		public:
+
+			Strip(uint16_t length) : length(length) {
+				leds = new Led[length];
+			}
+
+			Strip(const Strip& other) = delete;
+			Strip& operator=(const Strip&) = delete;
+			Strip& operator=(Strip&&) = delete;
+
+			void setLength(uint16_t length) override {
+				this->length = length;
+			}
+			uint16_t getLength() const override {
+				return length;
+			}
+
+			Led& operator[](uint16_t i) override {
+				return leds[i];
+			}
+
+			void toArray(api::OutputFormat& format, uint8_t* output) override {
+				for(uint16_t i = 0; i < length; i++) {
+					const auto& color = leds[i].color();
+					format.write(color, &output[3*i]);
 				}
+			}
 
-				const color_t& color() const override {
-					return color;
-				}
-		};
-
-	template<typename led_t>
-		class Strip : public api::Strip<led_t> {
-			private:
-				uint16_t length;
-				led_t* leds;
-
-			public:
-
-				Strip(uint16_t length) : length(length) {
-					leds = new led_t[length];
-				}
-
-				Strip(const Strip& other) = delete;
-				Strip& operator=(const Strip&) = delete;
-				Strip& operator=(Strip&&) = delete;
-
-				void setLength(uint16_t length) override {
-					this->length = length;
-				}
-				uint16_t getLength() const override {
-					return length;
-				}
-
-				led_t& operator[](uint16_t i) override {
-					return leds[i];
-				}
-
-				void toArray(api::OutputFormat& format, uint8_t* output) override {
-					for(uint16_t i = 0; i < length; i++) {
-						const auto& color = leds[i].color();
-						format.write(color, &output[3*i]);
-						//output[3*i+R] = color.red();
-						//output[3*i+G] = color.green();
-						//output[3*i+B] = color.blue();
-					}
-				}
-
-				~Strip() {
-					delete[] leds;
-				}
-		};
+			~Strip() {
+				delete[] leds;
+			}
+	};
 }
 #endif

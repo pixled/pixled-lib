@@ -2,6 +2,6 @@
 #include "pixled/led.h"
 #include "pixled/output.h"
 
-using Strip = base::Strip<base::Led<base::Color>>;
+using Strip = base::Strip;
 
-using AnimationRuntime = base::AnimationRuntime<base::Color, Strip>;
+using AnimationRuntime = base::AnimationRuntime;
