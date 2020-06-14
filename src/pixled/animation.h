@@ -4,14 +4,19 @@
 #include "api/animation.h"
 #include "api/output.h"
 #include "led.h"
+#include "functionnal.h"
 
 namespace base {
 
-	template<typename color_t>
-	class RgbAnimation {
-
-
-	};
+	/*
+	 *class Rainbow : public pixled::hsb {
+	 *    private:
+	 *        pixled::sin<float> h;
+	 *    public:
+	 *        Rainbow(api::Function<uint32_t>& T, api::Function<uint8_t>& f, api::Function<float>& s, api::Function<float>& b)
+	 *            : h(T * 1 / f), hsb(h, s, b) {}
+	 *};
+	 */
 
 	class AnimationRuntime : public api::AnimationRuntime {
 		private:

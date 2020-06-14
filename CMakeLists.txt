@@ -18,6 +18,7 @@ install(FILES
 	src/pixled/api/animation.h
 	src/pixled/api/led.h
 	src/pixled/api/output.h
+	src/pixled/api/functionnal.h
 	DESTINATION include/pixled/api
 	)
 
@@ -25,6 +26,7 @@ install(FILES
 	src/pixled/animation.h
 	src/pixled/led.h
 	src/pixled/output.h
+	src/pixled/functionnal.h
 	DESTINATION include/pixled
 	)
 	

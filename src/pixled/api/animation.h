@@ -12,23 +12,36 @@ namespace api {
 			virtual void prev() = 0;
 	};
 
-	class Position {
-
+	struct Coordinates {
+		int x;
+		int y;
+		Coordinates(int x, int y)
+			: x(x), y(y) {}
 	};
 
-/*
- *    class View {
- *        public:
- *            virtual int position(int time) = 0;
- *
- *    };
- *
- *    template<int x>
- *    class StaticView : public View {
- *        public:
- *            int position(int time) {return x;}
- *    };
- */
+	struct Size {
+		unsigned int width;
+		unsigned int height;
+		Size(unsigned int width, unsigned int height)
+			: width(width), height(height) {}
+	};
+
+	class View {
+		public:
+			virtual Coordinates position(int time) const = 0;
+			virtual Size size(int time) const = 0;
+			virtual void operator()(Color&, int x, int y, unsigned long time) const = 0;
+	};
+
+	class StaticView : public View {
+		private:
+			Coordinates _position;
+			Size size;
+		public:
+			StaticView(int x, int y, unsigned int width, unsigned int height) 
+				: _position(x, y), size(width, height) {}
+			Coordinates position(int time) {return _position;}
+	};
 
 	class Animation {
 		public:
