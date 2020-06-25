@@ -1,10 +1,62 @@
 #ifndef FUNCTIONNAL_API_H
 #define FUNCTIONNAL_API_H
 
+#define IMPLEM_BINARY(ClassName) \
+	using Type = typename api::Function<T>::Type;\
+	template<typename Arg1, typename Arg2>\
+		ClassName(Arg1&& arg1, Arg2&& arg2)\
+			: api::BinaryFunction<T, ClassName>(\
+					std::forward<Arg1>(arg1),\
+					std::forward<Arg2>(arg2))\
+		{}\
+	template<typename Arg>\
+		ClassName(Arg&& arg1, T c)\
+			: api::BinaryFunction<T, ClassName>(\
+					std::forward<Arg>(arg1),\
+					Constant<T>(c)\
+					)\
+		{}\
+\
+	template<typename Arg>\
+		ClassName(T c, Arg&& arg2)\
+			: api::BinaryFunction<T, ClassName>(\
+					Constant<T>(c),\
+					std::forward<Arg>(arg2)\
+					)\
+		{}\
+\
+	template<typename Arg>\
+		ClassName(T c1, T c2)\
+			: api::BinaryFunction<T, ClassName>(\
+					Constant<T>(c1),\
+					Constant<T>(c2)\
+					)\
+		{}\
+\
+\
+\
+	ClassName(const ClassName& other)\
+		: api::BinaryFunction<T, ClassName>(other) {}\
+\
+	ClassName(ClassName&& other)\
+		: api::BinaryFunction<T, ClassName>(std::move(other)) {}\
+\
+	ClassName& operator=(const ClassName& other) {\
+		api::BinaryFunction<T, ClassName>::operator=(other);\
+		return *this;\
+	}\
+\
+	ClassName& operator=(ClassName&& other) {\
+		api::BinaryFunction<T, ClassName>::operator=(std::move(other));\
+		return *this;\
+	}\
+
 namespace api {
 	template<typename T>
 	class Function {
 		public:
+			typedef T Type;
+
 			virtual T operator()() const = 0;
 			virtual ~Function() {}
 			virtual Function<T>* move() = 0;
@@ -19,6 +71,8 @@ namespace api {
 			bool f2_owned = false;
 
 			public:
+			using Type = typename Function<T>::Type;
+
 			BinaryFunction(const api::Function<T>& f1, const api::Function<T>& f2)
 				: f1(&f1), f2(&f2) {}
 			BinaryFunction(api::Function<T>&& f1, api::Function<T>&& f2)

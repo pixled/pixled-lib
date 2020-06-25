@@ -43,82 +43,17 @@ namespace pixled {
 		private:
 			T value;
 		public:
+			using Type = typename api::Function<T>::Type;
 			Constant(T& value) :
 				value(value) {}
 			T operator()() const {return value;};
 	};
 
-/*
- *    template<typename T>
- *        class Plus : public api::Function<T> {
- *            private:
- *                const api::Function<T>* f1;
- *                bool f1_owned = false;
- *                const api::Function<T>* f2;
- *                bool f2_owned = false;
- *
- *            public:
- *                Plus(const api::Function<T>& f1, const api::Function<T>& f2)
- *                    : f1(&f1), f2(&f2) {}
- *                Plus(const api::Function<T>&& f1, const api::Function<T>&& f2)
- *                    : f1(f1.copy()), f2(f2.copy()) {
- *                        f1_owned = true;
- *                        f2_owned = true;
- *                    }
- *
- *                T operator()() const override {
- *                    return (*f1)() + (*f2)();
- *                }
- *
- *                Plus<T>* copy() const override {
- *                    Plus<T>* copy = new Plus<T>(*f1, *f2);
- *                    copy->f1_owned = f1_owned;
- *                    copy->f2_owned = f2_owned;
- *                    return copy;
- *                }
- *
- *                ~Plus() {
- *                    if(f1_owned)
- *                        delete f1;
- *                    if(f2_owned)
- *                        delete f2;
- *                }
- *        };
- */
 	template<typename T>
 		class Plus : public api::BinaryFunction<T, Plus> {
 
 			public:
-				template<typename Arg1, typename Arg2>
-					Plus(Arg1&& arg1, Arg2&& arg2)
-						: api::BinaryFunction<T, Plus>(
-								std::forward<Arg1>(arg1),
-								std::forward<Arg2>(arg2))
-					{}
-				Plus(const Plus& other)
-					: api::BinaryFunction<T, Plus>(other) {}
-
-				Plus(Plus&& other)
-					: api::BinaryFunction<T, Plus>(std::move(other)) {}
-
-				Plus& operator=(const Plus& other) {
-					api::BinaryFunction<T, Plus>::operator=(other);
-					return *this;
-				}
-
-				Plus& operator=(Plus&& other) {
-					api::BinaryFunction<T, Plus>::operator=(std::move(other));
-					return *this;
-				}
-				/*
-				 *Plus(const api::Function<T>& f1, const api::Function<T>& f2)
-				 *    : f1(&f1), f2(&f2) {}
-				 *Plus(const api::Function<T>&& f1, const api::Function<T>&& f2)
-				 *    : f1(f1.copy()), f2(f2.copy()) {
-				 *        f1_owned = true;
-				 *        f2_owned = true;
-				 *    }
-				 */
+				IMPLEM_BINARY(Plus)
 
 				T operator()() const override {
 					return (*this->f1)() + (*this->f2)();
@@ -126,7 +61,91 @@ namespace pixled {
 		};
 
 	template<typename Arg1, typename Arg2>
-	Plus<float> operator+(Arg1&& f1, Arg2&& f2) {
+	Plus<typename std::remove_reference<Arg1>::type::Type> operator+(Arg1&& f1, Arg2&& f2) {
+		static_assert(
+				std::is_same<typename std::remove_reference<Arg1>::type::Type,
+				typename std::remove_reference<Arg2>::type::Type>::value,
+				"The two argument functions must return the same type of values.");
+		return {std::forward<Arg1>(f1), std::forward<Arg2>(f2)};
+	}
+
+	template<typename T>
+		class Multiplies : public api::BinaryFunction<T, Multiplies> {
+			public:
+				IMPLEM_BINARY(Multiplies)
+   /*             using Type = typename api::Function<T>::Type;*/
+				//template<typename Arg1, typename Arg2>
+					//Multiplies(Arg1&& arg1, Arg2&& arg2)
+						//: api::BinaryFunction<T, Multiplies>(
+								//std::forward<Arg1>(arg1),
+								//std::forward<Arg2>(arg2))
+					//{}
+				//Multiplies(const Multiplies& other)
+					//: api::BinaryFunction<T, Multiplies>(other) {}
+
+				//Multiplies(Multiplies&& other)
+					//: api::BinaryFunction<T, Multiplies>(std::move(other)) {}
+
+				//Multiplies& operator=(const Multiplies& other) {
+					//api::BinaryFunction<T, Multiplies>::operator=(other);
+					//return *this;
+				//}
+
+				//Multiplies& operator=(Multiplies&& other) {
+					//api::BinaryFunction<T, Multiplies>::operator=(std::move(other));
+					//return *this;
+				/*}*/
+
+				T operator()() const override {
+					return (*this->f1)() * (*this->f2)();
+				}
+		};
+
+	template<typename Arg1, typename Arg2>
+	Multiplies<typename Arg1::Type> operator*(Arg1&& f1, Arg2&& f2) {
+		static_assert(
+				std::is_same<typename Arg1::Type, typename Arg1::Type>::value,
+				"The two argument functions must return the same type of values.");
+		return {std::forward<Arg1>(f1), std::forward<Arg2>(f2)};
+	}
+
+	template<typename T>
+		class Divides : public api::BinaryFunction<T, Divides> {
+			public:
+				IMPLEM_BINARY(Divides)
+   /*             using Type = typename api::Function<T>::Type;*/
+				//template<typename Arg1, typename Arg2>
+					//Divides(Arg1&& arg1, Arg2&& arg2)
+						//: api::BinaryFunction<T, Divides>(
+								//std::forward<Arg1>(arg1),
+								//std::forward<Arg2>(arg2))
+					//{}
+				//Divides(const Divides& other)
+					//: api::BinaryFunction<T, Divides>(other) {}
+
+				//Divides(Divides&& other)
+					//: api::BinaryFunction<T, Divides>(std::move(other)) {}
+
+				//Divides& operator=(const Divides& other) {
+					//api::BinaryFunction<T, Divides>::operator=(other);
+					//return *this;
+				//}
+
+				//Divides& operator=(Divides&& other) {
+					//api::BinaryFunction<T, Divides>::operator=(std::move(other));
+					//return *this;
+				/*}*/
+
+				T operator()() const override {
+					return (*this->f1)() / (*this->f2)();
+				}
+		};
+
+	template<typename Arg1, typename Arg2>
+	Divides<typename Arg1::Type> operator/(Arg1&& f1, Arg2&& f2) {
+		static_assert(
+				std::is_same<typename Arg1::Type, typename Arg1::Type>::value,
+				"The two argument functions must return the same type of values.");
 		return {std::forward<Arg1>(f1), std::forward<Arg2>(f2)};
 	}
 
@@ -141,26 +160,6 @@ namespace pixled {
 					return std::sin(f());
 				}
 		};
-
-	template<typename T>
-		class multiplies : public api::Function<T> {
-			private:
-				api::Function<T>& f1;
-				api::Function<T>& f2;
-
-			public:
-				multiplies(api::Function<T>& f1, api::Function<T>& f2)
-					: f1(f1), f2(f2) {}
-
-				T operator()() {
-					return f1() * f2();
-				}
-		};
-
-	template<typename T>
-		multiplies<T> operator*(api::Function<T>& f1, api::Function<T>& f2) {
-			return {f1, f2};
-		}
 }
 
 #endif
