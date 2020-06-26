@@ -39,17 +39,6 @@ namespace pixled {
 	};
 
 	template<typename T>
-	class Constant : public api::Function<T> {
-		private:
-			T value;
-		public:
-			using Type = typename api::Function<T>::Type;
-			Constant(T& value) :
-				value(value) {}
-			T operator()() const {return value;};
-	};
-
-	template<typename T>
 		class Plus : public api::BinaryFunction<T, Plus> {
 
 			public:
@@ -73,28 +62,6 @@ namespace pixled {
 		class Multiplies : public api::BinaryFunction<T, Multiplies> {
 			public:
 				IMPLEM_BINARY(Multiplies)
-   /*             using Type = typename api::Function<T>::Type;*/
-				//template<typename Arg1, typename Arg2>
-					//Multiplies(Arg1&& arg1, Arg2&& arg2)
-						//: api::BinaryFunction<T, Multiplies>(
-								//std::forward<Arg1>(arg1),
-								//std::forward<Arg2>(arg2))
-					//{}
-				//Multiplies(const Multiplies& other)
-					//: api::BinaryFunction<T, Multiplies>(other) {}
-
-				//Multiplies(Multiplies&& other)
-					//: api::BinaryFunction<T, Multiplies>(std::move(other)) {}
-
-				//Multiplies& operator=(const Multiplies& other) {
-					//api::BinaryFunction<T, Multiplies>::operator=(other);
-					//return *this;
-				//}
-
-				//Multiplies& operator=(Multiplies&& other) {
-					//api::BinaryFunction<T, Multiplies>::operator=(std::move(other));
-					//return *this;
-				/*}*/
 
 				T operator()() const override {
 					return (*this->f1)() * (*this->f2)();
@@ -102,9 +69,10 @@ namespace pixled {
 		};
 
 	template<typename Arg1, typename Arg2>
-	Multiplies<typename Arg1::Type> operator*(Arg1&& f1, Arg2&& f2) {
+	Multiplies<typename std::remove_reference<Arg1>::type::Type> operator*(Arg1&& f1, Arg2&& f2) {
 		static_assert(
-				std::is_same<typename Arg1::Type, typename Arg1::Type>::value,
+				std::is_same<typename std::remove_reference<Arg1>::type::Type,
+				typename std::remove_reference<Arg2>::type::Type>::value,
 				"The two argument functions must return the same type of values.");
 		return {std::forward<Arg1>(f1), std::forward<Arg2>(f2)};
 	}
@@ -150,14 +118,12 @@ namespace pixled {
 	}
 
 	template<typename T>
-		class sin : public api::Function<T> {
-			private:
-				api::Function<float>& f;
+		class Sin : public api::UnaryFunction<T, Sin> {
 			public:
-				sin(api::Function<float>& f) :
-					f(f) {}
-				T operator()() {
-					return std::sin(f());
+				IMPLEM_UNARY(Sin)
+
+				T operator()() const override {
+					return std::sin((*this->f)());
 				}
 		};
 }
