@@ -19,6 +19,7 @@ install(FILES
 	src/pixled/api/led.h
 	src/pixled/api/output.h
 	src/pixled/api/functionnal.h
+	src/pixled/api/utils.h
 	DESTINATION include/pixled/api
 	)
 

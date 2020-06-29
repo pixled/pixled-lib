@@ -1,22 +1,25 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
+#include <numbers>
+
 #include "api/animation.h"
 #include "api/output.h"
 #include "led.h"
 #include "functionnal.h"
+#include "api/utils.h"
 
 namespace base {
-
-	/*
-	 *class Rainbow : public pixled::hsb {
-	 *    private:
-	 *        pixled::Sin<float> h;
-	 *    public:
-	 *        Rainbow(api::Function<uint32_t>& T, api::Function<uint8_t>& f, api::Function<float>& s, api::Function<float>& b)
-	 *            : h(T * 1 / f), hsb(h, s, b) {}
-	 *};
-	 */
+/*
+ *
+ *    class Rainbow : public pixled::hsb {
+ *        private:
+ *
+ *        public:
+ *            Rainbow(api::Function<float>& period, api::Function<float>& s, api::Function<float>& b)
+ *                : hsb(api::Constant<float>(360.f) * (pixled::SinT<float>(period, 0) + 1.f), s, b) {}
+ *    };
+ */
 
 	class AnimationRuntime : public api::AnimationRuntime {
 		private:

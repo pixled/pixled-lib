@@ -1,22 +1,25 @@
 #ifndef FUNCTIONNAL_H
 #define FUNCTIONNAL_H
 #include "api/functionnal.h"
+#include "api/utils.h"
 #include "led.h"
 #include <cmath>
 
 namespace pixled {
+	using api::Coordinates;
+
 	class hsb : public api::Function<base::Color> {
 		private:
 			api::Function<float>& h;
 			api::Function<float>& s;
-			api::Function<float>& b;
+			api::Function<float>& v;
 		public:
-			hsb(api::Function<float>& h, api::Function<float>& s, api::Function<float>& b)
-				: h(h), s(s), b(b) {}
+			hsb(api::Function<float>& h, api::Function<float>& s, api::Function<float>& v)
+				: h(h), s(s), v(v) {}
 
-			base::Color operator()() const {
+			base::Color operator()(Coordinates c, Time t) const override {
 				base::Color color;
-				color.setHsv(h(), s(), b());
+				color.setHsv(h(c, t), s(c, t), v(c, t));
 				return color;
 			}
 	};
@@ -31,9 +34,9 @@ namespace pixled {
 			rgb(api::Function<uint8_t>& r, api::Function<uint8_t>& g, api::Function<uint8_t>& b)
 				: r(r), g(g), b(b) {}
 
-			base::Color operator()() const {
+			base::Color operator()(Coordinates c, Time t) const override {
 				base::Color color;
-				color.setRgb(r(), g(), b());
+				color.setRgb(r(c, t), g(c, t), b(c, t));
 				return color;
 			}
 	};
@@ -44,8 +47,8 @@ namespace pixled {
 			public:
 				IMPLEM_BINARY(Plus)
 
-				T operator()() const override {
-					return (*this->f1)() + (*this->f2)();
+				T operator()(Coordinates c, Time t) const override {
+					return (*this->f1)(c, t) + (*this->f2)(c, t);
 				}
 		};
 
@@ -63,8 +66,8 @@ namespace pixled {
 			public:
 				IMPLEM_BINARY(Multiplies)
 
-				T operator()() const override {
-					return (*this->f1)() * (*this->f2)();
+				T operator()(Coordinates c, Time t) const override {
+					return (*this->f1)(c, t) * (*this->f2)(c, t);
 				}
 		};
 
@@ -104,8 +107,8 @@ namespace pixled {
 					//return *this;
 				/*}*/
 
-				T operator()() const override {
-					return (*this->f1)() / (*this->f2)();
+				T operator()(Coordinates c, Time t) const override {
+					return (*this->f1)(c, t) / (*this->f2)(c, t);
 				}
 		};
 
@@ -122,8 +125,18 @@ namespace pixled {
 			public:
 				IMPLEM_UNARY(Sin)
 
-				T operator()() const override {
-					return std::sin((*this->f)());
+				T operator()(Coordinates c, Time t) const override {
+					return std::sin((*this->f)(c, t));
+				}
+		};
+
+	template<typename T>
+		class SinT : public api::BinaryFunction<T, SinT> {
+			public:
+				IMPLEM_BINARY(SinT)
+
+				T operator()(Coordinates c, Time t) const override {
+					return std::sin(2 * PIXLED_PI * t / (*this->f1)(c, t) + (*this->f2)(c, t));
 				}
 		};
 }

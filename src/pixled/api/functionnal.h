@@ -1,6 +1,8 @@
 #ifndef FUNCTIONNAL_API_H
 #define FUNCTIONNAL_API_H
 
+#include "animation.h"
+
 #define IMPLEM_BINARY(ClassName) \
 	using Type = typename api::Function<T>::Type;\
 	template<typename Arg1, typename Arg2>\
@@ -24,14 +26,12 @@
 					std::forward<Arg>(arg2)\
 					)\
 		{}\
-\
-	template<typename Arg>\
-		ClassName(T c1, T c2)\
-			: api::BinaryFunction<T, ClassName>(\
-					api::Constant<T>(c1),\
-					api::Constant<T>(c2)\
-					)\
-		{}\
+	ClassName(T c1, T c2)\
+		: api::BinaryFunction<T, ClassName>(\
+				api::Constant<T>(c1),\
+				api::Constant<T>(c2)\
+				)\
+	{}\
 \
 \
 \
@@ -87,7 +87,7 @@ namespace api {
 		public:
 			typedef T Type;
 
-			virtual T operator()() const = 0;
+			virtual T operator()(Coordinates c, Time t) const = 0;
 			virtual ~Function() {}
 			virtual Function<T>* move() = 0;
 	};
@@ -98,13 +98,70 @@ namespace api {
 			T value;
 		public:
 			using Type = typename api::Function<T>::Type;
-			Constant(T& value) :
+			Constant(T value) :
 				value(value) {}
-			T operator()() const {return value;};
+			T operator()(Coordinates, Time) const {return value;};
 
 			Function<T>* move() override {
 				return new Constant<T>(value);
 			}
+	};
+
+	template<typename T, template<typename> class FctImplem>
+	class UnaryFunction : public Function<T> {
+		protected:
+			const api::Function<T>* f;
+			bool f_owned = false;
+		public:
+			using Type = typename Function<T>::Type;
+
+			UnaryFunction(const api::Function<T>& f)
+				: f(&f) {}
+			UnaryFunction(api::Function<T>&& f)
+				: f(f.move()) {
+					f_owned = true;
+				}
+
+			// Simple copy, no ownership transfer.
+			UnaryFunction(const UnaryFunction& other) :
+				f(*other.f) {}
+
+			// Ownership is transfered to this
+			UnaryFunction(UnaryFunction&& other) :
+				f(f), f_owned(other.f_owned) {
+				other.f_owned = false;
+			}
+
+			UnaryFunction& operator=(const UnaryFunction& other) {
+				if(f_owned)
+					delete f;
+
+				f_owned = false;
+				f = other.f;
+			}
+			UnaryFunction& operator=(UnaryFunction&& other) {
+				if(f_owned)
+					delete f;
+
+				f = other.f;
+				f_owned = other.f_owned;
+
+				other.f_owned = false;
+			}
+
+			protected:
+			Function<T>* move() override {
+				FctImplem<T>* moved = new FctImplem<T>(*f);
+				moved->f_owned = f_owned;
+				f_owned = false;
+				return moved;
+			}
+
+			virtual ~UnaryFunction() {
+				if(f_owned)
+					delete f;
+			}
+
 	};
 
 	template<typename T, template<typename> class FctImplem>
@@ -192,62 +249,5 @@ namespace api {
 					delete f2;
 			}
 		};
-
-	template<typename T, template<typename> class FctImplem>
-	class UnaryFunction : Function<T> {
-		protected:
-			const api::Function<T>* f;
-			bool f_owned = false;
-		public:
-			using Type = typename Function<T>::Type;
-
-			UnaryFunction(const api::Function<T>& f)
-				: f(&f) {}
-			UnaryFunction(api::Function<T>&& f)
-				: f(f.move()) {
-					f_owned = true;
-				}
-
-			// Simple copy, no ownership transfer.
-			UnaryFunction(const UnaryFunction& other) :
-				f(*other.f) {}
-
-			// Ownership is transfered to this
-			UnaryFunction(UnaryFunction&& other) :
-				f(f), f_owned(other.f_owned) {
-				other.f_owned = false;
-			}
-
-			UnaryFunction& operator=(const UnaryFunction& other) {
-				if(f_owned)
-					delete f;
-
-				f_owned = false;
-				f = other.f;
-			}
-			UnaryFunction& operator=(UnaryFunction&& other) {
-				if(f_owned)
-					delete f;
-
-				f = other.f;
-				f_owned = other.f_owned;
-
-				other.f_owned = false;
-			}
-
-			protected:
-			Function<T>* move() override {
-				FctImplem<T>* moved = new FctImplem<T>(*f);
-				moved->f_owned = f_owned;
-				f_owned = false;
-				return moved;
-			}
-
-			virtual ~UnaryFunction() {
-				if(f_owned)
-					delete f;
-			}
-
-	};
 }
 #endif
