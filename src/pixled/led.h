@@ -24,16 +24,18 @@ namespace base {
 
 
 		public:
-		uint8_t red() const override {return rgb.r;}
-		uint8_t green() const override {return rgb.g;}
-		uint8_t blue() const override {return rgb.b;}
+			static void rgb_to_hsb(const rgb_t& rgb, hsv_t& hsb);
+			static void hsb_to_rgb(const hsv_t& hsb, rgb_t& rgb);
+			uint8_t red() const override {return rgb.r;}
+			uint8_t green() const override {return rgb.g;}
+			uint8_t blue() const override {return rgb.b;}
 
-		float hue() const override {return hsv.h;}
-		float saturation() const override {return hsv.s;}
-		float value() const override {return hsv.v;}
+			float hue() const override {return hsv.h;}
+			float saturation() const override {return hsv.s;}
+			float value() const override {return hsv.v;}
 
-		void setRgb(uint8_t r, uint8_t g, uint8_t b) override;
-		void setHsv(float, float, float) override;
+			void setRgb(uint8_t r, uint8_t g, uint8_t b) override;
+			void setHsv(float, float, float) override;
 	};
 
 	class Led : public api::Led {
