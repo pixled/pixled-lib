@@ -10,16 +10,16 @@
 #include "api/utils.h"
 
 namespace base {
-/*
- *
- *    class Rainbow : public pixled::hsb {
- *        private:
- *
- *        public:
- *            Rainbow(api::Function<float>& period, api::Function<float>& s, api::Function<float>& b)
- *                : hsb(api::Constant<float>(360.f) * (pixled::SinT<float>(period, 0) + 1.f), s, b) {}
- *    };
- */
+
+	class Rainbow : public pixled::hsb {
+		public:
+			template<typename Arg1, typename Arg2, typename Arg3>
+			Rainbow(Arg1&& period, Arg2&& s, Arg3&& b)
+				: hsb(
+						180.f * (pixled::SinT<float>(std::forward<Arg1>(period), 0) + 1.f),
+						std::forward<Arg2>(s),
+						std::forward<Arg3>(b)) {}
+	};
 
 	class AnimationRuntime : public api::AnimationRuntime {
 		private:
