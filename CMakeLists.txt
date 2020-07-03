@@ -9,6 +9,8 @@ add_library(pixled
 	src/pixled/led.cpp
 	)
 
+add_subdirectory(tests)
+
 install(TARGETS pixled DESTINATION lib)
 install(FILES 
 	src/pixled.h
