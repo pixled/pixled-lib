@@ -4,7 +4,7 @@
 #include <iostream>
 #include "api/led.h"
 
-namespace base {
+namespace pixled {
 
 	class Color : public api::Color {
 		private:

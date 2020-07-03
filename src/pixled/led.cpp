@@ -1,6 +1,6 @@
 #include "led.h"
 
-namespace base {
+namespace pixled {
 	void Color::hsb_to_rgb(const hsv_t& hsv, rgb_t& rgb) {
 		double      hh, p, q, t, ff;
 		long        i;

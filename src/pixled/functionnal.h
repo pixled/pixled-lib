@@ -8,23 +8,50 @@
 namespace pixled {
 	using api::Coordinates;
 
-	class hsb : public api::TernaryFunction<base::Color, float, float, float, hsb> {
+	class X : public api::Function<Coordinate> {
 		public:
-			using api::TernaryFunction<base::Color, float, float, float, hsb>::TernaryFunction;
+			Coordinate operator()(Coordinates c, Time t) const override {
+				return c.x;
+			}
 
-			base::Color operator()(Coordinates c, Time t) const override {
-				base::Color color;
+			X* copy() const override {return new X;}
+	};
+
+	class Y : public api::Function<Coordinate> {
+		public:
+			Coordinate operator()(Coordinates c, Time t) const override {
+				return c.y;
+			}
+
+			Y* copy() const override {return new Y;}
+	};
+
+	class T : public api::Function<Time> {
+		public:
+			Time operator()(Coordinates c, Time t) const override {
+				return t;
+			}
+
+			T* copy() const override {return new T;}
+	};
+
+	class hsb : public api::TernaryFunction<pixled::Color, float, float, float, hsb> {
+		public:
+			using api::TernaryFunction<pixled::Color, float, float, float, hsb>::TernaryFunction;
+
+			pixled::Color operator()(Coordinates c, Time t) const override {
+				pixled::Color color;
 				color.setHsv((*f1)(c, t), (*f2)(c, t), (*f3)(c, t));
 				return color;
 			}
 	};
 
-	class rgb : public api::TernaryFunction<base::Color, uint8_t, uint8_t, uint8_t, rgb> {
+	class rgb : public api::TernaryFunction<pixled::Color, uint8_t, uint8_t, uint8_t, rgb> {
 		public:
-			using api::TernaryFunction<base::Color, uint8_t, uint8_t, uint8_t, rgb>::TernaryFunction;
+			using api::TernaryFunction<pixled::Color, uint8_t, uint8_t, uint8_t, rgb>::TernaryFunction;
 
-			base::Color operator()(Coordinates c, Time t) const override {
-				base::Color color;
+			pixled::Color operator()(Coordinates c, Time t) const override {
+				pixled::Color color;
 				color.setRgb((*f1)(c, t), (*f2)(c, t), (*f3)(c, t));
 				return color;
 			}
@@ -155,23 +182,12 @@ namespace pixled {
 			}
 
 	template<typename T>
-		class Sin : public api::UnaryFunction<T, Sin> {
+		class Sin : public api::UnaryFunction<T, Sin<T>> {
 			public:
 				using api::UnaryFunction<T, Sin>::UnaryFunction;
 
 				T operator()(Coordinates c, Time t) const override {
 					return std::sin((*this->f)(c, t));
-				}
-		};
-
-	template<typename T>
-		class SinT : public api::BinaryFunction<T, SinT> {
-			public:
-				//IMPLEM_BINARY(SinT)
-				using api::BinaryFunction<T, SinT>::BinaryFunction;
-
-				T operator()(Coordinates c, Time t) const override {
-					return std::sin(2 * PIXLED_PI * t / (*this->f1)(c, t) + (*this->f2)(c, t));
 				}
 		};
 }

@@ -9,16 +9,17 @@
 #include "functionnal.h"
 #include "api/utils.h"
 
-namespace base {
+namespace pixled {
 
 	class Rainbow : public pixled::hsb {
 		public:
 			template<typename Arg1, typename Arg2, typename Arg3>
-			Rainbow(Arg1&& period, Arg2&& s, Arg3&& b)
+				Rainbow(Arg1&& period, Arg2&& s, Arg3&& b)
 				: hsb(
-						180.f * (pixled::SinT<float>(std::forward<Arg1>(period), 0) + 1.f),
+						180.f * (pixled::Sin<float>(2*PIXLED_PI * api::Cast<float, Time>(T()) / api::Cast<float, Time>(std::forward<Arg1>(period))) + 1.f),
 						std::forward<Arg2>(s),
-						std::forward<Arg3>(b)) {}
+						std::forward<Arg3>(b)) {
+				}
 	};
 
 	class AnimationRuntime : public api::AnimationRuntime {
@@ -26,7 +27,7 @@ namespace base {
 			api::Animation& animation;
 			unsigned long _time = 0;
 			api::OutputFormat* format;
-			base::Strip strip;
+			pixled::Strip strip;
 			uint8_t* output;
 
 		public:

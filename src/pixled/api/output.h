@@ -3,11 +3,13 @@
 
 #include <cstdint>
 
-namespace api {
-	class Color;
-	class OutputFormat {
-		public:
-		virtual void write(const api::Color& color, uint8_t* const& output) = 0;
-	};
+namespace pixled {
+	namespace api {
+		class Color;
+		class OutputFormat {
+			public:
+				virtual void write(const api::Color& color, uint8_t* const& output) = 0;
+		};
+	}
 }
 #endif
