@@ -55,12 +55,14 @@ namespace pixled {
 						if(fct!=nullptr)
 							delete fct;
 						fct = other.fct->copy();
+						return *this;
 					}
 					FctWrapper& operator=(FctWrapper<T>&& other) {
 						if(fct!=nullptr)
 							delete fct;
 						fct = other.fct;
 						other.fct = nullptr;
+						return *this;
 					}
 
 					~FctWrapper() {

@@ -24,10 +24,10 @@ namespace pixled {
 
 	class AnimationRuntime : public api::AnimationRuntime {
 		private:
-			api::Animation& animation;
 			unsigned long _time = 0;
 			api::OutputFormat* format;
 			pixled::Strip strip;
+			api::Animation& animation;
 			uint8_t* output;
 
 		public:
