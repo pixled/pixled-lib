@@ -75,20 +75,20 @@ namespace pixled {
 					}
 			};
 
-		template<typename T, typename FctImplem>
-			class UnaryFunction : public Function<T> {
+		template<typename R, typename P, typename FctImplem>
+			class UnaryFunction : public Function<R> {
 				protected:
-					const FctWrapper<T> f;
+					const FctWrapper<P> f;
 
 				public:
-					using Type = typename Function<T>::Type;
+					using Type = typename Function<R>::Type;
 
 					template<typename Arg>
 						UnaryFunction(Arg&& arg)
 						: f(std::forward<Arg>(arg)) {}
 
 				protected:
-					Function<T>* copy() const override {
+					Function<R>* copy() const override {
 						return new FctImplem(*f);
 					}
 			};

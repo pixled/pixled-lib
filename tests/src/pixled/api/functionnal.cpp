@@ -49,14 +49,13 @@ TEST_F(FctWrapperTest, build) {
 
 TEST_F(FctWrapperTest, build_from_constant) {
 	FctWrapper<float> w {2.35};
-
 	try{
-		dynamic_cast<const Constant<float>&>(*w);
+		auto& test = dynamic_cast<const Constant<float>&>(*w);
+		ASSERT_FLOAT_EQ(test({2, 6}, 24), 2.35);
 	}
 	catch(std::bad_cast&) {
 		FAIL();
 	}
-	ASSERT_FLOAT_EQ((*w)({2, 6}, 24), 2.35);
 
 	// Unused
 	delete copy;
@@ -118,4 +117,57 @@ TEST_F(FctWrapperTest, move_assignment) {
 	w2 = std::move(w1);
 
 	ASSERT_EQ(&*w2, copy);
+}
+
+class UnaryFunctionTest : public ::testing::Test {
+	protected:
+		pixled::MockFunction<uint8_t> fct;
+		pixled::MockFunction<uint8_t>* last_fct_copy;
+		pixled::MockFctCopy<pixled::MockFunction<uint8_t>> mock_copy {last_fct_copy};
+
+		void SetUp() override {
+			mock_copy.setUp(fct);
+		}
+};
+
+TEST_F(UnaryFunctionTest, lvalue_build) {
+	pixled::MockUnary<float, uint8_t> unary {fct};
+
+	EXPECT_CALL(*last_fct_copy, call);
+
+	unary({2, 4}, 7);
+}
+
+TEST_F(UnaryFunctionTest, rvalue_build) {
+	pixled::MockUnary<float, uint8_t> unary {std::move(fct)};
+
+	EXPECT_CALL(*last_fct_copy, call);
+
+	unary({2, 4}, 7);
+}
+
+TEST_F(UnaryFunctionTest, constant_build) {
+	pixled::MockUnary<float, uint8_t> unary {27};
+
+	ASSERT_EQ(unary({8, 2}, 6), 27);
+}
+
+TEST_F(UnaryFunctionTest, copy) {
+	// This mock is not supposed to be called
+	pixled::MockUnary<float, uint8_t> unary {fct, 0};
+
+	// Makes a copy of unary
+	pixled::api::FctWrapper<float> unary_copy {unary};
+
+	// Assert that the copy is also a MockUnary
+	try {
+		auto& test = dynamic_cast<const pixled::MockUnary<float, uint8_t>&>(*unary_copy);
+
+		// Assert that the copy is really of copy of unary, i.e. the internal
+		// function is the same
+		EXPECT_CALL(*last_fct_copy, call);
+		test({6, 2}, 8);
+	}catch (std::bad_cast&) {
+		FAIL();
+	}
 }

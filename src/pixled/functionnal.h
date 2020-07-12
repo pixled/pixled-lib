@@ -248,9 +248,9 @@ namespace pixled {
 			}
 
 	template<typename T>
-		class Sin : public api::UnaryFunction<T, Sin<T>> {
+		class Sin : public api::UnaryFunction<T, T, Sin<T>> {
 			public:
-				using api::UnaryFunction<T, Sin>::UnaryFunction;
+				using api::UnaryFunction<T, T, Sin>::UnaryFunction;
 
 				T operator()(Coordinates c, Time t) const override {
 					return std::sin((*this->f)(c, t));
