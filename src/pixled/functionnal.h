@@ -10,6 +10,8 @@ namespace pixled {
 
 	class X : public api::Function<Coordinate> {
 		public:
+			using Type = api::Function<Coordinate>::Type;
+
 			Coordinate operator()(Coordinates c, Time t) const override {
 				return c.x;
 			}
@@ -19,6 +21,8 @@ namespace pixled {
 
 	class Y : public api::Function<Coordinate> {
 		public:
+			using Type = api::Function<Coordinate>::Type;
+
 			Coordinate operator()(Coordinates c, Time t) const override {
 				return c.y;
 			}
@@ -28,6 +32,8 @@ namespace pixled {
 
 	class T : public api::Function<Time> {
 		public:
+			using Type = api::Function<Time>::Type;
+
 			Time operator()(Coordinates c, Time t) const override {
 				return t;
 			}
@@ -57,13 +63,16 @@ namespace pixled {
 			}
 	};
 
-	template<typename T>
-		class Plus : public api::BinaryFunction<T, Plus> {
+	template<typename T1, typename T2>
+		class OpType {};
+
+	template<typename R, typename P1, typename P2>
+		class Plus : public api::BinaryFunction<R, P1, P2, Plus<R, P1, P2>> {
 
 			public:
-				using api::BinaryFunction<T, Plus>::BinaryFunction;
+				using api::BinaryFunction<R, P1, P2, Plus<R, P1, P2>>::BinaryFunction;
 
-				T operator()(Coordinates c, Time t) const override {
+				R operator()(Coordinates c, Time t) const override {
 					return (*this->f1)(c, t) + (*this->f2)(c, t);
 				}
 		};
@@ -71,40 +80,58 @@ namespace pixled {
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			!std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
-			Plus<typename std::remove_reference<Arg1>::type::Type> operator+(Arg1&& f1, Arg2&& f2) {
-				static_assert(std::is_same<
-						typename std::remove_reference<Arg1>::type::Type,
-						typename std::remove_reference<Arg2>::type::Type>::value,
-						"The two argument functions must return the same type of values.");
+			Plus<
+			// R
+			typename std::common_type<
+				typename std::remove_reference<Arg1>::type::Type,
+				typename std::remove_reference<Arg2>::type::Type
+			>::type,
+			// P1
+			typename std::remove_reference<Arg1>::type::Type,
+			// P2
+			typename std::remove_reference<Arg1>::type::Type
+			> operator+(Arg1&& f1, Arg2&& f2) {
 				return {std::forward<Arg1>(f1), std::forward<Arg2>(f2)};
 			}
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
-			Plus<Arg1> operator+(Arg1&& c1, Arg2&& f2) {
-				static_assert(std::is_same<
-				Arg1, typename std::remove_reference<Arg2>::type::Type>::value,
-				"The two argument functions must return the same type of values.");
+			Plus<
+			// R
+			typename std::common_type<
+				Arg1,
+				typename std::remove_reference<Arg2>::type::Type
+			>::type,
+			// P1
+			Arg1,
+			// P2
+			typename std::remove_reference<Arg2>::type::Type> operator+(Arg1&& c1, Arg2&& f2) {
 				return {c1, std::forward<Arg2>(f2)};
 			}
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			!std::is_arithmetic<Arg1>::value && std::is_arithmetic<Arg2>::value>::type>
-			Plus<Arg2> operator+(Arg1&& f1, Arg2&& c2) {
-				static_assert(std::is_same<
-						typename std::remove_reference<Arg1>::type::Type, Arg2>::value,
-						"The two argument functions must return the same type of values.");
-				return {std::forward<Arg1>(f1), c2};
-			}
+			Plus<
+			// R
+			typename std::common_type<
+				typename std::remove_reference<Arg1>::type::Type,
+				Arg2
+			>::type,
+			// P1
+			typename std::remove_reference<Arg1>::type::Type,
+			// P2
+			Arg2> operator+(Arg1&& f1, Arg2&& c2) {
+			return {std::forward<Arg1>(f1), c2};
+		}
 
-	template<typename T>
-		class Multiplies : public api::BinaryFunction<T, Multiplies> {
+	template<typename R, typename P1, typename P2>
+		class Multiplies : public api::BinaryFunction<R, P1, P2, Multiplies<R, P1, P2>> {
 			public:
-				using api::BinaryFunction<T, Multiplies>::BinaryFunction;
+				using api::BinaryFunction<R, P1, P2, Multiplies<R, P1, P2>>::BinaryFunction;
 
-				T operator()(Coordinates c, Time t) const override {
+				R operator()(Coordinates c, Time t) const override {
 					return (*this->f1)(c, t) * (*this->f2)(c, t);
 				}
 		};
@@ -112,40 +139,59 @@ namespace pixled {
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			!std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
-			Multiplies<typename std::remove_reference<Arg1>::type::Type> operator*(Arg1&& f1, Arg2&& f2) {
-				static_assert(std::is_same<
-						typename std::remove_reference<Arg1>::type::Type,
-						typename std::remove_reference<Arg2>::type::Type>::value,
-						"The two argument functions must return the same type of values.");
+			Multiplies<
+			// R
+			typename std::common_type<
+				typename std::remove_reference<Arg1>::type::Type,
+				typename std::remove_reference<Arg2>::type::Type
+			>::type,
+			// P1
+			typename std::remove_reference<Arg1>::type::Type,
+			// P2
+			typename std::remove_reference<Arg2>::type::Type
+			> operator*(Arg1&& f1, Arg2&& f2) {
 				return {std::forward<Arg1>(f1), std::forward<Arg2>(f2)};
 			}
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
-			Multiplies<Arg1> operator*(Arg1&& c1, Arg2&& f2) {
-				static_assert(std::is_same<
-				Arg1, typename std::remove_reference<Arg2>::type::Type>::value,
-				"The two argument functions must return the same type of values.");
+			Multiplies<
+			// R
+			typename std::common_type<
+				Arg1,
+				typename std::remove_reference<Arg2>::type::Type
+			>::type,
+			// P1
+			Arg1,
+			// P2
+			typename std::remove_reference<Arg2>::type::Type
+			> operator*(Arg1&& c1, Arg2&& f2) {
 				return {c1, std::forward<Arg2>(f2)};
 			}
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			!std::is_arithmetic<Arg1>::value && std::is_arithmetic<Arg2>::value>::type>
-			Multiplies<Arg2> operator*(Arg1&& f1, Arg2&& c2) {
-				static_assert(std::is_same<
-						typename std::remove_reference<Arg1>::type::Type, Arg2>::value,
-						"The two argument functions must return the same type of values.");
+			Multiplies<
+			// R
+			typename std::common_type<
+				typename std::remove_reference<Arg1>::type::Type,
+				Arg2
+			>::type,
+			// P1
+			typename std::remove_reference<Arg1>::type::Type,
+			// P2
+			Arg2> operator*(Arg1&& f1, Arg2&& c2) {
 				return {std::forward<Arg1>(f1), c2};
 			}
 
-	template<typename T>
-		class Divides : public api::BinaryFunction<T, Divides> {
+	template<typename R, typename P1, typename P2>
+		class Divides : public api::BinaryFunction<R, P1, P2, Divides<R, P1, P2>> {
 			public:
-				using api::BinaryFunction<T, Divides>::BinaryFunction;
+				using api::BinaryFunction<R, P1, P2, Divides<R, P1, P2>>::BinaryFunction;
 
-				T operator()(Coordinates c, Time t) const override {
+				R operator()(Coordinates c, Time t) const override {
 					return (*this->f1)(c, t) / (*this->f2)(c, t);
 				}
 		};
@@ -153,31 +199,51 @@ namespace pixled {
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			!std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
-			Divides<typename std::remove_reference<Arg1>::type::Type> operator/(Arg1&& f1, Arg2&& f2) {
-				static_assert(std::is_same<
-						typename std::remove_reference<Arg1>::type::Type,
-						typename std::remove_reference<Arg2>::type::Type>::value,
-						"The two argument functions must return the same type of values.");
+			Divides<
+			// R
+			typename std::common_type<
+				typename std::remove_reference<Arg1>::type::Type,
+				typename std::remove_reference<Arg2>::type::Type
+			>::type,
+			// P1
+			typename std::remove_reference<Arg1>::type::Type,
+			// P2
+			typename std::remove_reference<Arg2>::type::Type
+			> operator/(Arg1&& f1, Arg2&& f2) {
 				return {std::forward<Arg1>(f1), std::forward<Arg2>(f2)};
 			}
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
-			Divides<Arg1> operator/(Arg1&& c1, Arg2&& f2) {
-				static_assert(std::is_same<
-				Arg1, typename std::remove_reference<Arg2>::type::Type>::value,
-				"The two argument functions must return the same type of values.");
+			Divides<
+			// R
+			typename std::common_type<
+				Arg1,
+				typename std::remove_reference<Arg2>::type::Type
+			>::type,
+			// P1
+			Arg1,
+			// P2
+			typename std::remove_reference<Arg2>::type::Type
+			> operator/(Arg1&& c1, Arg2&& f2) {
 				return {c1, std::forward<Arg2>(f2)};
 			}
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
 			!std::is_arithmetic<Arg1>::value && std::is_arithmetic<Arg2>::value>::type>
-			Divides<Arg2> operator/(Arg1&& f1, Arg2&& c2) {
-				static_assert(std::is_same<
-						typename std::remove_reference<Arg1>::type::Type, Arg2>::value,
-						"The two argument functions must return the same type of values.");
+			Divides<
+			// R
+			typename std::common_type<
+				typename std::remove_reference<Arg1>::type::Type,
+				Arg2
+			>::type,
+			// P1
+			typename std::remove_reference<Arg1>::type::Type,
+			// P2
+			Arg2
+			> operator/(Arg1&& f1, Arg2&& c2) {
 				return {std::forward<Arg1>(f1), c2};
 			}
 

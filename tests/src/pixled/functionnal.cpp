@@ -27,7 +27,7 @@ TEST_F(BinaryTest, build_by_lvalue) {
 
 	EXPECT_CALL(f1, copy).WillOnce(Return(f1_copy));
 	EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
-	StrictMock<MockBinary<float>> mock {f1, f2};
+	StrictMock<MockBinary<float, float, float>> mock {f1, f2};
 
 	EXPECT_CALL(*f1_copy, call(c, t)).WillOnce(Return(10));
 	EXPECT_CALL(*f2_copy, call(c, t)).WillOnce(Return(14));
@@ -35,53 +35,6 @@ TEST_F(BinaryTest, build_by_lvalue) {
 
 	mock(c, t);
 }
-
-/*
- *TEST_F(BinaryTest, simple_by_rvalue) {
- *    StrictMock<MockFunction<float>> f1;
- *    StrictMock<MockFunction<float>>* f1_move = new StrictMock<MockFunction<float>>;
- *    StrictMock<MockFunction<float>> f2;
- *    StrictMock<MockFunction<float>>* f2_move = new StrictMock<MockFunction<float>>;
- *
- *    EXPECT_CALL(f1, move).WillOnce(Return(f1_move));
- *    EXPECT_CALL(f2, move).WillOnce(Return(f2_move));
- *    EXPECT_CALL(*f1_move, call(c, t));
- *    EXPECT_CALL(*f2_move, call(c, t));
- *
- *    StrictMock<MockBinary<float>> mock {std::move(f1), std::move(f2)};
- *
- *    mock(c, t);
- *}
- */
-
-/*
- *TEST_F(BinaryTest, nested_by_rvalue) {
- *    StrictMock<MockFunction<float>> f1;
- *    StrictMock<MockFunction<float>> f2;
- *
- *    StrictMock<MockFunction<float>> f3;
- *    StrictMock<MockFunction<float>>* f3_move = new StrictMock<MockFunction<float>>;
- *
- *    EXPECT_CALL(f3, move).WillOnce(Return(f3_move));
- *
- *    EXPECT_CALL(f1, call(c, t));
- *    EXPECT_CALL(f2, call(c, t));
- *    EXPECT_CALL(*f3_move, call(c, t));
- *
- *    // Lvalues to f1 and f2
- *    StrictMock<MockBinary<float>> mock_to_move {f1, f2, 0};
- *    // Rvalue to mock_to_move and f3
- *    StrictMock<MockBinary<float>> mock {std::move(mock_to_move), std::move(f3)};
- *
- *    mock(c, t);
- *
- *    // f1 and f2 can still be used
- *    EXPECT_CALL(f1, call(c, t));
- *    EXPECT_CALL(f2, call(c, t));
- *    f1(c, t);
- *    f2(c, t);
- *}
- */
 
 TEST_F(BinaryTest, nested_by_lvalue) {
 	MockFunction<float> f1;
@@ -103,40 +56,12 @@ TEST_F(BinaryTest, nested_by_lvalue) {
 	EXPECT_CALL(*f2_copy_copy, call(c, t));
 	EXPECT_CALL(*f3_copy, call(c, t)).Times(1);
 
-	MockBinary<float> mock_1 {f1, f2, 0};
-	//EXPECT_CALL(mock_1, copy).WillOnce(Return(new MockBinary<float> {f1, f2, 2}));
+	MockBinary<float, float, float> mock_1 {f1, f2, 0};
 
-	MockBinary<float> mock_2 {mock_1, f3, 1};
+	MockBinary<float, float, float> mock_2 {mock_1, f3, 1};
 
-	//EXPECT_CALL(mock_1, copy).WillOnce(Return(new MockBinary<float> {f1, f2, 2}));
-	//EXPECT_CALL(mock_1, copy).WillOnce(Return(new MockBinary<float> {f1, f2, 2}));
-	//EXPECT_CALL(mock_2, copy).WillOnce(Return(new MockBinary<float> {mock_1, f3, 1}));
-	// Plus_1 can be safely reused, without memory issues.
-	//MockBinary<float> mock_3 {mock_1, mock_2, 1};
-
-	//mock_3(c, t);
 	mock_2(c, t);
 }
-
-/*
- *TEST_F(BinaryTest, nested_by_lvalue_and_rvalue) {
- *    MockFunction<float> f1;
- *    MockFunction<float> f2;
- *    MockFunction<float> f3;
- *
- *    EXPECT_CALL(f1, call(c, t));
- *    EXPECT_CALL(f2, call(c, t));
- *    EXPECT_CALL(f3, call(c, t)).Times(2);
- *
- *    // First argument is forwarded as rvalue, second by lvalue
- *    MockBinary<float> mock {MockBinary<float>(f1, f2, 0), f3};
- *
- *    // f3 can be safely reused
- *    MockBinary<float> other_mock {mock, f3};
- *
- *    other_mock(c, t);
- *}
- */
 
 class PlusOperator : public OperatorTest {};
 
@@ -158,7 +83,7 @@ TEST_F(PlusOperator, simple_plus_by_lvalue) {
 
 	auto plus_1 = f1 + f2;
 
-	pixled::Plus<float> plus = plus_1 + f1;
+	auto plus = plus_1 + f1;
 
 	EXPECT_CALL(*f1_copy_1_copy, call(c, t)).WillRepeatedly(Return(10));
 	EXPECT_CALL(*f1_copy_2, call(c, t)).WillRepeatedly(Return(10));
@@ -288,7 +213,7 @@ TEST_F(SinTest, complex_sin) {
 	EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
 	EXPECT_CALL(*f2_copy, copy).WillOnce(Return(f2_copy_copy));
 
-	pixled::Multiplies<float> product = f1 * f2;
+	auto product = f1 * f2;
 
 	std::mt19937 engine;
 	std::uniform_real_distribution<float> random_f {0, 100};

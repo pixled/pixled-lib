@@ -1,5 +1,7 @@
 add_subdirectory(gtest)
 
+include_directories(${CMAKE_SOURCE_DIR}/src)
+
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(test
 	src/pixled/strip.cpp

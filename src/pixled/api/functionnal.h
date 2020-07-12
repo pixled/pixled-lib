@@ -91,14 +91,14 @@ namespace pixled {
 					}
 			};
 
-		template<typename T, template<typename> class FctImplem>
-			class BinaryFunction : public Function<T> {
+		template<typename R, typename P1, typename P2, typename FctImplem>
+			class BinaryFunction : public Function<R> {
 				protected:
-					const FctWrapper<T> f1;
-					const FctWrapper<T> f2;
+					const FctWrapper<P1> f1;
+					const FctWrapper<P2> f2;
 
 				public:
-					using Type = typename Function<T>::Type;
+					using Type = typename Function<R>::Type;
 
 					template<typename Arg1, typename Arg2>
 						BinaryFunction(Arg1&& arg1, Arg2&& arg2) :
@@ -106,8 +106,8 @@ namespace pixled {
 							}
 
 				protected:
-					Function<T>* copy() const override {
-						return new FctImplem<T>(*f1, *f2);
+					Function<R>* copy() const override {
+						return new FctImplem(*f1, *f2);
 					}
 			};
 
