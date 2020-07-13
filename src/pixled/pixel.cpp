@@ -124,4 +124,22 @@ namespace pixled {
 		hsv.v = v;
 		hsb_to_rgb(hsv, rgb);
 	}
+
+	StripMapping::StripMapping(std::size_t length) {
+		for(std::size_t i = 0; i < length; i++) {
+			coordinates.push_back(api::Coordinates(i, 0));
+		}
+	}
+
+	std::size_t StripMapping::map(api::Coordinates c) const {
+		return c.x;
+	}
+
+	typename StripMapping::coordinates_iterator StripMapping::begin() const {
+		return coordinates.begin();
+	}
+
+	typename StripMapping::coordinates_iterator StripMapping::end() const {
+		return coordinates.end();
+	}
 }

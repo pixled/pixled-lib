@@ -28,10 +28,10 @@ namespace pixled {
 
 		class Mapping {
 			public:
-				typedef std::vector<Coordinates>::iterator coordinates_iterator;
-				virtual std::size_t map(Coordinates) = 0;
-				virtual coordinates_iterator begin() = 0;
-				virtual coordinates_iterator end() = 0;
+				typedef std::vector<Coordinates>::const_iterator coordinates_iterator;
+				virtual std::size_t map(Coordinates) const = 0;
+				virtual coordinates_iterator begin() const = 0;
+				virtual coordinates_iterator end() const = 0;
 
 		};
 
