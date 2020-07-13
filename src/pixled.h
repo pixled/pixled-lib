@@ -1,7 +1,3 @@
 #include "pixled/animation.h"
-#include "pixled/led.h"
-#include "pixled/output.h"
-
-using Strip = pixled::Strip;
-
-using AnimationRuntime = pixled::AnimationRuntime;
+#include "pixled/pixel.h"
+#include "pixled/functionnal.h"

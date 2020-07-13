@@ -31,7 +31,6 @@ TEST_F(BinaryTest, build_by_lvalue) {
 
 	EXPECT_CALL(*f1_copy, call(c, t)).WillOnce(Return(10));
 	EXPECT_CALL(*f2_copy, call(c, t)).WillOnce(Return(14));
-	//EXPECT_CALL(mock, call(c, t));
 
 	mock(c, t);
 }
@@ -65,7 +64,7 @@ TEST_F(BinaryTest, nested_by_lvalue) {
 
 class PlusOperator : public OperatorTest {};
 
-TEST_F(PlusOperator, simple_plus_by_lvalue) {
+TEST_F(PlusOperator, simple_plus) {
 	MockFunction<float> f1;
 	MockFunction<float>* f1_copy_1 {new MockFunction<float>};
 	MockFunction<float>* f1_copy_1_copy {new MockFunction<float>};
@@ -91,104 +90,6 @@ TEST_F(PlusOperator, simple_plus_by_lvalue) {
 
 	ASSERT_EQ(plus(c, t), 34);
 }
-
-/*
- *TEST_F(PlusOperator, nested_plus_by_rvalue) {
- *    MockFunction<float> f1;
- *    MockFunction<float> f2;
- *    MockFunction<float> f3;
- *    MockFunction<float>* f3_move = new MockFunction<float>;
- *
- *    EXPECT_CALL(f3, move).WillOnce(Return(f3_move));
- *
- *    EXPECT_CALL(f1, call(c, t)).WillOnce(Return(7));
- *    EXPECT_CALL(f2, call(c, t)).WillOnce(Return(17));
- *    EXPECT_CALL(*f3_move, call(c, t)).WillOnce(Return(3));
- *
- *    pixled::Plus<float> plus = f1 + f2 + std::move(f3);
- *
- *    ASSERT_EQ(plus(c, t), 27);
- *}
- */
-
-/*
- *TEST_F(PlusOperator, nested_plus_by_lvalue) {
- *    MockFunction<float> f1;
- *    MockFunction<float>* f1_copy {new MockFunction<float>};
- *    MockFunction<float>* f1_copy_copy {new MockFunction<float>};
- *    MockFunction<float> f2;
- *    MockFunction<float>* f2_copy {new MockFunction<float>};
- *    MockFunction<float>* f2_copy_copy {new MockFunction<float>};
- *    MockFunction<float> f3;
- *    MockFunction<float>* f3_copy {new MockFunction<float>};
- *
- *    //EXPECT_CALL(f1, copy).WillOnce(Return(f1_copy));
- *    //EXPECT_CALL(f1, copy).WillRepeatedly(Return(&f1));
- *    EXPECT_CALL(*f1_copy, copy).WillOnce(Return(f1_copy_copy));
- *    EXPECT_CALL(*f1_copy_copy, copy).WillOnce(Return(f1_copy_copy));
- *    EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
- *    EXPECT_CALL(*f2_copy, copy).WillOnce(Return(f2_copy_copy));
- *    EXPECT_CALL(f3, copy).WillOnce(Return(f3_copy));
- *
- *    EXPECT_CALL(*f1_copy_copy, call(c, t)).WillRepeatedly(Return(7));
- *    EXPECT_CALL(*f2_copy_copy, call(c, t)).WillRepeatedly(Return(17));
- *    EXPECT_CALL(*f3_copy, call(c, t)).WillRepeatedly(Return(3));
- *
- *    //pixled::Plus<float> plus {f1, f2};
- *
- *    //auto plus_1 = f1 + f2;
- *
- *    //pixled::Plus<float> plus = plus_1 + f3;
- *
- *    // Plus_1 can be safely reused, without memory issues.
- *    //pixled::Plus<float> other_plus = plus_1 + plus;
- *
- *    //ASSERT_EQ(plus(c, t), 27);
- *    //ASSERT_EQ(other_plus(c, t), 7+17+27);
- *}
- */
-
-/*
- *TEST_F(PlusOperator, nested_plus_by_lvalue_and_rvalue) {
- *    MockFunction<float> f1;
- *    MockFunction<float> f2;
- *    MockFunction<float> f3;
- *
- *    EXPECT_CALL(f1, call(c, t)).WillRepeatedly(Return(7));
- *    EXPECT_CALL(f2, call(c, t)).WillRepeatedly(Return(17));
- *    EXPECT_CALL(f3, call(c, t)).WillRepeatedly(Return(3));
- *
- *    // First argument is forwarded as rvalue, second by lvalue
- *    pixled::Plus<float> plus = f1 + f2 + f3;
- *
- *    // f3 can be safely reused
- *    pixled::Plus<float> other_plus = plus + f3;
- *
- *    ASSERT_EQ(plus(c, t), 27);
- *    ASSERT_EQ(other_plus(c, t), 30);
- *}
- *
- *TEST_F(PlusOperator, move_assignment) {
- *    MockFunction<float> f1;
- *    MockFunction<float>* f1_move = new MockFunction<float>;
- *    MockFunction<float> f2;
- *    MockFunction<float>* f2_move = new MockFunction<float>;
- *    MockFunction<float> f3;
- *
- *    EXPECT_CALL(f1, move).WillOnce(Return(f1_move));
- *    EXPECT_CALL(f2, move).WillOnce(Return(f2_move));
- *
- *    EXPECT_CALL(f3, call(c, t)).WillRepeatedly(Return(8));
- *    EXPECT_CALL(*f1_move, call(c, t)).WillRepeatedly(Return(13));
- *    EXPECT_CALL(*f2_move, call(c, t)).WillRepeatedly(Return(31));
- *
- *    auto plus = std::move(f1) + std::move(f2);
- *
- *    auto other_plus = std::move(plus) + f3;
- *
- *    ASSERT_EQ(other_plus(c, t), 52);
- *}
- */
 
 class SinTest : public OperatorTest {};
 

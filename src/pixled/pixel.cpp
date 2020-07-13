@@ -1,4 +1,4 @@
-#include "led.h"
+#include "pixel.h"
 
 namespace pixled {
 	void Color::hsb_to_rgb(const hsv_t& hsv, rgb_t& rgb) {

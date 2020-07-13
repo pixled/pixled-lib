@@ -1,14 +1,15 @@
 #ifndef OUTPUT_API_H
 #define OUTPUT_API_H
 
+#include "pixel.h"
 #include <cstdint>
 
 namespace pixled {
 	namespace api {
-		class Color;
-		class OutputFormat {
+		class Output {
 			public:
-				virtual void write(const api::Color& color, uint8_t* const& output) = 0;
+				virtual void write(const api::Color& color, std::size_t i) = 0;
+
 		};
 	}
 }

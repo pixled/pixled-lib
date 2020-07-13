@@ -1,25 +1,19 @@
 #ifndef ANIMATION_API_H
 #define ANIMATION_API_H
 
-#include "led.h"
+#include "pixel.h"
+#include "coordinates.h"
 
 typedef unsigned long Time;
-typedef long Coordinate;
 
 namespace pixled {
 	namespace api {
 		class AnimationRuntime {
 			public:
-				virtual unsigned long time() = 0;
+				virtual Time time() const = 0;
 				virtual void next() = 0;
 				virtual void prev() = 0;
-		};
-
-		struct Coordinates {
-			Coordinate x;
-			Coordinate y;
-			Coordinates(Coordinate x, Coordinate y)
-				: x(x), y(y) {}
+				virtual void frame(Time t) = 0;
 		};
 
 		struct Size {
@@ -43,7 +37,7 @@ namespace pixled {
 			public:
 				StaticView(int x, int y, unsigned int width, unsigned int height) 
 					: _position(x, y), size(width, height) {}
-				Coordinates position(int time) {return _position;}
+				Coordinates position(int time) const override {return _position;}
 		};
 
 		class Animation {

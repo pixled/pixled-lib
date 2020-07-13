@@ -1,8 +1,8 @@
-#ifndef FUNCTIONNAL_H
-#define FUNCTIONNAL_H
+#ifndef PIXLED_FUNCTIONNAL_H
+#define PIXLED_FUNCTIONNAL_H
 #include "api/functionnal.h"
 #include "api/utils.h"
-#include "led.h"
+#include "pixel.h"
 #include <cmath>
 
 namespace pixled {

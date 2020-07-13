@@ -2,8 +2,8 @@
 #define MOCK_LED_H
 
 #include "gmock/gmock.h"
-#include "pixled/api/led.h"
-#include "pixled/led.h"
+#include "pixled/api/pixel.h"
+#include "pixled/pixel.h"
 
 class MockColor : public pixled::Color {
 	public:
@@ -19,7 +19,7 @@ class MockColor : public pixled::Color {
 		MOCK_METHOD(void, setHsv, (float, float, float), (override));
 };
 
-class MockLed : public pixled::Led {
+class MockPixel : public pixled::Pixel {
 	public:
 	MOCK_METHOD(pixled::Color&, color, (), (override));
 	MOCK_METHOD(const pixled::Color&, color, (), (const, override));

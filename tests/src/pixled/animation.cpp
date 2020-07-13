@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include <pixled.h>
 #include "api/mock_animation.h"
-#include "api/mock_led.h"
+#include "api/mock_pixel.h"
 #include "api/mock_functionnal.h"
 
 using ::testing::AnyNumber;
@@ -9,23 +9,6 @@ using ::testing::AtMost;
 using ::testing::Return;
 
 using pixled::MockFunction;
-
-class AnimationRuntimeTest : public ::testing::Test {
-	protected:
-	MockAnimation mockAnim;
-
-	pixled::AnimationRuntime animationRuntime {8, new pixled::RGB, mockAnim};
-};
-
-/*
- *TEST_F(AnimationRuntimeTest, animation_test) {
- *
- *    EXPECT_CALL(mockAnim, compute(
- *
- *    animationRuntime.next();
- *
- *}
- */
 
 class MockFctCopy {
 	public:

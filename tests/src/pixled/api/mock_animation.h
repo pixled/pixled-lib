@@ -2,7 +2,7 @@
 #define MOCK_ANIMATION_H
 #include <pixled.h>
 #include "gmock/gmock.h"
-#include "pixled/api/led.h"
+#include "pixled/api/pixel.h"
 
 class MockAnimation : public pixled::api::Animation {
 	public:

@@ -1,8 +1,8 @@
-#ifndef LED_H
-#define LED_H
+#ifndef PIXLED_LED_H
+#define PIXLED_LED_H
 
 #include <iostream>
-#include "api/led.h"
+#include "api/pixel.h"
 
 namespace pixled {
 
@@ -38,7 +38,7 @@ namespace pixled {
 			void setHsv(float, float, float) override;
 	};
 
-	class Led : public api::Led {
+	class Pixel : public api::Pixel {
 		private:
 			Color _color;
 		public:
@@ -48,44 +48,6 @@ namespace pixled {
 
 			const Color& color() const override {
 				return _color;
-			}
-	};
-
-	class Strip : public api::Strip {
-		private:
-			uint16_t length;
-			Led* leds;
-
-		public:
-
-			Strip(uint16_t length) : length(length) {
-				leds = new Led[length];
-			}
-
-			Strip(const Strip& other) = delete;
-			Strip& operator=(const Strip&) = delete;
-			Strip& operator=(Strip&&) = delete;
-
-			void setLength(uint16_t length) override {
-				this->length = length;
-			}
-			uint16_t getLength() const override {
-				return length;
-			}
-
-			Led& operator[](uint16_t i) override {
-				return leds[i];
-			}
-
-			void toArray(api::OutputFormat& format, uint8_t* output) override {
-				for(uint16_t i = 0; i < length; i++) {
-					const auto& color = leds[i].color();
-					format.write(color, &output[3*i]);
-				}
-			}
-
-			~Strip() {
-				delete[] leds;
 			}
 	};
 }

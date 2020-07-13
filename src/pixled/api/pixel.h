@@ -1,7 +1,8 @@
 #ifndef LED_API_H
 #define LED_API_H
 #include <cstdint>
-#include "output.h"
+#include <vector>
+#include "coordinates.h"
 
 namespace pixled {
 	namespace api {
@@ -17,26 +18,20 @@ namespace pixled {
 
 				virtual void setRgb(uint8_t, uint8_t, uint8_t) = 0;
 				virtual void setHsv(float, float, float) = 0;
-
-
-				//bool operator==(const Color& c1) const {
-				//return c1.red() == this->red() && c1.green() == this->green() && c1.blue() == this->blue();
-				//}
 		};
 
-		class Led {
+		class Pixel {
 			public:
 				virtual Color& color() = 0;
 				virtual const Color& color() const = 0;
 		};
 
-		class Strip {
+		class Mapping {
 			public:
-				virtual uint16_t getLength() const = 0;
-				virtual void setLength(uint16_t ) = 0;
-				virtual Led& operator[](uint16_t i) = 0;
-
-				virtual void toArray(OutputFormat& format, uint8_t* output) = 0;
+				typedef std::vector<Coordinates>::iterator coordinates_iterator;
+				virtual std::size_t map(Coordinates) = 0;
+				virtual coordinates_iterator begin() = 0;
+				virtual coordinates_iterator end() = 0;
 
 		};
 
