@@ -25,10 +25,47 @@ namespace pixled {
 			public:
 				using api::TernaryFunction<R, Time, R, R, Wave<R>>::TernaryFunction;
 
+				/*
+				 * f1 : time period
+				 * f2 : center value
+				 * f3 : amplitude
+				 */
 				R operator()(Coordinates c, Time t) const override {
 					return (*this->f2)(c, t) + (*this->f3)(c, t) * std::sin(2*PIXLED_PI * t / (*this->f1)(c, t));
 				}
 		};
+
+	class Blooming : public api::TernaryFunction<Color, Color, Coordinates, float, Blooming> {
+		public:
+			using api::TernaryFunction<Color, Color, Coordinates, float, Blooming>::TernaryFunction;
+
+			/*
+			 * f1 : Input color
+			 * f2 : Center point
+			 * f3 : Bloom radius
+			 */
+			Color operator()(Coordinates c, Time t) const override {
+				Color color = (*this->f1)(c, t);
+				// Max distance from center point, where b = epsilon
+				float D = (*this->f3)(c, t);
+				// Distance from c to center point
+				float d = Distance(*this->f2, c)(c, t);
+
+				// The brightness decreases as a 1 / x light functions, scaled
+				// so that when d = D, b = epsilon.
+				float epsilon = 0.05;
+				float alpha = (1 - epsilon) / (epsilon * D);
+				float b = 1 / (1 + alpha * d);
+				if(b < epsilon)
+					b = 0.;
+
+				color.setHsv(
+					color.hue(),
+					color.saturation(),
+					b);
+				return color;
+			}
+	};
 
 	class Runtime : public api::AnimationRuntime {
 		private:

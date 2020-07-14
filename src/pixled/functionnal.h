@@ -262,6 +262,26 @@ namespace pixled {
 					return std::sin((*this->f)(c, t));
 				}
 		};
+
+	class Distance : public api::BinaryFunction<float, Coordinates, Coordinates, Distance> {
+		public:
+			using api::BinaryFunction<float, Coordinates, Coordinates, Distance>::BinaryFunction;
+
+			float operator()(Coordinates c, Time t) const override {
+				Coordinates c1 = (*this->f1)(c, t);
+				Coordinates c2 = (*this->f2)(c, t);
+				return std::sqrt(std::pow(c2.y - c1.y, 2) + std::pow(c2.x - c1.x, 2));
+			};
+	};
+
+	class Point : public api::BinaryFunction<Coordinates, Coordinate, Coordinate, Point> {
+		public:
+			using api::BinaryFunction<Coordinates, Coordinate, Coordinate, Point>::BinaryFunction;
+
+		Coordinates operator()(Coordinates c, Time t) const override {
+			return {(*this->f1)(c, t), (*this->f2)(c, t)};
+		}
+	};
 }
 
 #endif
