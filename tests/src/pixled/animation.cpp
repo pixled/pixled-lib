@@ -31,7 +31,8 @@ TEST(RainbowTest, test) {
 	EXPECT_CALL(period, copy).Times(AtMost(1))
 		.WillRepeatedly(Invoke(MockFctCopy(last_copy)));
 
-	pixled::Rainbow r {period, 0.5f, 0.4f};
+	pixled::Rainbow h {period};
+	auto r = pixled::hsb(h, 0.5f, 0.4f);
 
 	EXPECT_CALL(*last_copy, call)
 		.Times(AnyNumber())

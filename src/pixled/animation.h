@@ -9,15 +9,27 @@
 
 namespace pixled {
 
-	class Rainbow : public pixled::hsb {
+	/*
+	 *class Rainbow : public pixled::hsb {
+	 *    public:
+	 *        template<typename Arg1, typename Arg2, typename Arg3>
+	 *            Rainbow(Arg1&& period, Arg2&& s, Arg3&& b)
+	 *            : hsb(
+	 *                    180.f * (pixled::Sin<float>(2*PIXLED_PI * T() / std::forward<Arg1>(period)) + 1.f),
+	 *                    std::forward<Arg2>(s),
+	 *                    std::forward<Arg3>(b)) {
+	 *            }
+	 *};
+	 */
+
+	class Rainbow : public api::UnaryFunction<float, Time, Rainbow> {
 		public:
-			template<typename Arg1, typename Arg2, typename Arg3>
-				Rainbow(Arg1&& period, Arg2&& s, Arg3&& b)
-				: hsb(
-						180.f * (pixled::Sin<float>(2*PIXLED_PI * T() / std::forward<Arg1>(period)) + 1.f),
-						std::forward<Arg2>(s),
-						std::forward<Arg3>(b)) {
-				}
+			using api::UnaryFunction<float, Time, Rainbow>::UnaryFunction;
+
+			float operator()(Coordinates c, Time t) const override {
+				return 
+					180.f * (std::sin(2*PIXLED_PI * t / (*this->f)(c, t)) + 1.f);
+			}
 	};
 
 	template<typename R>
