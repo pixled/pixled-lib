@@ -63,9 +63,6 @@ namespace pixled {
 			}
 	};
 
-	template<typename T1, typename T2>
-		class OpType {};
-
 	template<typename R, typename P1, typename P2>
 		class Plus : public api::BinaryFunction<R, P1, P2, Plus<R, P1, P2>> {
 
@@ -79,7 +76,8 @@ namespace pixled {
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
+			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Plus<
 			// R
 			typename std::common_type<
@@ -89,22 +87,23 @@ namespace pixled {
 			// P1
 			typename std::remove_reference<Arg1>::type::Type,
 			// P2
-			typename std::remove_reference<Arg1>::type::Type
+			typename std::remove_reference<Arg2>::type::Type
 			> operator+(Arg1&& f1, Arg2&& f2) {
 				return {std::forward<Arg1>(f1), std::forward<Arg2>(f2)};
 			}
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
+			std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Plus<
 			// R
 			typename std::common_type<
-				Arg1,
+				typename std::remove_reference<Arg1>::type,
 				typename std::remove_reference<Arg2>::type::Type
 			>::type,
 			// P1
-			Arg1,
+			typename std::remove_reference<Arg1>::type,
 			// P2
 			typename std::remove_reference<Arg2>::type::Type> operator+(Arg1&& c1, Arg2&& f2) {
 				return {c1, std::forward<Arg2>(f2)};
@@ -112,17 +111,18 @@ namespace pixled {
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<Arg1>::value && std::is_arithmetic<Arg2>::value>::type>
+			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Plus<
 			// R
 			typename std::common_type<
 				typename std::remove_reference<Arg1>::type::Type,
-				Arg2
+				typename std::remove_reference<Arg2>::type
 			>::type,
 			// P1
 			typename std::remove_reference<Arg1>::type::Type,
 			// P2
-			Arg2> operator+(Arg1&& f1, Arg2&& c2) {
+			typename std::remove_reference<Arg2>::type> operator+(Arg1&& f1, Arg2&& c2) {
 			return {std::forward<Arg1>(f1), c2};
 		}
 
@@ -138,7 +138,8 @@ namespace pixled {
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
+			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Multiplies<
 			// R
 			typename std::common_type<
@@ -155,15 +156,16 @@ namespace pixled {
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
+			std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Multiplies<
 			// R
 			typename std::common_type<
-				Arg1,
+				typename std::remove_reference<Arg1>::type,
 				typename std::remove_reference<Arg2>::type::Type
 			>::type,
 			// P1
-			Arg1,
+			typename std::remove_reference<Arg1>::type,
 			// P2
 			typename std::remove_reference<Arg2>::type::Type
 			> operator*(Arg1&& c1, Arg2&& f2) {
@@ -172,17 +174,18 @@ namespace pixled {
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<Arg1>::value && std::is_arithmetic<Arg2>::value>::type>
+			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Multiplies<
 			// R
 			typename std::common_type<
 				typename std::remove_reference<Arg1>::type::Type,
-				Arg2
+				typename std::remove_reference<Arg2>::type
 			>::type,
 			// P1
 			typename std::remove_reference<Arg1>::type::Type,
 			// P2
-			Arg2> operator*(Arg1&& f1, Arg2&& c2) {
+			typename std::remove_reference<Arg2>::type> operator*(Arg1&& f1, Arg2&& c2) {
 				return {std::forward<Arg1>(f1), c2};
 			}
 
@@ -198,7 +201,8 @@ namespace pixled {
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
+			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Divides<
 			// R
 			typename std::common_type<
@@ -215,15 +219,16 @@ namespace pixled {
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			std::is_arithmetic<Arg1>::value && !std::is_arithmetic<Arg2>::value>::type>
+			std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Divides<
 			// R
 			typename std::common_type<
-				Arg1,
+				typename std::remove_reference<Arg1>::type,
 				typename std::remove_reference<Arg2>::type::Type
 			>::type,
 			// P1
-			Arg1,
+			typename std::remove_reference<Arg1>::type,
 			// P2
 			typename std::remove_reference<Arg2>::type::Type
 			> operator/(Arg1&& c1, Arg2&& f2) {
@@ -232,17 +237,18 @@ namespace pixled {
 
 	template<typename Arg1, typename Arg2,
 		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<Arg1>::value && std::is_arithmetic<Arg2>::value>::type>
+			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
+				&& std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
 			Divides<
 			// R
 			typename std::common_type<
 				typename std::remove_reference<Arg1>::type::Type,
-				Arg2
+				typename std::remove_reference<Arg2>::type
 			>::type,
 			// P1
 			typename std::remove_reference<Arg1>::type::Type,
 			// P2
-			Arg2
+			typename std::remove_reference<Arg2>::type
 			> operator/(Arg1&& f1, Arg2&& c2) {
 				return {std::forward<Arg1>(f1), c2};
 			}

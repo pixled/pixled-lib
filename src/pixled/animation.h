@@ -20,6 +20,16 @@ namespace pixled {
 				}
 	};
 
+	template<typename R>
+		class Wave : public api::TernaryFunction<R, Time, R, R, Wave<R>> {
+			public:
+				using api::TernaryFunction<R, Time, R, R, Wave<R>>::TernaryFunction;
+
+				R operator()(Coordinates c, Time t) const override {
+					return (*this->f2)(c, t) + (*this->f3)(c, t) * std::sin(2*PIXLED_PI * t / (*this->f1)(c, t));
+				}
+		};
+
 	class Runtime : public api::AnimationRuntime {
 		private:
 			unsigned long _time = 0;
@@ -45,6 +55,17 @@ namespace pixled {
 			}
 			Time time() const override {
 				return _time;
+			}
+	};
+
+	class PixelView : public api::TernaryFunction<Color, Coordinate, Coordinate, Color, PixelView> {
+		public:
+			using api::TernaryFunction<Color, Coordinate, Coordinate, Color, PixelView>::TernaryFunction;
+
+			Color operator()(Coordinates c, Time t) const override {
+				if (c.x == (*f1)(c, t) && c.y == (*f2)(c, t))
+					return (*f3)(c, t);
+				return Color();
 			}
 	};
 }
