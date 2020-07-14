@@ -9,28 +9,19 @@
 
 namespace pixled {
 
-	/*
-	 *class Rainbow : public pixled::hsb {
-	 *    public:
-	 *        template<typename Arg1, typename Arg2, typename Arg3>
-	 *            Rainbow(Arg1&& period, Arg2&& s, Arg3&& b)
-	 *            : hsb(
-	 *                    180.f * (pixled::Sin<float>(2*PIXLED_PI * T() / std::forward<Arg1>(period)) + 1.f),
-	 *                    std::forward<Arg2>(s),
-	 *                    std::forward<Arg3>(b)) {
-	 *            }
-	 *};
-	 */
-
 	class Rainbow : public api::UnaryFunction<float, Time, Rainbow> {
 		public:
 			using api::UnaryFunction<float, Time, Rainbow>::UnaryFunction;
 
-			float operator()(Coordinates c, Time t) const override {
+			float operator()(api::Point c, Time t) const override {
 				return 
 					180.f * (std::sin(2*PIXLED_PI * t / (*this->f)(c, t)) + 1.f);
 			}
 	};
+
+	//class RainbowWave : public api::TernaryFunction<float, float, Time, Line, RainbowWave> {
+
+	//};
 
 	template<typename R>
 		class Wave : public api::TernaryFunction<R, Time, R, R, Wave<R>> {
@@ -42,21 +33,21 @@ namespace pixled {
 				 * f2 : center value
 				 * f3 : amplitude
 				 */
-				R operator()(Coordinates c, Time t) const override {
+				R operator()(api::Point c, Time t) const override {
 					return (*this->f2)(c, t) + (*this->f3)(c, t) * std::sin(2*PIXLED_PI * t / (*this->f1)(c, t));
 				}
 		};
 
-	class Blooming : public api::TernaryFunction<Color, Color, Coordinates, float, Blooming> {
+	class Blooming : public api::TernaryFunction<Color, Color, api::Point, float, Blooming> {
 		public:
-			using api::TernaryFunction<Color, Color, Coordinates, float, Blooming>::TernaryFunction;
+			using api::TernaryFunction<Color, Color, api::Point, float, Blooming>::TernaryFunction;
 
 			/*
 			 * f1 : Input color
 			 * f2 : Center point
 			 * f3 : Bloom radius
 			 */
-			Color operator()(Coordinates c, Time t) const override {
+			Color operator()(api::Point c, Time t) const override {
 				Color color = (*this->f1)(c, t);
 				// Max distance from center point, where b = epsilon
 				float D = (*this->f3)(c, t);
@@ -91,7 +82,7 @@ namespace pixled {
 				: map(map), output(output), animation(animation) {}
 
 			void frame(Time t) override {
-				for(Coordinates c : map) {
+				for(api::Point c : map) {
 					output.write(animation(c, t), map.map(c));
 				}
 			}
@@ -111,7 +102,7 @@ namespace pixled {
 		public:
 			using api::TernaryFunction<Color, Coordinate, Coordinate, Color, PixelView>::TernaryFunction;
 
-			Color operator()(Coordinates c, Time t) const override {
+			Color operator()(api::Point c, Time t) const override {
 				if (c.x == (*f1)(c, t) && c.y == (*f2)(c, t))
 					return (*f3)(c, t);
 				return Color();

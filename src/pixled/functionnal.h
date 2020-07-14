@@ -6,13 +6,12 @@
 #include <cmath>
 
 namespace pixled {
-	using api::Coordinates;
 
 	class X : public api::Function<Coordinate> {
 		public:
 			using Type = api::Function<Coordinate>::Type;
 
-			Coordinate operator()(Coordinates c, Time t) const override {
+			Coordinate operator()(api::Point c, Time t) const override {
 				return c.x;
 			}
 
@@ -23,7 +22,7 @@ namespace pixled {
 		public:
 			using Type = api::Function<Coordinate>::Type;
 
-			Coordinate operator()(Coordinates c, Time t) const override {
+			Coordinate operator()(api::Point c, Time t) const override {
 				return c.y;
 			}
 
@@ -34,7 +33,7 @@ namespace pixled {
 		public:
 			using Type = api::Function<Time>::Type;
 
-			Time operator()(Coordinates c, Time t) const override {
+			Time operator()(api::Point c, Time t) const override {
 				return t;
 			}
 
@@ -45,7 +44,7 @@ namespace pixled {
 		public:
 			using api::TernaryFunction<pixled::Color, float, float, float, hsb>::TernaryFunction;
 
-			pixled::Color operator()(Coordinates c, Time t) const override {
+			pixled::Color operator()(api::Point c, Time t) const override {
 				pixled::Color color;
 				color.setHsv((*f1)(c, t), (*f2)(c, t), (*f3)(c, t));
 				return color;
@@ -56,7 +55,7 @@ namespace pixled {
 		public:
 			using api::TernaryFunction<pixled::Color, uint8_t, uint8_t, uint8_t, rgb>::TernaryFunction;
 
-			pixled::Color operator()(Coordinates c, Time t) const override {
+			pixled::Color operator()(api::Point c, Time t) const override {
 				pixled::Color color;
 				color.setRgb((*f1)(c, t), (*f2)(c, t), (*f3)(c, t));
 				return color;
@@ -69,7 +68,7 @@ namespace pixled {
 			public:
 				using api::BinaryFunction<R, P1, P2, Plus<R, P1, P2>>::BinaryFunction;
 
-				R operator()(Coordinates c, Time t) const override {
+				R operator()(api::Point c, Time t) const override {
 					return (*this->f1)(c, t) + (*this->f2)(c, t);
 				}
 		};
@@ -131,7 +130,7 @@ namespace pixled {
 			public:
 				using api::BinaryFunction<R, P1, P2, Multiplies<R, P1, P2>>::BinaryFunction;
 
-				R operator()(Coordinates c, Time t) const override {
+				R operator()(api::Point c, Time t) const override {
 					return (*this->f1)(c, t) * (*this->f2)(c, t);
 				}
 		};
@@ -194,7 +193,7 @@ namespace pixled {
 			public:
 				using api::BinaryFunction<R, P1, P2, Divides<R, P1, P2>>::BinaryFunction;
 
-				R operator()(Coordinates c, Time t) const override {
+				R operator()(api::Point c, Time t) const override {
 					return (*this->f1)(c, t) / (*this->f2)(c, t);
 				}
 		};
@@ -258,29 +257,29 @@ namespace pixled {
 			public:
 				using api::UnaryFunction<T, T, Sin>::UnaryFunction;
 
-				T operator()(Coordinates c, Time t) const override {
+				T operator()(api::Point c, Time t) const override {
 					return std::sin((*this->f)(c, t));
 				}
 		};
 
-	class Distance : public api::BinaryFunction<float, Coordinates, Coordinates, Distance> {
+	class Distance : public api::BinaryFunction<float, api::Point, api::Point, Distance> {
 		public:
-			using api::BinaryFunction<float, Coordinates, Coordinates, Distance>::BinaryFunction;
+			using api::BinaryFunction<float, api::Point, api::Point, Distance>::BinaryFunction;
 
-			float operator()(Coordinates c, Time t) const override {
-				Coordinates c1 = (*this->f1)(c, t);
-				Coordinates c2 = (*this->f2)(c, t);
+			float operator()(api::Point c, Time t) const override {
+				api::Point c1 = (*this->f1)(c, t);
+				api::Point c2 = (*this->f2)(c, t);
 				return std::sqrt(std::pow(c2.y - c1.y, 2) + std::pow(c2.x - c1.x, 2));
 			};
 	};
 
-	class Point : public api::BinaryFunction<Coordinates, Coordinate, Coordinate, Point> {
+	class Point : public api::BinaryFunction<api::Point, Coordinate, Coordinate, Point> {
 		public:
-			using api::BinaryFunction<Coordinates, Coordinate, Coordinate, Point>::BinaryFunction;
+			using api::BinaryFunction<api::Point, Coordinate, Coordinate, Point>::BinaryFunction;
 
-		Coordinates operator()(Coordinates c, Time t) const override {
-			return {(*this->f1)(c, t), (*this->f2)(c, t)};
-		}
+			api::Point operator()(api::Point c, Time t) const override {
+				return {(*this->f1)(c, t), (*this->f2)(c, t)};
+			}
 	};
 }
 

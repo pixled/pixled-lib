@@ -127,11 +127,11 @@ namespace pixled {
 
 	StripMapping::StripMapping(std::size_t length) {
 		for(std::size_t i = 0; i < length; i++) {
-			coordinates.push_back(api::Coordinates(i, 0));
+			coordinates.push_back(api::Point(i, 0));
 		}
 	}
 
-	std::size_t StripMapping::map(api::Coordinates c) const {
+	std::size_t StripMapping::map(api::Point c) const {
 		return c.x;
 	}
 

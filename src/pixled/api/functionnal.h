@@ -11,7 +11,7 @@ namespace pixled {
 				public:
 					typedef T Type;
 
-					virtual T operator()(Coordinates c, Time t) const = 0;
+					virtual T operator()(Point c, Time t) const = 0;
 					virtual ~Function() {}
 					virtual Function<T>* copy() const = 0;
 			};
@@ -24,7 +24,7 @@ namespace pixled {
 					using Type = typename api::Function<T>::Type;
 					Constant(T value) :
 						value(value) {}
-					T operator()(Coordinates, Time) const override {return value;};
+					T operator()(Point, Time) const override {return value;};
 
 					Function<T>* copy() const override {
 						return new Constant<T>(value);
@@ -145,7 +145,7 @@ namespace pixled {
 					Cast(Function<From>&& from)
 						: f(std::move(from)) {}
 
-					To operator()(Coordinates c, Time t) const override {
+					To operator()(Point c, Time t) const override {
 						return (*this->f)(c, t);
 					}
 

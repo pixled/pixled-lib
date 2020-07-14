@@ -9,11 +9,11 @@ using ::testing::AnyNumber;
 
 using pixled::MockFunction;
 using pixled::MockBinary;
-using pixled::Coordinates;
+using pixled::api::Point;
 
 class OperatorTest : public ::testing::Test {
 	protected:
-		Coordinates c {12, 38};
+		Point c {12, 38};
 		Time t {25};
 };
 

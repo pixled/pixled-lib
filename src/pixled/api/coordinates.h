@@ -5,11 +5,18 @@ typedef long Coordinate;
 
 namespace pixled {
 	namespace api {
-		struct Coordinates {
+		struct Point {
 			Coordinate x;
 			Coordinate y;
-			Coordinates(Coordinate x, Coordinate y)
+			Point(Coordinate x, Coordinate y)
 				: x(x), y(y) {}
+		};
+
+		struct Line {
+			float a;
+			float b;
+			Line(float a, float b)
+				: a(a), b(b) {}
 		};
 	}
 }

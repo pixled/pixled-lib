@@ -53,13 +53,13 @@ namespace pixled {
 
 	class StripMapping : public api::Mapping {
 		private:
-			std::vector<api::Coordinates> coordinates;
+			std::vector<api::Point> coordinates;
 		public:
 			using api::Mapping::coordinates_iterator;
 
 			StripMapping(std::size_t length);
 
-			std::size_t map(api::Coordinates c) const override;
+			std::size_t map(api::Point c) const override;
 			coordinates_iterator begin() const override;
 			coordinates_iterator end() const override;
 

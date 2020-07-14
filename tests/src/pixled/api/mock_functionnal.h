@@ -29,8 +29,8 @@ namespace pixled {
 	template<typename T>
 		class MockFunction : public api::Function<T> {
 			public:
-				MOCK_METHOD(T, call, (api::Coordinates, Time), (const));
-				T operator()(api::Coordinates c, Time t) const override {
+				MOCK_METHOD(T, call, (api::Point, Time), (const));
+				T operator()(api::Point c, Time t) const override {
 					return call(c, t);
 				}
 				MOCK_METHOD(MockFunction<T>*, copy, (), (const, override));
@@ -39,8 +39,8 @@ namespace pixled {
 	template<typename R, typename P>
 		class MockUnary : public api::UnaryFunction<R, P, MockUnary<R, P>> {
 			public:
-				MOCK_METHOD(R, call, (api::Coordinates, Time), (const));
-				R operator()(api::Coordinates c, Time t) const override {
+				MOCK_METHOD(R, call, (api::Point, Time), (const));
+				R operator()(api::Point c, Time t) const override {
 					return call(c, t);
 				}
 
@@ -59,8 +59,8 @@ namespace pixled {
 	template<typename R, typename P1, typename P2>
 		class MockBinary : public api::BinaryFunction<R, P1, P2, MockBinary<R, P1, P2>> {
 			public:
-				MOCK_METHOD(R, call, (api::Coordinates, Time), (const));
-				R operator()(api::Coordinates c, Time t) const override {
+				MOCK_METHOD(R, call, (api::Point, Time), (const));
+				R operator()(api::Point c, Time t) const override {
 					return call(c, t);
 				}
 

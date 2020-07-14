@@ -25,19 +25,19 @@ namespace pixled {
 
 		class View {
 			public:
-				virtual Coordinates position(int time) const = 0;
+				virtual Point position(int time) const = 0;
 				virtual Size size(int time) const = 0;
 				virtual void operator()(Color&, int x, int y, unsigned long time) const = 0;
 		};
 
 		class StaticView : public View {
 			private:
-				Coordinates _position;
+				Point _position;
 				Size size;
 			public:
 				StaticView(int x, int y, unsigned int width, unsigned int height) 
 					: _position(x, y), size(width, height) {}
-				Coordinates position(int time) const override {return _position;}
+				Point position(int time) const override {return _position;}
 		};
 
 		class Animation {
