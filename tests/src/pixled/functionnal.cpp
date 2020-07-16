@@ -130,3 +130,49 @@ TEST_F(SinTest, complex_sin) {
 		ASSERT_FLOAT_EQ(sin(c, t), std::sin(f1_result * f2_result));
 	}
 }
+
+TEST(Random, simple_int_test) {
+	pixled::Random<int> rd(1, 25, 10);
+
+	std::array<int, 100> values;
+
+	// First run from t = 0 to t = 10 * 100
+	for(unsigned long i = 0; i < 100; i++) {
+		int rd_int = rd({8, 4}, 10 * i);
+		values[i] = rd_int;
+		// Since period = 10, the value must keep constant for 10 iterations
+		for(Time t = 10 * i; t < 10 * (i + 1); t++) {
+			int next_rd_int = rd({8, 4}, t);
+			ASSERT_EQ(next_rd_int, rd_int);
+		}
+	}
+
+	// A second run must yield exactly the same values
+	for(unsigned long i = 0; i < 100; i++) {
+		int rd_int = rd({8, 4}, 10 * i);
+		ASSERT_EQ(rd_int, values[i]);
+	}
+}
+
+TEST(Random, simple_float_test) {
+	pixled::Random<float> rd(1, 25, 10);
+
+	std::array<float, 100> values;
+
+	// First run from t = 0 to t = 10 * 100
+	for(unsigned long i = 0; i < 100; i++) {
+		float rd_float = rd({8, 4}, 10 * i);
+		values[i] = rd_float;
+		// Since period = 10, the value must keep constant for 10 iterations
+		for(Time t = 10 * i; t < 10 * (i + 1); t++) {
+			float next_rd_float = rd({8, 4}, t);
+			ASSERT_FLOAT_EQ(next_rd_float, rd_float);
+		}
+	}
+
+	// A second run must yield exactly the same values
+	for(unsigned long i = 0; i < 100; i++) {
+		float rd_float = rd({8, 4}, 10 * i);
+		ASSERT_EQ(rd_float, values[i]);
+	}
+}

@@ -4,6 +4,7 @@
 #include "api/utils.h"
 #include "pixel.h"
 #include <cmath>
+#include <random>
 
 namespace pixled {
 
@@ -295,6 +296,7 @@ namespace pixled {
 	};
 
 	class Line : public api::TernaryFunction<api::Line, float, float, float, Line> {
+		public:
 		using api::TernaryFunction<api::Line, float, float, float, Line>::TernaryFunction;
 
 		api::Line operator()(api::Point p, Time t) const override {
@@ -304,6 +306,7 @@ namespace pixled {
 
 	// X = c helper function
 	class XLine : public api::UnaryFunction<api::Line, float, XLine> {
+		public:
 		using api::UnaryFunction<api::Line, float, XLine>::UnaryFunction;
 
 		api::Line operator()(api::Point p, Time t) const override {
@@ -313,10 +316,30 @@ namespace pixled {
 
 	// Y = c helper function
 	class YLine : public api::UnaryFunction<api::Line, float, YLine> {
+		public:
 		using api::UnaryFunction<api::Line, float, YLine>::UnaryFunction;
 
 		api::Line operator()(api::Point p, Time t) const override {
 			return {0, 1, -(*this->f)(p, t)};
+		}
+	};
+
+	template<typename R>
+	class Random : public api::TernaryFunction<R, R, R, Time, Random<R>> {
+		public:
+		using api::TernaryFunction<R, R, R, Time, Random<R>>::TernaryFunction;
+
+		/*
+		 * f1 = min value
+		 * f2 = max range
+		 * f3 = period
+		 */
+		R operator()(api::Point p, Time t) const override {
+			// New default random generator
+			std::minstd_rand rd;
+			rd.discard(t / (*this->f3)(p, t));
+			std::uniform_real_distribution<float> random_real ((*this->f1)(p, t), (*this->f2)(p, t));
+			return random_real(rd);
 		}
 	};
 }
