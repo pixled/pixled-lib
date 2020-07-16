@@ -19,9 +19,35 @@ namespace pixled {
 			}
 	};
 
-	//class RainbowWave : public api::TernaryFunction<float, float, Time, Line, RainbowWave> {
+	class RainbowWave : public api::TernaryFunction<float, float, api::Line, Time, RainbowWave> {
+		public:
+			using api::TernaryFunction<float, float, api::Line, Time, RainbowWave>::TernaryFunction;
 
-	//};
+			/*
+			 * f1 : lambda
+			 * f2 : origin line
+			 * f3 : time period
+			 */
+			float operator()(api::Point p, Time t) const override {
+				float d = LineDistance(*this->f2, p)(p, t);
+				return 180.f * (1.f + std::sin(d / (*this->f1)(p, t) - (float) t / (*this->f3)(p, t)));
+			}
+	};
+
+	class RainbowWaveX : public RainbowWave {
+		public:
+			template<typename Arg1, typename Arg2>
+				RainbowWaveX(Arg1&& lambda, Arg2&& time_period)
+				: RainbowWave(std::forward<Arg1>(lambda), api::Line(1, 0, 0), std::forward<Arg2>(time_period)) {}
+	};
+
+	class RainbowWaveY : public RainbowWave {
+		public:
+			template<typename Arg1, typename Arg2>
+				RainbowWaveY(Arg1&& lambda, Arg2&& time_period)
+				: RainbowWave(std::forward<Arg1>(lambda), api::Line(0, 1, 0), std::forward<Arg2>(time_period)) {}
+	};
+
 
 	template<typename R>
 		class Wave : public api::TernaryFunction<R, Time, R, R, Wave<R>> {

@@ -12,11 +12,15 @@ namespace pixled {
 				: x(x), y(y) {}
 		};
 
+		/**
+		 * A Line with equation a*x + b*y + c = 0
+		 */
 		struct Line {
 			float a;
 			float b;
-			Line(float a, float b)
-				: a(a), b(b) {}
+			float c;
+			Line(float a, float b, float c)
+				: a(a), b(b), c(c) {}
 		};
 	}
 }

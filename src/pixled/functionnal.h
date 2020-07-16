@@ -272,6 +272,18 @@ namespace pixled {
 				return std::sqrt(std::pow(c2.y - c1.y, 2) + std::pow(c2.x - c1.x, 2));
 			};
 	};
+	
+	class LineDistance : public api::BinaryFunction<float, api::Line, api::Point, LineDistance> {
+		public:
+			using api::BinaryFunction<float, api::Line, api::Point, LineDistance>::BinaryFunction;
+
+			float operator()(api::Point p, Time t) const override {
+				api::Line line = (*this->f1)(p, t);
+				api::Point point = (*this->f2)(p, t);
+				return std::abs(line.a * point.x + line.b * point.y + line.c) /
+					std::sqrt(std::pow(line.a, 2) + std::pow(line.b, 2));
+			}
+	};
 
 	class Point : public api::BinaryFunction<api::Point, Coordinate, Coordinate, Point> {
 		public:
@@ -280,6 +292,32 @@ namespace pixled {
 			api::Point operator()(api::Point c, Time t) const override {
 				return {(*this->f1)(c, t), (*this->f2)(c, t)};
 			}
+	};
+
+	class Line : public api::TernaryFunction<api::Line, float, float, float, Line> {
+		using api::TernaryFunction<api::Line, float, float, float, Line>::TernaryFunction;
+
+		api::Line operator()(api::Point p, Time t) const override {
+			return {(*this->f1)(p, t), (*this->f2)(p, t), (*this->f3)(p, t)};
+		}
+	};
+
+	// X = c helper function
+	class XLine : public api::UnaryFunction<api::Line, float, XLine> {
+		using api::UnaryFunction<api::Line, float, XLine>::UnaryFunction;
+
+		api::Line operator()(api::Point p, Time t) const override {
+			return {1, 0, -(*this->f)(p, t)};
+		}
+	};
+
+	// Y = c helper function
+	class YLine : public api::UnaryFunction<api::Line, float, YLine> {
+		using api::UnaryFunction<api::Line, float, YLine>::UnaryFunction;
+
+		api::Line operator()(api::Point p, Time t) const override {
+			return {0, 1, -(*this->f)(p, t)};
+		}
 	};
 }
 
