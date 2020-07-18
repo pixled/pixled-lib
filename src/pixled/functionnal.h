@@ -2,7 +2,9 @@
 #define PIXLED_FUNCTIONNAL_H
 #include "api/functionnal.h"
 #include "api/utils.h"
+#include "api/geometry.h"
 #include "pixel.h"
+
 #include <cmath>
 #include <random>
 #include <unordered_map>

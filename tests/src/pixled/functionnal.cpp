@@ -12,6 +12,7 @@ using ::testing::StrictMock;
 using pixled::MockFunction;
 using pixled::MockBinary;
 using pixled::api::Point;
+using pixled::Time;
 
 class OperatorTest : public ::testing::Test {
 	protected:
@@ -140,7 +141,7 @@ TEST(RandomT, uniform_int_test) {
 	pixled::RandomT engine (10);
 	pixled::UniformDistribution<int> rd(1, 25, engine);
 	std::mt19937 rd_xy;
-	std::uniform_int_distribution<long> xy(-10, 10);
+	std::uniform_real_distribution<float> xy(-10, 10);
 
 	std::array<int, 100> values;
 
@@ -168,7 +169,7 @@ TEST(RandomT, uniform_float_test) {
 	pixled::RandomT engine (10);
 	pixled::UniformDistribution<int> rd(1, 25, engine);
 	std::mt19937 rd_xy;
-	std::uniform_int_distribution<long> xy(-10, 10);
+	std::uniform_real_distribution<float> xy(-10, 10);
 
 	std::array<float, 100> values;
 
@@ -198,7 +199,7 @@ TEST(RandomXYT, uniform_int_test) {
 	pixled::RandomXYT engine (10);
 	pixled::UniformDistribution<int> rd(1, 25, engine);
 	std::mt19937 rd_xy;
-	std::uniform_int_distribution<long> xy(-10, 10);
+	std::uniform_real_distribution<float> xy(-10, 10);
 
 	pixled::api::Point p1 {xy(rd_xy), xy(rd_xy)};
 	pixled::api::Point p2 {xy(rd_xy), xy(rd_xy)};

@@ -1,5 +1,5 @@
-#ifndef PIXLED_LED_H
-#define PIXLED_LED_H
+#ifndef PIXLED_PIXEL_H
+#define PIXLED_PIXEL_H
 
 #include <iostream>
 #include "api/pixel.h"
@@ -49,21 +49,6 @@ namespace pixled {
 			const Color& color() const override {
 				return _color;
 			}
-	};
-
-	class StripMapping : public api::Mapping {
-		private:
-			std::vector<api::Point> coordinates;
-		public:
-			using api::Mapping::coordinates_iterator;
-
-			StripMapping(std::size_t length);
-
-			std::size_t map(api::Point c) const override;
-			coordinates_iterator begin() const override;
-			coordinates_iterator end() const override;
-
-
 	};
 }
 #endif

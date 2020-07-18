@@ -3,9 +3,9 @@
 
 #include "api/animation.h"
 #include "api/output.h"
+#include "api/mapping.h"
 #include "pixel.h"
 #include "functionnal.h"
-#include "api/utils.h"
 
 namespace pixled {
 
@@ -108,8 +108,8 @@ namespace pixled {
 				: map(map), output(output), animation(animation) {}
 
 			void frame(Time t) override {
-				for(api::Point c : map) {
-					output.write(animation(c, t), map.map(c));
+				for(std::pair<api::Point, std::size_t> c : map) {
+					output.write(animation(c.first, t), c.second);
 				}
 			}
 

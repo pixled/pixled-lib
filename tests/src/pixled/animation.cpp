@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
 #include <pixled.h>
-#include "api/mock_animation.h"
 #include "api/mock_pixel.h"
 #include "api/mock_functionnal.h"
 
@@ -9,6 +8,7 @@ using ::testing::AtMost;
 using ::testing::Return;
 
 using pixled::MockFunction;
+using pixled::Time;
 
 class MockFctCopy {
 	public:

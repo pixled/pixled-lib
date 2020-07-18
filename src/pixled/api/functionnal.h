@@ -3,6 +3,7 @@
 
 #include <utility>
 #include "animation.h"
+#include "geometry.h"
 
 namespace pixled {
 	namespace api {

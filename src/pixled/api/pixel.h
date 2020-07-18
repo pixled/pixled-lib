@@ -2,7 +2,7 @@
 #define LED_API_H
 #include <cstdint>
 #include <vector>
-#include "coordinates.h"
+#include "geometry.h"
 
 namespace pixled {
 	namespace api {
@@ -24,15 +24,6 @@ namespace pixled {
 			public:
 				virtual Color& color() = 0;
 				virtual const Color& color() const = 0;
-		};
-
-		class Mapping {
-			public:
-				typedef std::vector<Point>::const_iterator coordinates_iterator;
-				virtual std::size_t map(Point) const = 0;
-				virtual coordinates_iterator begin() const = 0;
-				virtual coordinates_iterator end() const = 0;
-
 		};
 
 		inline bool operator==(const Color& c1, const Color& c2) {

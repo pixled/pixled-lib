@@ -7,6 +7,7 @@ add_executable(test
 	src/pixled/api/functionnal.cpp
 	src/pixled/animation.cpp
 	src/pixled/functionnal.cpp
+	src/pixled/mapping.cpp
 	main.cpp
 	)
 target_link_libraries(test gtest_main gmock_main pixled)

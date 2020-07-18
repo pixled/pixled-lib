@@ -10,7 +10,9 @@ if(NOT ESP_PLATFORM)
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
 
 	add_library(pixled
+		src/pixled/api/geometry.cpp
 		src/pixled/pixel.cpp
+		src/pixled/mapping.cpp
 		)
 
 	add_subdirectory(tests)
@@ -26,6 +28,8 @@ if(NOT ESP_PLATFORM)
 		src/pixled/api/functionnal.h
 		src/pixled/api/output.h
 		src/pixled/api/utils.h
+		src/pixled/api/mapping.h
+		src/pixled/api/geometry.h
 		DESTINATION include/pixled/api
 		)
 
@@ -33,6 +37,7 @@ if(NOT ESP_PLATFORM)
 		src/pixled/animation.h
 		src/pixled/pixel.h
 		src/pixled/functionnal.h
+		src/pixled/mapping.h
 		DESTINATION include/pixled
 		)
 else()
