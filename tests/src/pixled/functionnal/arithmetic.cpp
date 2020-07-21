@@ -14,7 +14,7 @@ class OperatorTest : public ::testing::Test {
 
 class PlusOperator : public OperatorTest {};
 
-TEST_F(PlusOperator, simple_plus) {
+TEST_F(PlusOperator, test) {
 	MockFunction<float> f1;
 	MockFunction<float>* f1_copy_1 {new MockFunction<float>};
 	MockFunction<float>* f1_copy_1_copy {new MockFunction<float>};
@@ -43,7 +43,7 @@ TEST_F(PlusOperator, simple_plus) {
 
 class MinusOperator : public OperatorTest {};
 
-TEST_F(MinusOperator, simple_minus) {
+TEST_F(MinusOperator, test) {
 	MockFunction<float> f1;
 	MockFunction<float>* f1_copy_1 {new MockFunction<float>};
 	MockFunction<float>* f1_copy_1_copy {new MockFunction<float>};
@@ -68,6 +68,64 @@ TEST_F(MinusOperator, simple_minus) {
 	EXPECT_CALL(*f2_copy_copy, call(c, t)).WillRepeatedly(Return(14));
 
 	ASSERT_EQ(minus(c, t), -14);
+}
+
+class MultiplyTest : public OperatorTest {};
+
+TEST_F(MultiplyTest, test) {
+	MockFunction<float> f1;
+	MockFunction<float>* f1_copy_1 {new MockFunction<float>};
+	MockFunction<float>* f1_copy_1_copy {new MockFunction<float>};
+	MockFunction<float>* f1_copy_2 {new MockFunction<float>};
+	MockFunction<float> f2;
+	MockFunction<float>* f2_copy {new MockFunction<float>};
+	MockFunction<float>* f2_copy_copy {new MockFunction<float>};
+
+    EXPECT_CALL(f1, copy)
+		.WillOnce(Return(f1_copy_1))
+		.WillOnce(Return(f1_copy_2));
+    EXPECT_CALL(*f1_copy_1, copy).WillOnce(Return(f1_copy_1_copy));
+    EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
+    EXPECT_CALL(*f2_copy, copy).WillOnce(Return(f2_copy_copy));
+
+	auto mult_1 = f1 * f2;
+
+	auto mult = mult_1 * f1;
+
+	EXPECT_CALL(*f1_copy_1_copy, call(c, t)).WillRepeatedly(Return(10));
+	EXPECT_CALL(*f1_copy_2, call(c, t)).WillRepeatedly(Return(10));
+	EXPECT_CALL(*f2_copy_copy, call(c, t)).WillRepeatedly(Return(14));
+
+	ASSERT_FLOAT_EQ(mult(c, t), 1400);
+}
+
+class DivideTest : public OperatorTest {};
+
+TEST_F(DivideTest, test) {
+	MockFunction<float> f1;
+	MockFunction<float>* f1_copy_1 {new MockFunction<float>};
+	MockFunction<float>* f1_copy_1_copy {new MockFunction<float>};
+	MockFunction<float>* f1_copy_2 {new MockFunction<float>};
+	MockFunction<float> f2;
+	MockFunction<float>* f2_copy {new MockFunction<float>};
+	MockFunction<float>* f2_copy_copy {new MockFunction<float>};
+
+    EXPECT_CALL(f1, copy)
+		.WillOnce(Return(f1_copy_1))
+		.WillOnce(Return(f1_copy_2));
+    EXPECT_CALL(*f1_copy_1, copy).WillOnce(Return(f1_copy_1_copy));
+    EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
+    EXPECT_CALL(*f2_copy, copy).WillOnce(Return(f2_copy_copy));
+
+	auto div_1 = f1 / f2;
+
+	auto div = div_1 / f1;
+
+	EXPECT_CALL(*f1_copy_1_copy, call(c, t)).WillRepeatedly(Return(10));
+	EXPECT_CALL(*f1_copy_2, call(c, t)).WillRepeatedly(Return(10));
+	EXPECT_CALL(*f2_copy_copy, call(c, t)).WillRepeatedly(Return(14));
+
+	ASSERT_FLOAT_EQ(div(c, t), 1 / 14.f);
 }
 
 class ModulusOperator : public OperatorTest {};
