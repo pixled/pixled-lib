@@ -10,6 +10,7 @@ add_executable(test
 	src/pixled/functionnal/arithmetic.cpp
 	src/pixled/functionnal/random.cpp
 	src/pixled/functionnal/geometry.cpp
+	src/pixled/functionnal/comparisons.cpp
 	src/pixled/mapping.cpp
 	main.cpp
 	)

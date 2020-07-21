@@ -43,7 +43,8 @@ if(NOT ESP_PLATFORM)
 		src/pixled/functionnal/functionnal.h
 		src/pixled/functionnal/artithmetic.h
 		src/pixled/functionnal/geometry.h
-		src/pixled/functionnal/geometry.h
+		src/pixled/functionnal/comparisons.h
+		src/pixled/functionnal/random.h
 		DESTINATION include/pixled/functionnal
 		)
 else()

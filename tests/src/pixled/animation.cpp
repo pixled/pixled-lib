@@ -9,27 +9,13 @@ using ::testing::Return;
 
 using pixled::MockFunction;
 using pixled::Time;
-
-class MockFctCopy {
-	public:
-		MockFunction<Time>*& last_copy;
-
-		MockFctCopy(MockFunction<Time>*& last_copy_ptr)
-			: last_copy(last_copy_ptr) {}
-		MockFunction<Time>* operator()() {
-			last_copy = new MockFunction<Time>;
-			EXPECT_CALL(*last_copy, copy).Times(AtMost(1))
-				.WillRepeatedly(Invoke(MockFctCopy(last_copy)));
-			return last_copy;
-		}
-
-};
+using pixled::MockFctCopy;
 
 TEST(RainbowTest, test) {
 	MockFunction<Time>* last_copy;
 	MockFunction<Time> period;
 	EXPECT_CALL(period, copy).Times(AtMost(1))
-		.WillRepeatedly(Invoke(MockFctCopy(last_copy)));
+		.WillRepeatedly(Invoke(MockFctCopy<MockFunction<Time>>(last_copy)));
 
 	pixled::Rainbow h {period};
 	auto r = pixled::hsb(h, 0.5f, 0.4f);
