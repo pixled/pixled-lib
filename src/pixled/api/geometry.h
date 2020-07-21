@@ -1,5 +1,5 @@
-#ifndef PIXLED_COORDINATES_H
-#define PIXLED_COORDINATES_H
+#ifndef PIXLED_GEOMETRY_H
+#define PIXLED_GEOMETRY_H
 
 #include <functional>
 #include <cmath>

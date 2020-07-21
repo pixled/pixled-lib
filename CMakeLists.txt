@@ -48,6 +48,6 @@ if(NOT ESP_PLATFORM)
 		)
 else()
 	idf_component_register(
-		SRC_DIRS "src/pixled"
+		SRC_DIRS "src/pixled" "src/pixled/api"
 		INCLUDE_DIRS "src")
 endif()
