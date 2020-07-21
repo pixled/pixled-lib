@@ -7,6 +7,8 @@
 
 namespace pixled {
 
+	std::ostream& operator<<(std::ostream& o, const api::Mapping& m);
+
 	class TurtleMapping : public api::Mapping {
 		private:
 			std::vector<std::pair<api::Point, std::size_t>> _leds;
@@ -29,6 +31,7 @@ namespace pixled {
 			void forward(Coordinate distance, std::size_t num_led = 0);
 			void turnLeft(api::Angle angle);
 			void turnRight(api::Angle angle);
+			void jump(api::Point p);
 	};
 
 	class StripMapping : public TurtleMapping {
@@ -36,6 +39,25 @@ namespace pixled {
 			std::vector<api::Point> coordinates;
 		public:
 			StripMapping(std::size_t num_led);
+	};
+
+	enum PANEL_LINKING {
+		LEFT_RIGHT_LEFT_RIGHT,
+		LEFT_RIGHT_RIGHT_LEFT,
+		RIGHT_LEFT_RIGHT_LEFT,
+		RIGHT_LEFT_LEFT_RIGHT,
+		TOP_DOWN_TOP_DOWN,
+		TOP_DOWN_DOWN_TOP,
+		DOWN_TOP_DOWN_TOP,
+		DOWN_TOP_TOP_DOWN
+	};
+
+	class LedPanel : public TurtleMapping {
+		private:
+			void drawLeftRightLeftRight(std::size_t width, std::size_t height);
+			void drawLeftRightRightLeft(std::size_t width, std::size_t height);
+		public:
+			LedPanel(std::size_t width, std::size_t height, PANEL_LINKING linking);
 
 	};
 }
