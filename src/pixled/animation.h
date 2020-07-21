@@ -5,7 +5,7 @@
 #include "api/output.h"
 #include "api/mapping.h"
 #include "pixel.h"
-#include "functionnal.h"
+#include "functionnal/functionnal.h"
 
 namespace pixled {
 

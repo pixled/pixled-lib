@@ -36,9 +36,15 @@ if(NOT ESP_PLATFORM)
 	install(FILES
 		src/pixled/animation.h
 		src/pixled/pixel.h
-		src/pixled/functionnal.h
 		src/pixled/mapping.h
 		DESTINATION include/pixled
+		)
+	install(FILES
+		src/pixled/functionnal/functionnal.h
+		src/pixled/functionnal/artithmetic.h
+		src/pixled/functionnal/geometry.h
+		src/pixled/functionnal/geometry.h
+		DESTINATION include/pixled/functionnal
 		)
 else()
 	idf_component_register(

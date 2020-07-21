@@ -6,7 +6,10 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 add_executable(test
 	src/pixled/api/functionnal.cpp
 	src/pixled/animation.cpp
-	src/pixled/functionnal.cpp
+	src/pixled/functionnal/functionnal.cpp
+	src/pixled/functionnal/arithmetic.cpp
+	src/pixled/functionnal/random.cpp
+	src/pixled/functionnal/geometry.cpp
 	src/pixled/mapping.cpp
 	main.cpp
 	)
