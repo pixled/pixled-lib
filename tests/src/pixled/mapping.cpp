@@ -107,77 +107,257 @@ TEST_F(TurtleMappingTest, turn_forward) {
  *}
  */
 
-TEST(LedPanel, LRLR) {
-	pixled::LedPanel panel(3, 3, pixled::LEFT_RIGHT_LEFT_RIGHT);
+TEST(LedPanel, LRLRB) {
+	pixled::LedPanel panel(2, 3, pixled::LEFT_RIGHT_LEFT_RIGHT_FROM_BOTTOM);
 
-	ASSERT_THAT(panel.leds(), SizeIs(9));
+	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
 		Pair(PointEq(Point(0.5, 0)), 0),
 		Pair(PointEq(Point(1.5, 0)), 1),
-		Pair(PointEq(Point(2.5, 0)), 2),
-		Pair(PointEq(Point(0.5, 1)), 3),
-		Pair(PointEq(Point(1.5, 1)), 4),
-		Pair(PointEq(Point(2.5, 1)), 5),
-		Pair(PointEq(Point(0.5, 2)), 6),
-		Pair(PointEq(Point(1.5, 2)), 7),
-		Pair(PointEq(Point(2.5, 2)), 8)
+		Pair(PointEq(Point(0.5, 1)), 2),
+		Pair(PointEq(Point(1.5, 1)), 3),
+		Pair(PointEq(Point(0.5, 2)), 4),
+		Pair(PointEq(Point(1.5, 2)), 5)
 		));
 
 	//std::cout << panel;
 }
 
-TEST(LedPanel, LRRL) {
-	pixled::LedPanel panel(3, 3, pixled::LEFT_RIGHT_RIGHT_LEFT);
+TEST(LedPanel, RLRLB) {
+	pixled::LedPanel panel(2, 3, pixled::RIGHT_LEFT_RIGHT_LEFT_FROM_BOTTOM);
 
-	ASSERT_THAT(panel.leds(), SizeIs(9));
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(1.5, 0)), 0),
+		Pair(PointEq(Point(0.5, 0)), 1),
+		Pair(PointEq(Point(1.5, 1)), 2),
+		Pair(PointEq(Point(0.5, 1)), 3),
+		Pair(PointEq(Point(1.5, 2)), 4),
+		Pair(PointEq(Point(0.5, 2)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, LRRLB) {
+	pixled::LedPanel panel(2, 3, pixled::LEFT_RIGHT_RIGHT_LEFT_FROM_BOTTOM);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
 		Pair(PointEq(Point(0.5, 0)), 0),
 		Pair(PointEq(Point(1.5, 0)), 1),
-		Pair(PointEq(Point(2.5, 0)), 2),
-		Pair(PointEq(Point(2.5, 1)), 3),
-		Pair(PointEq(Point(1.5, 1)), 4),
-		Pair(PointEq(Point(0.5, 1)), 5),
-		Pair(PointEq(Point(0.5, 2)), 6),
-		Pair(PointEq(Point(1.5, 2)), 7),
-		Pair(PointEq(Point(2.5, 2)), 8)
-		));
-
-	//std::cout << panel;
-}
-
-TEST(LedPanel, RLRL) {
-	pixled::LedPanel panel(3, 3, pixled::RIGHT_LEFT_RIGHT_LEFT);
-
-	ASSERT_THAT(panel.leds(), SizeIs(9));
-	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(2.5, 0)), 0),
-		Pair(PointEq(Point(1.5, 0)), 1),
-		Pair(PointEq(Point(0.5, 0)), 2),
-		Pair(PointEq(Point(2.5, 1)), 3),
-		Pair(PointEq(Point(1.5, 1)), 4),
-		Pair(PointEq(Point(0.5, 1)), 5),
-		Pair(PointEq(Point(2.5, 2)), 6),
-		Pair(PointEq(Point(1.5, 2)), 7),
-		Pair(PointEq(Point(0.5, 2)), 8)
-		));
-
-	//std::cout << panel;
-}
-
-TEST(LedPanel, RLLR) {
-	pixled::LedPanel panel(3, 3, pixled::RIGHT_LEFT_LEFT_RIGHT);
-
-	ASSERT_THAT(panel.leds(), SizeIs(9));
-	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(2.5, 0)), 0),
-		Pair(PointEq(Point(1.5, 0)), 1),
-		Pair(PointEq(Point(0.5, 0)), 2),
+		Pair(PointEq(Point(1.5, 1)), 2),
 		Pair(PointEq(Point(0.5, 1)), 3),
-		Pair(PointEq(Point(1.5, 1)), 4),
-		Pair(PointEq(Point(2.5, 1)), 5),
-		Pair(PointEq(Point(2.5, 2)), 6),
-		Pair(PointEq(Point(1.5, 2)), 7),
-		Pair(PointEq(Point(0.5, 2)), 8)
+		Pair(PointEq(Point(0.5, 2)), 4),
+		Pair(PointEq(Point(1.5, 2)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, RLLRB) {
+	pixled::LedPanel panel(2, 3, pixled::RIGHT_LEFT_LEFT_RIGHT_FROM_BOTTOM);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(1.5, 0)), 0),
+		Pair(PointEq(Point(0.5, 0)), 1),
+		Pair(PointEq(Point(0.5, 1)), 2),
+		Pair(PointEq(Point(1.5, 1)), 3),
+		Pair(PointEq(Point(1.5, 2)), 4),
+		Pair(PointEq(Point(0.5, 2)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, TDTDL) {
+	pixled::LedPanel panel(3, 2, pixled::TOP_DOWN_TOP_DOWN_FROM_LEFT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(0, 1.5)), 0),
+		Pair(PointEq(Point(0, 0.5)), 1),
+		Pair(PointEq(Point(1, 1.5)), 2),
+		Pair(PointEq(Point(1, 0.5)), 3),
+		Pair(PointEq(Point(2, 1.5)), 4),
+		Pair(PointEq(Point(2, 0.5)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, DTDTL) {
+	pixled::LedPanel panel(3, 2, pixled::DOWN_TOP_DOWN_TOP_FROM_LEFT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(0, 0.5)), 0),
+		Pair(PointEq(Point(0, 1.5)), 1),
+		Pair(PointEq(Point(1, 0.5)), 2),
+		Pair(PointEq(Point(1, 1.5)), 3),
+		Pair(PointEq(Point(2, 0.5)), 4),
+		Pair(PointEq(Point(2, 1.5)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, TDDTL) {
+	pixled::LedPanel panel(3, 2, pixled::TOP_DOWN_DOWN_TOP_FROM_LEFT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(0, 1.5)), 0),
+		Pair(PointEq(Point(0, 0.5)), 1),
+		Pair(PointEq(Point(1, 0.5)), 2),
+		Pair(PointEq(Point(1, 1.5)), 3),
+		Pair(PointEq(Point(2, 1.5)), 4),
+		Pair(PointEq(Point(2, 0.5)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, DTTDL) {
+	pixled::LedPanel panel(3, 2, pixled::DOWN_TOP_TOP_DOWN_FROM_LEFT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(0, 0.5)), 0),
+		Pair(PointEq(Point(0, 1.5)), 1),
+		Pair(PointEq(Point(1, 1.5)), 2),
+		Pair(PointEq(Point(1, 0.5)), 3),
+		Pair(PointEq(Point(2, 0.5)), 4),
+		Pair(PointEq(Point(2, 1.5)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, LRLRT) {
+	pixled::LedPanel panel(2, 3, pixled::LEFT_RIGHT_LEFT_RIGHT_FROM_TOP);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(0.5, 2)), 0),
+		Pair(PointEq(Point(1.5, 2)), 1),
+		Pair(PointEq(Point(0.5, 1)), 2),
+		Pair(PointEq(Point(1.5, 1)), 3),
+		Pair(PointEq(Point(0.5, 0)), 4),
+		Pair(PointEq(Point(1.5, 0)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, RLRLT) {
+	pixled::LedPanel panel(2, 3, pixled::RIGHT_LEFT_RIGHT_LEFT_FROM_TOP);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(1.5, 2)), 0),
+		Pair(PointEq(Point(0.5, 2)), 1),
+		Pair(PointEq(Point(1.5, 1)), 2),
+		Pair(PointEq(Point(0.5, 1)), 3),
+		Pair(PointEq(Point(1.5, 0)), 4),
+		Pair(PointEq(Point(0.5, 0)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, LRRLT) {
+	pixled::LedPanel panel(2, 3, pixled::LEFT_RIGHT_RIGHT_LEFT_FROM_TOP);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(0.5, 2)), 0),
+		Pair(PointEq(Point(1.5, 2)), 1),
+		Pair(PointEq(Point(1.5, 1)), 2),
+		Pair(PointEq(Point(0.5, 1)), 3),
+		Pair(PointEq(Point(0.5, 0)), 4),
+		Pair(PointEq(Point(1.5, 0)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, RLLRT) {
+	pixled::LedPanel panel(2, 3, pixled::RIGHT_LEFT_LEFT_RIGHT_FROM_TOP);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(1.5, 2)), 0),
+		Pair(PointEq(Point(0.5, 2)), 1),
+		Pair(PointEq(Point(0.5, 1)), 2),
+		Pair(PointEq(Point(1.5, 1)), 3),
+		Pair(PointEq(Point(1.5, 0)), 4),
+		Pair(PointEq(Point(0.5, 0)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, TDTDR) {
+	pixled::LedPanel panel(3, 2, pixled::TOP_DOWN_TOP_DOWN_FROM_RIGHT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(2, 1.5)), 0),
+		Pair(PointEq(Point(2, 0.5)), 1),
+		Pair(PointEq(Point(1, 1.5)), 2),
+		Pair(PointEq(Point(1, 0.5)), 3),
+		Pair(PointEq(Point(0, 1.5)), 4),
+		Pair(PointEq(Point(0, 0.5)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, DTDTR) {
+	pixled::LedPanel panel(3, 2, pixled::DOWN_TOP_DOWN_TOP_FROM_RIGHT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(2, 0.5)), 0),
+		Pair(PointEq(Point(2, 1.5)), 1),
+		Pair(PointEq(Point(1, 0.5)), 2),
+		Pair(PointEq(Point(1, 1.5)), 3),
+		Pair(PointEq(Point(0, 0.5)), 4),
+		Pair(PointEq(Point(0, 1.5)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, TDDTR) {
+	pixled::LedPanel panel(3, 2, pixled::TOP_DOWN_DOWN_TOP_FROM_RIGHT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(2, 1.5)), 0),
+		Pair(PointEq(Point(2, 0.5)), 1),
+		Pair(PointEq(Point(1, 0.5)), 2),
+		Pair(PointEq(Point(1, 1.5)), 3),
+		Pair(PointEq(Point(0, 1.5)), 4),
+		Pair(PointEq(Point(0, 0.5)), 5)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, DTTDR) {
+	pixled::LedPanel panel(3, 2, pixled::DOWN_TOP_TOP_DOWN_FROM_RIGHT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(6));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(2, 0.5)), 0),
+		Pair(PointEq(Point(2, 1.5)), 1),
+		Pair(PointEq(Point(1, 1.5)), 2),
+		Pair(PointEq(Point(1, 0.5)), 3),
+		Pair(PointEq(Point(0, 0.5)), 4),
+		Pair(PointEq(Point(0, 1.5)), 5)
 		));
 
 	//std::cout << panel;

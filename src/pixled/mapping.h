@@ -42,23 +42,41 @@ namespace pixled {
 	};
 
 	enum PANEL_LINKING {
-		LEFT_RIGHT_LEFT_RIGHT,
-		LEFT_RIGHT_RIGHT_LEFT,
-		RIGHT_LEFT_RIGHT_LEFT,
-		RIGHT_LEFT_LEFT_RIGHT,
-		TOP_DOWN_TOP_DOWN,
-		TOP_DOWN_DOWN_TOP,
-		DOWN_TOP_DOWN_TOP,
-		DOWN_TOP_TOP_DOWN
+		LEFT_RIGHT_LEFT_RIGHT_FROM_BOTTOM,
+		LEFT_RIGHT_RIGHT_LEFT_FROM_BOTTOM,
+		RIGHT_LEFT_RIGHT_LEFT_FROM_BOTTOM,
+		RIGHT_LEFT_LEFT_RIGHT_FROM_BOTTOM,
+		LEFT_RIGHT_LEFT_RIGHT_FROM_TOP,
+		LEFT_RIGHT_RIGHT_LEFT_FROM_TOP,
+		RIGHT_LEFT_RIGHT_LEFT_FROM_TOP,
+		RIGHT_LEFT_LEFT_RIGHT_FROM_TOP,
+		TOP_DOWN_TOP_DOWN_FROM_LEFT,
+		TOP_DOWN_DOWN_TOP_FROM_LEFT,
+		DOWN_TOP_DOWN_TOP_FROM_LEFT,
+		DOWN_TOP_TOP_DOWN_FROM_LEFT,
+		TOP_DOWN_TOP_DOWN_FROM_RIGHT,
+		TOP_DOWN_DOWN_TOP_FROM_RIGHT,
+		DOWN_TOP_DOWN_TOP_FROM_RIGHT,
+		DOWN_TOP_TOP_DOWN_FROM_RIGHT
 	};
 
 	class LedPanel : public TurtleMapping {
 		private:
-			void drawLeftRightLeftRight(std::size_t width, std::size_t height);
-			//void drawLeftRightRightLeft(std::size_t width, std::size_t height);
-			void drawHorizontalSnake(std::size_t width, std::size_t height);
-			void drawRightLeftRightLeft(std::size_t width, std::size_t height);
-			//void drawRightLeftLeftRight(std::size_t width, std::size_t height);
+			void drawLeftRightLeftRightFromBottom(std::size_t width, std::size_t height);
+			void drawRightLeftRightLeftFromBottom(std::size_t width, std::size_t height);
+			void drawHorizontalSnakeFromBottom(std::size_t width, std::size_t height);
+
+			void drawLeftRightLeftRightFromTop(std::size_t width, std::size_t height);
+			void drawRightLeftRightLeftFromTop(std::size_t width, std::size_t height);
+			void drawHorizontalSnakeFromTop(std::size_t width, std::size_t height);
+
+			void drawTopDownTopDownFromLeft(std::size_t width, std::size_t height);
+			void drawDownTopDownTopFromLeft(std::size_t width, std::size_t height);
+			void drawVerticalSnakeFromLeft(std::size_t width, std::size_t height);
+
+			void drawTopDownTopDownFromRight(std::size_t width, std::size_t height);
+			void drawDownTopDownTopFromRight(std::size_t width, std::size_t height);
+			void drawVerticalSnakeFromRight(std::size_t width, std::size_t height);
 		public:
 			LedPanel(std::size_t width, std::size_t height, PANEL_LINKING linking);
 

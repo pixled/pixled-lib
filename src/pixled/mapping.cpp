@@ -131,27 +131,70 @@ namespace pixled {
 
 	LedPanel::LedPanel(std::size_t width, std::size_t height, PANEL_LINKING linking) {
 		switch(linking) {
-			case LEFT_RIGHT_LEFT_RIGHT:
-				drawLeftRightLeftRight(width, height);
+			case LEFT_RIGHT_LEFT_RIGHT_FROM_BOTTOM:
+				drawLeftRightLeftRightFromBottom(width, height);
 				break;
-			case LEFT_RIGHT_RIGHT_LEFT:
-				drawHorizontalSnake(width, height);
-				//drawLeftRightRightLeft(width, height);
+			case RIGHT_LEFT_RIGHT_LEFT_FROM_BOTTOM:
+				drawRightLeftRightLeftFromBottom(width, height);
 				break;
-			case RIGHT_LEFT_RIGHT_LEFT:
-				drawRightLeftRightLeft(width, height);
+			case LEFT_RIGHT_RIGHT_LEFT_FROM_BOTTOM:
+				drawHorizontalSnakeFromBottom(width, height);
 				break;
-			case RIGHT_LEFT_LEFT_RIGHT:
+			case RIGHT_LEFT_LEFT_RIGHT_FROM_BOTTOM:
 				forward(width);
 				turnLeft(180);
-				drawHorizontalSnake(width, height);
+				drawHorizontalSnakeFromBottom(width, height);
 				break;
-			default:
+			case TOP_DOWN_TOP_DOWN_FROM_LEFT:
+				drawTopDownTopDownFromLeft(width, height);
+				break;
+			case DOWN_TOP_DOWN_TOP_FROM_LEFT:
+				drawDownTopDownTopFromLeft(width, height);
+				break;
+			case TOP_DOWN_DOWN_TOP_FROM_LEFT:
+				jump(api::Point(0, height));
+				turnRight(90);
+				drawVerticalSnakeFromLeft(width, height);
+				break;
+			case DOWN_TOP_TOP_DOWN_FROM_LEFT:
+				turnLeft(90);
+				drawVerticalSnakeFromLeft(width, height);
+				break;
+			case LEFT_RIGHT_LEFT_RIGHT_FROM_TOP:
+				drawLeftRightLeftRightFromTop(width, height);
+				break;
+			case RIGHT_LEFT_RIGHT_LEFT_FROM_TOP:
+				drawRightLeftRightLeftFromTop(width, height);
+				break;
+			case LEFT_RIGHT_RIGHT_LEFT_FROM_TOP:
+				jump(api::Point(0, height-1));
+				drawHorizontalSnakeFromTop(width, height);
+				break;
+			case RIGHT_LEFT_LEFT_RIGHT_FROM_TOP:
+				jump(api::Point(width, height-1));
+				turnLeft(180);
+				drawHorizontalSnakeFromTop(width, height);
+				break;
+			case TOP_DOWN_TOP_DOWN_FROM_RIGHT:
+				drawTopDownTopDownFromRight(width, height);
+				break;
+			case DOWN_TOP_DOWN_TOP_FROM_RIGHT:
+				drawDownTopDownTopFromRight(width, height);
+				break;
+			case TOP_DOWN_DOWN_TOP_FROM_RIGHT:
+				jump(api::Point(width-1, height));
+				turnRight(90);
+				drawVerticalSnakeFromRight(width, height);
+				break;
+			case DOWN_TOP_TOP_DOWN_FROM_RIGHT:
+				jump(api::Point(width-1, 0));
+				turnLeft(90);
+				drawVerticalSnakeFromRight(width, height);
 				break;
 		}
 	}
 
-	void LedPanel::drawLeftRightLeftRight(std::size_t width, std::size_t height) {
+	void LedPanel::drawLeftRightLeftRightFromBottom(std::size_t width, std::size_t height) {
 		// init in (0, 0), angle = 0
 		for(std::size_t h = 0; h < height; h++) {
 			jump(api::Point(0, h));
@@ -159,7 +202,7 @@ namespace pixled {
 		}
 	}
 	
-	void LedPanel::drawRightLeftRightLeft(std::size_t width, std::size_t height) {
+	void LedPanel::drawRightLeftRightLeftFromBottom(std::size_t width, std::size_t height) {
 		// init in (0, 0), angle = 0
 		turnLeft(180);
 		for(std::size_t h = 0; h < height; h++) {
@@ -167,7 +210,25 @@ namespace pixled {
 			forward(width, width);
 		}
 	}
-	void LedPanel::drawHorizontalSnake(std::size_t width, std::size_t height) {
+
+	void LedPanel::drawLeftRightLeftRightFromTop(std::size_t width, std::size_t height) {
+		// init in (0, 0), angle = 0
+		for(std::size_t h = 1; h <= height; h++) {
+			jump(api::Point(0, height-h));
+			forward(width, width);
+		}
+	}
+	
+	void LedPanel::drawRightLeftRightLeftFromTop(std::size_t width, std::size_t height) {
+		// init in (0, 0), angle = 0
+		turnLeft(180);
+		for(std::size_t h = 1; h <= height; h++) {
+			jump(api::Point(width, height-h));
+			forward(width, width);
+		}
+	}
+
+	void LedPanel::drawHorizontalSnakeFromBottom(std::size_t width, std::size_t height) {
 		bool left_to_right = false;
 		if(api::Cos(orientation()) > 0)
 			left_to_right = true;
@@ -185,4 +246,96 @@ namespace pixled {
 			left_to_right = !left_to_right;
 		}
 	}
+
+	void LedPanel::drawHorizontalSnakeFromTop(std::size_t width, std::size_t height) {
+		bool left_to_right = false;
+		if(api::Cos(orientation()) > 0)
+			left_to_right = true;
+		// init in (0, 0), angle = 0
+		for(std::size_t h = 1; h <= height; h++) {
+			forward(width, width);
+			if(left_to_right) {
+				turnLeft(180);
+				jump(api::Point(width, height-1-h));
+			}
+			else {
+				turnRight(180);
+				jump(api::Point(0, height-1-h));
+			}
+			left_to_right = !left_to_right;
+		}
+	}
+
+	void LedPanel::drawTopDownTopDownFromLeft(std::size_t width, std::size_t height) {
+		// init in (0, 0), angle = 0
+		turnRight(90);
+		for(std::size_t w = 0; w < width; w++) {
+			jump(api::Point(w, height));
+			forward(height, height);
+		}
+	}
+	
+	void LedPanel::drawDownTopDownTopFromLeft(std::size_t width, std::size_t height) {
+		// init in (0, 0), angle = 0
+		turnLeft(90);
+		for(std::size_t w = 0; w < width; w++) {
+			jump(api::Point(w, 0));
+			forward(height, height);
+		}
+	}
+	void LedPanel::drawVerticalSnakeFromLeft(std::size_t width, std::size_t height) {
+		bool down_to_top = false;
+		if(api::Sin(orientation()) > 0)
+			down_to_top = true;
+		// init in (0, 0), angle = 0
+		for(std::size_t w = 0; w < width; w++) {
+			forward(height, height);
+			if(down_to_top) {
+				turnLeft(180);
+				jump(api::Point(w+1, height));
+			}
+			else {
+				turnRight(180);
+				jump(api::Point(w+1, 0));
+			}
+			down_to_top = !down_to_top;
+		}
+	}
+
+	void LedPanel::drawTopDownTopDownFromRight(std::size_t width, std::size_t height) {
+		// init in (0, 0), angle = 0
+		turnRight(90);
+		for(std::size_t w = 1; w <= width; w++) {
+			jump(api::Point(width-w, height));
+			forward(height, height);
+		}
+	}
+	
+	void LedPanel::drawDownTopDownTopFromRight(std::size_t width, std::size_t height) {
+		// init in (0, 0), angle = 0
+		turnLeft(90);
+		for(std::size_t w = 1; w <= width; w++) {
+			jump(api::Point(width-w, 0));
+			forward(height, height);
+		}
+	}
+	void LedPanel::drawVerticalSnakeFromRight(std::size_t width, std::size_t height) {
+		bool down_to_top = false;
+		if(api::Sin(orientation()) > 0)
+			down_to_top = true;
+		// init in (0, 0), angle = 0
+		for(std::size_t w = 1; w <= width; w++) {
+			forward(height, height);
+			if(down_to_top) {
+				turnLeft(180);
+				jump(api::Point(width-w-1, height));
+			}
+			else {
+				turnRight(180);
+				jump(api::Point(width-w-1, 0));
+			}
+			down_to_top = !down_to_top;
+		}
+	}
+
 }
