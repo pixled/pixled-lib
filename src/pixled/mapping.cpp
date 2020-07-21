@@ -135,7 +135,16 @@ namespace pixled {
 				drawLeftRightLeftRight(width, height);
 				break;
 			case LEFT_RIGHT_RIGHT_LEFT:
-				drawLeftRightRightLeft(width, height);
+				drawHorizontalSnake(width, height);
+				//drawLeftRightRightLeft(width, height);
+				break;
+			case RIGHT_LEFT_RIGHT_LEFT:
+				drawRightLeftRightLeft(width, height);
+				break;
+			case RIGHT_LEFT_LEFT_RIGHT:
+				forward(width);
+				turnLeft(180);
+				drawHorizontalSnake(width, height);
 				break;
 			default:
 				break;
@@ -149,24 +158,29 @@ namespace pixled {
 			forward(width, width);
 		}
 	}
-	void LedPanel::drawLeftRightRightLeft(std::size_t width, std::size_t height) {
-		bool left_to_right = true;
+	
+	void LedPanel::drawRightLeftRightLeft(std::size_t width, std::size_t height) {
+		// init in (0, 0), angle = 0
+		turnLeft(180);
+		for(std::size_t h = 0; h < height; h++) {
+			jump(api::Point(width, h));
+			forward(width, width);
+		}
+	}
+	void LedPanel::drawHorizontalSnake(std::size_t width, std::size_t height) {
+		bool left_to_right = false;
+		if(api::Cos(orientation()) > 0)
+			left_to_right = true;
 		// init in (0, 0), angle = 0
 		for(std::size_t h = 0; h < height; h++) {
 			forward(width, width);
 			if(left_to_right) {
 				turnLeft(180);
 				jump(api::Point(width, h+1));
-				//forward(1);
-				//turnLeft(90);
-				//forward(1);
 			}
 			else {
 				turnRight(180);
 				jump(api::Point(0, h+1));
-				//turnRight(90);
-				//forward(1);
-				//turnRight(90);
 			}
 			left_to_right = !left_to_right;
 		}

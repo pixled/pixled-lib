@@ -6,7 +6,7 @@
 using ::testing::SizeIs;
 using ::testing::Pair;
 using ::testing::UnorderedElementsAre;
-using ::testing::FloatEq;
+using ::testing::FloatNear;
 using ::testing::Matches;
 
 using pixled::api::Point;
@@ -17,8 +17,8 @@ using pixled::api::Angle;
 	ASSERT_NEAR(pixled::api::Sin(A1), pixled::api::Sin(A2), 0.0001);
 
 MATCHER_P(PointEq, p, "") {
-	return Matches(FloatEq(p.x))(arg.x)
-		&& Matches(FloatEq(p.y))(arg.y);
+	return Matches(FloatNear(p.x, .10e-5))(arg.x)
+		&& Matches(FloatNear(p.y, .10e-5))(arg.y);
 }
 
 class TurtleMappingTest : public ::testing::Test {
@@ -140,6 +140,44 @@ TEST(LedPanel, LRRL) {
 		Pair(PointEq(Point(0.5, 2)), 6),
 		Pair(PointEq(Point(1.5, 2)), 7),
 		Pair(PointEq(Point(2.5, 2)), 8)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, RLRL) {
+	pixled::LedPanel panel(3, 3, pixled::RIGHT_LEFT_RIGHT_LEFT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(9));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(2.5, 0)), 0),
+		Pair(PointEq(Point(1.5, 0)), 1),
+		Pair(PointEq(Point(0.5, 0)), 2),
+		Pair(PointEq(Point(2.5, 1)), 3),
+		Pair(PointEq(Point(1.5, 1)), 4),
+		Pair(PointEq(Point(0.5, 1)), 5),
+		Pair(PointEq(Point(2.5, 2)), 6),
+		Pair(PointEq(Point(1.5, 2)), 7),
+		Pair(PointEq(Point(0.5, 2)), 8)
+		));
+
+	//std::cout << panel;
+}
+
+TEST(LedPanel, RLLR) {
+	pixled::LedPanel panel(3, 3, pixled::RIGHT_LEFT_LEFT_RIGHT);
+
+	ASSERT_THAT(panel.leds(), SizeIs(9));
+	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
+		Pair(PointEq(Point(2.5, 0)), 0),
+		Pair(PointEq(Point(1.5, 0)), 1),
+		Pair(PointEq(Point(0.5, 0)), 2),
+		Pair(PointEq(Point(0.5, 1)), 3),
+		Pair(PointEq(Point(1.5, 1)), 4),
+		Pair(PointEq(Point(2.5, 1)), 5),
+		Pair(PointEq(Point(2.5, 2)), 6),
+		Pair(PointEq(Point(1.5, 2)), 7),
+		Pair(PointEq(Point(0.5, 2)), 8)
 		));
 
 	//std::cout << panel;

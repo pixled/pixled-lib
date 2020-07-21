@@ -55,7 +55,10 @@ namespace pixled {
 	class LedPanel : public TurtleMapping {
 		private:
 			void drawLeftRightLeftRight(std::size_t width, std::size_t height);
-			void drawLeftRightRightLeft(std::size_t width, std::size_t height);
+			//void drawLeftRightRightLeft(std::size_t width, std::size_t height);
+			void drawHorizontalSnake(std::size_t width, std::size_t height);
+			void drawRightLeftRightLeft(std::size_t width, std::size_t height);
+			//void drawRightLeftLeftRight(std::size_t width, std::size_t height);
 		public:
 			LedPanel(std::size_t width, std::size_t height, PANEL_LINKING linking);
 
