@@ -25,11 +25,20 @@ namespace pixled {
 
 	class RandomT : public api::Function<std::minstd_rand>, RandomEngine {
 		public:
-			using RandomEngine::RandomEngine;
+			mutable Time current_period = 0;
+			mutable std::minstd_rand rd;
+
+			RandomT(Time period)
+				: RandomEngine(period), rd(this->seed) {}
+			RandomT(Time period, unsigned long seed)
+				: RandomEngine(period, seed), rd(seed) {}
+
 			std::minstd_rand operator()(api::Point p, Time t) const override {
-				// New default random generator
-				std::minstd_rand rd(seed);
-				rd.discard(t / period);
+				Time _current_period = t / period;
+				if(_current_period != current_period) {
+					current_period = _current_period;
+					rd.discard(1);
+				}
 				return rd;
 			}
 
@@ -40,21 +49,38 @@ namespace pixled {
 
 	class RandomXYT : public api::Function<std::minstd_rand>, RandomEngine {
 		private:
+			mutable Time current_period = 0;
 			mutable std::minstd_rand rd_seeder;
 			mutable std::uniform_int_distribution<unsigned long> rd_seed;
-			mutable std::unordered_map<api::Point, unsigned long, api::point_hash, api::point_equal> seeds;
+			mutable std::unordered_map<api::Point, std::minstd_rand, api::point_hash, api::point_equal> rds;
 		public:
 			using RandomEngine::RandomEngine;
 			/*
 			 * f = period 
 			 */
 			std::minstd_rand operator()(api::Point p, Time t) const override {
-				seeds.insert({p, rd_seed(rd_seeder)});
+				std::minstd_rand* rd;
 
-				// New default random generator
-				std::minstd_rand rd {seeds.at(p)};
-				rd.discard(t / period);
-				return rd;
+				auto result = rds.find(p);
+				if(result == rds.end()) {
+					unsigned long _s = rd_seed(rd_seeder);
+					// Inserts only if no entry exists yet for p
+					auto inserted_item = rds.insert({p, std::minstd_rand(_s)});
+					rd = &inserted_item.first->second;
+				} else {
+					rd = &result->second;
+				}
+				//std::cout << "rds size:" << rds.size() << std::endl;
+
+				Time _current_period = t / period;
+				if(_current_period != current_period) {
+					current_period = _current_period;
+					for(auto& _rd : rds) {
+						// Advances
+						_rd.second.discard(1);
+					}
+				}
+				return *rd;
 			}
 
 			RandomXYT* copy() const override {

@@ -129,7 +129,7 @@ namespace pixled {
 							f1(std::forward<Arg1>(arg1)), f2(std::forward<Arg2>(arg2)), f3(std::forward<Arg3>(arg3)) {
 							}
 
-				protected:
+				//protected:
 					Function<R>* copy() const override {
 						return new FctImplem(*f1, *f2, *f3);
 					}
