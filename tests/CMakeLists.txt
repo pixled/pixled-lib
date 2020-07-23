@@ -11,6 +11,7 @@ add_executable(test
 	src/pixled/functionnal/random.cpp
 	src/pixled/functionnal/geometry.cpp
 	src/pixled/functionnal/comparisons.cpp
+	src/pixled/functionnal/signals.cpp
 	src/pixled/mapping.cpp
 	main.cpp
 	)

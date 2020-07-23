@@ -7,6 +7,7 @@
 #include "arithmetic.h"
 #include "geometry.h"
 #include "random.h"
+#include "signals.h"
 
 #include <cmath>
 #include <unordered_map>

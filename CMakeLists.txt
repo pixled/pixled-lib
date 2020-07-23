@@ -45,6 +45,7 @@ if(NOT ESP_PLATFORM)
 		src/pixled/functionnal/geometry.h
 		src/pixled/functionnal/comparisons.h
 		src/pixled/functionnal/random.h
+		src/pixled/functionnal/signals.h
 		DESTINATION include/pixled/functionnal
 		)
 else()
