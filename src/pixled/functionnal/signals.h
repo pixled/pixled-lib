@@ -11,11 +11,10 @@ namespace pixled {
 			/*
 			 * f1 : amplitude
 			 * f2 : period
-			 * f3 : x
+			 * f3 : param
 			 */
 			float operator()(api::Point p, Time t) const {
-				return (*this->f1)(p, t) * std::sin(
-						2*PIXLED_PI * (*this->f3)(p, t) / (*this->f2)(p, t));
+				return (*this->f1)(p, t) * std::sin(2*PIXLED_PI * (*this->f3)(p, t) / (*this->f2)(p, t));
 			}
 	};
 
@@ -37,18 +36,18 @@ namespace pixled {
 
 			float operator()(api::Point p, Time t) const {
 				return 2 / PIXLED_PI * (*this->f1)(p, t) * std::asin(std::sin(
-						(2*PIXLED_PI * (t - (*this->f3)(p, t))) / (*this->f2)(p, t)
+						(2*PIXLED_PI * (*this->f3)(p, t)) / (*this->f2)(p, t)
 						));
 			}
 	};
 
-	class Sawtooth : public api::TernaryFunction<float, float, Time, Time, Sawtooth> {
+	class Sawtooth : public api::TernaryFunction<float, float, float, float, Sawtooth> {
 		public:
-			using api::TernaryFunction<float, float, Time, Time, Sawtooth>::TernaryFunction;
+			using api::TernaryFunction<float, float, float, float, Sawtooth>::TernaryFunction;
 
 			float operator()(api::Point p, Time t) const {
-				return 2 / PIXLED_PI * (*this->f1)(p, t) * std::atan(std::tan(
-						(2*PIXLED_PI * (t - (*this->f3)(p, t))) / (*this->f2)(p, t)
+				return (2 / PIXLED_PI) * (*this->f1)(p, t) * std::atan(std::tan(
+						2*PIXLED_PI * (*this->f3)(p, t) / (2 * (*this->f2)(p, t))
 						));
 			}
 	};
