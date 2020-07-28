@@ -13,10 +13,7 @@ namespace pixled {
 		public:
 			using api::UnaryFunction<float, Time, Rainbow>::UnaryFunction;
 
-			float operator()(api::Point c, Time t) const override {
-				return 
-					180.f * (std::sin(2*PIXLED_PI * t / (*this->f)(c, t)) + 1.f);
-			}
+			float operator()(api::Point c, Time t) const override;
 	};
 
 	class RainbowWave : public api::TernaryFunction<float, float, api::Line, Time, RainbowWave> {
@@ -28,10 +25,7 @@ namespace pixled {
 			 * f2 : origin line
 			 * f3 : time period
 			 */
-			float operator()(api::Point p, Time t) const override {
-				float d = LineDistance(*this->f2, p)(p, t);
-				return 180.f * (1.f + std::sin(d / (*this->f1)(p, t) - (float) t / (*this->f3)(p, t)));
-			}
+			float operator()(api::Point p, Time t) const override;
 	};
 
 	class RainbowWaveX : public RainbowWave {
@@ -73,27 +67,7 @@ namespace pixled {
 			 * f2 : Center point
 			 * f3 : Bloom radius
 			 */
-			Color operator()(api::Point c, Time t) const override {
-				Color color = (*this->f1)(c, t);
-				// Max distance from center point, where b = epsilon
-				float D = (*this->f3)(c, t);
-				// Distance from c to center point
-				float d = Distance(*this->f2, c)(c, t);
-
-				// The brightness decreases as a 1 / x light functions, scaled
-				// so that when d = D, b = epsilon.
-				float epsilon = 0.05;
-				float alpha = (1 - epsilon) / (epsilon * D);
-				float b = 1 / (1 + alpha * d);
-				if(b < epsilon)
-					b = 0.;
-
-				color.setHsv(
-					color.hue(),
-					color.saturation(),
-					b);
-				return color;
-			}
+			Color operator()(api::Point c, Time t) const override;
 	};
 
 	class Runtime : public api::AnimationRuntime {
@@ -107,32 +81,18 @@ namespace pixled {
 			Runtime(api::Mapping& map, api::Output& output, api::Function<Color>& animation)
 				: map(map), output(output), animation(animation) {}
 
-			void frame(Time t) override {
-				for(std::pair<api::Point, std::size_t> c : map) {
-					output.write(animation(c.first, t), c.second);
-				}
-			}
+			void frame(Time t) override;
 
-			void prev() override {
-				frame(_time--);
-			}
-			void next() override {
-				frame(_time++);
-			}
-			Time time() const override {
-				return _time;
-			}
+			void prev() override;
+			void next() override;
+			Time time() const override;
 	};
 
 	class PixelView : public api::TernaryFunction<Color, Coordinate, Coordinate, Color, PixelView> {
 		public:
 			using api::TernaryFunction<Color, Coordinate, Coordinate, Color, PixelView>::TernaryFunction;
 
-			Color operator()(api::Point c, Time t) const override {
-				if (c.x == (*f1)(c, t) && c.y == (*f2)(c, t))
-					return (*f3)(c, t);
-				return Color();
-			}
+			Color operator()(api::Point c, Time t) const override;
 	};
 }
 #endif

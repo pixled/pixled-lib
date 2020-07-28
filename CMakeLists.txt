@@ -13,6 +13,7 @@ if(NOT ESP_PLATFORM)
 		src/pixled/api/geometry.cpp
 		src/pixled/pixel.cpp
 		src/pixled/mapping.cpp
+		src/pixled/animation.cpp
 		)
 
 	add_subdirectory(tests)
