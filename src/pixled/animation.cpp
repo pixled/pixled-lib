@@ -54,4 +54,34 @@ namespace pixled {
 			return (*f3)(c, t);
 		return Color();
 	}
+
+	Sequence& Sequence::add(const api::Function<Color> &animation, Time duration) {
+		animations.insert({this->duration, animation});
+		cache_time = this->duration;
+		cache = &animations.at(cache_time);
+		this->duration+=duration;
+		cache_time_duration=duration;
+		return *this;
+	}
+
+	Color Sequence::operator()(api::Point p, Time t) const {
+		if(t >= cache_time && t < cache_time + cache_time_duration)
+			return (**cache)(p, t);
+		auto it = animations.upper_bound(t % duration);
+		auto prev_it = it;
+		--prev_it;
+		cache_time = t;
+		if(it==animations.end()) {
+			cache_time_duration = duration - prev_it->first;
+		} else {
+			cache_time_duration = it->first - prev_it->first;
+		}
+		auto& anim_ptr = prev_it->second;
+		cache = &anim_ptr;
+		return (*anim_ptr)(p, t);
+	}
+
+	Sequence* Sequence::copy() const {
+		return new Sequence(*this);
+	}
 }

@@ -1,6 +1,7 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
+#include <map>
 #include "api/animation.h"
 #include "api/output.h"
 #include "api/mapping.h"
@@ -93,6 +94,22 @@ namespace pixled {
 			using api::TernaryFunction<Color, Coordinate, Coordinate, Color, PixelView>::TernaryFunction;
 
 			Color operator()(api::Point c, Time t) const override;
+	};
+
+	class Sequence : public api::Function<Color> {
+		private:
+			std::map<Time, api::FctWrapper<Color>> animations;
+			Time duration = 0;
+
+			mutable const api::FctWrapper<Color>* cache;
+			mutable Time cache_time = 0;
+			mutable Time cache_time_duration = 0;
+		public:
+			Sequence& add(const api::Function<Color>& animation, Time duration);
+
+			Color operator()(api::Point p, Time t) const override;
+
+			Sequence* copy() const override;
 	};
 }
 #endif
