@@ -2,6 +2,21 @@
 
 namespace pixled {
 
+	void Runtime::frame(Time t) {
+		for(std::pair<api::Point, std::size_t> c : map) {
+			output.write(animation(c.first, t), c.second);
+		}
+	}
+	void Runtime::prev() {
+		frame(_time--);
+	}
+	void Runtime::next() {
+		frame(_time++);
+	}
+	Time Runtime::time() const {
+		return _time;
+	}
+
 	float Rainbow::operator()(api::Point c, Time t) const {
 		return 
 			180.f * (std::sin(2*PIXLED_PI * t / (*this->f)(c, t)) + 1.f);
@@ -32,21 +47,6 @@ namespace pixled {
 				color.saturation(),
 				b);
 		return color;
-	}
-
-	void Runtime::frame(Time t) {
-		for(std::pair<api::Point, std::size_t> c : map) {
-			output.write(animation(c.first, t), c.second);
-		}
-	}
-	void Runtime::prev() {
-		frame(_time--);
-	}
-	void Runtime::next() {
-		frame(_time++);
-	}
-	Time Runtime::time() const {
-		return _time;
 	}
 
 	Color PixelView::operator()(api::Point c, Time t) const {
@@ -83,5 +83,12 @@ namespace pixled {
 
 	Sequence* Sequence::copy() const {
 		return new Sequence(*this);
+	}
+
+	Color Blink::operator()(api::Point p, Time t) const {
+		if(square(p, t) > 0) {
+			return (*this->f1)(p, t);
+		}
+		return black;
 	}
 }

@@ -118,3 +118,33 @@ TEST_F(SequenceTest, copy_test) {
 		}
 	}
 }
+
+TEST(BlinkTest, test) {
+	std::mt19937 rd;
+	std::uniform_int_distribution<uint8_t> rd_color;
+
+	MockFunction<pixled::Color>* last_anim_copy;
+	MockFunction<pixled::Color> anim;
+	EXPECT_CALL(anim, copy).Times(AtMost(1))
+		.WillRepeatedly(Invoke(MockFctCopy<MockFunction<pixled::Color>>(last_anim_copy)));
+
+	pixled::api::Point p(6, -4);
+	pixled::Blink blink(anim, 12);
+
+	for(Time T = 0; T < 10; T++) {
+		for(Time t = 12*T + 1; t < 12*T + 6; t++) {
+			pixled::Color c;
+			c.setRgb(rd_color(rd), rd_color(rd), rd_color(rd));
+
+			EXPECT_CALL(*last_anim_copy, call(p, t))
+				.WillOnce(Return(c));
+			ASSERT_EQ(blink(p, t), c);
+		}
+
+		pixled::Color black;
+		black.setRgb(0, 0, 0);
+		for(Time t = 12*T + 7; t < 12*T + 12; t++) {
+			ASSERT_EQ(blink(p, t), black);
+		}
+	}
+}

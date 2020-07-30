@@ -10,6 +10,24 @@
 
 namespace pixled {
 
+	class Runtime : public api::AnimationRuntime {
+		private:
+			unsigned long _time = 0;
+			api::Mapping& map;
+			api::Output& output;
+			api::Function<Color>& animation;
+
+		public:
+			Runtime(api::Mapping& map, api::Output& output, api::Function<Color>& animation)
+				: map(map), output(output), animation(animation) {}
+
+			void frame(Time t) override;
+
+			void prev() override;
+			void next() override;
+			Time time() const override;
+	};
+
 	class Rainbow : public api::UnaryFunction<float, Time, Rainbow> {
 		public:
 			using api::UnaryFunction<float, Time, Rainbow>::UnaryFunction;
@@ -71,24 +89,6 @@ namespace pixled {
 			Color operator()(api::Point c, Time t) const override;
 	};
 
-	class Runtime : public api::AnimationRuntime {
-		private:
-			unsigned long _time = 0;
-			api::Mapping& map;
-			api::Output& output;
-			api::Function<Color>& animation;
-
-		public:
-			Runtime(api::Mapping& map, api::Output& output, api::Function<Color>& animation)
-				: map(map), output(output), animation(animation) {}
-
-			void frame(Time t) override;
-
-			void prev() override;
-			void next() override;
-			Time time() const override;
-	};
-
 	class PixelView : public api::TernaryFunction<Color, Coordinate, Coordinate, Color, PixelView> {
 		public:
 			using api::TernaryFunction<Color, Coordinate, Coordinate, Color, PixelView>::TernaryFunction;
@@ -110,6 +110,22 @@ namespace pixled {
 			Color operator()(api::Point p, Time t) const override;
 
 			Sequence* copy() const override;
+	};
+
+	class Blink : public api::BinaryFunction<Color, Color, float, Blink> {
+		private:
+			Square square;
+			Color black;
+
+		public:
+			template<typename Arg1, typename Arg2>
+				Blink(Arg1&& arg1, Arg2&& arg2) :
+					BinaryFunction<Color, Color, float, Blink>(std::forward<Arg1>(arg1), std::forward<Arg2>(arg2)),
+					square(1, arg2, api::Cast<float, Time>(T())) {
+						black.setRgb(0, 0, 0);
+					}
+
+			Color operator()(api::Point p, Time t) const override;
 	};
 }
 #endif
