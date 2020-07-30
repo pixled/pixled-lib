@@ -42,7 +42,7 @@ namespace pixled {
 		if(b < epsilon)
 			b = 0.;
 
-		color.setHsv(
+		color.setHsb(
 				color.hue(),
 				color.saturation(),
 				b);

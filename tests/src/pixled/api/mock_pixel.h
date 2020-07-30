@@ -13,10 +13,10 @@ class MockColor : public pixled::Color {
 
 		MOCK_METHOD(float, hue, (), (const, override));
 		MOCK_METHOD(float, saturation, (), (const, override));
-		MOCK_METHOD(float, value, (), (const, override));
+		MOCK_METHOD(float, brightness, (), (const, override));
 
 		MOCK_METHOD(void, setRgb, (uint8_t, uint8_t, uint8_t), (override));
-		MOCK_METHOD(void, setHsv, (float, float, float), (override));
+		MOCK_METHOD(void, setHsb, (float, float, float), (override));
 };
 
 class MockPixel : public pixled::Pixel {

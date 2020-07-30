@@ -14,10 +14,10 @@ namespace pixled {
 
 				virtual float hue() const = 0;
 				virtual float saturation() const = 0;
-				virtual float value() const = 0;
+				virtual float brightness() const = 0;
 
 				virtual void setRgb(uint8_t, uint8_t, uint8_t) = 0;
-				virtual void setHsv(float, float, float) = 0;
+				virtual void setHsb(float, float, float) = 0;
 		};
 
 		class Pixel {

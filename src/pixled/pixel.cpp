@@ -1,16 +1,16 @@
 #include "pixel.h"
 
 namespace pixled {
-	void Color::hsb_to_rgb(const hsv_t& hsv, rgb_t& rgb) {
+	void Color::hsb_to_rgb(const hsb_t& hsb, rgb_t& rgb) {
 		double      hh, p, q, t, ff;
 		long        i;
 		double      r_out;
 		double      g_out;
 		double 	    b_out;
 
-		float hue = hsv.h;
-		float saturation = hsv.s;
-		float brightness = hsv.v;
+		float hue = hsb.h;
+		float saturation = hsb.s;
+		float brightness = hsb.b;
 
 		if(saturation <= 0.0) {       // < is bogus, just shuts up warnings
 			r_out = brightness;
@@ -74,7 +74,7 @@ namespace pixled {
 		rgb.b = b_out * 255;
 	}
 
-	void Color::rgb_to_hsb(const rgb_t &rgb, hsv_t &hsb) {
+	void Color::rgb_to_hsb(const rgb_t &rgb, hsb_t &hsb) {
 		double      min, max, delta;
 
 		min = rgb.r < rgb.g ? rgb.r : rgb.g;
@@ -83,7 +83,7 @@ namespace pixled {
 		max = rgb.r > rgb.g ? rgb.r : rgb.g;
 		max = max  > rgb.b ? max  : rgb.b;
 
-		hsb.v = max;                                // v
+		hsb.b = max;                                // v
 		delta = max - min;
 		if (delta < 0.00001)
 		{
@@ -115,16 +115,16 @@ namespace pixled {
 	}
 
 	void Color::setRgb(uint8_t r, uint8_t g, uint8_t b) {
-		rgb.r = r;
-		rgb.g = g;
-		rgb.b = b;
-		rgb_to_hsb(rgb, hsv);
+		_rgb.r = r;
+		_rgb.g = g;
+		_rgb.b = b;
+		rgb_to_hsb(_rgb, _hsb);
 	}
 
-	void Color::setHsv(float h, float s, float v) {
-		hsv.h = h;
-		hsv.s = s;
-		hsv.v = v;
-		hsb_to_rgb(hsv, rgb);
+	void Color::setHsb(float h, float s, float b) {
+		_hsb.h = h;
+		_hsb.s = s;
+		_hsb.b = b;
+		hsb_to_rgb(_hsb, _rgb);
 	}
 }

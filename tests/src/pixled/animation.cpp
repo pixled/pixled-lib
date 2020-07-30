@@ -28,27 +28,27 @@ TEST(RainbowTest, test) {
 	auto color = r({0, 0}, 0);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
-	ASSERT_FLOAT_EQ(color.value(), 0.4f);
+	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 
 	color = r({2, 8}, 12);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
-	ASSERT_FLOAT_EQ(color.value(), 0.4f);
+	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 
 	color = r({2, 8}, 6);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
-	ASSERT_FLOAT_EQ(color.value(), 0.4f);
+	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 
 	color = r({2, 8}, 3);
 	ASSERT_FLOAT_EQ(color.hue(), 360.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
-	ASSERT_FLOAT_EQ(color.value(), 0.4f);
+	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 
 	color = r({2, 8}, 9);
 	ASSERT_FLOAT_EQ(color.hue(), 0.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
-	ASSERT_FLOAT_EQ(color.value(), 0.4f);
+	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 }
 
 class SequenceTest : public ::testing::Test {

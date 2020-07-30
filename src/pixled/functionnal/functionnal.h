@@ -53,7 +53,7 @@ namespace pixled {
 
 			pixled::Color operator()(api::Point c, Time t) const override {
 				pixled::Color color;
-				color.setHsv((*f1)(c, t), (*f2)(c, t), (*f3)(c, t));
+				color.setHsb((*f1)(c, t), (*f2)(c, t), (*f3)(c, t));
 				return color;
 			}
 	};

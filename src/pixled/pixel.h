@@ -13,29 +13,31 @@ namespace pixled {
 				int g;
 				int b;
 			};
-			rgb_t rgb;
+			rgb_t _rgb;
 
-			struct hsv_t {
+			struct hsb_t {
 				float h;
 				float s;
-				float v;
+				float b;
 			};
-			hsv_t hsv;
+			hsb_t _hsb;
 
 
 		public:
-			static void rgb_to_hsb(const rgb_t& rgb, hsv_t& hsb);
-			static void hsb_to_rgb(const hsv_t& hsb, rgb_t& rgb);
-			uint8_t red() const override {return rgb.r;}
-			uint8_t green() const override {return rgb.g;}
-			uint8_t blue() const override {return rgb.b;}
+			static void rgb_to_hsb(const rgb_t& rgb, hsb_t& hsb);
+			static void hsb_to_rgb(const hsb_t& hsb, rgb_t& rgb);
+			uint8_t red() const override {return _rgb.r;}
+			uint8_t green() const override {return _rgb.g;}
+			uint8_t blue() const override {return _rgb.b;}
 
-			float hue() const override {return hsv.h;}
-			float saturation() const override {return hsv.s;}
-			float value() const override {return hsv.v;}
+			float hue() const override {return _hsb.h;}
+			float saturation() const override {return _hsb.s;}
+			float brightness() const override {return _hsb.b;}
 
 			void setRgb(uint8_t r, uint8_t g, uint8_t b) override;
-			void setHsv(float, float, float) override;
+			void setHsb(float, float, float) override;
+
+			static Color rgb(uint8_t r, uint8_t g, uint8_t b);
 	};
 
 	class Pixel : public api::Pixel {
