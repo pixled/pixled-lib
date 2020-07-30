@@ -55,15 +55,6 @@ namespace pixled {
 		return Color();
 	}
 
-	Sequence& Sequence::add(const api::Function<Color> &animation, Time duration) {
-		animations.insert({this->duration, animation});
-		cache_time = this->duration;
-		cache = &animations.at(cache_time);
-		this->duration+=duration;
-		cache_time_duration=duration;
-		return *this;
-	}
-
 	Color Sequence::operator()(api::Point p, Time t) const {
 		if(t >= cache_time && t < cache_time + cache_time_duration)
 			return (**cache)(p, t);

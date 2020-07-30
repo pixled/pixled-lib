@@ -34,10 +34,22 @@ namespace pixled {
 			float saturation() const override {return _hsb.s;}
 			float brightness() const override {return _hsb.b;}
 
-			void setRgb(uint8_t r, uint8_t g, uint8_t b) override;
-			void setHsb(float, float, float) override;
+			Color& setRgb(uint8_t r, uint8_t g, uint8_t b) override;
+			Color& setRed(uint8_t r) override;
+			Color& setGreen(uint8_t r) override;
+			Color& setBlue(uint8_t r) override;
+
+			Color& setHsb(float, float, float) override;
+			Color& setHue(float h) override;
+			Color& setSaturation(float s) override;
+			Color& setBrightness(float b) override;
 
 			static Color rgb(uint8_t r, uint8_t g, uint8_t b);
+			static Color hsb(float h, float s, float b);
+
+			static Color RED();
+			static Color GREEN();
+			static Color BLUE();
 	};
 
 	class Pixel : public api::Pixel {

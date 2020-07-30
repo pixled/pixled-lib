@@ -105,7 +105,15 @@ namespace pixled {
 			mutable Time cache_time = 0;
 			mutable Time cache_time_duration = 0;
 		public:
-			Sequence& add(const api::Function<Color>& animation, Time duration);
+			template<typename Anim>
+			Sequence& add(Anim&& animation, Time duration) {
+				animations.insert({this->duration, std::forward<Anim>(animation)});
+				cache_time = this->duration;
+				cache = &animations.at(cache_time);
+				this->duration+=duration;
+				cache_time_duration=duration;
+				return *this;
+			}
 
 			Color operator()(api::Point p, Time t) const override;
 

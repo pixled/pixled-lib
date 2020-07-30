@@ -16,8 +16,14 @@ namespace pixled {
 				virtual float saturation() const = 0;
 				virtual float brightness() const = 0;
 
-				virtual void setRgb(uint8_t, uint8_t, uint8_t) = 0;
-				virtual void setHsb(float, float, float) = 0;
+				virtual Color& setRgb(uint8_t, uint8_t, uint8_t) = 0;
+				virtual Color& setRed(uint8_t) = 0;
+				virtual Color& setGreen(uint8_t) = 0;
+				virtual Color& setBlue(uint8_t) = 0;
+				virtual Color& setHsb(float, float, float) = 0;
+				virtual Color& setHue(float) = 0;
+				virtual Color& setSaturation(float) = 0;
+				virtual Color& setBrightness(float) = 0;
 		};
 
 		class Pixel {

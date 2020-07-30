@@ -20,15 +20,18 @@ namespace pixled {
 		template<typename T>
 			class Constant : public api::Function<T> {
 				private:
-					T value;
+					T _value;
 				public:
 					using Type = typename api::Function<T>::Type;
-					Constant(T value) :
-						value(value) {}
-					T operator()(Point, Time) const override {return value;};
+					Constant(const T& value) :
+						_value(value) {}
+					T operator()(Point, Time) const override {return _value;};
+
+					T& value() {return _value;}
+					const T& value() const {return _value;}
 
 					Function<T>* copy() const override {
-						return new Constant<T>(value);
+						return new Constant<T>(_value);
 					}
 			};
 

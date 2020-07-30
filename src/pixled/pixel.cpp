@@ -114,17 +114,71 @@ namespace pixled {
 			hsb.h += 360.;
 	}
 
-	void Color::setRgb(uint8_t r, uint8_t g, uint8_t b) {
+	Color& Color::setRgb(uint8_t r, uint8_t g, uint8_t b) {
 		_rgb.r = r;
 		_rgb.g = g;
 		_rgb.b = b;
 		rgb_to_hsb(_rgb, _hsb);
+		return *this;
 	}
 
-	void Color::setHsb(float h, float s, float b) {
+	Color& Color::setRed(uint8_t r) {
+		_rgb.r = r;
+		rgb_to_hsb(_rgb, _hsb);
+		return *this;
+	}
+
+	Color& Color::setGreen(uint8_t g) {
+		_rgb.g = g;
+		rgb_to_hsb(_rgb, _hsb);
+		return *this;
+	}
+
+	Color& Color::setBlue(uint8_t b) {
+		_rgb.b = b;
+		rgb_to_hsb(_rgb, _hsb);
+		return *this;
+	}
+
+	Color& Color::setHsb(float h, float s, float b) {
 		_hsb.h = h;
 		_hsb.s = s;
 		_hsb.b = b;
 		hsb_to_rgb(_hsb, _rgb);
+		return *this;
 	}
+
+	Color& Color::setHue(float h) {
+		_hsb.h = h;
+		hsb_to_rgb(_hsb, _rgb);
+		return *this;
+	}
+
+	Color& Color::setSaturation(float s) {
+		_hsb.s = s;
+		hsb_to_rgb(_hsb, _rgb);
+		return *this;
+	}
+
+	Color& Color::setBrightness(float b) {
+		_hsb.b = b;
+		hsb_to_rgb(_hsb, _rgb);
+		return *this;
+	}
+
+	Color Color::rgb(uint8_t r, uint8_t g, uint8_t b) {
+		Color c;
+		c.setRgb(r, g, b);
+		return c;
+	}
+
+	Color Color::hsb(float h, float s, float v) {
+		Color c;
+		c.setHsb(h, s, v);
+		return c;
+	}
+
+	Color Color::RED() {return Color::rgb(255, 0, 0);}
+	Color Color::GREEN() {return Color::rgb(0, 255, 0);}
+	Color Color::BLUE() {return Color::rgb(0, 0, 255);}
 }
