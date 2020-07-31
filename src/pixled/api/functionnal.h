@@ -24,13 +24,14 @@ namespace pixled {
 				public:
 					using Type = typename api::Function<T>::Type;
 					Constant(const T& value) :
-						_value(value) {}
+						_value(value) {
+						}
 					T operator()(Point, Time) const override {return _value;};
 
 					T& value() {return _value;}
 					const T& value() const {return _value;}
 
-					Function<T>* copy() const override {
+					Constant<T>* copy() const override {
 						return new Constant<T>(_value);
 					}
 			};

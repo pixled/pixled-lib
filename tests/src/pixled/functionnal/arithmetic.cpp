@@ -1,4 +1,5 @@
 #include "pixled/functionnal/arithmetic.h"
+#include "pixled/functionnal/functionnal.h"
 #include "../api/mock_functionnal.h"
 
 using pixled::MockFunction;
@@ -155,4 +156,13 @@ TEST_F(ModulusOperator, test) {
 	EXPECT_CALL(*f2_copy_copy, call(c, t)).WillRepeatedly(Return(10));
 
 	ASSERT_EQ(modulus(c, t), (24 % 10) % 24);
+}
+
+TEST_F(PlusOperator, constant) {
+	using namespace pixled;
+	auto plus = pixled::api::Constant<float>(8.f) + pixled::api::Constant<float>(14.f);
+	auto hsb = pixled::hsb(plus, 1., .5);
+
+	ASSERT_FLOAT_EQ(plus(c, t), 22.f);
+	ASSERT_FLOAT_EQ(hsb(c, t).hue(), 22.f);
 }

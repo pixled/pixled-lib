@@ -24,7 +24,12 @@ namespace pixled {
 
 	float RainbowWave::operator()(api::Point p, Time t) const {
 		float d = LineDistance(*this->f2, p)(p, t);
-		return 180.f * (1.f + std::sin(d / (*this->f1)(p, t) - (float) t / (*this->f3)(p, t)));
+		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / (*this->f1)(p, t) - (float) t / (*this->f3)(p, t))));
+	}
+
+	float SpatialUnitWave::operator()(api::Point p, Time t) const {
+		float d = LineDistance(*this->f2, p)(p, t);
+		return .5f * (1.f + std::sin(2*PIXLED_PI*(d / (*this->f1)(p, t) - (float) t / (*this->f3)(p, t))));
 	}
 
 	Color Blooming::operator()(api::Point c, Time t) const {
