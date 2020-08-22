@@ -181,4 +181,9 @@ namespace pixled {
 	Color Color::RED() {return Color::rgb(255, 0, 0);}
 	Color Color::GREEN() {return Color::rgb(0, 255, 0);}
 	Color Color::BLUE() {return Color::rgb(0, 0, 255);}
+	Color Color::LIGHT_RED() {return Color::rgb(239, 71, 111);}
+	Color Color::YELLOW() {return Color::rgb(255, 209, 102);}
+	Color Color::LIGHT_GREEN() {return Color::rgb(6, 214, 160);}
+	Color Color::DARK_BLUE() {return Color::rgb(17, 138, 178);}
+	Color Color::MIDNIGHT_BLUE() {return Color::rgb(7, 59, 76);}
 }
