@@ -61,6 +61,17 @@ namespace pixled {
 				: RainbowWave(std::forward<Arg1>(lambda), api::Line(0, 1, -std::forward<Arg2>(y)), std::forward<Arg3>(time_period)) {}
 	};
 
+	class RadialRainbowWave : public api::TernaryFunction<float, float, api::Point, Time, RadialRainbowWave> {
+		public:
+			using api::TernaryFunction<float, float, api::Point, Time, RadialRainbowWave>::TernaryFunction;
+			/*
+			 * f1 : lambda
+			 * f2 : origin line
+			 * f3 : time period
+			 */
+			float operator()(api::Point p, Time t) const override;
+	};
+
 	class SpatialUnitWave : public api::TernaryFunction<float, float, api::Line, Time, SpatialUnitWave> {
 		public:
 			using api::TernaryFunction<float, float, api::Line, Time, SpatialUnitWave>::TernaryFunction;

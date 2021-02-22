@@ -55,6 +55,8 @@ namespace pixled {
 			static Color LIGHT_GREEN();
 			static Color DARK_BLUE();
 			static Color MIDNIGHT_BLUE();
+			static Color PINK();
+			static Color PURPLE();
 	};
 
 	class Pixel : public api::Pixel {
