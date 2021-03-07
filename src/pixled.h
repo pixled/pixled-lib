@@ -1,4 +1,3 @@
-#include "pixled/animation.h"
-#include "pixled/pixel.h"
-#include "pixled/functionnal/functionnal.h"
-#include "pixled/mapping.h"
+#include "pixled/animation/animation.h"
+#include "pixled/pixel/pixel.h"
+#include "pixled/mapping/mapping.h"

@@ -188,4 +188,8 @@ namespace pixled {
 	Color Color::MIDNIGHT_BLUE() {return Color::rgb(7, 59, 76);}
 	Color Color::PINK() {return Color::rgb(255, 102, 255);}
 	Color Color::PURPLE() {return Color::rgb(102, 0, 204);}
+
+	bool operator==(const Color& c1, const Color& c2) {
+		return c1.red() == c2.red() && c1.green() == c2.green() && c1.blue() == c1.blue();
+	}
 }

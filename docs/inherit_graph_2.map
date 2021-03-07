@@ -1,10 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classpixled_1_1api_1_1base_1_1Function.html" title=" " alt="" coords="5,133,132,174"/>
-<area shape="rect" id="node2" href="$classpixled_1_1api_1_1VarFunction.html" title=" " alt="" coords="197,5,368,61"/>
-<area shape="rect" id="node4" href="$classpixled_1_1api_1_1VarFunction.html" title=" " alt="" coords="203,85,362,141"/>
-<area shape="rect" id="node6" href="$classpixled_1_1api_1_1VarFunction.html" title=" " alt="" coords="180,165,385,221"/>
-<area shape="rect" id="node8" href="$classpixled_1_1Sequence.html" title=" " alt="" coords="221,245,344,272"/>
-<area shape="rect" id="node3" href="$classpixled_1_1Blooming.html" title=" " alt="" coords="435,20,554,47"/>
-<area shape="rect" id="node5" href="$classpixled_1_1Blink.html" title=" " alt="" coords="448,100,541,127"/>
-<area shape="rect" id="node7" href="$classpixled_1_1PixelView.html" title=" " alt="" coords="433,180,556,207"/>
+<area shape="rect" id="node1" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="5,23,156,65"/>
+<area shape="rect" id="node2" href="$classpixled_1_1geometry_1_1X.html" title=" " alt="" coords="204,5,339,32"/>
+<area shape="rect" id="node3" href="$classpixled_1_1geometry_1_1Y.html" title=" " alt="" coords="204,56,339,83"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['output_31',['Output',['../classpixled_1_1api_1_1Output.html',1,'pixled::api']]]
+  ['normaldistribution_30',['NormalDistribution',['../classpixled_1_1random_1_1NormalDistribution.html',1,'pixled::random']]]
 ];

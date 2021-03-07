@@ -2,11 +2,9 @@
 #define PIXLED_PIXEL_H
 
 #include <iostream>
-#include "api/pixel.h"
 
 namespace pixled {
-
-	class Color : public api::Color {
+	class Color {
 		private:
 			struct rgb_t {
 				int r;
@@ -26,23 +24,23 @@ namespace pixled {
 		public:
 			static void rgb_to_hsb(const rgb_t& rgb, hsb_t& hsb);
 			static void hsb_to_rgb(const hsb_t& hsb, rgb_t& rgb);
-			uint8_t red() const override {return _rgb.r;}
-			uint8_t green() const override {return _rgb.g;}
-			uint8_t blue() const override {return _rgb.b;}
+			uint8_t red() const {return _rgb.r;}
+			uint8_t green() const {return _rgb.g;}
+			uint8_t blue() const {return _rgb.b;}
 
-			float hue() const override {return _hsb.h;}
-			float saturation() const override {return _hsb.s;}
-			float brightness() const override {return _hsb.b;}
+			float hue() const {return _hsb.h;}
+			float saturation() const {return _hsb.s;}
+			float brightness() const {return _hsb.b;}
 
-			Color& setRgb(uint8_t r, uint8_t g, uint8_t b) override;
-			Color& setRed(uint8_t r) override;
-			Color& setGreen(uint8_t r) override;
-			Color& setBlue(uint8_t r) override;
+			Color& setRgb(uint8_t r, uint8_t g, uint8_t b);
+			Color& setRed(uint8_t r);
+			Color& setGreen(uint8_t r);
+			Color& setBlue(uint8_t r);
 
-			Color& setHsb(float, float, float) override;
-			Color& setHue(float h) override;
-			Color& setSaturation(float s) override;
-			Color& setBrightness(float b) override;
+			Color& setHsb(float, float, float);
+			Color& setHue(float h);
+			Color& setSaturation(float s);
+			Color& setBrightness(float b);
 
 			static Color rgb(uint8_t r, uint8_t g, uint8_t b);
 			static Color hsb(float h, float s, float b);
@@ -59,15 +57,17 @@ namespace pixled {
 			static Color PURPLE();
 	};
 
-	class Pixel : public api::Pixel {
+	bool operator==(const Color& c1, const Color& c2);
+
+	class Pixel {
 		private:
 			Color _color;
 		public:
-			Color& color() override {
+			Color& color()  {
 				return _color;
 			}
 
-			const Color& color() const override {
+			const Color& color() const  {
 				return _color;
 			}
 	};

@@ -1,7 +1,7 @@
 <map id="pixled::SpatialUnitWave" name="pixled::SpatialUnitWave">
-<area shape="rect" id="node1" title=" " alt="" coords="67,199,229,225"/>
-<area shape="rect" id="node4" href="$classpixled_1_1UnitWaveX.html" title=" " alt="" coords="5,273,136,300"/>
-<area shape="rect" id="node5" href="$classpixled_1_1UnitWaveY.html" title=" " alt="" coords="160,273,291,300"/>
-<area shape="rect" id="node2" href="$classpixled_1_1api_1_1VarFunction.html" title=" " alt="" coords="64,95,232,151"/>
-<area shape="rect" id="node3" href="$classpixled_1_1api_1_1base_1_1Function.html" title=" " alt="" coords="85,5,211,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="67,184,229,211"/>
+<area shape="rect" id="node4" href="$classpixled_1_1UnitWaveX.html" title=" " alt="" coords="5,259,136,285"/>
+<area shape="rect" id="node5" href="$classpixled_1_1UnitWaveY.html" title=" " alt="" coords="160,259,291,285"/>
+<area shape="rect" id="node2" href="$classpixled_1_1VarFunction.html" title=" " alt="" coords="64,80,232,136"/>
+<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="56,5,240,32"/>
 </map>

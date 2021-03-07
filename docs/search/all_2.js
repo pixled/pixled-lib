@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['cast_4',['Cast',['../classpixled_1_1api_1_1Cast.html',1,'pixled::api']]],
-  ['color_5',['Color',['../classpixled_1_1api_1_1Color.html',1,'pixled::api::Color'],['../classpixled_1_1Color.html',1,'pixled::Color']]],
-  ['constant_6',['Constant',['../classpixled_1_1api_1_1Constant.html',1,'pixled::api']]]
+  ['cast_3',['Cast',['../classpixled_1_1Cast.html',1,'pixled']]],
+  ['color_4',['Color',['../classpixled_1_1Color.html',1,'pixled']]],
+  ['constant_5',['Constant',['../classpixled_1_1Constant.html#aaab822c2761a7e475ce5bbb72384014a',1,'pixled::Constant::Constant()'],['../classpixled_1_1Constant.html',1,'pixled::Constant&lt; T &gt;']]],
+  ['copy_6',['copy',['../classpixled_1_1animation_1_1Sequence.html#a8f0564104082f826bd4edf8075ae379c',1,'pixled::animation::Sequence::copy()'],['../classpixled_1_1base_1_1Function.html#aad589f26da04d0f44c58f0b15bb1b7b1',1,'pixled::base::Function::copy()'],['../classpixled_1_1Constant.html#a9f0fb4b26baa2a4db8620ce90ae4e04e',1,'pixled::Constant::copy()'],['../classpixled_1_1VarFunction.html#a854444b144c96b4d9540df3c227fd9d5',1,'pixled::VarFunction::copy()'],['../classpixled_1_1Cast.html#ae23c04dc22e7af0dbcc607dd47cbb05c',1,'pixled::Cast::copy()'],['../classpixled_1_1geometry_1_1X.html#a3e5c2edc2a339f5d2ba9ecbfe760ee5c',1,'pixled::geometry::X::copy()'],['../classpixled_1_1geometry_1_1Y.html#a8d056d27087f31bac4b2ec5c55febda9',1,'pixled::geometry::Y::copy()'],['../classpixled_1_1random_1_1RandomT.html#afae0a519b07f469cd15173598c624b74',1,'pixled::random::RandomT::copy()'],['../classpixled_1_1random_1_1RandomXYT.html#a2a51a0d1711da215749ab3df744eab2e',1,'pixled::random::RandomXYT::copy()'],['../classpixled_1_1T.html#af854d9814b4f95b447b4790b72f9514e',1,'pixled::T::copy()']]]
 ];

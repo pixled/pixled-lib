@@ -9,46 +9,10 @@ if(NOT ESP_PLATFORM)
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0 -Wall -Wpedantic")
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
 
-	add_library(pixled
-		src/pixled/api/geometry.cpp
-		src/pixled/pixel.cpp
-		src/pixled/mapping.cpp
-		src/pixled/animation.cpp
-		)
+	add_subdirectory(src)
 
 	add_subdirectory(tests)
 
-	install(TARGETS pixled DESTINATION lib)
-	install(FILES 
-		src/pixled.h
-		DESTINATION include)
-
-	install(FILES
-		src/pixled/api/animation.h
-		src/pixled/api/pixel.h
-		src/pixled/api/functionnal.h
-		src/pixled/api/output.h
-		src/pixled/api/utils.h
-		src/pixled/api/mapping.h
-		src/pixled/api/geometry.h
-		DESTINATION include/pixled/api
-		)
-
-	install(FILES
-		src/pixled/animation.h
-		src/pixled/pixel.h
-		src/pixled/mapping.h
-		DESTINATION include/pixled
-		)
-	install(FILES
-		src/pixled/functionnal/functionnal.h
-		src/pixled/functionnal/arithmetic.h
-		src/pixled/functionnal/geometry.h
-		src/pixled/functionnal/comparisons.h
-		src/pixled/functionnal/random.h
-		src/pixled/functionnal/signals.h
-		DESTINATION include/pixled/functionnal
-		)
 	find_package(Doxygen)
 	if(DOXYGEN_FOUND)
 		file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs)

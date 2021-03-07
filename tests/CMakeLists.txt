@@ -4,15 +4,14 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(test
-	src/pixled/api/functionnal.cpp
-	src/pixled/animation.cpp
-	src/pixled/functionnal/functionnal.cpp
-	src/pixled/functionnal/arithmetic.cpp
-	src/pixled/functionnal/random.cpp
-	src/pixled/functionnal/geometry.cpp
-	src/pixled/functionnal/comparisons.cpp
-	src/pixled/functionnal/signals.cpp
-	src/pixled/mapping.cpp
+	pixled/function.cpp
+	pixled/animation/animation.cpp
+	pixled/arithmetic/arithmetic.cpp
+	pixled/random/random.cpp
+	pixled/geometry/geometry.cpp
+	pixled/conditional/conditional.cpp
+	pixled/signal/signal.cpp
+	pixled/mapping/mapping.cpp
 	main.cpp
 	)
 target_link_libraries(test gtest_main gmock_main pixled)
