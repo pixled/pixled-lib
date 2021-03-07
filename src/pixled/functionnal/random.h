@@ -23,7 +23,7 @@ namespace pixled {
 				: period(period), seed(seed) {}
 	};
 
-	class RandomT : public api::Function<std::minstd_rand>, RandomEngine {
+	class RandomT : public base::Function<std::minstd_rand>, RandomEngine {
 		public:
 			mutable Time current_period = 0;
 			mutable std::minstd_rand rd;
@@ -33,7 +33,7 @@ namespace pixled {
 			RandomT(Time period, unsigned long seed)
 				: RandomEngine(period, seed), rd(seed) {}
 
-			std::minstd_rand operator()(api::Point p, Time t) const override {
+			std::minstd_rand operator()(Point p, Time t) const override {
 				Time _current_period = t / period;
 				if(_current_period != current_period) {
 					current_period = _current_period;
@@ -47,18 +47,18 @@ namespace pixled {
 			}
 	};
 
-	class RandomXYT : public api::Function<std::minstd_rand>, RandomEngine {
+	class RandomXYT : public base::Function<std::minstd_rand>, RandomEngine {
 		private:
 			mutable Time current_period = 0;
 			mutable std::minstd_rand rd_seeder;
 			mutable std::uniform_int_distribution<unsigned long> rd_seed;
-			mutable std::unordered_map<api::Point, std::minstd_rand, api::point_hash, api::point_equal> rds;
+			mutable std::unordered_map<Point, std::minstd_rand, point_hash, point_equal> rds;
 		public:
 			using RandomEngine::RandomEngine;
 			/*
 			 * f = period 
 			 */
-			std::minstd_rand operator()(api::Point p, Time t) const override {
+			std::minstd_rand operator()(Point p, Time t) const override {
 				std::minstd_rand* rd;
 
 				auto result = rds.find(p);
@@ -89,35 +89,35 @@ namespace pixled {
 	};
 
 	template<typename R>
-		class UniformDistribution : public api::TernaryFunction<R, R, R, std::minstd_rand, UniformDistribution<R>> {
+		class UniformDistribution : public VarFunction<UniformDistribution<R>, R, R, R, std::minstd_rand> {
 			public:
-				using api::TernaryFunction<R, R, R, std::minstd_rand, UniformDistribution<R>>::TernaryFunction;
+				using VarFunction<UniformDistribution<R>, R, R, R, std::minstd_rand>::VarFunction;
 
 				/*
 				 * f1 = min
 				 * f2 = max
 				 * f3 = random engine
 				 */
-				R operator()(api::Point p, Time t) const override {
-					std::uniform_real_distribution<float> random_real ((*this->f1)(p, t), (*this->f2)(p, t));
-					auto engine = (*this->f3)(p, t);
+				R operator()(Point p, Time t) const override {
+					std::uniform_real_distribution<float> random_real (this->template call<0>(p, t), this->template call<1>(p, t));
+					auto engine = this->template call<2>(p, t);
 					return random_real(engine);
 				}
 		};
 
 	template<typename R>
-	class NormalDistribution : public api::TernaryFunction<R, float, float, std::minstd_rand, NormalDistribution<R>> {
+	class NormalDistribution : public VarFunction<NormalDistribution<R>, R, float, float, std::minstd_rand> {
 		public:
-			using api::TernaryFunction<R, float, float, std::minstd_rand, NormalDistribution<R>>::TernaryFunction;
+			using VarFunction<NormalDistribution<R>, R, float, float, std::minstd_rand>::VarFunction;
 
 			/*
 			 * f1 = min
 			 * f2 = max
 			 * f3 = random engine
 			 */
-			R operator()(api::Point p, Time t) const override {
-				std::normal_distribution<float> random_real ((*this->f1)(p, t), (*this->f2)(p, t));
-				auto engine = (*this->f3)(p, t);
+			R operator()(Point p, Time t) const override {
+				std::normal_distribution<float> random_real (this->template call<0>(p, t), this->template call<1>(p, t));
+				auto engine = this->template call<2>(p, t);
 				return random_real(engine);
 			}
 	};

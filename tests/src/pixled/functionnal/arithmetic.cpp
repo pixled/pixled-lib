@@ -4,7 +4,7 @@
 
 using pixled::MockFunction;
 using ::testing::Return;
-using pixled::api::Point;
+using pixled::Point;
 using pixled::Time;
 
 class OperatorTest : public ::testing::Test {
@@ -160,7 +160,7 @@ TEST_F(ModulusOperator, test) {
 
 TEST_F(PlusOperator, constant) {
 	using namespace pixled;
-	auto plus = pixled::api::Constant<float>(8.f) + pixled::api::Constant<float>(14.f);
+	auto plus = pixled::Constant<float>(8.f) + pixled::Constant<float>(14.f);
 	auto hsb = pixled::hsb(plus, 1., .5);
 
 	ASSERT_FLOAT_EQ(plus(c, t), 22.f);

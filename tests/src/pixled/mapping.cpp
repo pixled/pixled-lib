@@ -3,25 +3,21 @@
 
 #include "gmock/gmock.h"
 
-using ::testing::SizeIs;
-using ::testing::Pair;
-using ::testing::UnorderedElementsAre;
-using ::testing::FloatNear;
-using ::testing::Matches;
+using namespace testing;
 
-using pixled::api::Point;
-using pixled::api::Angle;
+using pixled::Point;
+using pixled::Angle;
 
 #define ASSERT_ANGLE_EQ(A1, A2) \
-	ASSERT_NEAR(pixled::api::Cos(A1), pixled::api::Cos(A2), 0.0001);\
-	ASSERT_NEAR(pixled::api::Sin(A1), pixled::api::Sin(A2), 0.0001);
+	ASSERT_NEAR(pixled::Cos(A1), pixled::Cos(A2), 0.0001);\
+	ASSERT_NEAR(pixled::Sin(A1), pixled::Sin(A2), 0.0001);
 
 MATCHER_P(PointEq, p, "") {
 	return Matches(FloatNear(p.x, .10e-5))(arg.x)
 		&& Matches(FloatNear(p.y, .10e-5))(arg.y);
 }
 
-class TurtleMappingTest : public ::testing::Test {
+class TurtleMappingTest : public Test {
 	protected:
 		pixled::TurtleMapping turtle;
 
@@ -77,7 +73,7 @@ TEST_F(TurtleMappingTest, turn_forward) {
 	turtle.turnRight(60);
 	turtle.forward(10, 3);
 
-	pixled::api::Point final_point(10 * pixled::api::Cos(-60), 10 * pixled::api::Sin(-60));
+	pixled::Point final_point(10 * pixled::Cos(-60), 10 * pixled::Sin(-60));
 	float led_1_x = 1 * final_point.x / 6;
 	float led_1_y = 1 * final_point.y / 6;
 	float led_2_x = 3 * final_point.x / 6;

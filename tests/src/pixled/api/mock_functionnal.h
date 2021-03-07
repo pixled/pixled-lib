@@ -7,73 +7,80 @@ using ::testing::AtMost;
 
 namespace pixled {
 
-	template<typename FctType>
-		class MockFctCopy {
-			public:
-				FctType*& last_copy;
-
-				MockFctCopy(FctType*& last_copy_ptr)
-					: last_copy(last_copy_ptr) {}
-				FctType* operator()() {
-					last_copy = new FctType;
-					EXPECT_CALL(*last_copy, copy).Times(AtMost(1))
-						.WillRepeatedly(Invoke(MockFctCopy(last_copy)));
-					return last_copy;
-				}
-
-				void setUp(FctType& origin) {
-					EXPECT_CALL(origin, copy).Times(AtMost(1))
-						.WillRepeatedly(Invoke(*this));
-				}
-		};
 	template<typename T>
-		class MockFunction : public api::Function<T> {
+		class MockFunction : public base::Function<T> {
 			public:
-				MOCK_METHOD(T, call, (api::Point, Time), (const));
-				T operator()(api::Point c, Time t) const override {
+				const MockFunction<T>* origin = nullptr;
+				mutable MockFunction<T>* last_copy;
+
+				MockFunction() {
+					ON_CALL(*this, copy)
+						.WillByDefault(Invoke([this] () {
+									return new testing::NiceMock<MockFunction<T>>(*this);
+									}));
+				}
+				MockFunction(const MockFunction<T>& other) : MockFunction() {
+					if(other.origin == nullptr)
+						this->origin = &other;
+					else
+						this->origin = other.origin;
+					this->origin->last_copy = this;
+				}
+
+				MOCK_METHOD(T, call, (Point, Time), (const));
+				T operator()(Point c, Time t) const override {
 					return call(c, t);
 				}
 				MOCK_METHOD(MockFunction<T>*, copy, (), (const, override));
 		};
 
 	template<typename R, typename P>
-		class MockUnary : public api::UnaryFunction<R, P, MockUnary<R, P>> {
+		class MockUnary : public VarFunction<MockUnary<R, P>, R, P> {
 			public:
-				MOCK_METHOD(R, call, (api::Point, Time), (const));
-				R operator()(api::Point c, Time t) const override {
+				MOCK_METHOD(R, call, (Point, Time), (const));
+				R operator()(Point c, Time t) const override {
 					return call(c, t);
 				}
 
+				MockUnary(const MockUnary<R, P>& other)
+					: MockUnary(other.template arg<0>()) {
+					}
+
 				template<typename Arg>
-					MockUnary(Arg&& arg, int expected_calls = 1)
-					: api::UnaryFunction<R, P, MockUnary<R, P>>(std::forward<Arg>(arg))
+					MockUnary(Arg&& arg0)
+					: VarFunction<MockUnary<R, P>, R, P>(std::forward<Arg>(arg0))
 					{
 						ON_CALL(*this, call)
 							.WillByDefault(
-								Invoke(&*this->f, &api::Function<P>::operator())
+								Invoke(&(this->template arg<0>()), &base::Function<P>::operator())
 								);
-						EXPECT_CALL(*this, call).Times(expected_calls);
 					}
 		};
 
 	template<typename R, typename P1, typename P2>
-		class MockBinary : public api::BinaryFunction<R, P1, P2, MockBinary<R, P1, P2>> {
+		class MockBinary : public VarFunction<MockBinary<R, P1, P2>, R, P1, P2> {
 			public:
-				MOCK_METHOD(R, call, (api::Point, Time), (const));
-				R operator()(api::Point c, Time t) const override {
+				MOCK_METHOD(R, call, (Point, Time), (const));
+				R operator()(Point c, Time t) const override {
 					return call(c, t);
 				}
 
+				MockBinary(const MockBinary<R, P1, P2>& other)
+					: MockBinary(
+							other.template arg<0>(), other.template arg<1>()
+							) {
+					}
+
 				template<typename Arg1, typename Arg2>
 					MockBinary(Arg1&& arg1, Arg2&& arg2, int expected_calls = 1)
-					: api::BinaryFunction<R, P1, P2, MockBinary<R, P1, P2>>(std::forward<Arg1>(arg1), std::forward<Arg2>(arg2))
-					{
+					: VarFunction<MockBinary<R, P1, P2>, R, P1, P2>(
+							std::forward<Arg1>(arg1), std::forward<Arg2>(arg2)
+							) {
 						ON_CALL(*this, call)
 							.WillByDefault(DoAll(
-								Invoke(&*this->f1, &api::Function<P1>::operator()),
-								Invoke(&*this->f2, &api::Function<P2>::operator())
+								Invoke(&(this->template arg<0>()), &base::Function<P1>::operator()),
+								Invoke(&(this->template arg<1>()), &base::Function<P2>::operator())
 								));
-						EXPECT_CALL(*this, call).Times(expected_calls);
 					}
 		};
 }

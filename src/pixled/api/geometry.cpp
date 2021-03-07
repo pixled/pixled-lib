@@ -1,6 +1,6 @@
 #include "geometry.h"
 
-namespace pixled { namespace api {
+namespace pixled {
 	float distance(const Point& p1, const Point& p2) {
 		return std::sqrt(std::pow(p1.y - p2.y, 2) + std::pow(p1.x - p2.x, 2));
 	}
@@ -21,4 +21,4 @@ namespace pixled { namespace api {
 		o << "(" << p.x << "," << p.y << ")";
 		return o;
 	}
-}}
+}

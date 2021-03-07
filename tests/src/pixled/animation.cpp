@@ -2,29 +2,16 @@
 #include "api/mock_pixel.h"
 #include "api/mock_functionnal.h"
 
-using ::testing::WhenDynamicCastTo;
-using ::testing::Not;
-using ::testing::IsNull;
-using ::testing::AnyNumber;
-using ::testing::AtMost;
-using ::testing::Return;
+using namespace testing;
 
-using pixled::MockFunction;
 using pixled::Time;
-using pixled::MockFctCopy;
 
 TEST(RainbowTest, test) {
-	MockFunction<Time>* last_copy;
-	MockFunction<Time> period;
-	EXPECT_CALL(period, copy).Times(AtMost(1))
-		.WillRepeatedly(Invoke(MockFctCopy<MockFunction<Time>>(last_copy)));
+	pixled::Constant<Time> period(12);
 
 	pixled::Rainbow h {period};
 	auto r = pixled::hsb(h, 0.5f, 0.4f);
 
-	EXPECT_CALL(*last_copy, call)
-		.Times(AnyNumber())
-		.WillRepeatedly(Return(12));
 	auto color = r({0, 0}, 0);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
@@ -53,28 +40,14 @@ TEST(RainbowTest, test) {
 
 class SequenceTest : public ::testing::Test {
 	protected:
-		MockFunction<pixled::Color>* last_f1_copy;
-		MockFunction<pixled::Color> f1;
-
-		MockFunction<pixled::Color>* last_f2_copy;
-		MockFunction<pixled::Color> f2;
-
-		MockFunction<pixled::Color>* last_f3_copy;
-		MockFunction<pixled::Color> f3;
+		NiceMock<pixled::MockFunction<pixled::Color>> f1;
+		NiceMock<pixled::MockFunction<pixled::Color>> f2;
+		NiceMock<pixled::MockFunction<pixled::Color>> f3;
 
 		pixled::Sequence seq;
-		pixled::api::Point fake_point {8, 3};
+		pixled::Point fake_point {8, 3};
 
 		void SetUp() override {
-			EXPECT_CALL(f1, copy)
-				.WillRepeatedly(Invoke(MockFctCopy<MockFunction<pixled::Color>>(last_f1_copy)));
-
-			EXPECT_CALL(f2, copy)
-				.WillRepeatedly(Invoke(MockFctCopy<MockFunction<pixled::Color>>(last_f2_copy)));
-
-			EXPECT_CALL(f3, copy)
-				.WillRepeatedly(Invoke(MockFctCopy<MockFunction<pixled::Color>>(last_f3_copy)));
-
 			seq.add(f1, 10);
 			seq.add(f2, 5);
 			seq.add(f3, 13);
@@ -84,36 +57,36 @@ class SequenceTest : public ::testing::Test {
 TEST_F(SequenceTest, sequence_test) {
 	for(Time T = 0; T < 10; T++) {
 		for(Time t = T*28; t < T*28 + 10; t++) {
-			EXPECT_CALL(*last_f1_copy, call(fake_point, t));
+			EXPECT_CALL(*f1.last_copy, call(fake_point, t));
 			seq(fake_point, t);
 		}
 		for(Time t = T*28 + 10; t < T*28 + 15; t++) {
-			EXPECT_CALL(*last_f2_copy, call(fake_point, t));
+			EXPECT_CALL(*f2.last_copy, call(fake_point, t));
 			seq(fake_point, t);
 		}
 		for(Time t = T*28 + 15; t < (T+1)*28; t++) {
-			EXPECT_CALL(*last_f3_copy, call(fake_point, t));
+			EXPECT_CALL(*f3.last_copy, call(fake_point, t));
 			seq(fake_point, t);
 		}
 	}
 }
 
 TEST_F(SequenceTest, copy_test) {
-	pixled::api::FctWrapper<pixled::Color> copy(seq); 
+	pixled::FctWrapper<pixled::Color> copy(seq); 
 
 	ASSERT_THAT(&*copy, WhenDynamicCastTo<const pixled::Sequence*>(Not(IsNull())));
 
 	for(Time T = 0; T < 10; T++) {
 		for(Time t = T*28; t < T*28 + 10; t++) {
-			EXPECT_CALL(*last_f1_copy, call(fake_point, t));
+			EXPECT_CALL(*f1.last_copy, call(fake_point, t));
 			(*copy)(fake_point, t);
 		}
 		for(Time t = T*28 + 10; t < T*28 + 15; t++) {
-			EXPECT_CALL(*last_f2_copy, call(fake_point, t));
+			EXPECT_CALL(*f2.last_copy, call(fake_point, t));
 			(*copy)(fake_point, t);
 		}
 		for(Time t = T*28 + 15; t < (T+1)*28; t++) {
-			EXPECT_CALL(*last_f3_copy, call(fake_point, t));
+			EXPECT_CALL(*f3.last_copy, call(fake_point, t));
 			(*copy)(fake_point, t);
 		}
 	}
@@ -123,12 +96,9 @@ TEST(BlinkTest, test) {
 	std::mt19937 rd;
 	std::uniform_int_distribution<uint8_t> rd_color;
 
-	MockFunction<pixled::Color>* last_anim_copy;
-	MockFunction<pixled::Color> anim;
-	EXPECT_CALL(anim, copy).Times(AtMost(1))
-		.WillRepeatedly(Invoke(MockFctCopy<MockFunction<pixled::Color>>(last_anim_copy)));
+	NiceMock<pixled::MockFunction<pixled::Color>> anim;
 
-	pixled::api::Point p(6, -4);
+	pixled::Point p(6, -4);
 	pixled::Blink blink(anim, 12);
 
 	for(Time T = 0; T < 10; T++) {
@@ -136,7 +106,7 @@ TEST(BlinkTest, test) {
 			pixled::Color c;
 			c.setRgb(rd_color(rd), rd_color(rd), rd_color(rd));
 
-			EXPECT_CALL(*last_anim_copy, call(p, t))
+			EXPECT_CALL(*anim.last_copy, call(p, t))
 				.WillOnce(Return(c));
 			ASSERT_EQ(blink(p, t), c);
 		}

@@ -1,16 +1,13 @@
 #include "pixled/functionnal/comparisons.h"
 #include "../api/mock_functionnal.h"
 
-using ::testing::AnyNumber;
-using ::testing::Return;
+using namespace testing;
 
-using pixled::MockFunction;
-using pixled::MockFctCopy;
-using pixled::api::Point;
+using pixled::Point;
 using pixled::Time;
 using pixled::If;
 
-class OperatorTest : public ::testing::Test {
+class OperatorTest : public Test {
 	protected:
 		Point p {12, 38};
 		Time t {25};
@@ -19,30 +16,19 @@ class OperatorTest : public ::testing::Test {
 class IfOperator : public OperatorTest {};
 
 TEST_F(IfOperator, simple_if_test) {
-	MockFunction<bool>* last_condition_copy;
-	MockFunction<bool> condition;
-	EXPECT_CALL(condition, copy).Times(AnyNumber())
-		.WillRepeatedly(Invoke(MockFctCopy<MockFunction<bool>>(last_condition_copy)));
-
-	MockFunction<long>* last_if_copy;
-	MockFunction<long> if_statement;
-	EXPECT_CALL(if_statement, copy).Times(AnyNumber())
-		.WillRepeatedly(Invoke(MockFctCopy<MockFunction<long>>(last_if_copy)));
-
-	MockFunction<long>* last_else_copy;
-	MockFunction<long> else_statement;
-	EXPECT_CALL(else_statement, copy).Times(AnyNumber())
-		.WillRepeatedly(Invoke(MockFctCopy<MockFunction<long>>(last_else_copy)));
+	NiceMock<pixled::MockFunction<bool>> condition;
+	NiceMock<pixled::MockFunction<long>> if_statement;
+	NiceMock<pixled::MockFunction<long>> else_statement;
 
 	auto if_fct = If<long>(condition, if_statement, else_statement);
 
-	EXPECT_CALL(*last_condition_copy, call(p, t)).WillOnce(Return(true));
-	EXPECT_CALL(*last_if_copy, call(p, t)).WillOnce(Return(12));
-	EXPECT_CALL(*last_else_copy, call(p, t)).Times(0);
+	EXPECT_CALL(*condition.last_copy, call(p, t)).WillOnce(Return(true));
+	EXPECT_CALL(*if_statement.last_copy, call(p, t)).WillOnce(Return(12));
+	EXPECT_CALL(*else_statement.last_copy, call(p, t)).Times(0);
 	ASSERT_EQ(if_fct(p, t), 12);
 
-	EXPECT_CALL(*last_condition_copy, call(p, t)).WillOnce(Return(false));
-	EXPECT_CALL(*last_if_copy, call(p, t)).Times(0);
-	EXPECT_CALL(*last_else_copy, call(p, t)).WillOnce(Return(72));
+	EXPECT_CALL(*condition.last_copy, call(p, t)).WillOnce(Return(false));
+	EXPECT_CALL(*if_statement.last_copy, call(p, t)).Times(0);
+	EXPECT_CALL(*else_statement.last_copy, call(p, t)).WillOnce(Return(72));
 	ASSERT_EQ(if_fct(p, t), 72);
 }

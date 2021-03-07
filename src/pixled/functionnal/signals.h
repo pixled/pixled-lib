@@ -4,50 +4,50 @@
 #include "../api/functionnal.h"
 
 namespace pixled {
-	class Sine : public api::TernaryFunction<float, float, float, float, Sine> {
+	class Sine : public VarFunction<Sine, float, float, float, float> {
 		public:
-			using api::TernaryFunction<float, float, float, float, Sine>::TernaryFunction;
+			using VarFunction<Sine, float, float, float, float>::VarFunction;
 
 			/*
 			 * f1 : amplitude
 			 * f2 : period
 			 * f3 : param
 			 */
-			float operator()(api::Point p, Time t) const {
-				return (*this->f1)(p, t) * std::sin(2*PIXLED_PI * (*this->f3)(p, t) / (*this->f2)(p, t));
+			float operator()(Point p, Time t) const {
+				return this->call<0>(p, t) * std::sin(2*PIXLED_PI * this->call<2>(p, t) / this->call<1>(p, t));
 			}
 	};
 
-	class Square : public api::TernaryFunction<float, float, float, float, Square> {
+	class Square : public VarFunction<Square, float, float, float, float> {
 		public:
-			using api::TernaryFunction<float, float, float, float, Square>::TernaryFunction;
+			using VarFunction<Square, float, float, float, float>::VarFunction;
 
-			float operator()(api::Point p, Time t) const {
-				if(std::sin(2*PIXLED_PI * (*this->f3)(p, t) / (*this->f2)(p, t)) > 0)
-					return (*this->f1)(p, t);
+			float operator()(Point p, Time t) const {
+				if(std::sin(2*PIXLED_PI * this->call<2>(p, t) / this->call<1>(p, t)) > 0)
+					return this->call<0>(p, t);
 				else
-					return -(*this->f1)(p, t);
+					return -this->call<0>(p, t);
 			}
 	};
 
-	class Triangle : public api::TernaryFunction<float, float, Time, Time, Triangle> {
+	class Triangle : public VarFunction<Triangle, float, float, Time, Time> {
 		public:
-			using api::TernaryFunction<float, float, Time, Time, Triangle>::TernaryFunction;
+			using VarFunction<Triangle, float, float, Time, Time>::VarFunction;
 
-			float operator()(api::Point p, Time t) const {
-				return 2 / PIXLED_PI * (*this->f1)(p, t) * std::asin(std::sin(
-						(2*PIXLED_PI * (*this->f3)(p, t)) / (*this->f2)(p, t)
+			float operator()(Point p, Time t) const {
+				return 2 / PIXLED_PI * this->call<0>(p, t) * std::asin(std::sin(
+						(2*PIXLED_PI * this->call<2>(p, t)) / this->call<1>(p, t)
 						));
 			}
 	};
 
-	class Sawtooth : public api::TernaryFunction<float, float, float, float, Sawtooth> {
+	class Sawtooth : public VarFunction<Sawtooth, float, float, float, float> {
 		public:
-			using api::TernaryFunction<float, float, float, float, Sawtooth>::TernaryFunction;
+			using VarFunction<Sawtooth, float, float, float, float>::VarFunction;
 
-			float operator()(api::Point p, Time t) const {
-				return (2 / PIXLED_PI) * (*this->f1)(p, t) * std::atan(std::tan(
-						2*PIXLED_PI * (*this->f3)(p, t) / (2 * (*this->f2)(p, t))
+			float operator()(Point p, Time t) const {
+				return (2 / PIXLED_PI) * this->call<0>(p, t) * std::atan(std::tan(
+						2*PIXLED_PI * this->call<2>(p, t) / (2 * this->call<1>(p, t))
 						));
 			}
 	};

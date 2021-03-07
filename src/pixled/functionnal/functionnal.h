@@ -14,57 +14,57 @@
 
 namespace pixled {
 
-	class X : public api::Function<Coordinate> {
+	class X : public base::Function<Coordinate> {
 		public:
-			using Type = api::Function<Coordinate>::Type;
+			using Type = base::Function<Coordinate>::Type;
 
-			Coordinate operator()(api::Point c, Time t) const override {
+			Coordinate operator()(Point c, Time t) const override {
 				return c.x;
 			}
 
 			X* copy() const override {return new X;}
 	};
 
-	class Y : public api::Function<Coordinate> {
+	class Y : public base::Function<Coordinate> {
 		public:
-			using Type = api::Function<Coordinate>::Type;
+			using Type = base::Function<Coordinate>::Type;
 
-			Coordinate operator()(api::Point c, Time t) const override {
+			Coordinate operator()(Point c, Time t) const override {
 				return c.y;
 			}
 
 			Y* copy() const override {return new Y;}
 	};
 
-	class T : public api::Function<Time> {
+	class T : public base::Function<Time> {
 		public:
-			using Type = api::Function<Time>::Type;
+			using Type = base::Function<Time>::Type;
 
-			Time operator()(api::Point c, Time t) const override {
+			Time operator()(Point c, Time t) const override {
 				return t;
 			}
 
 			T* copy() const override {return new T;}
 	};
 
-	class hsb : public api::TernaryFunction<pixled::Color, float, float, float, hsb> {
+	class hsb : public VarFunction<hsb, pixled::Color, float, float, float> {
 		public:
-			using api::TernaryFunction<pixled::Color, float, float, float, hsb>::TernaryFunction;
+			using VarFunction<hsb, pixled::Color, float, float, float>::VarFunction;
 
-			pixled::Color operator()(api::Point c, Time t) const override {
+			pixled::Color operator()(Point c, Time t) const override {
 				pixled::Color color;
-				color.setHsb((*f1)(c, t), (*f2)(c, t), (*f3)(c, t));
+				color.setHsb(this->call<0>(c, t), this->call<1>(c, t), this->call<2>(c, t));
 				return color;
 			}
 	};
 
-	class rgb : public api::TernaryFunction<pixled::Color, uint8_t, uint8_t, uint8_t, rgb> {
+	class rgb : public VarFunction<rgb, pixled::Color, uint8_t, uint8_t, uint8_t> {
 		public:
-			using api::TernaryFunction<pixled::Color, uint8_t, uint8_t, uint8_t, rgb>::TernaryFunction;
+			using VarFunction<rgb, pixled::Color, uint8_t, uint8_t, uint8_t>::VarFunction;
 
-			pixled::Color operator()(api::Point c, Time t) const override {
+			pixled::Color operator()(Point c, Time t) const override {
 				pixled::Color color;
-				color.setRgb((*f1)(c, t), (*f2)(c, t), (*f3)(c, t));
+				color.setRgb(this->call<0>(c, t), this->call<1>(c, t), this->call<2>(c, t));
 				return color;
 			}
 	};

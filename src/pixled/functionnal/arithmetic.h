@@ -5,13 +5,13 @@
 
 namespace pixled {
 	template<typename R, typename P1, typename P2>
-		class Plus : public api::BinaryFunction<R, P1, P2, Plus<R, P1, P2>> {
+		class Plus : public VarFunction<Plus<R, P1, P2>, R, P1, P2> {
 
 			public:
-				using api::BinaryFunction<R, P1, P2, Plus<R, P1, P2>>::BinaryFunction;
+				using VarFunction<Plus<R, P1, P2>, R, P1, P2>::VarFunction;
 
-				R operator()(api::Point c, Time t) const override {
-					return (*this->f1)(c, t) + (*this->f2)(c, t);
+				R operator()(Point c, Time t) const override {
+					return this->template call<0>(c, t) + this->template call<1>(c, t);
 				}
 		};
 
@@ -68,13 +68,13 @@ namespace pixled {
 		}
 
 	template<typename R, typename P1, typename P2>
-		class Minus : public api::BinaryFunction<R, P1, P2, Minus<R, P1, P2>> {
+		class Minus : public VarFunction<Minus<R, P1, P2>, R, P1, P2> {
 
 			public:
-				using api::BinaryFunction<R, P1, P2, Minus<R, P1, P2>>::BinaryFunction;
+				using VarFunction<Minus<R, P1, P2>, R, P1, P2>::VarFunction;
 
-				R operator()(api::Point c, Time t) const override {
-					return (*this->f1)(c, t) - (*this->f2)(c, t);
+				R operator()(Point c, Time t) const override {
+					return this->template call<0>(c, t) - this->template call<1>(c, t);
 				}
 		};
 
@@ -131,12 +131,12 @@ namespace pixled {
 		}
 
 	template<typename R, typename P1, typename P2>
-		class Multiplies : public api::BinaryFunction<R, P1, P2, Multiplies<R, P1, P2>> {
+		class Multiplies : public VarFunction<Multiplies<R, P1, P2>, R, P1, P2> {
 			public:
-				using api::BinaryFunction<R, P1, P2, Multiplies<R, P1, P2>>::BinaryFunction;
+				using VarFunction<Multiplies<R, P1, P2>, R, P1, P2>::VarFunction;
 
-				R operator()(api::Point c, Time t) const override {
-					return (*this->f1)(c, t) * (*this->f2)(c, t);
+				R operator()(Point c, Time t) const override {
+					return this->template call<0>(c, t) * this->template call<1>(c, t);
 				}
 		};
 
@@ -194,12 +194,12 @@ namespace pixled {
 			}
 
 	template<typename R, typename P1, typename P2>
-		class Divides : public api::BinaryFunction<R, P1, P2, Divides<R, P1, P2>> {
+		class Divides : public VarFunction<Divides<R, P1, P2>, R, P1, P2> {
 			public:
-				using api::BinaryFunction<R, P1, P2, Divides<R, P1, P2>>::BinaryFunction;
+				using VarFunction<Divides<R, P1, P2>, R, P1, P2>::VarFunction;
 
-				R operator()(api::Point c, Time t) const override {
-					return (*this->f1)(c, t) / (*this->f2)(c, t);
+				R operator()(Point c, Time t) const override {
+					return this->template call<0>(c, t) / this->template call<1>(c, t);
 				}
 		};
 
@@ -258,12 +258,12 @@ namespace pixled {
 			}
 
 	template<typename R, typename P1, typename P2>
-		class Modulus : public api::BinaryFunction<R, P1, P2, Modulus<R, P1, P2>> {
+		class Modulus : public VarFunction<Modulus<R, P1, P2>, R, P1, P2> {
 			public:
-				using api::BinaryFunction<R, P1, P2, Modulus<R, P1, P2>>::BinaryFunction;
+				using VarFunction<Modulus<R, P1, P2>, R, P1, P2>::VarFunction;
 
-				R operator()(api::Point c, Time t) const override {
-					return (*this->f1)(c, t) % (*this->f2)(c, t);
+				R operator()(Point c, Time t) const override {
+					return this->template call<0>(c, t) % this->template call<1>(c, t);
 				}
 		};
 

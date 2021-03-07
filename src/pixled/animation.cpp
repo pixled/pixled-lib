@@ -3,7 +3,7 @@
 namespace pixled {
 
 	void Runtime::frame(Time t) {
-		for(std::pair<api::Point, std::size_t> c : map) {
+		for(std::pair<Point, std::size_t> c : map) {
 			output.write(animation(c.first, t), c.second);
 		}
 	}
@@ -17,32 +17,32 @@ namespace pixled {
 		return _time;
 	}
 
-	float Rainbow::operator()(api::Point c, Time t) const {
+	float Rainbow::operator()(Point c, Time t) const {
 		return 
-			180.f * (std::sin(2*PIXLED_PI * t / (*this->f)(c, t)) + 1.f);
+			180.f * (std::sin(2*PIXLED_PI * t / (*std::get<0>(this->args))(c, t)) + 1.f);
 	}
 
-	float RainbowWave::operator()(api::Point p, Time t) const {
-		float d = LineDistance(*this->f2, p)(p, t);
-		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / (*this->f1)(p, t) - (float) t / (*this->f3)(p, t))));
+	float RainbowWave::operator()(Point p, Time t) const {
+		float d = geometry::LineDistance(this->arg<1>(), p)(p, t);
+		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
-	float RadialRainbowWave::operator()(api::Point p, Time t) const {
-		float d = Distance(*this->f2, p)(p, t);
-		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / (*this->f1)(p, t) - (float) t / (*this->f3)(p, t))));
+	float RadialRainbowWave::operator()(Point p, Time t) const {
+		float d = geometry::Distance(this->arg<1>(), p)(p, t);
+		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
-	float SpatialUnitWave::operator()(api::Point p, Time t) const {
-		float d = LineDistance(*this->f2, p)(p, t);
-		return .5f * (1.f + std::sin(2*PIXLED_PI*(d / (*this->f1)(p, t) - (float) t / (*this->f3)(p, t))));
+	float SpatialUnitWave::operator()(Point p, Time t) const {
+		float d = geometry::LineDistance(this->arg<1>(), p)(p, t);
+		return .5f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
-	Color Blooming::operator()(api::Point c, Time t) const {
-		Color color = (*this->f1)(c, t);
+	Color Blooming::operator()(Point c, Time t) const {
+		Color color = this->call<0>(c, t);
 		// Max distance from center point, where b = epsilon
-		float D = (*this->f3)(c, t);
+		float D = this->call<2>(c, t);
 		// Distance from c to center point
-		float d = Distance(*this->f2, c)(c, t);
+		float d = geometry::Distance(this->arg<1>(), c)(c, t);
 
 		// The brightness decreases as a 1 / x light functions, scaled
 		// so that when d = D, b = epsilon.
@@ -59,13 +59,13 @@ namespace pixled {
 		return color;
 	}
 
-	Color PixelView::operator()(api::Point c, Time t) const {
-		if (c.x == (*f1)(c, t) && c.y == (*f2)(c, t))
-			return (*f3)(c, t);
+	Color PixelView::operator()(Point c, Time t) const {
+		if (c.x == this->call<0>(c, t) && c.y == this->call<1>(c, t))
+			return this->call<2>(c, t);
 		return Color();
 	}
 
-	Color Sequence::operator()(api::Point p, Time t) const {
+	Color Sequence::operator()(Point p, Time t) const {
 		if(t >= cache_time && t < cache_time + cache_time_duration)
 			return (**cache)(p, t);
 		auto it = animations.upper_bound(t % duration);
@@ -86,9 +86,9 @@ namespace pixled {
 		return new Sequence(*this);
 	}
 
-	Color Blink::operator()(api::Point p, Time t) const {
+	Color Blink::operator()(Point p, Time t) const {
 		if(square(p, t) > 0) {
-			return (*this->f1)(p, t);
+			return this->call<0>(p, t);
 		}
 		return black;
 	}

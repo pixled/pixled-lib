@@ -1,13 +1,9 @@
 #include "mock_functionnal.h"
 
-using ::testing::AtMost;
-using ::testing::Return;
-using ::testing::WhenDynamicCastTo;
-using ::testing::IsNull;
-using ::testing::Not;
+using namespace testing;
 
-using pixled::api::Constant;
-using pixled::api::FctWrapper;
+using pixled::Constant;
+using pixled::FctWrapper;
 
 TEST(Constant, build) {
 	static_assert(
@@ -22,7 +18,7 @@ TEST(Constant, build) {
 
 TEST(Constant, copy) {
 	Constant<double> constant {3.45};
-	pixled::api::Function<double>* copy = constant.copy();
+	pixled::base::Function<double>* copy = constant.copy();
 
 	ASSERT_THAT(copy, WhenDynamicCastTo<Constant<double>*>(Not(IsNull())));
 	ASSERT_EQ((*copy)({3, 5}, 4), 3.45);
@@ -119,55 +115,179 @@ TEST_F(FctWrapperTest, move_assignment) {
 	ASSERT_EQ(&*w2, copy);
 }
 
-class UnaryFunctionTest : public ::testing::Test {
+/**
+ * Tests basic pixled::Function features with a single parameter.
+ *
+ * Considering the tuple based implementation of pixled::Function, we assume
+ * that this will work for any number of parameter if those tests pass.
+ */
+class UnaryTest : public Test {
 	protected:
-		pixled::MockFunction<uint8_t> fct;
-		pixled::MockFunction<uint8_t>* last_fct_copy;
-		pixled::MockFctCopy<pixled::MockFunction<uint8_t>> mock_copy {last_fct_copy};
+		pixled::Point c {12, 38};
+		pixled::Time t {25};
+
+		StrictMock<pixled::MockFunction<uint8_t>> fct;
+		//StrictMock<pixled::MockFunction<uint8_t>>* last_fct_copy;
+		//pixled::MockFctCopy<decltype(fct)> mock_copy {last_fct_copy};
 
 		void SetUp() override {
-			mock_copy.setUp(fct);
+			//mock_copy.setUp(fct);
 		}
 };
 
-TEST_F(UnaryFunctionTest, lvalue_build) {
+TEST_F(UnaryTest, lvalue_build) {
+	StrictMock<pixled::MockFunction<uint8_t>>* fct_copy
+		= new StrictMock<pixled::MockFunction<uint8_t>>;
+	EXPECT_CALL(fct, copy).WillOnce(Return(fct_copy));
+
 	pixled::MockUnary<float, uint8_t> unary {fct};
 
-	EXPECT_CALL(*last_fct_copy, call);
+	EXPECT_CALL(unary, call(c, t));
+	EXPECT_CALL(*fct_copy, call(c, t));
 
-	unary({2, 4}, 7);
+	unary(c, t);
 }
 
-TEST_F(UnaryFunctionTest, rvalue_build) {
-	pixled::MockUnary<float, uint8_t> unary {std::move(fct)};
+struct MockFunctionCopy : public StrictMock<pixled::MockFunction<uint8_t>> {
+	MockFunctionCopy() {}
 
-	EXPECT_CALL(*last_fct_copy, call);
+	MockFunctionCopy(MockFunctionCopy* copy) {
+		ON_CALL(*this, copy)
+			.WillByDefault(Return(copy));
+		EXPECT_CALL(*this, copy).Times(1);
+	}
+};
 
-	unary({2, 4}, 7);
+TEST_F(UnaryTest, rvalue_build) {
+	MockFunctionCopy* copy = new MockFunctionCopy;
+	// Even if MockFunctionCopy() is technically moved it is still copied so
+	// that it can be safely destroyed at the end of the call.
+	pixled::MockUnary<float, uint8_t> unary {MockFunctionCopy(copy)};
+
+	EXPECT_CALL(unary, call(c, t));
+	EXPECT_CALL(*copy, call(c, t));
+
+	unary(c, t);
 }
 
-TEST_F(UnaryFunctionTest, constant_build) {
+TEST_F(UnaryTest, constant_build) {
 	pixled::MockUnary<float, uint8_t> unary {27};
 
-	ASSERT_EQ(unary({8, 2}, 6), 27);
+	EXPECT_CALL(unary, call(c, t));
+	ASSERT_EQ(unary(c, t), 27);
 }
 
-TEST_F(UnaryFunctionTest, copy) {
-	// This mock is not supposed to be called
-	pixled::MockUnary<float, uint8_t> unary {fct, 0};
+TEST_F(UnaryTest, fct_wrapper) {
+	// First copy to initialize `unary`
+	StrictMock<pixled::MockFunction<uint8_t>>* fct_copy
+		= new StrictMock<pixled::MockFunction<uint8_t>>;
+	EXPECT_CALL(fct, copy).WillOnce(Return(fct_copy));
 
+	// This mock is not supposed to be called
+	pixled::MockUnary<float, uint8_t> unary {fct};
+
+	// Second copy to initialize `unary_wrapper`, since `unary` itself is
+	// copied into `unary_wrapper`, leaving `unary` unchanged and usable.
+	StrictMock<pixled::MockFunction<uint8_t>>* fct_copy_copy
+		= new StrictMock<pixled::MockFunction<uint8_t>>;
+	EXPECT_CALL(*fct_copy, copy).WillOnce(Return(fct_copy_copy));
 	// Makes a copy of unary
-	pixled::api::FctWrapper<float> unary_copy {unary};
+	pixled::FctWrapper<float> unary_wrapper {unary};
 
 	// Assert that the copy is also a MockUnary
-	try {
-		auto& test = dynamic_cast<const pixled::MockUnary<float, uint8_t>&>(*unary_copy);
+	ASSERT_THAT(
+			&unary_wrapper.get(),
+			(WhenDynamicCastTo<const decltype(unary)*>(Not(IsNull())))
+			);
 
-		// Assert that the copy is really of copy of unary, i.e. the internal
-		// function is the same
-		EXPECT_CALL(*last_fct_copy, call);
-		test({6, 2}, 8);
-	}catch (std::bad_cast&) {
-		FAIL();
-	}
+	// Call to unary_copy...
+	EXPECT_CALL(
+			dynamic_cast<const decltype(unary)&>(unary_wrapper.get()),
+			call(c, t)
+			);
+	// ... that itself triggers a call to the last `fct` copy
+	EXPECT_CALL(
+			*fct_copy_copy,
+			call(c, t)
+			);
+
+	// Actual call
+	unary_wrapper.get()(c, t);
+}
+
+/**
+ * Some additional tests for pixled::Function with two parameters.
+ */
+typedef UnaryTest BinaryTest;
+
+TEST_F(BinaryTest, lvalue_build) {
+	using pixled::MockFunction;
+	using pixled::MockBinary;
+
+	StrictMock<MockFunction<float>> f1;
+	StrictMock<MockFunction<float>>* f1_copy = new StrictMock<MockFunction<float>>;
+	StrictMock<MockFunction<float>> f2;
+	StrictMock<MockFunction<float>>* f2_copy = new StrictMock<MockFunction<float>>;
+
+	EXPECT_CALL(f1, copy).WillOnce(Return(f1_copy));
+	EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
+	StrictMock<MockBinary<float, float, float>> mock {f1, f2};
+
+	EXPECT_CALL(mock, call(c, t));
+	EXPECT_CALL(*f1_copy, call(c, t)).WillOnce(Return(10));
+	EXPECT_CALL(*f2_copy, call(c, t)).WillOnce(Return(14));
+
+	mock(c, t);
+}
+
+TEST_F(BinaryTest, rvalue_build) {
+	using pixled::MockFunction;
+	using pixled::MockBinary;
+
+	StrictMock<MockFunction<float>> f1;
+	StrictMock<MockFunction<float>>* f1_copy = new StrictMock<MockFunction<float>>;
+	StrictMock<MockFunction<float>> f2;
+	StrictMock<MockFunction<float>>* f2_copy = new StrictMock<MockFunction<float>>;
+
+	EXPECT_CALL(f1, copy).WillOnce(Return(f1_copy));
+	EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
+	StrictMock<MockBinary<float, float, float>> mock {std::move(f1), std::move(f2)};
+
+	EXPECT_CALL(mock, call(c, t));
+	EXPECT_CALL(*f1_copy, call(c, t)).WillOnce(Return(10));
+	EXPECT_CALL(*f2_copy, call(c, t)).WillOnce(Return(14));
+
+	mock(c, t);
+}
+
+TEST_F(BinaryTest, nested_lvalue_build) {
+	using pixled::MockFunction;
+	using pixled::MockBinary;
+
+	MockFunction<float> f1;
+	MockFunction<float>* f1_copy {new MockFunction<float>};
+	MockFunction<float>* f1_copy_copy {new MockFunction<float>};
+	MockFunction<float> f2;
+	MockFunction<float>* f2_copy {new MockFunction<float>};
+	MockFunction<float>* f2_copy_copy {new MockFunction<float>};
+	MockFunction<float> f3;
+	MockFunction<float>* f3_copy {new MockFunction<float>};
+
+	EXPECT_CALL(f1, copy).WillOnce(Return(f1_copy));
+	EXPECT_CALL(*f1_copy, copy).WillOnce(Return(f1_copy_copy));
+	EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
+	EXPECT_CALL(*f2_copy, copy).WillOnce(Return(f2_copy_copy));
+	EXPECT_CALL(f3, copy).WillOnce(Return(f3_copy));
+
+	MockBinary<float, float, float> mock_1 {f1, f2, 0};
+	MockBinary<float, float, float> mock_2 {mock_1, f3, 1};
+
+	EXPECT_CALL(mock_1, call).Times(0);
+
+	EXPECT_CALL(mock_2, call(c, t));
+	EXPECT_CALL(dynamic_cast<const decltype(mock_1)&>(mock_2.arg<0>()), call(c, t));
+	EXPECT_CALL(*f1_copy_copy, call(c, t));
+	EXPECT_CALL(*f2_copy_copy, call(c, t));
+	EXPECT_CALL(*f3_copy, call(c, t)).Times(1);
+	mock_2(c, t);
 }

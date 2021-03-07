@@ -49,6 +49,27 @@ if(NOT ESP_PLATFORM)
 		src/pixled/functionnal/signals.h
 		DESTINATION include/pixled/functionnal
 		)
+	find_package(Doxygen)
+	if(DOXYGEN_FOUND)
+		file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs)
+		set(DOXYGEN_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs)
+		set(DOXYGEN_MACRO_EXPANSION "YES")
+		set(DOXYGEN_HTML_OUTPUT ".")
+		set(DOXYGEN_IMAGE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/docs/img)
+		set(DOXYGEN_SORT_MEMBER_DOCS "NO")
+		set(DOXYGEN_PREDEFINED "DOXYGEN_BUILD")
+		set(DOXYGEN_HAVE_DOT "YES")
+		#set(DOXYGEN_TEMPLATE_RELATIONS "YES")
+		set(DOXYGEN_VERBATIM_VARS DOXYGEN_ALIASES)
+		set(DOXYGEN_HIDE_FRIEND_COMPOUNDS "YES")
+		set(DOXYGEN_EXAMPLE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/examples)
+		set(DOXYGEN_ALIASES 
+			[[Function{1}="\ref api::Function \"api::Function<\1>\""]]
+			)
+		doxygen_add_docs(doc
+			${CMAKE_CURRENT_SOURCE_DIR}/src
+			)
+	endif()
 else()
 	idf_component_register(
 		SRC_DIRS "src/pixled" "src/pixled/api"

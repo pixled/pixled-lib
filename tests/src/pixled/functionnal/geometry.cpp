@@ -8,7 +8,7 @@
 using ::testing::Return;
 
 using pixled::MockFunction;
-using pixled::api::Point;
+using pixled::Point;
 using pixled::Time;
 
 class OperatorTest : public ::testing::Test {
@@ -21,7 +21,7 @@ class SinTest : public OperatorTest {};
 
 TEST_F(SinTest, constant_sin) {
 	float i = 2.7;
-	pixled::Sin<float> sin {i};
+	pixled::geometry::Sin<float> sin {i};
 
 	ASSERT_EQ(sin(c, t), std::sin(i));
 }
@@ -45,7 +45,7 @@ TEST_F(SinTest, complex_sin) {
 	std::mt19937 engine;
 	std::uniform_real_distribution<float> random_f {0, 100};
 
-	pixled::Sin<float> sin {product};
+	pixled::geometry::Sin<float> sin {product};
 	for(int i = 0; i < 100; i++) {
 		float f1_result = random_f(engine);
 		float f2_result = random_f(engine);

@@ -8,7 +8,7 @@ class SignalTest : public ::testing::Test {
 	private:
 		std::mt19937 rd;
 	protected:
-		pixled::api::Point random_point() {
+		pixled::Point random_point() {
 			std::uniform_real_distribution<pixled::Coordinate> rd_coord;
 			return {rd_coord(rd), rd_coord(rd)};
 		}

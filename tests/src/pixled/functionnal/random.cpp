@@ -38,7 +38,7 @@ TEST(RandomT, uniform_int_test) {
 
 	// First run from t = 0 to t = 10 * 100
 	for(unsigned long i = 0; i < NUM_PERIOD; i++) {
-		pixled::api::Point p {xy(rd_xy), xy(rd_xy)};
+		pixled::Point p {xy(rd_xy), xy(rd_xy)};
 		int rd_int = rd(p, 10 * i);
 		values[i] = rd_int;
 		// Since period = 10, the value must keep constant for 10 iterations
@@ -63,7 +63,7 @@ TEST(RandomT, uniform_float_test) {
 
 	// First run from t = 0 to t = 10 * 100
 	for(unsigned long i = 0; i < NUM_PERIOD; i++) {
-		pixled::api::Point p {xy(rd_xy), xy(rd_xy)};
+		pixled::Point p {xy(rd_xy), xy(rd_xy)};
 		float rd_float = rd(p, 10 * i);
 		values[i] = rd_float;
 		// Since period = 10, the value must keep constant for 10 iterations
@@ -84,9 +84,9 @@ TEST(RandomXYT, uniform_int_test) {
 	std::mt19937 rd_xy;
 	std::uniform_real_distribution<float> xy(-10, 10);
 
-	pixled::api::Point p1 {xy(rd_xy), xy(rd_xy)};
-	pixled::api::Point p2 {xy(rd_xy), xy(rd_xy)};
-	pixled::api::Point p3 {xy(rd_xy), xy(rd_xy)};
+	pixled::Point p1 {xy(rd_xy), xy(rd_xy)};
+	pixled::Point p2 {xy(rd_xy), xy(rd_xy)};
+	pixled::Point p3 {xy(rd_xy), xy(rd_xy)};
 	std::array<int, NUM_PERIOD> p1_values;
 	std::array<int, NUM_PERIOD> p2_values;
 	std::array<int, NUM_PERIOD> p3_values;
@@ -137,9 +137,9 @@ TEST(RandomXYT, normal_float_test) {
 	std::mt19937 rd_xy;
 	std::uniform_real_distribution<float> xy(-10, 10);
 
-	pixled::api::Point p1 {xy(rd_xy), xy(rd_xy)};
-	pixled::api::Point p2 {xy(rd_xy), xy(rd_xy)};
-	pixled::api::Point p3 {xy(rd_xy), xy(rd_xy)};
+	pixled::Point p1 {xy(rd_xy), xy(rd_xy)};
+	pixled::Point p2 {xy(rd_xy), xy(rd_xy)};
+	pixled::Point p3 {xy(rd_xy), xy(rd_xy)};
 	std::array<int, NUM_PERIOD> p1_values;
 	std::array<int, NUM_PERIOD> p2_values;
 	std::array<int, NUM_PERIOD> p3_values;
