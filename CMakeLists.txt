@@ -1,7 +1,7 @@
 if(NOT ESP_PLATFORM)
-	project(pixled-lib)
-
 	cmake_minimum_required(VERSION 3.10)
+
+	project(pixled-lib VERSION 0.1)
 
 	set(CMAKE_CXX_STANDARD 11)
 	set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -10,8 +10,17 @@ if(NOT ESP_PLATFORM)
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
 
 	add_subdirectory(src)
-
 	add_subdirectory(tests)
+
+	include(CMakePackageConfigHelpers)
+	write_basic_package_version_file(
+		${CMAKE_CURRENT_BINARY_DIR}/pixledConfigVersion.cmake
+		COMPATIBILITY SameMajorVersion)
+	install(FILES
+		cmake/pixledConfig.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/pixledConfigVersion.cmake
+		DESTINATION lib/cmake/pixled)
+
 
 	find_package(Doxygen)
 	if(DOXYGEN_FOUND)

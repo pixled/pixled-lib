@@ -13,3 +13,15 @@ add_library(pixled
 install(TARGETS pixled DESTINATION lib)
 
 install(DIRECTORY . DESTINATION include FILES_MATCHING PATTERN "*.h")
+
+install(TARGETS pixled EXPORT pixledTargets
+	DESTINATION lib
+	INCLUDES DESTINATION include)
+
+export(EXPORT pixledTargets
+	NAMESPACE pixled::)
+install(EXPORT pixledTargets
+	DESTINATION lib/cmake/pixled
+	NAMESPACE pixled::)
+
+
