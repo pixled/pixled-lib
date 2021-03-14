@@ -35,7 +35,7 @@ namespace pixled {
 		};
 
 	template<typename R, typename P>
-		class MockUnary : public VarFunction<MockUnary<R, P>, R, P> {
+		class MockUnary : public Function<MockUnary<R, P>, R, P> {
 			public:
 				MOCK_METHOD(R, call, (Point, Time), (const));
 				R operator()(Point c, Time t) const override {
@@ -48,7 +48,7 @@ namespace pixled {
 
 				template<typename Arg>
 					MockUnary(Arg&& arg0)
-					: VarFunction<MockUnary<R, P>, R, P>(std::forward<Arg>(arg0))
+					: Function<MockUnary<R, P>, R, P>(std::forward<Arg>(arg0))
 					{
 						ON_CALL(*this, call)
 							.WillByDefault(
@@ -58,7 +58,7 @@ namespace pixled {
 		};
 
 	template<typename R, typename P1, typename P2>
-		class MockBinary : public VarFunction<MockBinary<R, P1, P2>, R, P1, P2> {
+		class MockBinary : public Function<MockBinary<R, P1, P2>, R, P1, P2> {
 			public:
 				MOCK_METHOD(R, call, (Point, Time), (const));
 				R operator()(Point c, Time t) const override {
@@ -73,7 +73,7 @@ namespace pixled {
 
 				template<typename Arg1, typename Arg2>
 					MockBinary(Arg1&& arg1, Arg2&& arg2, int expected_calls = 1)
-					: VarFunction<MockBinary<R, P1, P2>, R, P1, P2>(
+					: Function<MockBinary<R, P1, P2>, R, P1, P2>(
 							std::forward<Arg1>(arg1), std::forward<Arg2>(arg2)
 							) {
 						ON_CALL(*this, call)

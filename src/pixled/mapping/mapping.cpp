@@ -128,7 +128,8 @@ namespace pixled { namespace mapping {
 		forward(num_led, num_led);
 	}
 
-	LedPanel::LedPanel(std::size_t width, std::size_t height, PANEL_LINKING linking) {
+	LedPanel::LedPanel(std::size_t width, std::size_t height, PANEL_LINKING linking)
+		: _width(width), _height(height) {
 		switch(linking) {
 			case LEFT_RIGHT_LEFT_RIGHT_FROM_BOTTOM:
 				drawLeftRightLeftRightFromBottom(width, height);

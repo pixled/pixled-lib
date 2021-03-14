@@ -1,9 +1,13 @@
 #include "animation.h"
 
 namespace pixled { namespace animation {
+	float SinT::operator()(Point c, Time t) const {
+		return 0.5f * (std::sin(2*PIXLED_PI * t / this->call<0>(c, t)) + 1.f);
+	}
+
 	float Rainbow::operator()(Point c, Time t) const {
-		return 
-			180.f * (std::sin(2*PIXLED_PI * t / (*std::get<0>(this->args))(c, t)) + 1.f);
+		return 360.f * sin(c, t);
+			//180.f * (std::sin(2*PIXLED_PI * t / this->call<0>(c, t)) + 1.f);
 	}
 
 	float RainbowWave::operator()(Point p, Time t) const {

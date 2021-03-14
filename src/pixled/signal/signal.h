@@ -4,9 +4,9 @@
 #include "../function.h"
 
 namespace pixled { namespace signal {
-	class Sine : public VarFunction<Sine, float, float, float, float> {
+	class Sine : public Function<Sine, float, float, float, float> {
 		public:
-			using VarFunction<Sine, float, float, float, float>::VarFunction;
+			using Function<Sine, float, float, float, float>::Function;
 
 			/*
 			 * f1 : amplitude
@@ -16,23 +16,23 @@ namespace pixled { namespace signal {
 			float operator()(Point p, Time t) const override;
 	};
 
-	class Square : public VarFunction<Square, float, float, float, float> {
+	class Square : public Function<Square, float, float, float, float> {
 		public:
-			using VarFunction<Square, float, float, float, float>::VarFunction;
+			using Function<Square, float, float, float, float>::Function;
 
 			float operator()(Point p, Time t) const override;
 	};
 
-	class Triangle : public VarFunction<Triangle, float, float, Time, Time> {
+	class Triangle : public Function<Triangle, float, float, Time, Time> {
 		public:
-			using VarFunction<Triangle, float, float, Time, Time>::VarFunction;
+			using Function<Triangle, float, float, Time, Time>::Function;
 
 			float operator()(Point p, Time t) const override;
 	};
 
-	class Sawtooth : public VarFunction<Sawtooth, float, float, float, float> {
+	class Sawtooth : public Function<Sawtooth, float, float, float, float> {
 		public:
-			using VarFunction<Sawtooth, float, float, float, float>::VarFunction;
+			using Function<Sawtooth, float, float, float, float>::Function;
 
 			float operator()(Point p, Time t) const override;
 	};

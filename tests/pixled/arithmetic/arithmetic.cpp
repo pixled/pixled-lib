@@ -1,6 +1,6 @@
 #include "pixled/arithmetic/arithmetic.h"
 #include "../../mocks/mock_function.h"
-#include "pixled/pixel/pixel.h"
+#include "pixled/color/color.h"
 
 using ::testing::Test;
 using ::testing::Return;
@@ -163,7 +163,7 @@ TEST_F(ModulusOperator, test) {
 TEST_F(PlusOperator, constant) {
 	using namespace pixled;
 	auto plus = pixled::Constant<float>(8.f) + pixled::Constant<float>(14.f);
-	auto hsb = pixled::pixel::hsb(plus, 1., .5);
+	auto hsb = pixled::color::hsb(plus, 1., .5);
 
 	ASSERT_FLOAT_EQ(plus(c, t), 22.f);
 	ASSERT_FLOAT_EQ(hsb(c, t).hue(), 22.f);

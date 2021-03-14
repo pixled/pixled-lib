@@ -2,7 +2,7 @@
 #define FUNCTIONNAL_API_H
 
 #include <utility>
-#include "pixel.h"
+#include "color.h"
 #include "time.h"
 #include "geometry.h"
 
@@ -20,7 +20,7 @@ namespace pixled {
 		 *
 		 * @tparam R return type
 		 *
-		 * @see pixled::VarFunction
+		 * @see pixled::Function
 		 */
 		template<typename R>
 			class Function {
@@ -231,7 +231,7 @@ namespace pixled {
 		};
 
 	template<typename Implem, typename R, typename... Args>
-		class VarFunction : public base::Function<R> {
+		class Function : public base::Function<R> {
 			protected:
 				std::tuple<const FctWrapper<Args>...> args;
 
@@ -239,7 +239,7 @@ namespace pixled {
 				using Type = typename base::Function<R>::Type;
 
 				template<typename... Fct>
-					VarFunction(Fct&& ... fcts) : args(std::forward<Fct>(fcts)...) {
+					Function(Fct&& ... fcts) : args(std::forward<Fct>(fcts)...) {
 					}
 
 				template<std::size_t i>

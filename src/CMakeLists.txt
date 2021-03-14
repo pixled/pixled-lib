@@ -1,8 +1,8 @@
 add_library(pixled
 	pixled/geometry.cpp
-	pixled/pixel.cpp
+	pixled/color.cpp
 	pixled/runtime.cpp
-	pixled/pixel/pixel.cpp
+	pixled/color/color.cpp
 	pixled/mapping/mapping.cpp
 	pixled/animation/animation.cpp
 	pixled/geometry/geometry.cpp

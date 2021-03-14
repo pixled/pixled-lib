@@ -1,5 +1,5 @@
 #include "pixled/animation/animation.h"
-#include "pixled/pixel/pixel.h"
+#include "pixled/color/color.h"
 #include "../../mocks/mock_function.h"
 
 #include <random>
@@ -12,7 +12,7 @@ TEST(RainbowTest, test) {
 	pixled::Constant<Time> period(12);
 
 	pixled::animation::Rainbow h {period};
-	auto r = pixled::pixel::hsb(h, 0.5f, 0.4f);
+	auto r = pixled::color::hsb(h, 0.5f, 0.4f);
 
 	auto color = r({0, 0}, 0);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
@@ -45,13 +45,21 @@ class SequenceTest : public ::testing::Test {
 		NiceMock<pixled::MockFunction<pixled::Color>> f1;
 		NiceMock<pixled::MockFunction<pixled::Color>> f2;
 		NiceMock<pixled::MockFunction<pixled::Color>> f3;
+		std::vector<std::pair<pixled::animation::Animation, Time>> anims;
 
-		pixled::animation::Sequence seq;
+		// Sequence constructor initialization
+		pixled::animation::Sequence seq {
+			{
+				// A temporary anim
+				{std::move(f1), 10},
+				// A reference
+				{f2, 5}
+			}
+		};
 		pixled::Point fake_point {8, 3};
 
 		void SetUp() override {
-			seq.add(f1, 10);
-			seq.add(f2, 5);
+			// Add items using the add function
 			seq.add(f3, 13);
 		}
 };

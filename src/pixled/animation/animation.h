@@ -1,21 +1,33 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
+#include <vector>
 #include <map>
 #include "../time/time.h"
 #include "../signal/signal.h"
 #include "../geometry/geometry.h"
 
 namespace pixled { namespace animation {
+	typedef FctWrapper<Color> Animation;
+
+	class SinT : public Function<SinT, float, Time> {
+		public:
+			using Function<SinT, float, Time>::Function;
+
+			float operator()(Point c, Time t) const override;
+	};
 	/**
 	 * A rainbow hue that depends on time, not on space.
 	 *
 	 * @retval float rainbow hue in `[0, 360]`
 	 * @param Time rainbow period
 	 */
-	class Rainbow : public VarFunction<Rainbow, float, Time> {
+	class Rainbow : public Function<Rainbow, float, Time> {
+		private:
+			SinT sin {this->arg<0>()};
+
 		public:
-			using VarFunction<Rainbow, float, Time>::VarFunction;
+			using Function<Rainbow, float, Time>::Function;
 
 			float operator()(Point c, Time t) const override;
 	};
@@ -28,9 +40,9 @@ namespace pixled { namespace animation {
 	 * @param Line origin line
 	 * @param Time rainbow time period
 	 */
-	class RainbowWave : public VarFunction<RainbowWave, float, float, Line, Time> {
+	class RainbowWave : public Function<RainbowWave, float, float, Line, Time> {
 		public:
-			using VarFunction<RainbowWave, float, float, Line, Time>::VarFunction;
+			using Function<RainbowWave, float, float, Line, Time>::Function;
 
 			float operator()(Point p, Time t) const override;
 	};
@@ -73,16 +85,16 @@ namespace pixled { namespace animation {
 	 * @param Point position of the origin point
 	 * @param Time rainbow time period
 	 */
-	class RadialRainbowWave : public VarFunction<RadialRainbowWave, float, float, Point, Time> {
+	class RadialRainbowWave : public Function<RadialRainbowWave, float, float, Point, Time> {
 		public:
-			using VarFunction<RadialRainbowWave, float, float, Point, Time>::VarFunction;
+			using Function<RadialRainbowWave, float, float, Point, Time>::Function;
 			
 			float operator()(Point p, Time t) const override;
 	};
 
-	class SpatialUnitWave : public VarFunction<SpatialUnitWave, float, float, Line, Time> {
+	class SpatialUnitWave : public Function<SpatialUnitWave, float, float, Line, Time> {
 		public:
-			using VarFunction<SpatialUnitWave, float, float, Line, Time>::VarFunction;
+			using Function<SpatialUnitWave, float, float, Line, Time>::Function;
 
 			/*
 			 * f1 : lambda
@@ -107,9 +119,9 @@ namespace pixled { namespace animation {
 	};
 
 	template<typename R>
-		class Wave : public VarFunction<Wave<R>, R, Time, R, R> {
+		class Wave : public Function<Wave<R>, R, Time, R, R> {
 			public:
-				using VarFunction<Wave<R>, R, Time, R, R>::VarFunction;
+				using Function<Wave<R>, R, Time, R, R>::Function;
 
 				/*
 				 * f1 : time period
@@ -117,13 +129,13 @@ namespace pixled { namespace animation {
 				 * f3 : amplitude
 				 */
 				R operator()(Point c, Time t) const override {
-					return (*this->f2)(c, t) + (*this->f3)(c, t) * std::sin(2*PIXLED_PI * t / (*this->f1)(c, t));
+					return this->template call<1>(c, t) + this->template call<2>(c, t) * std::sin(2*PIXLED_PI * t / this->template call<0>(c, t));
 				}
 		};
 
-	class Blooming : public VarFunction<Blooming, Color, Color, Point, float> {
+	class Blooming : public Function<Blooming, Color, Color, Point, float> {
 		public:
-			using VarFunction<Blooming, Color, Color, Point, float>::VarFunction;
+			using Function<Blooming, Color, Color, Point, float>::Function;
 
 			/*
 			 * f1 : Input color
@@ -133,12 +145,22 @@ namespace pixled { namespace animation {
 			Color operator()(Point c, Time t) const override;
 	};
 
-	class PixelView : public VarFunction<PixelView, Color, Coordinate, Coordinate, Color> {
+	class PixelView : public Function<PixelView, Color, Coordinate, Coordinate, Color> {
 		public:
-			using VarFunction<PixelView, Color, Coordinate, Coordinate, Color>::VarFunction;
+			using Function<PixelView, Color, Coordinate, Coordinate, Color>::Function;
 
 			Color operator()(Point c, Time t) const override;
 	};
+
+	struct SequenceItem {
+		Animation anim;
+		Time duration;
+
+		template<typename Anim>
+			SequenceItem(Anim&& anim, Time duration)
+			: anim(std::forward<Anim>(anim)), duration(duration) {}
+	};
+
 
 	class Sequence : public base::Function<Color> {
 		private:
@@ -149,6 +171,11 @@ namespace pixled { namespace animation {
 			mutable Time cache_time = 0;
 			mutable Time cache_time_duration = 0;
 		public:
+			Sequence(std::vector<SequenceItem> sequence) {
+				for(auto item : sequence)
+					this->add(item.anim, item.duration);
+			}
+
 			template<typename Anim>
 			Sequence& add(Anim&& animation, Time duration) {
 				animations.insert({this->duration, std::forward<Anim>(animation)});
@@ -164,7 +191,7 @@ namespace pixled { namespace animation {
 			Sequence* copy() const override;
 	};
 
-	class Blink : public VarFunction<Blink, Color, Color, float> {
+	class Blink : public Function<Blink, Color, Color, float> {
 		private:
 			signal::Square square;
 			Color black;
@@ -179,7 +206,7 @@ namespace pixled { namespace animation {
 
 			template<typename Arg1, typename Arg2>
 				Blink(Arg1&& arg1, Arg2&& arg2) :
-					VarFunction<Blink, Color, Color, float>(std::forward<Arg1>(arg1), std::forward<Arg2>(arg2)),
+					Function<Blink, Color, Color, float>(std::forward<Arg1>(arg1), std::forward<Arg2>(arg2)),
 					square(1, arg2, Cast<float, Time>(T())) {
 						black.setRgb(0, 0, 0);
 					}

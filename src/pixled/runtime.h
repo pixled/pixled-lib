@@ -2,7 +2,6 @@
 #define PIXLED_RUNTIME_H
 
 #include "output.h"
-#include "pixel.h"
 #include "function.h"
 #include "mapping/mapping.h"
 

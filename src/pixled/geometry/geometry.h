@@ -27,54 +27,54 @@ namespace pixled { namespace geometry {
 			Y* copy() const override {return new Y;}
 	};
 
-	class Distance : public VarFunction<Distance, float, Point, Point> {
+	class Distance : public Function<Distance, float, Point, Point> {
 		public:
-			using VarFunction<Distance, float, Point, Point>::VarFunction;
+			using Function<Distance, float, Point, Point>::Function;
 
 			float operator()(pixled::Point c, Time t) const override;
 	};
 	
-	class LineDistance : public VarFunction<LineDistance, float, Line, Point> {
+	class LineDistance : public Function<LineDistance, float, Line, Point> {
 		public:
-			using VarFunction<LineDistance, float, Line, Point>::VarFunction;
+			using Function<LineDistance, float, Line, Point>::Function;
 
 			float operator()(pixled::Point p, Time t) const override;
 	};
 
-	class Point : public VarFunction<Point, pixled::Point, Coordinate, Coordinate> {
+	class Point : public Function<Point, pixled::Point, Coordinate, Coordinate> {
 		public:
-			using VarFunction<Point, pixled::Point, Coordinate, Coordinate>::VarFunction;
+			using Function<Point, pixled::Point, Coordinate, Coordinate>::Function;
 
 			pixled::Point operator()(pixled::Point c, Time t) const override;
 	};
 
-	class Line : public VarFunction<Line, pixled::Line, float, float, float> {
+	class Line : public Function<Line, pixled::Line, float, float, float> {
 		public:
-		using VarFunction<Line, pixled::Line, float, float, float>::VarFunction;
+		using Function<Line, pixled::Line, float, float, float>::Function;
 
 		pixled::Line operator()(pixled::Point p, Time t) const override;
 	};
 
 	// X = c helper function
-	class XLine : public VarFunction<XLine, pixled::Line, float> {
+	class XLine : public Function<XLine, pixled::Line, float> {
 		public:
-		using VarFunction<XLine, pixled::Line, float>::VarFunction;
+		using Function<XLine, pixled::Line, float>::Function;
 
 		pixled::Line operator()(pixled::Point p, Time t) const override;
 	};
 
 	// Y = c helper function
-	class YLine : public VarFunction<YLine, pixled::Line, float> {
+	class YLine : public Function<YLine, pixled::Line, float> {
 		public:
-		using VarFunction<YLine, pixled::Line, float>::VarFunction;
+		using Function<YLine, pixled::Line, float>::Function;
 
 		pixled::Line operator()(pixled::Point p, Time t) const override;
 	};
 
 	template<typename T>
-		class Sin : public VarFunction<Sin<T>, T, T> {
+		class Sin : public Function<Sin<T>, T, T> {
 			public:
-				using VarFunction<Sin, T, T>::VarFunction;
+				using Function<Sin, T, T>::Function;
 
 				T operator()(pixled::Point c, Time t) const override {
 					return std::sin(this->template call<0>(c, t));

@@ -1,3 +1,5 @@
 #include "pixled/animation/animation.h"
-#include "pixled/pixel/pixel.h"
+#include "pixled/color/color.h"
 #include "pixled/mapping/mapping.h"
+#include "pixled/output.h"
+#include "pixled/runtime.h"

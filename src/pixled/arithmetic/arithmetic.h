@@ -6,10 +6,10 @@
 namespace pixled { 
 	namespace arithmetic {
 		template<typename R, typename P1, typename P2>
-			class Plus : public VarFunction<Plus<R, P1, P2>, R, P1, P2> {
+			class Plus : public Function<Plus<R, P1, P2>, R, P1, P2> {
 
 				public:
-					using VarFunction<Plus<R, P1, P2>, R, P1, P2>::VarFunction;
+					using Function<Plus<R, P1, P2>, R, P1, P2>::Function;
 
 					R operator()(Point c, Time t) const override {
 						return this->template call<0>(c, t) + this->template call<1>(c, t);
@@ -71,10 +71,10 @@ namespace pixled {
 
 	namespace arithmetic {
 		template<typename R, typename P1, typename P2>
-			class Minus : public VarFunction<Minus<R, P1, P2>, R, P1, P2> {
+			class Minus : public Function<Minus<R, P1, P2>, R, P1, P2> {
 
 				public:
-					using VarFunction<Minus<R, P1, P2>, R, P1, P2>::VarFunction;
+					using Function<Minus<R, P1, P2>, R, P1, P2>::Function;
 
 					R operator()(Point c, Time t) const override {
 						return this->template call<0>(c, t) - this->template call<1>(c, t);
@@ -136,9 +136,9 @@ namespace pixled {
 
 	namespace arithmetic {
 		template<typename R, typename P1, typename P2>
-			class Multiplies : public VarFunction<Multiplies<R, P1, P2>, R, P1, P2> {
+			class Multiplies : public Function<Multiplies<R, P1, P2>, R, P1, P2> {
 				public:
-					using VarFunction<Multiplies<R, P1, P2>, R, P1, P2>::VarFunction;
+					using Function<Multiplies<R, P1, P2>, R, P1, P2>::Function;
 
 					R operator()(Point c, Time t) const override {
 						return this->template call<0>(c, t) * this->template call<1>(c, t);
@@ -201,9 +201,9 @@ namespace pixled {
 
 	namespace arithmetic {
 		template<typename R, typename P1, typename P2>
-			class Divides : public VarFunction<Divides<R, P1, P2>, R, P1, P2> {
+			class Divides : public Function<Divides<R, P1, P2>, R, P1, P2> {
 				public:
-					using VarFunction<Divides<R, P1, P2>, R, P1, P2>::VarFunction;
+					using Function<Divides<R, P1, P2>, R, P1, P2>::Function;
 
 					R operator()(Point c, Time t) const override {
 						return this->template call<0>(c, t) / this->template call<1>(c, t);
@@ -267,9 +267,9 @@ namespace pixled {
 
 	namespace arithmetic {
 		template<typename R, typename P1, typename P2>
-			class Modulus : public VarFunction<Modulus<R, P1, P2>, R, P1, P2> {
+			class Modulus : public Function<Modulus<R, P1, P2>, R, P1, P2> {
 				public:
-					using VarFunction<Modulus<R, P1, P2>, R, P1, P2>::VarFunction;
+					using Function<Modulus<R, P1, P2>, R, P1, P2>::Function;
 
 					R operator()(Point c, Time t) const override {
 						return this->template call<0>(c, t) % this->template call<1>(c, t);

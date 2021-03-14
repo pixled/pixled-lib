@@ -11,6 +11,7 @@ namespace pixled {
 			typedef std::vector<std::pair<Point, std::size_t>>::const_iterator map_iterator;
 			virtual map_iterator begin() const = 0;
 			virtual map_iterator end() const = 0;
+			virtual const std::vector<std::pair<Point, std::size_t>>& leds() const = 0;
 	};
 
 	namespace mapping {
@@ -29,7 +30,7 @@ namespace pixled {
 				using typename Mapping::map_iterator;
 				map_iterator begin() const override;
 				map_iterator end() const override;
-				const std::vector<std::pair<Point, std::size_t>>& leds() const;
+				const std::vector<std::pair<Point, std::size_t>>& leds() const override;
 
 				Point position() const;
 				Angle orientation() const;
@@ -69,6 +70,9 @@ namespace pixled {
 
 		class LedPanel : public TurtleMapping {
 			private:
+				std::size_t _width;
+				std::size_t _height;
+
 				void drawLeftRightLeftRightFromBottom(std::size_t width, std::size_t height);
 				void drawRightLeftRightLeftFromBottom(std::size_t width, std::size_t height);
 				void drawHorizontalSnakeFromBottom(std::size_t width, std::size_t height);
@@ -87,6 +91,8 @@ namespace pixled {
 			public:
 				LedPanel(std::size_t width, std::size_t height, PANEL_LINKING linking);
 
+				std::size_t width() const {return _width;}
+				std::size_t height() const {return _height;}
 		};
 	}
 }

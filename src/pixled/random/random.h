@@ -59,9 +59,9 @@ namespace pixled { namespace random {
 	};
 
 	template<typename R>
-		class UniformDistribution : public VarFunction<UniformDistribution<R>, R, R, R, std::minstd_rand> {
+		class UniformDistribution : public Function<UniformDistribution<R>, R, R, R, std::minstd_rand> {
 			public:
-				using VarFunction<UniformDistribution<R>, R, R, R, std::minstd_rand>::VarFunction;
+				using Function<UniformDistribution<R>, R, R, R, std::minstd_rand>::Function;
 
 				/*
 				 * f1 = min
@@ -76,9 +76,9 @@ namespace pixled { namespace random {
 		};
 
 	template<typename R>
-	class NormalDistribution : public VarFunction<NormalDistribution<R>, R, float, float, std::minstd_rand> {
+	class NormalDistribution : public Function<NormalDistribution<R>, R, float, float, std::minstd_rand> {
 		public:
-			using VarFunction<NormalDistribution<R>, R, float, float, std::minstd_rand>::VarFunction;
+			using Function<NormalDistribution<R>, R, float, float, std::minstd_rand>::Function;
 
 			/*
 			 * f1 = min
