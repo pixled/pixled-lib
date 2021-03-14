@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace pixled {
-	class Color {
+	class color {
 		private:
 			struct rgb_t {
 				int r;
@@ -32,31 +32,31 @@ namespace pixled {
 			float saturation() const {return _hsb.s;}
 			float brightness() const {return _hsb.b;}
 
-			Color& setRgb(uint8_t r, uint8_t g, uint8_t b);
-			Color& setRed(uint8_t r);
-			Color& setGreen(uint8_t r);
-			Color& setBlue(uint8_t r);
+			color& setRgb(uint8_t r, uint8_t g, uint8_t b);
+			color& setRed(uint8_t r);
+			color& setGreen(uint8_t r);
+			color& setBlue(uint8_t r);
 
-			Color& setHsb(float, float, float);
-			Color& setHue(float h);
-			Color& setSaturation(float s);
-			Color& setBrightness(float b);
+			color& setHsb(float, float, float);
+			color& setHue(float h);
+			color& setSaturation(float s);
+			color& setBrightness(float b);
 
-			static Color rgb(uint8_t r, uint8_t g, uint8_t b);
-			static Color hsb(float h, float s, float b);
+			static color rgb(uint8_t r, uint8_t g, uint8_t b);
+			static color hsb(float h, float s, float b);
 
-			static Color RED;
-			static Color GREEN;
-			static Color BLUE;
-			static Color LIGHT_RED;
-			static Color YELLOW;
-			static Color LIGHT_GREEN;
-			static Color DARK_BLUE;
-			static Color MIDNIGHT_BLUE;
-			static Color PINK;
-			static Color PURPLE;
+			static color RED;
+			static color GREEN;
+			static color BLUE;
+			static color LIGHT_RED;
+			static color YELLOW;
+			static color LIGHT_GREEN;
+			static color DARK_BLUE;
+			static color MIDNIGHT_BLUE;
+			static color PINK;
+			static color PURPLE;
 	};
 
-	bool operator==(const Color& c1, const Color& c2);
+	bool operator==(const color& c1, const color& c2);
 }
 #endif

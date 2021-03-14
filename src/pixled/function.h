@@ -42,7 +42,7 @@ namespace pixled {
 					 * Functions (that are actually _parameters_ of this
 					 * function) until a Constant is reached for example.
 					 */
-					virtual R operator()(Point p, Time t) const = 0;
+					virtual R operator()(point p, time t) const = 0;
 
 					/**
 					 * Returns a dynamically allocated copy of this
@@ -57,8 +57,8 @@ namespace pixled {
 	}
 
 	/**
-	 * A base::Function that returns a constant value on any Point at any
-	 * Time.
+	 * A base::Function that returns a constant value on any point at any
+	 * time.
 	 *
 	 * @tparam T type of the Constant
 	 */
@@ -78,11 +78,11 @@ namespace pixled {
 
 				/**
 				 * Returns the `value` specified in the constructor, on any
-				 * Point at any Time.
+				 * point at any time.
 				 *
 				 * @return constant value
 				 */
-				T operator()(Point, Time) const override {return _value;};
+				T operator()(point, time) const override {return _value;};
 
 				/**
 				 * Returns a dynamically copy of this Constant, with the
@@ -243,7 +243,7 @@ namespace pixled {
 					}
 
 				template<std::size_t i>
-					typename std::tuple_element<i, decltype(args)>::type::Type call(Point p, Time t) const {
+					typename std::tuple_element<i, decltype(args)>::type::Type call(point p, time t) const {
 						return (*std::get<i>(args))(p, t);
 					}
 				template<std::size_t i>
@@ -268,7 +268,7 @@ namespace pixled {
 				Cast(base::Function<From>&& from)
 					: f(std::move(from)) {}
 
-				To operator()(Point c, Time t) const override {
+				To operator()(point c, time t) const override {
 					return (*this->f)(c, t);
 				}
 

@@ -5,70 +5,70 @@
 
 namespace pixled { namespace geometry {
 
-	class X : public base::Function<Coordinate> {
+	class X : public base::Function<coordinate> {
 		public:
-			using Type = base::Function<Coordinate>::Type;
+			using Type = base::Function<coordinate>::Type;
 
-			Coordinate operator()(Point c, Time t) const override {
+			coordinate operator()(point c, time t) const override {
 				return c.x;
 			}
 
 			X* copy() const override {return new X;}
 	};
 
-	class Y : public base::Function<Coordinate> {
+	class Y : public base::Function<coordinate> {
 		public:
-			using Type = base::Function<Coordinate>::Type;
+			using Type = base::Function<coordinate>::Type;
 
-			Coordinate operator()(Point c, Time t) const override {
+			coordinate operator()(point c, time t) const override {
 				return c.y;
 			}
 
 			Y* copy() const override {return new Y;}
 	};
 
-	class Distance : public Function<Distance, float, Point, Point> {
+	class Distance : public Function<Distance, float, point, point> {
 		public:
-			using Function<Distance, float, Point, Point>::Function;
+			using Function<Distance, float, point, point>::Function;
 
-			float operator()(pixled::Point c, Time t) const override;
+			float operator()(point c, time t) const override;
 	};
 	
-	class LineDistance : public Function<LineDistance, float, Line, Point> {
+	class LineDistance : public Function<LineDistance, float, line, point> {
 		public:
-			using Function<LineDistance, float, Line, Point>::Function;
+			using Function<LineDistance, float, line, point>::Function;
 
-			float operator()(pixled::Point p, Time t) const override;
+			float operator()(point p, time t) const override;
 	};
 
-	class Point : public Function<Point, pixled::Point, Coordinate, Coordinate> {
+	class Point : public Function<Point, point, coordinate, coordinate> {
 		public:
-			using Function<Point, pixled::Point, Coordinate, Coordinate>::Function;
+			using Function<Point, point, coordinate, coordinate>::Function;
 
-			pixled::Point operator()(pixled::Point c, Time t) const override;
+			point operator()(point c, time t) const override;
 	};
 
-	class Line : public Function<Line, pixled::Line, float, float, float> {
+	class Line : public Function<Line, line, float, float, float> {
 		public:
-		using Function<Line, pixled::Line, float, float, float>::Function;
+		using Function<Line, line, float, float, float>::Function;
 
-		pixled::Line operator()(pixled::Point p, Time t) const override;
+		line operator()(point p, time t) const override;
 	};
 
 	// X = c helper function
-	class XLine : public Function<XLine, pixled::Line, float> {
+	class XLine : public Function<XLine, line, float> {
 		public:
-		using Function<XLine, pixled::Line, float>::Function;
+		using Function<XLine, line, float>::Function;
 
-		pixled::Line operator()(pixled::Point p, Time t) const override;
+		line operator()(point p, time t) const override;
 	};
 
 	// Y = c helper function
-	class YLine : public Function<YLine, pixled::Line, float> {
+	class YLine : public Function<YLine, line, float> {
 		public:
-		using Function<YLine, pixled::Line, float>::Function;
+		using Function<YLine, line, float>::Function;
 
-		pixled::Line operator()(pixled::Point p, Time t) const override;
+		line operator()(point p, time t) const override;
 	};
 
 	template<typename T>
@@ -76,7 +76,7 @@ namespace pixled { namespace geometry {
 			public:
 				using Function<Sin, T, T>::Function;
 
-				T operator()(pixled::Point c, Time t) const override {
+				T operator()(point c, time t) const override {
 					return std::sin(this->template call<0>(c, t));
 				}
 		};

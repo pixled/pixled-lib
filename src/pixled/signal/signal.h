@@ -13,28 +13,28 @@ namespace pixled { namespace signal {
 			 * f2 : period
 			 * f3 : param
 			 */
-			float operator()(Point p, Time t) const override;
+			float operator()(point p, time t) const override;
 	};
 
 	class Square : public Function<Square, float, float, float, float> {
 		public:
 			using Function<Square, float, float, float, float>::Function;
 
-			float operator()(Point p, Time t) const override;
+			float operator()(point p, time t) const override;
 	};
 
-	class Triangle : public Function<Triangle, float, float, Time, Time> {
+	class Triangle : public Function<Triangle, float, float, time, time> {
 		public:
-			using Function<Triangle, float, float, Time, Time>::Function;
+			using Function<Triangle, float, float, time, time>::Function;
 
-			float operator()(Point p, Time t) const override;
+			float operator()(point p, time t) const override;
 	};
 
 	class Sawtooth : public Function<Sawtooth, float, float, float, float> {
 		public:
 			using Function<Sawtooth, float, float, float, float>::Function;
 
-			float operator()(Point p, Time t) const override;
+			float operator()(point p, time t) const override;
 	};
 }}
 #endif

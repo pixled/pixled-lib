@@ -7,7 +7,7 @@
 namespace pixled {
 	class Output {
 		public:
-			virtual void write(const Color& color, std::size_t i) = 0;
+			virtual void write(const color& color, std::size_t i) = 0;
 
 	};
 }

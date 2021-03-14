@@ -27,8 +27,8 @@ namespace pixled {
 					this->origin->last_copy = this;
 				}
 
-				MOCK_METHOD(T, call, (Point, Time), (const));
-				T operator()(Point c, Time t) const override {
+				MOCK_METHOD(T, call, (point, time), (const));
+				T operator()(point c, time t) const override {
 					return call(c, t);
 				}
 				MOCK_METHOD(MockFunction<T>*, copy, (), (const, override));
@@ -37,8 +37,8 @@ namespace pixled {
 	template<typename R, typename P>
 		class MockUnary : public Function<MockUnary<R, P>, R, P> {
 			public:
-				MOCK_METHOD(R, call, (Point, Time), (const));
-				R operator()(Point c, Time t) const override {
+				MOCK_METHOD(R, call, (point, time), (const));
+				R operator()(point c, time t) const override {
 					return call(c, t);
 				}
 
@@ -60,8 +60,8 @@ namespace pixled {
 	template<typename R, typename P1, typename P2>
 		class MockBinary : public Function<MockBinary<R, P1, P2>, R, P1, P2> {
 			public:
-				MOCK_METHOD(R, call, (Point, Time), (const));
-				R operator()(Point c, Time t) const override {
+				MOCK_METHOD(R, call, (point, time), (const));
+				R operator()(point c, time t) const override {
 					return call(c, t);
 				}
 

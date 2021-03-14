@@ -8,41 +8,41 @@
 #define PIXLED_PI 3.14159265358979323846f
 
 namespace pixled {
-	typedef float Coordinate;
+	typedef float coordinate;
 
-	struct Point {
-		Coordinate x;
-		Coordinate y;
-		Point() : Point(0, 0) {}
-		Point(Coordinate x, Coordinate y)
+	struct point {
+		coordinate x;
+		coordinate y;
+		point() : point(0, 0) {}
+		point(coordinate x, coordinate y)
 			: x(x), y(y) {}
 	};
 
-	class Angle {
+	class angle {
 		private:
 			float value;
 
 		public:
-			Angle(float value) : value(value) {}
+			angle(float value) : value(value) {}
 
 			float toRad() const {
 				return 2*PIXLED_PI*value/360.f;
 			}
 
-			Angle operator+(const Angle& other) const {
-				return Angle(value+other.value);
+			angle operator+(const angle& other) const {
+				return angle(value+other.value);
 			}
 
-			Angle operator-(const Angle& other) const {
-				return Angle(value-other.value);
+			angle operator-(const angle& other) const {
+				return angle(value-other.value);
 			}
 
-			Angle& operator+=(const Angle& other) {
+			angle& operator+=(const angle& other) {
 				value+=other.value;
 				return *this;
 			}
 
-			Angle& operator-=(const Angle& other) {
+			angle& operator-=(const angle& other) {
 				value-=other.value;
 				return *this;
 			}
@@ -51,30 +51,31 @@ namespace pixled {
 	/**
 	 * A Line with equation a*x + b*y + c = 0
 	 */
-	struct Line {
+	struct line {
 		float a;
 		float b;
 		float c;
-		Line(float a, float b, float c)
+		line(float a, float b, float c)
 			: a(a), b(b), c(c) {}
 	};
 	struct point_hash {
-		std::size_t operator()(const Point& p) const;
+		std::size_t operator()(const point& p) const;
 	};
 
-	bool operator==(const Point& c1, const Point& c2);
+	bool operator==(const point& c1, const point& c2);
 
 	struct point_equal {
-		bool operator()(const Point& p1, const Point& p2) const {
+		bool operator()(const point& p1, const point& p2) const {
 			return p1 == p2;
 		}
 	};
 
-	float distance(const Point& p1, const Point& p2);
-	float Cos(const Angle& a);
-	float Sin(const Angle& a);
+	float distance(const point& p1, const point& p2);
+	float cos(const angle& a);
+	float sin(const angle& a);
+	float tan(const angle& a);
 
-	std::ostream& operator<<(std::ostream& o, const Point& p);
+	std::ostream& operator<<(std::ostream& o, const point& p);
 }
 
 #endif

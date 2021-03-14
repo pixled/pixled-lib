@@ -1,7 +1,7 @@
 #include "color.h"
 
 namespace pixled {
-	void Color::hsb_to_rgb(const hsb_t& hsb, rgb_t& rgb) {
+	void color::hsb_to_rgb(const hsb_t& hsb, rgb_t& rgb) {
 		double      hh, p, q, t, ff;
 		long        i;
 		double      r_out;
@@ -74,7 +74,7 @@ namespace pixled {
 		rgb.b = b_out * 255;
 	}
 
-	void Color::rgb_to_hsb(const rgb_t &rgb, hsb_t &hsb) {
+	void color::rgb_to_hsb(const rgb_t &rgb, hsb_t &hsb) {
 		double      min, max, delta;
 
 		min = rgb.r < rgb.g ? rgb.r : rgb.g;
@@ -114,7 +114,7 @@ namespace pixled {
 			hsb.h += 360.;
 	}
 
-	Color& Color::setRgb(uint8_t r, uint8_t g, uint8_t b) {
+	color& color::setRgb(uint8_t r, uint8_t g, uint8_t b) {
 		_rgb.r = r;
 		_rgb.g = g;
 		_rgb.b = b;
@@ -122,25 +122,25 @@ namespace pixled {
 		return *this;
 	}
 
-	Color& Color::setRed(uint8_t r) {
+	color& color::setRed(uint8_t r) {
 		_rgb.r = r;
 		rgb_to_hsb(_rgb, _hsb);
 		return *this;
 	}
 
-	Color& Color::setGreen(uint8_t g) {
+	color& color::setGreen(uint8_t g) {
 		_rgb.g = g;
 		rgb_to_hsb(_rgb, _hsb);
 		return *this;
 	}
 
-	Color& Color::setBlue(uint8_t b) {
+	color& color::setBlue(uint8_t b) {
 		_rgb.b = b;
 		rgb_to_hsb(_rgb, _hsb);
 		return *this;
 	}
 
-	Color& Color::setHsb(float h, float s, float b) {
+	color& color::setHsb(float h, float s, float b) {
 		_hsb.h = h;
 		_hsb.s = s;
 		_hsb.b = b;
@@ -148,37 +148,37 @@ namespace pixled {
 		return *this;
 	}
 
-	Color& Color::setHue(float h) {
+	color& color::setHue(float h) {
 		_hsb.h = h;
 		hsb_to_rgb(_hsb, _rgb);
 		return *this;
 	}
 
-	Color& Color::setSaturation(float s) {
+	color& color::setSaturation(float s) {
 		_hsb.s = s;
 		hsb_to_rgb(_hsb, _rgb);
 		return *this;
 	}
 
-	Color& Color::setBrightness(float b) {
+	color& color::setBrightness(float b) {
 		_hsb.b = b;
 		hsb_to_rgb(_hsb, _rgb);
 		return *this;
 	}
 
-	Color Color::rgb(uint8_t r, uint8_t g, uint8_t b) {
-		Color c;
+	color color::rgb(uint8_t r, uint8_t g, uint8_t b) {
+		color c;
 		c.setRgb(r, g, b);
 		return c;
 	}
 
-	Color Color::hsb(float h, float s, float v) {
-		Color c;
+	color color::hsb(float h, float s, float v) {
+		color c;
 		c.setHsb(h, s, v);
 		return c;
 	}
 
-	bool operator==(const Color& c1, const Color& c2) {
+	bool operator==(const color& c1, const color& c2) {
 		return c1.red() == c2.red() && c1.green() == c2.green() && c1.blue() == c1.blue();
 	}
 }

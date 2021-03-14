@@ -8,10 +8,10 @@
 namespace pixled { 
 	class Mapping {
 		public:
-			typedef std::vector<std::pair<Point, std::size_t>>::const_iterator map_iterator;
+			typedef std::vector<std::pair<point, std::size_t>>::const_iterator map_iterator;
 			virtual map_iterator begin() const = 0;
 			virtual map_iterator end() const = 0;
-			virtual const std::vector<std::pair<Point, std::size_t>>& leds() const = 0;
+			virtual const std::vector<std::pair<point, std::size_t>>& leds() const = 0;
 	};
 
 	namespace mapping {
@@ -19,32 +19,32 @@ namespace pixled {
 
 		class TurtleMapping : public Mapping {
 			private:
-				std::vector<std::pair<Point, std::size_t>> _leds;
+				std::vector<std::pair<point, std::size_t>> _leds;
 
-				Point turtle_position {0, 0};
-				Angle turtle_orientation = 0.;
+				point turtle_position {0, 0};
+				angle turtle_orientation = 0.;
 				std::size_t current_led_index = 0;
-				void moveTo(Point p, std::size_t num_led);
+				void moveTo(point p, std::size_t num_led);
 
 			public:
 				using typename Mapping::map_iterator;
 				map_iterator begin() const override;
 				map_iterator end() const override;
-				const std::vector<std::pair<Point, std::size_t>>& leds() const override;
+				const std::vector<std::pair<point, std::size_t>>& leds() const override;
 
-				Point position() const;
-				Angle orientation() const;
+				point position() const;
+				angle orientation() const;
 				std::size_t ledIndex() const;
 
-				void forward(Coordinate distance, std::size_t num_led = 0);
-				void turnLeft(Angle angle);
-				void turnRight(Angle angle);
-				void jump(Point p);
+				void forward(coordinate distance, std::size_t num_led = 0);
+				void turnLeft(angle angle);
+				void turnRight(angle angle);
+				void jump(point p);
 		};
 
 		class StripMapping : public TurtleMapping {
 			private:
-				std::vector<Point> coordinates;
+				std::vector<point> coordinates;
 			public:
 				StripMapping(std::size_t num_led);
 		};

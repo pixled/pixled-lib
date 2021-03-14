@@ -1,32 +1,32 @@
 #include "animation.h"
 
 namespace pixled { namespace animation {
-	float SinT::operator()(Point c, Time t) const {
+	float SinT::operator()(point c, time t) const {
 		return 0.5f * (std::sin(2*PIXLED_PI * t / this->call<0>(c, t)) + 1.f);
 	}
 
-	float Rainbow::operator()(Point c, Time t) const {
+	float Rainbow::operator()(point c, time t) const {
 		return 360.f * sin(c, t);
 			//180.f * (std::sin(2*PIXLED_PI * t / this->call<0>(c, t)) + 1.f);
 	}
 
-	float RainbowWave::operator()(Point p, Time t) const {
+	float RainbowWave::operator()(point p, time t) const {
 		float d = geometry::LineDistance(this->arg<1>(), p)(p, t);
 		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
-	float RadialRainbowWave::operator()(Point p, Time t) const {
+	float RadialRainbowWave::operator()(point p, time t) const {
 		float d = geometry::Distance(this->arg<1>(), p)(p, t);
 		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
-	float SpatialUnitWave::operator()(Point p, Time t) const {
+	float SpatialUnitWave::operator()(point p, time t) const {
 		float d = geometry::LineDistance(this->arg<1>(), p)(p, t);
 		return .5f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
-	Color Blooming::operator()(Point c, Time t) const {
-		Color color = this->call<0>(c, t);
+	color Blooming::operator()(point c, time t) const {
+		color color = this->call<0>(c, t);
 		// Max distance from center point, where b = epsilon
 		float D = this->call<2>(c, t);
 		// Distance from c to center point
@@ -47,13 +47,13 @@ namespace pixled { namespace animation {
 		return color;
 	}
 
-	Color PixelView::operator()(Point c, Time t) const {
+	color PixelView::operator()(point c, time t) const {
 		if (c.x == this->call<0>(c, t) && c.y == this->call<1>(c, t))
 			return this->call<2>(c, t);
-		return Color();
+		return color();
 	}
 
-	Color Sequence::operator()(Point p, Time t) const {
+	color Sequence::operator()(point p, time t) const {
 		if(t >= cache_time && t < cache_time + cache_time_duration)
 			return (**cache)(p, t);
 		auto it = animations.upper_bound(t % duration);
@@ -74,7 +74,7 @@ namespace pixled { namespace animation {
 		return new Sequence(*this);
 	}
 
-	Color Blink::operator()(Point p, Time t) const {
+	color Blink::operator()(point p, time t) const {
 		if(square(p, t) > 0) {
 			return this->call<0>(p, t);
 		}

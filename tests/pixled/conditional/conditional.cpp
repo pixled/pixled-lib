@@ -3,14 +3,13 @@
 
 using namespace testing;
 
-using pixled::Point;
-using pixled::Time;
+using pixled::point;
 using pixled::conditional::If;
 
 class OperatorTest : public Test {
 	protected:
-		Point p {12, 38};
-		Time t {25};
+		point p {12, 38};
+		pixled::time t {25};
 };
 
 class IfOperator : public OperatorTest {};

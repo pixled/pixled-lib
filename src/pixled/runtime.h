@@ -11,17 +11,17 @@ namespace pixled {
 			unsigned long _time = 0;
 			Mapping& map;
 			Output& output;
-			base::Function<Color>& animation;
+			base::Function<color>& animation;
 
 		public:
-			Runtime(Mapping& map, Output& output, base::Function<Color>& animation)
+			Runtime(Mapping& map, Output& output, base::Function<color>& animation)
 				: map(map), output(output), animation(animation) {}
 
-			void frame(Time t);
+			void frame(time t);
 
 			void prev();
 			void next();
-			Time time() const;
+			time current_time() const;
 	};
 }
 #endif

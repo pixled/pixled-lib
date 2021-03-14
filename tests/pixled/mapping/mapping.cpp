@@ -4,13 +4,13 @@
 
 using namespace testing;
 
-using pixled::Point;
-using pixled::Angle;
+using pixled::point;
+using pixled::angle;
 using pixled::mapping::PANEL_LINKING;
 
 #define ASSERT_ANGLE_EQ(A1, A2) \
-	ASSERT_NEAR(pixled::Cos(A1), pixled::Cos(A2), 0.0001);\
-	ASSERT_NEAR(pixled::Sin(A1), pixled::Sin(A2), 0.0001);
+	ASSERT_NEAR(pixled::cos(A1), pixled::cos(A2), 0.0001);\
+	ASSERT_NEAR(pixled::sin(A1), pixled::sin(A2), 0.0001);
 
 MATCHER_P(PointEq, p, "") {
 	return Matches(FloatNear(p.x, .10e-5))(arg.x)
@@ -24,16 +24,16 @@ class TurtleMappingTest : public Test {
 };
 
 TEST_F(TurtleMappingTest, init) {
-	ASSERT_EQ(turtle.position(), Point(0, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), Angle(0.));
+	ASSERT_EQ(turtle.position(), point(0, 0));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle(0.));
 	ASSERT_EQ(turtle.ledIndex(), 0);
 }
 
 TEST_F(TurtleMappingTest, forward_no_led) {
 	turtle.forward(10);
 
-	ASSERT_EQ(turtle.position(), Point(10, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), Angle(0.));
+	ASSERT_EQ(turtle.position(), point(10, 0));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle(0.));
 	ASSERT_EQ(turtle.ledIndex(), 0);
 }
 
@@ -43,29 +43,29 @@ TEST_F(TurtleMappingTest, forward) {
 
 	ASSERT_THAT(turtle.leds(), SizeIs(5));
 	ASSERT_THAT(turtle.leds(), UnorderedElementsAre(
-		Pair(Point(3, 0), 0),
-		Pair(Point(5, 0), 1),
-		Pair(Point(7, 0), 2),
-		Pair(Point(9, 0), 3),
-		Pair(Point(11, 0), 4)));
-	ASSERT_EQ(turtle.position(), Point(12, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), Angle(0.));
+		Pair(point(3, 0), 0),
+		Pair(point(5, 0), 1),
+		Pair(point(7, 0), 2),
+		Pair(point(9, 0), 3),
+		Pair(point(11, 0), 4)));
+	ASSERT_EQ(turtle.position(), point(12, 0));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle(0.));
 	ASSERT_EQ(turtle.ledIndex(), 5);
 }
 
 TEST_F(TurtleMappingTest, turn_left) {
 	turtle.turnLeft(60);
 
-	ASSERT_EQ(turtle.position(), Point(0, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), Angle(60.));
+	ASSERT_EQ(turtle.position(), point(0, 0));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle(60.));
 	ASSERT_EQ(turtle.ledIndex(), 0);
 }
 
 TEST_F(TurtleMappingTest, turn_right) {
 	turtle.turnRight(60);
 
-	ASSERT_EQ(turtle.position(), Point(0, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), Angle(300.));
+	ASSERT_EQ(turtle.position(), point(0, 0));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle(300.));
 	ASSERT_EQ(turtle.ledIndex(), 0);
 }
 
@@ -73,7 +73,7 @@ TEST_F(TurtleMappingTest, turn_forward) {
 	turtle.turnRight(60);
 	turtle.forward(10, 3);
 
-	pixled::Point final_point(10 * pixled::Cos(-60), 10 * pixled::Sin(-60));
+	pixled::point final_point(10 * pixled::cos(-60), 10 * pixled::sin(-60));
 	float led_1_x = 1 * final_point.x / 6;
 	float led_1_y = 1 * final_point.y / 6;
 	float led_2_x = 3 * final_point.x / 6;
@@ -83,12 +83,12 @@ TEST_F(TurtleMappingTest, turn_forward) {
 
 	ASSERT_THAT(turtle.leds(), SizeIs(3));
 	ASSERT_THAT(turtle.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(led_1_x, led_1_y)), 0),
-		Pair(PointEq(Point(led_2_x, led_2_y)), 1),
-		Pair(PointEq(Point(led_3_x, led_3_y)), 2)
+		Pair(PointEq(point(led_1_x, led_1_y)), 0),
+		Pair(PointEq(point(led_2_x, led_2_y)), 1),
+		Pair(PointEq(point(led_3_x, led_3_y)), 2)
 		));
 	ASSERT_EQ(turtle.position(), final_point);
-	ASSERT_ANGLE_EQ(turtle.orientation(), Angle(-60.));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle(-60.));
 	ASSERT_EQ(turtle.ledIndex(), 3);
 }
 
@@ -97,12 +97,12 @@ TEST(LedPanel, LRLRB) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(0.5, 0)), 0),
-		Pair(PointEq(Point(1.5, 0)), 1),
-		Pair(PointEq(Point(0.5, 1)), 2),
-		Pair(PointEq(Point(1.5, 1)), 3),
-		Pair(PointEq(Point(0.5, 2)), 4),
-		Pair(PointEq(Point(1.5, 2)), 5)
+		Pair(PointEq(point(0.5, 0)), 0),
+		Pair(PointEq(point(1.5, 0)), 1),
+		Pair(PointEq(point(0.5, 1)), 2),
+		Pair(PointEq(point(1.5, 1)), 3),
+		Pair(PointEq(point(0.5, 2)), 4),
+		Pair(PointEq(point(1.5, 2)), 5)
 		));
 }
 
@@ -111,12 +111,12 @@ TEST(LedPanel, RLRLB) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(1.5, 0)), 0),
-		Pair(PointEq(Point(0.5, 0)), 1),
-		Pair(PointEq(Point(1.5, 1)), 2),
-		Pair(PointEq(Point(0.5, 1)), 3),
-		Pair(PointEq(Point(1.5, 2)), 4),
-		Pair(PointEq(Point(0.5, 2)), 5)
+		Pair(PointEq(point(1.5, 0)), 0),
+		Pair(PointEq(point(0.5, 0)), 1),
+		Pair(PointEq(point(1.5, 1)), 2),
+		Pair(PointEq(point(0.5, 1)), 3),
+		Pair(PointEq(point(1.5, 2)), 4),
+		Pair(PointEq(point(0.5, 2)), 5)
 		));
 }
 
@@ -125,12 +125,12 @@ TEST(LedPanel, LRRLB) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(0.5, 0)), 0),
-		Pair(PointEq(Point(1.5, 0)), 1),
-		Pair(PointEq(Point(1.5, 1)), 2),
-		Pair(PointEq(Point(0.5, 1)), 3),
-		Pair(PointEq(Point(0.5, 2)), 4),
-		Pair(PointEq(Point(1.5, 2)), 5)
+		Pair(PointEq(point(0.5, 0)), 0),
+		Pair(PointEq(point(1.5, 0)), 1),
+		Pair(PointEq(point(1.5, 1)), 2),
+		Pair(PointEq(point(0.5, 1)), 3),
+		Pair(PointEq(point(0.5, 2)), 4),
+		Pair(PointEq(point(1.5, 2)), 5)
 		));
 }
 
@@ -139,12 +139,12 @@ TEST(LedPanel, RLLRB) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(1.5, 0)), 0),
-		Pair(PointEq(Point(0.5, 0)), 1),
-		Pair(PointEq(Point(0.5, 1)), 2),
-		Pair(PointEq(Point(1.5, 1)), 3),
-		Pair(PointEq(Point(1.5, 2)), 4),
-		Pair(PointEq(Point(0.5, 2)), 5)
+		Pair(PointEq(point(1.5, 0)), 0),
+		Pair(PointEq(point(0.5, 0)), 1),
+		Pair(PointEq(point(0.5, 1)), 2),
+		Pair(PointEq(point(1.5, 1)), 3),
+		Pair(PointEq(point(1.5, 2)), 4),
+		Pair(PointEq(point(0.5, 2)), 5)
 		));
 }
 
@@ -153,12 +153,12 @@ TEST(LedPanel, TDTDL) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(0, 1.5)), 0),
-		Pair(PointEq(Point(0, 0.5)), 1),
-		Pair(PointEq(Point(1, 1.5)), 2),
-		Pair(PointEq(Point(1, 0.5)), 3),
-		Pair(PointEq(Point(2, 1.5)), 4),
-		Pair(PointEq(Point(2, 0.5)), 5)
+		Pair(PointEq(point(0, 1.5)), 0),
+		Pair(PointEq(point(0, 0.5)), 1),
+		Pair(PointEq(point(1, 1.5)), 2),
+		Pair(PointEq(point(1, 0.5)), 3),
+		Pair(PointEq(point(2, 1.5)), 4),
+		Pair(PointEq(point(2, 0.5)), 5)
 		));
 }
 
@@ -167,12 +167,12 @@ TEST(LedPanel, DTDTL) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(0, 0.5)), 0),
-		Pair(PointEq(Point(0, 1.5)), 1),
-		Pair(PointEq(Point(1, 0.5)), 2),
-		Pair(PointEq(Point(1, 1.5)), 3),
-		Pair(PointEq(Point(2, 0.5)), 4),
-		Pair(PointEq(Point(2, 1.5)), 5)
+		Pair(PointEq(point(0, 0.5)), 0),
+		Pair(PointEq(point(0, 1.5)), 1),
+		Pair(PointEq(point(1, 0.5)), 2),
+		Pair(PointEq(point(1, 1.5)), 3),
+		Pair(PointEq(point(2, 0.5)), 4),
+		Pair(PointEq(point(2, 1.5)), 5)
 		));
 }
 
@@ -181,12 +181,12 @@ TEST(LedPanel, TDDTL) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(0, 1.5)), 0),
-		Pair(PointEq(Point(0, 0.5)), 1),
-		Pair(PointEq(Point(1, 0.5)), 2),
-		Pair(PointEq(Point(1, 1.5)), 3),
-		Pair(PointEq(Point(2, 1.5)), 4),
-		Pair(PointEq(Point(2, 0.5)), 5)
+		Pair(PointEq(point(0, 1.5)), 0),
+		Pair(PointEq(point(0, 0.5)), 1),
+		Pair(PointEq(point(1, 0.5)), 2),
+		Pair(PointEq(point(1, 1.5)), 3),
+		Pair(PointEq(point(2, 1.5)), 4),
+		Pair(PointEq(point(2, 0.5)), 5)
 		));
 }
 
@@ -195,12 +195,12 @@ TEST(LedPanel, DTTDL) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(0, 0.5)), 0),
-		Pair(PointEq(Point(0, 1.5)), 1),
-		Pair(PointEq(Point(1, 1.5)), 2),
-		Pair(PointEq(Point(1, 0.5)), 3),
-		Pair(PointEq(Point(2, 0.5)), 4),
-		Pair(PointEq(Point(2, 1.5)), 5)
+		Pair(PointEq(point(0, 0.5)), 0),
+		Pair(PointEq(point(0, 1.5)), 1),
+		Pair(PointEq(point(1, 1.5)), 2),
+		Pair(PointEq(point(1, 0.5)), 3),
+		Pair(PointEq(point(2, 0.5)), 4),
+		Pair(PointEq(point(2, 1.5)), 5)
 		));
 }
 
@@ -209,12 +209,12 @@ TEST(LedPanel, LRLRT) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(0.5, 2)), 0),
-		Pair(PointEq(Point(1.5, 2)), 1),
-		Pair(PointEq(Point(0.5, 1)), 2),
-		Pair(PointEq(Point(1.5, 1)), 3),
-		Pair(PointEq(Point(0.5, 0)), 4),
-		Pair(PointEq(Point(1.5, 0)), 5)
+		Pair(PointEq(point(0.5, 2)), 0),
+		Pair(PointEq(point(1.5, 2)), 1),
+		Pair(PointEq(point(0.5, 1)), 2),
+		Pair(PointEq(point(1.5, 1)), 3),
+		Pair(PointEq(point(0.5, 0)), 4),
+		Pair(PointEq(point(1.5, 0)), 5)
 		));
 }
 
@@ -223,12 +223,12 @@ TEST(LedPanel, RLRLT) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(1.5, 2)), 0),
-		Pair(PointEq(Point(0.5, 2)), 1),
-		Pair(PointEq(Point(1.5, 1)), 2),
-		Pair(PointEq(Point(0.5, 1)), 3),
-		Pair(PointEq(Point(1.5, 0)), 4),
-		Pair(PointEq(Point(0.5, 0)), 5)
+		Pair(PointEq(point(1.5, 2)), 0),
+		Pair(PointEq(point(0.5, 2)), 1),
+		Pair(PointEq(point(1.5, 1)), 2),
+		Pair(PointEq(point(0.5, 1)), 3),
+		Pair(PointEq(point(1.5, 0)), 4),
+		Pair(PointEq(point(0.5, 0)), 5)
 		));
 }
 
@@ -237,12 +237,12 @@ TEST(LedPanel, LRRLT) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(0.5, 2)), 0),
-		Pair(PointEq(Point(1.5, 2)), 1),
-		Pair(PointEq(Point(1.5, 1)), 2),
-		Pair(PointEq(Point(0.5, 1)), 3),
-		Pair(PointEq(Point(0.5, 0)), 4),
-		Pair(PointEq(Point(1.5, 0)), 5)
+		Pair(PointEq(point(0.5, 2)), 0),
+		Pair(PointEq(point(1.5, 2)), 1),
+		Pair(PointEq(point(1.5, 1)), 2),
+		Pair(PointEq(point(0.5, 1)), 3),
+		Pair(PointEq(point(0.5, 0)), 4),
+		Pair(PointEq(point(1.5, 0)), 5)
 		));
 }
 
@@ -251,12 +251,12 @@ TEST(LedPanel, RLLRT) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(1.5, 2)), 0),
-		Pair(PointEq(Point(0.5, 2)), 1),
-		Pair(PointEq(Point(0.5, 1)), 2),
-		Pair(PointEq(Point(1.5, 1)), 3),
-		Pair(PointEq(Point(1.5, 0)), 4),
-		Pair(PointEq(Point(0.5, 0)), 5)
+		Pair(PointEq(point(1.5, 2)), 0),
+		Pair(PointEq(point(0.5, 2)), 1),
+		Pair(PointEq(point(0.5, 1)), 2),
+		Pair(PointEq(point(1.5, 1)), 3),
+		Pair(PointEq(point(1.5, 0)), 4),
+		Pair(PointEq(point(0.5, 0)), 5)
 		));
 }
 
@@ -265,12 +265,12 @@ TEST(LedPanel, TDTDR) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(2, 1.5)), 0),
-		Pair(PointEq(Point(2, 0.5)), 1),
-		Pair(PointEq(Point(1, 1.5)), 2),
-		Pair(PointEq(Point(1, 0.5)), 3),
-		Pair(PointEq(Point(0, 1.5)), 4),
-		Pair(PointEq(Point(0, 0.5)), 5)
+		Pair(PointEq(point(2, 1.5)), 0),
+		Pair(PointEq(point(2, 0.5)), 1),
+		Pair(PointEq(point(1, 1.5)), 2),
+		Pair(PointEq(point(1, 0.5)), 3),
+		Pair(PointEq(point(0, 1.5)), 4),
+		Pair(PointEq(point(0, 0.5)), 5)
 		));
 }
 
@@ -279,12 +279,12 @@ TEST(LedPanel, DTDTR) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(2, 0.5)), 0),
-		Pair(PointEq(Point(2, 1.5)), 1),
-		Pair(PointEq(Point(1, 0.5)), 2),
-		Pair(PointEq(Point(1, 1.5)), 3),
-		Pair(PointEq(Point(0, 0.5)), 4),
-		Pair(PointEq(Point(0, 1.5)), 5)
+		Pair(PointEq(point(2, 0.5)), 0),
+		Pair(PointEq(point(2, 1.5)), 1),
+		Pair(PointEq(point(1, 0.5)), 2),
+		Pair(PointEq(point(1, 1.5)), 3),
+		Pair(PointEq(point(0, 0.5)), 4),
+		Pair(PointEq(point(0, 1.5)), 5)
 		));
 }
 
@@ -293,12 +293,12 @@ TEST(LedPanel, TDDTR) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(2, 1.5)), 0),
-		Pair(PointEq(Point(2, 0.5)), 1),
-		Pair(PointEq(Point(1, 0.5)), 2),
-		Pair(PointEq(Point(1, 1.5)), 3),
-		Pair(PointEq(Point(0, 1.5)), 4),
-		Pair(PointEq(Point(0, 0.5)), 5)
+		Pair(PointEq(point(2, 1.5)), 0),
+		Pair(PointEq(point(2, 0.5)), 1),
+		Pair(PointEq(point(1, 0.5)), 2),
+		Pair(PointEq(point(1, 1.5)), 3),
+		Pair(PointEq(point(0, 1.5)), 4),
+		Pair(PointEq(point(0, 0.5)), 5)
 		));
 }
 
@@ -307,11 +307,11 @@ TEST(LedPanel, DTTDR) {
 
 	ASSERT_THAT(panel.leds(), SizeIs(6));
 	ASSERT_THAT(panel.leds(), UnorderedElementsAre(
-		Pair(PointEq(Point(2, 0.5)), 0),
-		Pair(PointEq(Point(2, 1.5)), 1),
-		Pair(PointEq(Point(1, 1.5)), 2),
-		Pair(PointEq(Point(1, 0.5)), 3),
-		Pair(PointEq(Point(0, 0.5)), 4),
-		Pair(PointEq(Point(0, 1.5)), 5)
+		Pair(PointEq(point(2, 0.5)), 0),
+		Pair(PointEq(point(2, 1.5)), 1),
+		Pair(PointEq(point(1, 1.5)), 2),
+		Pair(PointEq(point(1, 0.5)), 3),
+		Pair(PointEq(point(0, 0.5)), 4),
+		Pair(PointEq(point(0, 1.5)), 5)
 		));
 }

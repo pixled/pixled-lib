@@ -1,18 +1,16 @@
 #include "pixled/animation/animation.h"
-#include "pixled/color/color.h"
+#include "pixled/chroma/chroma.h"
 #include "../../mocks/mock_function.h"
 
 #include <random>
 
 using namespace testing;
 
-using pixled::Time;
-
 TEST(RainbowTest, test) {
-	pixled::Constant<Time> period(12);
+	pixled::Constant<pixled::time> period(12);
 
 	pixled::animation::Rainbow h {period};
-	auto r = pixled::color::hsb(h, 0.5f, 0.4f);
+	auto r = pixled::chroma::hsb(h, 0.5f, 0.4f);
 
 	auto color = r({0, 0}, 0);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
@@ -42,10 +40,10 @@ TEST(RainbowTest, test) {
 
 class SequenceTest : public ::testing::Test {
 	protected:
-		NiceMock<pixled::MockFunction<pixled::Color>> f1;
-		NiceMock<pixled::MockFunction<pixled::Color>> f2;
-		NiceMock<pixled::MockFunction<pixled::Color>> f3;
-		std::vector<std::pair<pixled::animation::Animation, Time>> anims;
+		NiceMock<pixled::MockFunction<pixled::color>> f1;
+		NiceMock<pixled::MockFunction<pixled::color>> f2;
+		NiceMock<pixled::MockFunction<pixled::color>> f3;
+		std::vector<std::pair<pixled::animation::Animation, pixled::time>> anims;
 
 		// Sequence constructor initialization
 		pixled::animation::Sequence seq {
@@ -56,7 +54,7 @@ class SequenceTest : public ::testing::Test {
 				{f2, 5}
 			}
 		};
-		pixled::Point fake_point {8, 3};
+		pixled::point fake_point {8, 3};
 
 		void SetUp() override {
 			// Add items using the add function
@@ -65,16 +63,16 @@ class SequenceTest : public ::testing::Test {
 };
 
 TEST_F(SequenceTest, sequence_test) {
-	for(Time T = 0; T < 10; T++) {
-		for(Time t = T*28; t < T*28 + 10; t++) {
+	for(pixled::time T = 0; T < 10; T++) {
+		for(pixled::time t = T*28; t < T*28 + 10; t++) {
 			EXPECT_CALL(*f1.last_copy, call(fake_point, t));
 			seq(fake_point, t);
 		}
-		for(Time t = T*28 + 10; t < T*28 + 15; t++) {
+		for(pixled::time t = T*28 + 10; t < T*28 + 15; t++) {
 			EXPECT_CALL(*f2.last_copy, call(fake_point, t));
 			seq(fake_point, t);
 		}
-		for(Time t = T*28 + 15; t < (T+1)*28; t++) {
+		for(pixled::time t = T*28 + 15; t < (T+1)*28; t++) {
 			EXPECT_CALL(*f3.last_copy, call(fake_point, t));
 			seq(fake_point, t);
 		}
@@ -82,20 +80,20 @@ TEST_F(SequenceTest, sequence_test) {
 }
 
 TEST_F(SequenceTest, copy_test) {
-	pixled::FctWrapper<pixled::Color> copy(seq); 
+	pixled::FctWrapper<pixled::color> copy(seq); 
 
 	ASSERT_THAT(&*copy, WhenDynamicCastTo<const pixled::animation::Sequence*>(Not(IsNull())));
 
-	for(Time T = 0; T < 10; T++) {
-		for(Time t = T*28; t < T*28 + 10; t++) {
+	for(pixled::time T = 0; T < 10; T++) {
+		for(pixled::time t = T*28; t < T*28 + 10; t++) {
 			EXPECT_CALL(*f1.last_copy, call(fake_point, t));
 			(*copy)(fake_point, t);
 		}
-		for(Time t = T*28 + 10; t < T*28 + 15; t++) {
+		for(pixled::time t = T*28 + 10; t < T*28 + 15; t++) {
 			EXPECT_CALL(*f2.last_copy, call(fake_point, t));
 			(*copy)(fake_point, t);
 		}
-		for(Time t = T*28 + 15; t < (T+1)*28; t++) {
+		for(pixled::time t = T*28 + 15; t < (T+1)*28; t++) {
 			EXPECT_CALL(*f3.last_copy, call(fake_point, t));
 			(*copy)(fake_point, t);
 		}
@@ -106,14 +104,14 @@ TEST(BlinkTest, test) {
 	std::mt19937 rd;
 	std::uniform_int_distribution<uint8_t> rd_color;
 
-	NiceMock<pixled::MockFunction<pixled::Color>> anim;
+	NiceMock<pixled::MockFunction<pixled::color>> anim;
 
-	pixled::Point p(6, -4);
+	pixled::point p(6, -4);
 	pixled::animation::Blink blink(anim, 12);
 
-	for(Time T = 0; T < 10; T++) {
-		for(Time t = 12*T + 1; t < 12*T + 6; t++) {
-			pixled::Color c;
+	for(pixled::time T = 0; T < 10; T++) {
+		for(pixled::time t = 12*T + 1; t < 12*T + 6; t++) {
+			pixled::color c;
 			c.setRgb(rd_color(rd), rd_color(rd), rd_color(rd));
 
 			EXPECT_CALL(*anim.last_copy, call(p, t))
@@ -121,9 +119,9 @@ TEST(BlinkTest, test) {
 			ASSERT_EQ(blink(p, t), c);
 		}
 
-		pixled::Color black;
+		pixled::color black;
 		black.setRgb(0, 0, 0);
-		for(Time t = 12*T + 7; t < 12*T + 12; t++) {
+		for(pixled::time t = 12*T + 7; t < 12*T + 12; t++) {
 			ASSERT_EQ(blink(p, t), black);
 		}
 	}

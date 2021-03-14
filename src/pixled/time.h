@@ -4,6 +4,6 @@
 #include "function.h"
 
 namespace pixled {
-	typedef unsigned long Time;
+	typedef unsigned long time;
 }
 #endif

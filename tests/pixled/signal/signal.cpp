@@ -8,12 +8,14 @@
 using ::testing::AnyOf;
 using ::testing::FloatNear;
 
+using namespace pixled;
+
 class SignalTest : public ::testing::Test {
 	private:
 		std::mt19937 rd;
 	protected:
-		pixled::Point random_point() {
-			std::uniform_real_distribution<pixled::Coordinate> rd_coord;
+		pixled::point random_point() {
+			std::uniform_real_distribution<pixled::coordinate> rd_coord;
 			return {rd_coord(rd), rd_coord(rd)};
 		}
 };
@@ -21,7 +23,7 @@ class SignalTest : public ::testing::Test {
 class SineTest : public SignalTest {};
 
 TEST_F(SineTest, const_params) {
-	pixled::signal::Sine sine(12.4, 12, pixled::T() + 2.f);
+	pixled::signal::Sine sine(12.4, 12, Cast<float, pixled::time>(pixled::chrono::T() + 2));
 
 	ASSERT_FLOAT_EQ(sine(random_point(), 0), 12.4*std::sin(2*PIXLED_PI*2.f/12));
 
@@ -36,7 +38,7 @@ TEST_F(SineTest, const_params) {
 class SquareTest : public SignalTest {};
 
 TEST_F(SquareTest, const_params) {
-	pixled::signal::Square square(12.4, 12, pixled::T() + 2.f);
+	pixled::signal::Square square(12.4, 12, Cast<float, pixled::time>(pixled::chrono::T() + 2));
 
 	ASSERT_THAT(
 		square(random_point(), -2),
@@ -44,7 +46,7 @@ TEST_F(SquareTest, const_params) {
 			));
 
 
-	for(pixled::Time t = -1; t < 3; t++)
+	for(pixled::time t = -1; t < 3; t++)
 		ASSERT_NEAR(square(random_point(), t), 12.4, .10e-4);
 
 	ASSERT_THAT(
@@ -52,7 +54,7 @@ TEST_F(SquareTest, const_params) {
 		AnyOf(FloatNear(12.4, .10e-4), FloatNear(-12.4, .10e-4)
 			));
 
-	for(pixled::Time t = 5; t < 9; t++)
+	for(pixled::time t = 5; t < 9; t++)
 		ASSERT_NEAR(square(random_point(), t), -12.4, .10e-4);
 
 	ASSERT_THAT(

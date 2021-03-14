@@ -1,8 +1,8 @@
 #include "runtime.h"
 
 namespace pixled {
-	void Runtime::frame(Time t) {
-		for(std::pair<Point, std::size_t> c : map) {
+	void Runtime::frame(time t) {
+		for(std::pair<point, std::size_t> c : map) {
 			output.write(animation(c.first, t), c.second);
 		}
 	}
@@ -12,7 +12,7 @@ namespace pixled {
 	void Runtime::next() {
 		frame(_time++);
 	}
-	Time Runtime::time() const {
+	time Runtime::current_time() const {
 		return _time;
 	}
 }

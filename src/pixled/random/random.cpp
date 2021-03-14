@@ -2,8 +2,8 @@
 
 namespace pixled { namespace random {
 
-	std::minstd_rand RandomT::operator()(Point p, Time t) const {
-		Time _current_period = t / period;
+	std::minstd_rand RandomT::operator()(point p, time t) const {
+		time _current_period = t / period;
 		if(_current_period != current_period) {
 			current_period = _current_period;
 			rd.discard(1);
@@ -11,7 +11,7 @@ namespace pixled { namespace random {
 		return rd;
 	}
 
-	std::minstd_rand RandomXYT::operator()(Point p, Time t) const {
+	std::minstd_rand RandomXYT::operator()(point p, time t) const {
 		std::minstd_rand* rd;
 
 		auto result = rds.find(p);
@@ -25,7 +25,7 @@ namespace pixled { namespace random {
 		}
 		//std::cout << "rds size:" << rds.size() << std::endl;
 
-		Time _current_period = t / period;
+		time _current_period = t / period;
 		if(_current_period != current_period) {
 			current_period = _current_period;
 			for(auto& _rd : rds) {

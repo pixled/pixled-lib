@@ -123,8 +123,8 @@ TEST_F(FctWrapperTest, move_assignment) {
  */
 class UnaryTest : public Test {
 	protected:
-		pixled::Point c {12, 38};
-		pixled::Time t {25};
+		pixled::point c {12, 38};
+		pixled::time t {25};
 
 		StrictMock<pixled::MockFunction<uint8_t>> fct;
 		//StrictMock<pixled::MockFunction<uint8_t>>* last_fct_copy;

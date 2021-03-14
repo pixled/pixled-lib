@@ -13,7 +13,7 @@ namespace pixled { namespace conditional {
 			public:
 				using Function<If<IF_t, ELSE_t>, R, bool, IF_t, ELSE_t>::Function;
 
-				R operator()(Point c, Time t) const override {
+				R operator()(point c, time t) const override {
 					if(this->template call<0>(c, t))
 						return this->template call<1>(c, t);
 					else

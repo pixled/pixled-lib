@@ -1,18 +1,17 @@
 #include "pixled/arithmetic/arithmetic.h"
 #include "../../mocks/mock_function.h"
-#include "pixled/color/color.h"
+#include "pixled/chroma/chroma.h"
 
 using ::testing::Test;
 using ::testing::Return;
 
 using pixled::MockFunction;
-using pixled::Point;
-using pixled::Time;
+using pixled::point;
 
 class OperatorTest : public Test {
 	protected:
-		Point c {12, 38};
-		Time t {25};
+		point c {12, 38};
+		pixled::time t {25};
 };
 
 class PlusOperator : public OperatorTest {};
@@ -163,7 +162,7 @@ TEST_F(ModulusOperator, test) {
 TEST_F(PlusOperator, constant) {
 	using namespace pixled;
 	auto plus = pixled::Constant<float>(8.f) + pixled::Constant<float>(14.f);
-	auto hsb = pixled::color::hsb(plus, 1., .5);
+	auto hsb = pixled::chroma::hsb(plus, 1., .5);
 
 	ASSERT_FLOAT_EQ(plus(c, t), 22.f);
 	ASSERT_FLOAT_EQ(hsb(c, t).hue(), 22.f);

@@ -8,13 +8,12 @@
 using ::testing::Return;
 
 using pixled::MockFunction;
-using pixled::Point;
-using pixled::Time;
+using pixled::point;
 
 class OperatorTest : public ::testing::Test {
 	protected:
-		Point c {12, 38};
-		Time t {25};
+		point c {12, 38};
+		pixled::time t {25};
 };
 
 class SinTest : public OperatorTest {};
