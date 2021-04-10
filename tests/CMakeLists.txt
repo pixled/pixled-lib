@@ -5,6 +5,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(test
 	pixled/function.cpp
+	pixled/geometry.cpp
 	pixled/animation/animation.cpp
 	pixled/arithmetic/arithmetic.cpp
 	pixled/random/random.cpp

@@ -257,24 +257,32 @@ namespace pixled {
 				}
 		};
 
+
+	namespace detail {
+		template<typename To, typename From>
+			class Cast : public base::Function<To> {
+				private:
+					const FctWrapper<From> f;
+
+				public:
+					Cast(const base::Function<From>& from)
+						: f(from) {}
+					Cast(base::Function<From>&& from)
+						: f(std::move(from)) {}
+
+					To operator()(point c, time t) const override {
+						return (*this->f)(c, t);
+					}
+
+					Cast<To, From>* copy() const override {
+						return new Cast(*f);
+					}
+			};
+	}
+
 	template<typename To, typename From>
-		class Cast : public base::Function<To> {
-			private:
-				const FctWrapper<From> f;
-
-			public:
-				Cast(const base::Function<From>& from)
-					: f(from) {}
-				Cast(base::Function<From>&& from)
-					: f(std::move(from)) {}
-
-				To operator()(point c, time t) const override {
-					return (*this->f)(c, t);
-				}
-
-				Cast<To, From>* copy() const override {
-					return new Cast(*f);
-				}
+		detail::Cast<To, typename From::Type> Cast(From&& from) {
+			return detail::Cast<To, typename From::Type>(std::forward<From>(from));
 		};
 }
 #endif

@@ -129,7 +129,7 @@ namespace pixled { namespace animation {
 				 * f3 : amplitude
 				 */
 				R operator()(point c, time t) const override {
-					return this->template call<1>(c, t) + this->template call<2>(c, t) * std::sin(2*PIXLED_PI * t / this->template call<0>(c, t));
+					return this->template call<1>(c, t) + this->template call<2>(c, t) * std::sin(2*PI * t / this->template call<0>(c, t));
 				}
 		};
 
@@ -207,7 +207,7 @@ namespace pixled { namespace animation {
 			template<typename Arg1, typename Arg2>
 				Blink(Arg1&& arg1, Arg2&& arg2) :
 					Function<Blink, color, color, float>(std::forward<Arg1>(arg1), std::forward<Arg2>(arg2)),
-					square(1, arg2, Cast<float, time>(chrono::T())) {
+					square(1, arg2, Cast<float>(chrono::T())) {
 						black.setRgb(0, 0, 0);
 					}
 

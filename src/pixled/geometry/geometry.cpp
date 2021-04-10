@@ -20,6 +20,14 @@ namespace pixled { namespace geometry {
 		return {this->call<0>(c, t), this->call<1>(c, t)};
 	}
 
+	angle AngleDeg::operator()(point p, time t) const {
+		return angle::fromDeg(this->call<0>(p, t));
+	}
+
+	angle AngleRad::operator()(point p, time t) const {
+		return angle::fromRad(this->call<0>(p, t));
+	}
+
 	line Line::operator()(point p, time t) const {
 		return {this->call<0>(p, t), this->call<1>(p, t), this->call<2>(p, t)};
 	}
@@ -30,5 +38,13 @@ namespace pixled { namespace geometry {
 
 	line YLine::operator()(point p, time t) const {
 		return {0, 1, -this->call<0>(p, t)};
+	}
+
+	line AlphaLine::operator()(point p, time t) const {
+		return {this->call<0>(p, t), this->call<1>(p, t)};
+	}
+
+	line PointLine::operator()(point p, time t) const {
+		return {this->call<0>(p, t), this->call<1>(p, t)};
 	}
 }}

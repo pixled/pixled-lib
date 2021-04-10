@@ -25,7 +25,7 @@ class TurtleMappingTest : public Test {
 
 TEST_F(TurtleMappingTest, init) {
 	ASSERT_EQ(turtle.position(), point(0, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), angle(0.));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle::fromRad(0.));
 	ASSERT_EQ(turtle.ledIndex(), 0);
 }
 
@@ -33,7 +33,7 @@ TEST_F(TurtleMappingTest, forward_no_led) {
 	turtle.forward(10);
 
 	ASSERT_EQ(turtle.position(), point(10, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), angle(0.));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle::fromDeg(0.));
 	ASSERT_EQ(turtle.ledIndex(), 0);
 }
 
@@ -49,31 +49,31 @@ TEST_F(TurtleMappingTest, forward) {
 		Pair(point(9, 0), 3),
 		Pair(point(11, 0), 4)));
 	ASSERT_EQ(turtle.position(), point(12, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), angle(0.));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle::fromDeg(0.));
 	ASSERT_EQ(turtle.ledIndex(), 5);
 }
 
 TEST_F(TurtleMappingTest, turn_left) {
-	turtle.turnLeft(60);
+	turtle.turnLeft(angle::fromDeg(60));
 
 	ASSERT_EQ(turtle.position(), point(0, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), angle(60.));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle::fromDeg(60.));
 	ASSERT_EQ(turtle.ledIndex(), 0);
 }
 
 TEST_F(TurtleMappingTest, turn_right) {
-	turtle.turnRight(60);
+	turtle.turnRight(angle::fromDeg(60));
 
 	ASSERT_EQ(turtle.position(), point(0, 0));
-	ASSERT_ANGLE_EQ(turtle.orientation(), angle(300.));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle::fromDeg((300.)));
 	ASSERT_EQ(turtle.ledIndex(), 0);
 }
 
 TEST_F(TurtleMappingTest, turn_forward) {
-	turtle.turnRight(60);
+	turtle.turnRight(angle::fromDeg(60));
 	turtle.forward(10, 3);
 
-	pixled::point final_point(10 * pixled::cos(-60), 10 * pixled::sin(-60));
+	pixled::point final_point(10 * cos(angle::fromDeg(-60)), 10 * sin(angle::fromDeg(-60)));
 	float led_1_x = 1 * final_point.x / 6;
 	float led_1_y = 1 * final_point.y / 6;
 	float led_2_x = 3 * final_point.x / 6;
@@ -88,7 +88,7 @@ TEST_F(TurtleMappingTest, turn_forward) {
 		Pair(PointEq(point(led_3_x, led_3_y)), 2)
 		));
 	ASSERT_EQ(turtle.position(), final_point);
-	ASSERT_ANGLE_EQ(turtle.orientation(), angle(-60.));
+	ASSERT_ANGLE_EQ(turtle.orientation(), angle::fromDeg(-60.));
 	ASSERT_EQ(turtle.ledIndex(), 3);
 }
 

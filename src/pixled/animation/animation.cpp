@@ -2,7 +2,7 @@
 
 namespace pixled { namespace animation {
 	float SinT::operator()(point c, time t) const {
-		return 0.5f * (std::sin(2*PIXLED_PI * t / this->call<0>(c, t)) + 1.f);
+		return 0.5f * (std::sin(2*PI * t / this->call<0>(c, t)) + 1.f);
 	}
 
 	float Rainbow::operator()(point c, time t) const {
@@ -12,17 +12,17 @@ namespace pixled { namespace animation {
 
 	float RainbowWave::operator()(point p, time t) const {
 		float d = geometry::LineDistance(this->arg<1>(), p)(p, t);
-		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
+		return 180.f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
 	float RadialRainbowWave::operator()(point p, time t) const {
 		float d = geometry::Distance(this->arg<1>(), p)(p, t);
-		return 180.f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
+		return 180.f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
 	float SpatialUnitWave::operator()(point p, time t) const {
 		float d = geometry::LineDistance(this->arg<1>(), p)(p, t);
-		return .5f * (1.f + std::sin(2*PIXLED_PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
+		return .5f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
 	}
 
 	color Blooming::operator()(point c, time t) const {

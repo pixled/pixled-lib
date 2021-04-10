@@ -5,9 +5,9 @@
 #include <cmath>
 #include <iostream>
 
-#define PIXLED_PI 3.14159265358979323846f
-
 namespace pixled {
+	static const float PI = 3.14159265358979323846f;
+
 	typedef float coordinate;
 
 	struct point {
@@ -20,13 +20,21 @@ namespace pixled {
 
 	class angle {
 		private:
+			// value in radian
 			float value;
-
-		public:
 			angle(float value) : value(value) {}
 
+		public:
+
+			static angle fromRad(float value);
+			static angle fromDeg(float value);
+
 			float toRad() const {
-				return 2*PIXLED_PI*value/360.f;
+				return value;
+			}
+
+			float toDeg() const {
+				return value * 180.f / PI;
 			}
 
 			angle operator+(const angle& other) const {
@@ -52,11 +60,14 @@ namespace pixled {
 	 * A Line with equation a*x + b*y + c = 0
 	 */
 	struct line {
-		float a;
-		float b;
-		float c;
-		line(float a, float b, float c)
+		coordinate a;
+		coordinate b;
+		coordinate c;
+		line(coordinate a, coordinate b, coordinate c)
 			: a(a), b(b), c(c) {}
+
+		line(point p, angle a);
+		line(point p0, point p1);
 	};
 	struct point_hash {
 		std::size_t operator()(const point& p) const;

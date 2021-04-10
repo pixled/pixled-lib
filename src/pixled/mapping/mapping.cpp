@@ -142,7 +142,7 @@ namespace pixled { namespace mapping {
 				break;
 			case RIGHT_LEFT_LEFT_RIGHT_FROM_BOTTOM:
 				forward(width);
-				turnLeft(180);
+				turnLeft(angle::fromDeg(180));
 				drawHorizontalSnakeFromBottom(width, height);
 				break;
 			case TOP_DOWN_TOP_DOWN_FROM_LEFT:
@@ -153,11 +153,11 @@ namespace pixled { namespace mapping {
 				break;
 			case TOP_DOWN_DOWN_TOP_FROM_LEFT:
 				jump(point(0, height));
-				turnRight(90);
+				turnRight(angle::fromDeg(90));
 				drawVerticalSnakeFromLeft(width, height);
 				break;
 			case DOWN_TOP_TOP_DOWN_FROM_LEFT:
-				turnLeft(90);
+				turnLeft(angle::fromDeg(90));
 				drawVerticalSnakeFromLeft(width, height);
 				break;
 			case LEFT_RIGHT_LEFT_RIGHT_FROM_TOP:
@@ -172,7 +172,7 @@ namespace pixled { namespace mapping {
 				break;
 			case RIGHT_LEFT_LEFT_RIGHT_FROM_TOP:
 				jump(point(width, height-1));
-				turnLeft(180);
+				turnLeft(angle::fromDeg(180));
 				drawHorizontalSnakeFromTop(width, height);
 				break;
 			case TOP_DOWN_TOP_DOWN_FROM_RIGHT:
@@ -183,12 +183,12 @@ namespace pixled { namespace mapping {
 				break;
 			case TOP_DOWN_DOWN_TOP_FROM_RIGHT:
 				jump(point(width-1, height));
-				turnRight(90);
+				turnRight(angle::fromDeg(90));
 				drawVerticalSnakeFromRight(width, height);
 				break;
 			case DOWN_TOP_TOP_DOWN_FROM_RIGHT:
 				jump(point(width-1, 0));
-				turnLeft(90);
+				turnLeft(angle::fromDeg(90));
 				drawVerticalSnakeFromRight(width, height);
 				break;
 		}
@@ -204,7 +204,7 @@ namespace pixled { namespace mapping {
 	
 	void LedPanel::drawRightLeftRightLeftFromBottom(std::size_t width, std::size_t height) {
 		// init in (0, 0), angle = 0
-		turnLeft(180);
+		turnLeft(angle::fromDeg(180));
 		for(std::size_t h = 0; h < height; h++) {
 			jump(point(width, h));
 			forward(width, width);
@@ -221,7 +221,7 @@ namespace pixled { namespace mapping {
 	
 	void LedPanel::drawRightLeftRightLeftFromTop(std::size_t width, std::size_t height) {
 		// init in (0, 0), angle = 0
-		turnLeft(180);
+		turnLeft(angle::fromDeg(180));
 		for(std::size_t h = 1; h <= height; h++) {
 			jump(point(width, height-h));
 			forward(width, width);
@@ -236,11 +236,11 @@ namespace pixled { namespace mapping {
 		for(std::size_t h = 0; h < height; h++) {
 			forward(width, width);
 			if(left_to_right) {
-				turnLeft(180);
+				turnLeft(angle::fromDeg(180));
 				jump(point(width, h+1));
 			}
 			else {
-				turnRight(180);
+				turnRight(angle::fromDeg(180));
 				jump(point(0, h+1));
 			}
 			left_to_right = !left_to_right;
@@ -255,11 +255,11 @@ namespace pixled { namespace mapping {
 		for(std::size_t h = 1; h <= height; h++) {
 			forward(width, width);
 			if(left_to_right) {
-				turnLeft(180);
+				turnLeft(angle::fromDeg(180));
 				jump(point(width, height-1-h));
 			}
 			else {
-				turnRight(180);
+				turnRight(angle::fromDeg(180));
 				jump(point(0, height-1-h));
 			}
 			left_to_right = !left_to_right;
@@ -268,7 +268,7 @@ namespace pixled { namespace mapping {
 
 	void LedPanel::drawTopDownTopDownFromLeft(std::size_t width, std::size_t height) {
 		// init in (0, 0), angle = 0
-		turnRight(90);
+		turnRight(angle::fromDeg(90));
 		for(std::size_t w = 0; w < width; w++) {
 			jump(point(w, height));
 			forward(height, height);
@@ -277,7 +277,7 @@ namespace pixled { namespace mapping {
 	
 	void LedPanel::drawDownTopDownTopFromLeft(std::size_t width, std::size_t height) {
 		// init in (0, 0), angle = 0
-		turnLeft(90);
+		turnLeft(angle::fromDeg(90));
 		for(std::size_t w = 0; w < width; w++) {
 			jump(point(w, 0));
 			forward(height, height);
@@ -291,11 +291,11 @@ namespace pixled { namespace mapping {
 		for(std::size_t w = 0; w < width; w++) {
 			forward(height, height);
 			if(down_to_top) {
-				turnLeft(180);
+				turnLeft(angle::fromDeg(180));
 				jump(point(w+1, height));
 			}
 			else {
-				turnRight(180);
+				turnRight(angle::fromDeg(180));
 				jump(point(w+1, 0));
 			}
 			down_to_top = !down_to_top;
@@ -304,7 +304,7 @@ namespace pixled { namespace mapping {
 
 	void LedPanel::drawTopDownTopDownFromRight(std::size_t width, std::size_t height) {
 		// init in (0, 0), angle = 0
-		turnRight(90);
+		turnRight(angle::fromDeg(90));
 		for(std::size_t w = 1; w <= width; w++) {
 			jump(point(width-w, height));
 			forward(height, height);
@@ -313,7 +313,7 @@ namespace pixled { namespace mapping {
 	
 	void LedPanel::drawDownTopDownTopFromRight(std::size_t width, std::size_t height) {
 		// init in (0, 0), angle = 0
-		turnLeft(90);
+		turnLeft(angle::fromDeg(90));
 		for(std::size_t w = 1; w <= width; w++) {
 			jump(point(width-w, 0));
 			forward(height, height);
@@ -327,11 +327,11 @@ namespace pixled { namespace mapping {
 		for(std::size_t w = 1; w <= width; w++) {
 			forward(height, height);
 			if(down_to_top) {
-				turnLeft(180);
+				turnLeft(angle::fromDeg(180));
 				jump(point(width-w-1, height));
 			}
 			else {
-				turnRight(180);
+				turnRight(angle::fromDeg(180));
 				jump(point(width-w-1, 0));
 			}
 			down_to_top = !down_to_top;

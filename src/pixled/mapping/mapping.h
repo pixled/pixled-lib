@@ -22,7 +22,7 @@ namespace pixled {
 				std::vector<std::pair<point, std::size_t>> _leds;
 
 				point turtle_position {0, 0};
-				angle turtle_orientation = 0.;
+				angle turtle_orientation = angle::fromDeg(0.);
 				std::size_t current_led_index = 0;
 				void moveTo(point p, std::size_t num_led);
 

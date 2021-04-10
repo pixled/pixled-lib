@@ -23,9 +23,9 @@ class SignalTest : public ::testing::Test {
 class SineTest : public SignalTest {};
 
 TEST_F(SineTest, const_params) {
-	pixled::signal::Sine sine(12.4, 12, Cast<float, pixled::time>(pixled::chrono::T() + 2));
+	pixled::signal::Sine sine(12.4, 12, Cast<float>(pixled::chrono::T() + 2));
 
-	ASSERT_FLOAT_EQ(sine(random_point(), 0), 12.4*std::sin(2*PIXLED_PI*2.f/12));
+	ASSERT_FLOAT_EQ(sine(random_point(), 0), 12.4*std::sin(2*PI*2.f/12));
 
 	ASSERT_NEAR(sine(random_point(), 1), 12.4, .10e-4);
 	ASSERT_NEAR(sine(random_point(), 4), 0, .10e-4);
@@ -38,7 +38,7 @@ TEST_F(SineTest, const_params) {
 class SquareTest : public SignalTest {};
 
 TEST_F(SquareTest, const_params) {
-	pixled::signal::Square square(12.4, 12, Cast<float, pixled::time>(pixled::chrono::T() + 2));
+	pixled::signal::Square square(12.4, 12, Cast<float>(pixled::chrono::T() + 2));
 
 	ASSERT_THAT(
 		square(random_point(), -2),
