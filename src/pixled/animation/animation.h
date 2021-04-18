@@ -48,36 +48,6 @@ namespace pixled { namespace animation {
 	};
 
 	/**
-	 * A linear rainbow wave using a vertical line as origin.
-	 *
-	 * @retval float rainbow hue in `[0, 360]`
-	 * @param float spatial period of the wave
-	 * @param float position of the vertical origin line (X)
-	 * @param time rainbow time period
-	 */
-	class RainbowWaveX : public RainbowWave {
-		public:
-			template<typename Arg1, typename Arg2, typename Arg3>
-				RainbowWaveX(Arg1&& lambda, Arg2&& x, Arg3&& time_period)
-				: RainbowWave(std::forward<Arg1>(lambda), Line(1, 0, -std::forward<Arg2>(x)), std::forward<Arg3>(time_period)) {}
-	};
-
-	/**
-	 * A linear rainbow wave using an horizontal line as origin.
-	 *
-	 * @retval float rainbow hue in `[0, 360]`
-	 * @param float spatial period of the wave
-	 * @param float position of the horizontal origin line (Y)
-	 * @param time rainbow time period
-	 */
-	class RainbowWaveY : public RainbowWave {
-		public:
-			template<typename Arg1, typename Arg2, typename Arg3>
-				RainbowWaveY(Arg1&& lambda, Arg2&& y, Arg3&& time_period)
-				: RainbowWave(std::forward<Arg1>(lambda), Line(0, 1, -std::forward<Arg2>(y)), std::forward<Arg3>(time_period)) {}
-	};
-
-	/**
 	 * A rainbow wave using a point as origin.
 	 *
 	 * @retval float rainbow hue in `[0, 360]`
@@ -102,20 +72,6 @@ namespace pixled { namespace animation {
 			 * f3 : time period
 			 */
 			float operator()(point p, time t) const override;
-	};
-
-	class UnitWaveX : public SpatialUnitWave {
-		public:
-			template<typename Arg1, typename Arg2>
-				UnitWaveX(Arg1&& lambda, Arg2&& time_period)
-				: SpatialUnitWave(std::forward<Arg1>(lambda), line(1, 0, 0), std::forward<Arg2>(time_period)) {}
-	};
-
-	class UnitWaveY : public SpatialUnitWave {
-		public:
-			template<typename Arg1, typename Arg2>
-				UnitWaveY(Arg1&& lambda, Arg2&& time_period)
-				: SpatialUnitWave(std::forward<Arg1>(lambda), line(0, 1, 0), std::forward<Arg2>(time_period)) {}
 	};
 
 	template<typename R>
