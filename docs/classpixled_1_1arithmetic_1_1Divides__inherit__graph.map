@@ -1,5 +1,6 @@
 <map id="pixled::arithmetic::Divides&lt; R, P1, P2 &gt;" name="pixled::arithmetic::Divides&lt; R, P1, P2 &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="19,169,175,211"/>
-<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="6,80,189,121"/>
-<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="5,5,189,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="21,259,177,300"/>
+<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="7,169,190,211"/>
+<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="7,95,191,121"/>
+<area shape="rect" id="node4" href="$structpixled_1_1base_1_1PixledFunctionTrait.html" title=" " alt="" coords="5,5,192,47"/>
 </map>

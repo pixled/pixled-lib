@@ -94,6 +94,8 @@ Namespaces</h2></td></tr>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1color.html">color</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpixled_1_1is__pixled__function.html">is_pixled_function</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1Constant.html">Constant</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1FctWrapper.html">FctWrapper</a></td></tr>
@@ -140,53 +142,65 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9abe09309fc6b2b14b378f259e6df7f4"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a9abe09309fc6b2b14b378f259e6df7f4"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a9abe09309fc6b2b14b378f259e6df7f4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Plus.html">arithmetic::Plus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a9abe09309fc6b2b14b378f259e6df7f4">operator+</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:a9abe09309fc6b2b14b378f259e6df7f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad91c5d13c7759afc441514fbecd15b03"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ad91c5d13c7759afc441514fbecd15b03"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:ad91c5d13c7759afc441514fbecd15b03"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Plus.html">arithmetic::Plus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#ad91c5d13c7759afc441514fbecd15b03">operator+</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:ad91c5d13c7759afc441514fbecd15b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa6e6f134e01942c3672cb88600c39e6"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:afa6e6f134e01942c3672cb88600c39e6"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:afa6e6f134e01942c3672cb88600c39e6"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Plus.html">arithmetic::Plus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#afa6e6f134e01942c3672cb88600c39e6">operator+</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
 <tr class="separator:afa6e6f134e01942c3672cb88600c39e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a143524003fb1febe1cc19d4384633387"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a143524003fb1febe1cc19d4384633387"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a143524003fb1febe1cc19d4384633387"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Minus.html">arithmetic::Minus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a143524003fb1febe1cc19d4384633387">operator-</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:a143524003fb1febe1cc19d4384633387"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a518d04b0d4c06b90626fe7c3f6409400"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a518d04b0d4c06b90626fe7c3f6409400"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a518d04b0d4c06b90626fe7c3f6409400"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Minus.html">arithmetic::Minus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a518d04b0d4c06b90626fe7c3f6409400">operator-</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:a518d04b0d4c06b90626fe7c3f6409400"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a0fc2da0f68c06bd77373d73784cc1c"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a4a0fc2da0f68c06bd77373d73784cc1c"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a4a0fc2da0f68c06bd77373d73784cc1c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Minus.html">arithmetic::Minus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a4a0fc2da0f68c06bd77373d73784cc1c">operator-</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
 <tr class="separator:a4a0fc2da0f68c06bd77373d73784cc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20861857eee19d621d6c15cd8ef8f71c"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a20861857eee19d621d6c15cd8ef8f71c"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a20861857eee19d621d6c15cd8ef8f71c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Multiplies.html">arithmetic::Multiplies</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a20861857eee19d621d6c15cd8ef8f71c">operator*</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:a20861857eee19d621d6c15cd8ef8f71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af64fd62fcd30992d66f69b7b4075dc26"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:af64fd62fcd30992d66f69b7b4075dc26"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:af64fd62fcd30992d66f69b7b4075dc26"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Multiplies.html">arithmetic::Multiplies</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#af64fd62fcd30992d66f69b7b4075dc26">operator*</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:af64fd62fcd30992d66f69b7b4075dc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11fce6d57ef8ddbad02b1379bc4c36f4"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a11fce6d57ef8ddbad02b1379bc4c36f4"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a11fce6d57ef8ddbad02b1379bc4c36f4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Multiplies.html">arithmetic::Multiplies</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a11fce6d57ef8ddbad02b1379bc4c36f4">operator*</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
 <tr class="separator:a11fce6d57ef8ddbad02b1379bc4c36f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae776b6c8e90129ea843a28b27a32a352"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ae776b6c8e90129ea843a28b27a32a352"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:ae776b6c8e90129ea843a28b27a32a352"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Divides.html">arithmetic::Divides</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#ae776b6c8e90129ea843a28b27a32a352">operator/</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:ae776b6c8e90129ea843a28b27a32a352"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b880a3add04b359da5b9e9032b263f9"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a9b880a3add04b359da5b9e9032b263f9"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a9b880a3add04b359da5b9e9032b263f9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Divides.html">arithmetic::Divides</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a9b880a3add04b359da5b9e9032b263f9">operator/</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:a9b880a3add04b359da5b9e9032b263f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af09ef3f3aadfeb20d96974016f16d882"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:af09ef3f3aadfeb20d96974016f16d882"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:af09ef3f3aadfeb20d96974016f16d882"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Divides.html">arithmetic::Divides</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#af09ef3f3aadfeb20d96974016f16d882">operator/</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
 <tr class="separator:af09ef3f3aadfeb20d96974016f16d882"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a994b778fa2d262b62c40120127958171"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a994b778fa2d262b62c40120127958171"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a994b778fa2d262b62c40120127958171"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Modulus.html">arithmetic::Modulus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a994b778fa2d262b62c40120127958171">operator%</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:a994b778fa2d262b62c40120127958171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c7810b881be6053287fe1baa5174cee"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a0c7810b881be6053287fe1baa5174cee"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a0c7810b881be6053287fe1baa5174cee"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Modulus.html">arithmetic::Modulus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a0c7810b881be6053287fe1baa5174cee">operator%</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:a0c7810b881be6053287fe1baa5174cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e45fd770a6dba06933bd752d63461c9"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a1e45fd770a6dba06933bd752d63461c9"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:a1e45fd770a6dba06933bd752d63461c9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1arithmetic_1_1Modulus.html">arithmetic::Modulus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;::type, typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a1e45fd770a6dba06933bd752d63461c9">operator%</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
 <tr class="separator:a1e45fd770a6dba06933bd752d63461c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae59af1c42055db877a0dfe61e6334449"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled.html#ae59af1c42055db877a0dfe61e6334449">operator==</a> (const <a class="el" href="classpixled_1_1color.html">color</a> &amp;c1, const <a class="el" href="classpixled_1_1color.html">color</a> &amp;c2)</td></tr>
 <tr class="separator:ae59af1c42055db877a0dfe61e6334449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53c58e1dcebf8c495badb5eee526504d"><td class="memTemplParams" colspan="2"><a id="a53c58e1dcebf8c495badb5eee526504d"></a>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a53c58e1dcebf8c495badb5eee526504d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:a53c58e1dcebf8c495badb5eee526504d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae459c184b3aad716ee6104a05fe37238"><td class="memTemplParams" colspan="2"><a id="ae459c184b3aad716ee6104a05fe37238"></a>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:ae459c184b3aad716ee6104a05fe37238"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:ae459c184b3aad716ee6104a05fe37238"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c6ff7cce0d2831840417244bce23360"><td class="memTemplParams" colspan="2"><a id="a4c6ff7cce0d2831840417244bce23360"></a>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a4c6ff7cce0d2831840417244bce23360"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:a4c6ff7cce0d2831840417244bce23360"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a258781c732db2f7a0a1eca835f353643"><td class="memTemplParams" colspan="2"><a id="a258781c732db2f7a0a1eca835f353643"></a>
 template&lt;typename To , typename From &gt; </td></tr>
 <tr class="memitem:a258781c732db2f7a0a1eca835f353643"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1detail_1_1Cast.html">detail::Cast</a>&lt; To, typename From::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Cast</b> (From &amp;&amp;from)</td></tr>
@@ -303,7 +317,7 @@ Variables</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Plus.html">arithmetic::Plus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator+ </td>
@@ -350,7 +364,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Plus.html">arithmetic::Plus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type&gt; pixled::operator+ </td>
@@ -397,7 +411,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Plus.html">arithmetic::Plus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type&gt; pixled::operator+ </td>
@@ -444,7 +458,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Minus.html">arithmetic::Minus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator- </td>
@@ -491,7 +505,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Minus.html">arithmetic::Minus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type&gt; pixled::operator- </td>
@@ -538,7 +552,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Minus.html">arithmetic::Minus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type&gt; pixled::operator- </td>
@@ -585,7 +599,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Multiplies.html">arithmetic::Multiplies</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator* </td>
@@ -634,7 +648,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Multiplies.html">arithmetic::Multiplies</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator* </td>
@@ -683,7 +697,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Multiplies.html">arithmetic::Multiplies</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type&gt; pixled::operator* </td>
@@ -732,7 +746,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Divides.html">arithmetic::Divides</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator/ </td>
@@ -779,7 +793,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Divides.html">arithmetic::Divides</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator/ </td>
@@ -826,7 +840,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Divides.html">arithmetic::Divides</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt; pixled::operator/ </td>
@@ -873,7 +887,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Modulus.html">arithmetic::Modulus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator% </td>
@@ -920,7 +934,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; !std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Modulus.html">arithmetic::Modulus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator% </td>
@@ -967,7 +981,7 @@ template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::ena
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Arg1 , typename Arg2 , typename Enable  = typename std::enable_if&lt;			!std::is_arithmetic&lt;typename std::remove_reference&lt;Arg1&gt;::type&gt;::value				&amp;&amp; std::is_arithmetic&lt;typename std::remove_reference&lt;Arg2&gt;::type&gt;::value&gt;::type&gt; </div>
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1arithmetic_1_1Modulus.html">arithmetic::Modulus</a>&lt; typename std::common_type&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt;::type, typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt; pixled::operator% </td>

@@ -39,9 +39,10 @@ namespace pixled {
 	 * type between `Arg1::Type` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Plus<
 			// R
 			typename std::common_type<
@@ -71,9 +72,10 @@ namespace pixled {
 	 * type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			!is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Plus<
 			// R
 			typename std::common_type<
@@ -103,9 +105,10 @@ namespace pixled {
 	 * type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			!is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Plus<
 			// R
 			typename std::common_type<
@@ -154,9 +157,10 @@ namespace pixled {
 	 * type between `Arg1::Type` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Minus<
 			// R
 			typename std::common_type<
@@ -187,9 +191,10 @@ namespace pixled {
 	 * type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			!is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Minus<
 			// R
 			typename std::common_type<
@@ -219,9 +224,10 @@ namespace pixled {
 	 * type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			!is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Minus<
 			// R
 			typename std::common_type<
@@ -269,9 +275,10 @@ namespace pixled {
 	 * fundamental type between `Arg1::Type` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Multiplies<
 			// R
 			typename std::common_type<
@@ -301,9 +308,10 @@ namespace pixled {
 	 * fundamental type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			!is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Multiplies<
 			// R
 			typename std::common_type<
@@ -334,9 +342,10 @@ namespace pixled {
 	 * fundamental type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			!is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Multiplies<
 			// R
 			typename std::common_type<
@@ -388,9 +397,10 @@ namespace pixled {
 	 * fundamental type between `Arg1::Type` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Divides<
 			// R
 			typename std::common_type<
@@ -420,9 +430,10 @@ namespace pixled {
 	 * fundamental type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			!is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Divides<
 			// R
 			typename std::common_type<
@@ -452,9 +463,10 @@ namespace pixled {
 	 * fundamental type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			!is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Divides<
 			// R
 			typename std::common_type<
@@ -503,9 +515,10 @@ namespace pixled {
 	 * type between `Arg1::Type` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Modulus<
 			// R
 			typename std::common_type<
@@ -535,9 +548,10 @@ namespace pixled {
 	 * type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& !std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			!is_pixled_function<Arg1>::value &&
+			is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Modulus<
 			// R
 			typename std::common_type<
@@ -567,9 +581,10 @@ namespace pixled {
 	 * type between `Arg1` and `Arg2::Type`.
 	 */
 	template<typename Arg1, typename Arg2,
-		typename Enable = typename std::enable_if<
-			!std::is_arithmetic<typename std::remove_reference<Arg1>::type>::value
-				&& std::is_arithmetic<typename std::remove_reference<Arg2>::type>::value>::type>
+		typename std::enable_if<
+			is_pixled_function<Arg1>::value &&
+			!is_pixled_function<Arg2>::value, bool
+			>::type = true>
 			arithmetic::Modulus<
 			// R
 			typename std::common_type<

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['x_193',['X',['../classpixled_1_1geometry_1_1X.html',1,'pixled::geometry']]],
-  ['x_194',['x',['../structpixled_1_1point.html#a4e64146eb6abe055b0ecde418aab1006',1,'pixled::point']]],
-  ['xline_195',['XLine',['../classpixled_1_1geometry_1_1XLine.html',1,'pixled::geometry']]]
+  ['wave_193',['Wave',['../classpixled_1_1animation_1_1Wave.html',1,'pixled::animation']]],
+  ['width_194',['width',['../classpixled_1_1box.html#ad75c025b6455ac1ff889f817da2639ae',1,'pixled::box::width()'],['../classpixled_1_1mapping_1_1LedPanel.html#ae78dc2b906f8fbdf9bbc11ebf0d1e0e2',1,'pixled::mapping::LedPanel::width()']]],
+  ['write_195',['write',['../classpixled_1_1Output.html#af50ab09800c71d48c3f3e28ca3df35fd',1,'pixled::Output']]]
 ];

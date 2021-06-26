@@ -10,6 +10,12 @@
 namespace pixled {
 	namespace base {
 		/**
+		 * An utility void structure from which all \Function inherits, useful
+		 * to implement is_pixled_function.
+		 */
+		struct PixledFunctionTrait {};
+
+		/**
 		 * Generic Function interface, that can be used as arguments for
 		 * other Functions.
 		 *
@@ -24,7 +30,7 @@ namespace pixled {
 		 * @see pixled::Function
 		 */
 		template<typename R>
-			class Function {
+			class Function : private PixledFunctionTrait {
 				public:
 					/**
 					 * Function return type.
@@ -58,6 +64,28 @@ namespace pixled {
 					virtual ~Function() {}
 			};
 	}
+
+	/**
+	 * Checks if the specified type T is a pixled::Function.
+	 *
+	 * Can be used to easily generate SFINAE condition for operators
+	 * overloading (see pixled/arithmetic/arithmetic.h).
+	 *
+	 * @tparam T type to check
+	 */
+	template<typename T>
+		struct is_pixled_function {
+			/**
+			 * True iff a type R exists such as T implements \Function{R}, i.e.
+			 * base::PixledFunctionTrait is a base of T.
+			 */
+			static constexpr bool value =
+				std::is_base_of<
+				base::PixledFunctionTrait,
+				typename std::remove_reference<T>::type
+					>::value;
+		};
+
 
 	/**
 	 * A base::Function that returns a constant value on any point at any

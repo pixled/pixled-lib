@@ -1,5 +1,6 @@
 <map id="pixled::geometry::Point" name="pixled::geometry::Point">
-<area shape="rect" id="node1" title=" " alt="" coords="29,169,185,196"/>
-<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="5,80,208,121"/>
-<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="15,5,199,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="29,259,185,285"/>
+<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="5,169,208,211"/>
+<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="15,95,199,121"/>
+<area shape="rect" id="node4" href="$structpixled_1_1base_1_1PixledFunctionTrait.html" title=" " alt="" coords="13,5,200,47"/>
 </map>

@@ -1,5 +1,6 @@
 <map id="pixled::animation::LinearUnitWave" name="pixled::animation::LinearUnitWave">
-<area shape="rect" id="node1" title=" " alt="" coords="33,184,161,225"/>
-<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="5,80,189,136"/>
-<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="5,5,189,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="35,273,163,315"/>
+<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="7,169,191,225"/>
+<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="7,95,191,121"/>
+<area shape="rect" id="node4" href="$structpixled_1_1base_1_1PixledFunctionTrait.html" title=" " alt="" coords="5,5,192,47"/>
 </map>

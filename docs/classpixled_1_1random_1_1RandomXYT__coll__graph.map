@@ -1,5 +1,6 @@
 <map id="pixled::random::RandomXYT" name="pixled::random::RandomXYT">
-<area shape="rect" id="node1" title=" " alt="" coords="85,95,276,121"/>
-<area shape="rect" id="node2" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="5,5,156,47"/>
-<area shape="rect" id="node3" href="$classpixled_1_1random_1_1RandomEngineConfig.html" title=" " alt="" coords="180,5,384,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="103,184,294,211"/>
+<area shape="rect" id="node2" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="23,95,174,136"/>
+<area shape="rect" id="node3" href="$structpixled_1_1base_1_1PixledFunctionTrait.html" title=" " alt="" coords="5,5,192,47"/>
+<area shape="rect" id="node4" href="$classpixled_1_1random_1_1RandomEngineConfig.html" title=" " alt="" coords="198,95,402,136"/>
 </map>

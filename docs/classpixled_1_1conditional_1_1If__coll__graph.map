@@ -1,5 +1,6 @@
 <map id="pixled::conditional::If&lt; IF_t, ELSE_t &gt;" name="pixled::conditional::If&lt; IF_t, ELSE_t &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="444,27,583,69"/>
-<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="237,5,396,91"/>
-<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="5,35,189,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="679,27,817,69"/>
+<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="472,5,631,91"/>
+<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="240,35,424,61"/>
+<area shape="rect" id="node4" href="$structpixled_1_1base_1_1PixledFunctionTrait.html" title=" " alt="" coords="5,27,192,69"/>
 </map>

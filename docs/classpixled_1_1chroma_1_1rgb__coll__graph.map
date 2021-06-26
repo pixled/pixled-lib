@@ -1,5 +1,6 @@
 <map id="pixled::chroma::rgb" name="pixled::chroma::rgb">
-<area shape="rect" id="node1" title=" " alt="" coords="14,199,147,225"/>
-<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="7,95,155,151"/>
-<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="32,288,165,315"/>
+<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="25,184,173,240"/>
+<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="23,95,174,136"/>
+<area shape="rect" id="node4" href="$structpixled_1_1base_1_1PixledFunctionTrait.html" title=" " alt="" coords="5,5,192,47"/>
 </map>

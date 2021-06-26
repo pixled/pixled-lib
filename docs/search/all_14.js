@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['wave_190',['Wave',['../classpixled_1_1animation_1_1Wave.html',1,'pixled::animation']]],
-  ['width_191',['width',['../classpixled_1_1box.html#ad75c025b6455ac1ff889f817da2639ae',1,'pixled::box::width()'],['../classpixled_1_1mapping_1_1LedPanel.html#ae78dc2b906f8fbdf9bbc11ebf0d1e0e2',1,'pixled::mapping::LedPanel::width()']]],
-  ['write_192',['write',['../classpixled_1_1Output.html#af50ab09800c71d48c3f3e28ca3df35fd',1,'pixled::Output']]]
+  ['value_192',['value',['../structpixled_1_1is__pixled__function.html#a971f5c8b07cfb33932726988d7972b3d',1,'pixled::is_pixled_function']]]
 ];

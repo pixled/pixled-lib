@@ -1,9 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="5,100,156,141"/>
-<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="204,5,411,47"/>
-<area shape="rect" id="node4" href="$classpixled_1_1Function.html" title=" " alt="" coords="216,71,399,112"/>
-<area shape="rect" id="node6" href="$classpixled_1_1geometry_1_1X.html" title=" " alt="" coords="240,137,375,163"/>
-<area shape="rect" id="node7" href="$classpixled_1_1geometry_1_1Y.html" title=" " alt="" coords="240,187,375,214"/>
-<area shape="rect" id="node3" href="$classpixled_1_1geometry_1_1LineDistance.html" title=" " alt="" coords="459,13,661,39"/>
-<area shape="rect" id="node5" href="$classpixled_1_1geometry_1_1Distance.html" title=" " alt="" coords="471,78,649,105"/>
+<area shape="rect" id="node1" href="$classpixled_1_1box.html" title=" " alt="" coords="5,5,91,32"/>
+<area shape="rect" id="node2" href="$classpixled_1_1bounding__box.html" title=" " alt="" coords="139,5,283,32"/>
 </map>

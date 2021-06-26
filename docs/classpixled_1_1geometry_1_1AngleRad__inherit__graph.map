@@ -1,5 +1,6 @@
 <map id="pixled::geometry::AngleRad" name="pixled::geometry::AngleRad">
-<area shape="rect" id="node1" title=" " alt="" coords="7,169,190,196"/>
-<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="5,80,192,121"/>
-<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="7,5,191,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="7,259,190,285"/>
+<area shape="rect" id="node2" href="$classpixled_1_1Function.html" title=" " alt="" coords="5,169,192,211"/>
+<area shape="rect" id="node3" href="$classpixled_1_1base_1_1Function.html" title=" " alt="" coords="7,95,191,121"/>
+<area shape="rect" id="node4" href="$structpixled_1_1base_1_1PixledFunctionTrait.html" title=" " alt="" coords="5,5,192,47"/>
 </map>
