@@ -2,8 +2,8 @@
 
 namespace pixled {
 	void Runtime::frame(time t) {
-		for(std::pair<point, std::size_t> c : map) {
-			output.write(animation(c.first, t), c.second);
+		for(auto led : mapping.leds()) {
+			output.write(animation(led.location, t), led.index);
 		}
 	}
 	void Runtime::prev() {

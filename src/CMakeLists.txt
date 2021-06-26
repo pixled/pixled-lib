@@ -2,6 +2,7 @@ add_library(pixled
 	pixled/geometry.cpp
 	pixled/color.cpp
 	pixled/runtime.cpp
+	pixled/mapping.cpp
 	pixled/chroma/chroma.cpp
 	pixled/mapping/mapping.cpp
 	pixled/animation/animation.cpp

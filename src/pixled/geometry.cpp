@@ -12,6 +12,14 @@ namespace pixled {
 		return angle(PI*value/180.f);
 	}
 
+	angle operator+(const angle& a, const angle& b) {
+		return angle(a.value+b.value);
+	}
+
+	angle operator-(const angle& a, const angle& b) {
+		return angle(a.value-b.value);
+	}
+
 	line::line(point p, angle alpha)
 		: b(1), a(-tan(alpha)), c(-p.y + p.x * tan(alpha)) {}
 	line::line(point p0, point p1) {
@@ -36,6 +44,15 @@ namespace pixled {
 			return (c1.x == c2.x) && (c1.y == c2.y);
 	}
 
+	bool point_equal::operator()(const point& p1, const point& p2) const {
+		return p1 == p2;
+	}
+
+	std::ostream& operator<<(std::ostream& o, const point& p) {
+		o << "(" << p.x << "," << p.y << ")";
+		return o;
+	}
+
 	float cos(const angle& a) {
 		return std::cos(a.toRad());
 	}
@@ -48,8 +65,44 @@ namespace pixled {
 		return std::tan(a.toRad());
 	}
 
-	std::ostream& operator<<(std::ostream& o, const point& p) {
-		o << "(" << p.x << "," << p.y << ")";
-		return o;
+
+	box::box() : box({0, 0}, 0, 0) {}
+	box::box(point position, coordinate width, coordinate height)
+		: _position(position), _width(width), _height(height) {}
+
+	bounding_box::bounding_box() {}
+	bounding_box::bounding_box(std::vector<point> points) {
+		for(auto point : points)
+			this->stretchTo(point);
+	}
+
+	void bounding_box::stretchTo(point p) {
+		if(!init) {
+			this->_position=p;
+			init=true;
+		} else {
+			if(p.x < this->_position.x) {
+				this->_width+=this->_position.x - p.x;
+				this->_position.x = p.x;
+			}
+			else if(p.x > this->_position.x + this->_width) {
+				this->_width = p.x - this->_position.x;
+			}
+			if(p.y < this->_position.y) {
+				this->_height+=this->_position.y - p.y;
+				this->_position.y = p.y;
+			}
+			else if(p.y > this->_position.y + this->_height) {
+				this->_height = p.y - this->_position.y;
+			}
+		}
+	}
+
+	point spiral::operator()(angle theta) {
+		float r = a + b * theta.toDeg();
+		return {
+			center.x + r*cos(theta),
+			center.y + r*sin(theta)
+		};
 	}
 }

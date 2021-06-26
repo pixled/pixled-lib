@@ -3,16 +3,22 @@
 
 #include "../function.h"
 
-namespace pixled { namespace chrono {
-	class T : public base::Function<time> {
-		public:
-			using Type = base::Function<time>::Type;
+namespace pixled {
+	/**
+	 * Namespace containing time related functions.
+	 */
+	namespace chrono {
+		/**
+		 * \Function that returns the current time.
+		 */
+		class T : public base::Function<time> {
+			public:
+				time operator()(point c, time t) const override {
+					return t;
+				}
 
-			time operator()(point c, time t) const override {
-				return t;
-			}
-
-			T* copy() const override {return new T;}
-	};
-}}
+				T* copy() const override {return new T;}
+		};
+	}
+}
 #endif

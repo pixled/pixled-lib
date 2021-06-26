@@ -20,5 +20,15 @@ namespace pixled { namespace conditional {
 						return this->template call<2>(c, t);
 				}
 		};
+
+	template<typename P1, typename P2>
+		class Equal : public Function<Equal<P1, P2>, bool, P1, P2> {
+			public:
+				using Function<Equal<P1, P2>, bool, P1, P2>::Function;
+
+				bool operator()(point p, time t) const override {
+					return this->template call<0>(p, t) == this->template call<1>(p, t);
+				};
+		};
 }}
 #endif

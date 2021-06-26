@@ -4,6 +4,9 @@
 #include "function.h"
 
 namespace pixled {
+	/**
+	 * Type used to represent the current frame.
+	 */
 	typedef unsigned long time;
 }
 #endif

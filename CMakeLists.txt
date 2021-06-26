@@ -11,6 +11,7 @@ if(NOT ESP_PLATFORM)
 
 	add_subdirectory(src)
 	add_subdirectory(tests)
+	#add_subdirectory(examples EXCLUDE_FROM_ALL)
 
 	include(CMakePackageConfigHelpers)
 	write_basic_package_version_file(
@@ -27,8 +28,11 @@ if(NOT ESP_PLATFORM)
 		file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs)
 		set(DOXYGEN_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs)
 		set(DOXYGEN_MACRO_EXPANSION "YES")
+		set(DOXYGEN_EXTRACT_STATIC "YES")
 		set(DOXYGEN_HTML_OUTPUT ".")
-		set(DOXYGEN_IMAGE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/docs/img)
+		set(DOXYGEN_IMAGE_PATH
+			${CMAKE_CURRENT_SOURCE_DIR}/examples/gif
+			)
 		set(DOXYGEN_SORT_MEMBER_DOCS "NO")
 		set(DOXYGEN_PREDEFINED "DOXYGEN_BUILD")
 		set(DOXYGEN_HAVE_DOT "YES")
@@ -37,7 +41,12 @@ if(NOT ESP_PLATFORM)
 		set(DOXYGEN_HIDE_FRIEND_COMPOUNDS "YES")
 		set(DOXYGEN_EXAMPLE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/examples)
 		set(DOXYGEN_ALIASES 
-			[[Function{1}="\ref api::Function \"api::Function<\1>\""]]
+			[[Function{1}="\ref base::Function \"base::Function<\1>\""]]
+			[[Function="\ref base::Function \"Function\""]]
+			[[function_call_operator="\ref function_call_operator \"base::Function::operator()(point, time)\""]]
+			[[Functions="\ref base::Function \"Functions\""]]
+			[[SFINAE="[SFINAE](https://en.cppreference.com/w/cpp/language/sfinae)"]]
+
 			)
 		doxygen_add_docs(doc
 			${CMAKE_CURRENT_SOURCE_DIR}/src

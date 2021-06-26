@@ -1,28 +1,29 @@
 #include "animation.h"
 
 namespace pixled { namespace animation {
-	float SinT::operator()(point c, time t) const {
-		return 0.5f * (std::sin(2*PI * t / this->call<0>(c, t)) + 1.f);
-	}
 
 	float Rainbow::operator()(point c, time t) const {
-		return 360.f * sin(c, t);
-			//180.f * (std::sin(2*PIXLED_PI * t / this->call<0>(c, t)) + 1.f);
+		return 180.f * (sin(c, t) + 1.f);
 	}
 
 	float RainbowWave::operator()(point p, time t) const {
-		float d = geometry::LineDistance(this->arg<1>(), p)(p, t);
-		return 180.f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
+		float d = geometry::LineDistance(this->arg<2>(), p)(p, t);
+		return 180.f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<1>(p, t))));
 	}
 
 	float RadialRainbowWave::operator()(point p, time t) const {
-		float d = geometry::Distance(this->arg<1>(), p)(p, t);
-		return 180.f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
+		float d = geometry::Distance(this->arg<2>(), p)(p, t);
+		return 180.f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<1>(p, t))));
 	}
 
-	float SpatialUnitWave::operator()(point p, time t) const {
-		float d = geometry::LineDistance(this->arg<1>(), p)(p, t);
-		return .5f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<2>(p, t))));
+	float LinearUnitWave::operator()(point p, time t) const {
+		float d = geometry::LineDistance(this->arg<2>(), p)(p, t);
+		return .5f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<1>(p, t))));
+	}
+
+	float RadialUnitWave::operator()(point p, time t) const {
+		float d = geometry::Distance(this->arg<2>(), p)(p, t);
+		return .5f * (1.f + std::sin(2*PI*(d / this->call<0>(p, t) - (float) t / this->call<1>(p, t))));
 	}
 
 	color Blooming::operator()(point c, time t) const {
@@ -40,17 +41,8 @@ namespace pixled { namespace animation {
 		if(b < epsilon)
 			b = 0.;
 
-		color.setHsb(
-				color.hue(),
-				color.saturation(),
-				b);
+		color.setBrightness(b);
 		return color;
-	}
-
-	color PixelView::operator()(point c, time t) const {
-		if (c.x == this->call<0>(c, t) && c.y == this->call<1>(c, t))
-			return this->call<2>(c, t);
-		return color();
 	}
 
 	color Sequence::operator()(point p, time t) const {

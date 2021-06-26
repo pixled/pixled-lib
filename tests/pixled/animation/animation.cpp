@@ -43,7 +43,7 @@ class SequenceTest : public ::testing::Test {
 		NiceMock<pixled::MockFunction<pixled::color>> f1;
 		NiceMock<pixled::MockFunction<pixled::color>> f2;
 		NiceMock<pixled::MockFunction<pixled::color>> f3;
-		std::vector<std::pair<pixled::animation::Animation, pixled::time>> anims;
+		std::vector<std::pair<pixled::FctWrapper<pixled::color>, pixled::time>> anims;
 
 		// Sequence constructor initialization
 		pixled::animation::Sequence seq {

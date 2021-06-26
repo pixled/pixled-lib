@@ -5,12 +5,12 @@
 
 namespace pixled { namespace mapping {
 	std::ostream& operator<<(std::ostream& o, const Mapping& m) {
-		std::map<long, std::map<long, std::size_t>> leds;
+		std::map<long, std::map<long, index_t>> leds;
 		long min_x = std::numeric_limits<long>::max();
-		for(auto led : m) {
-			if(std::lround(led.first.x) < min_x)
-				min_x = std::lround(led.first.x);
-			leds[std::lround(led.first.y)][std::lround(led.first.x)]=led.second;
+		for(auto led : m.leds()) {
+			if(std::lround(led.location.x) < min_x)
+				min_x = std::lround(led.location.x);
+			leds[std::lround(led.location.y)][std::lround(led.location.x)]=led.index;
 		}
 		if(leds.size() > 0) {
 			auto line = leds.rbegin();
@@ -64,18 +64,8 @@ namespace pixled { namespace mapping {
 		return o;
 	}
 
-	typename TurtleMapping::map_iterator TurtleMapping::begin() const {
-		return _leds.begin();
-	}
-	typename TurtleMapping::map_iterator TurtleMapping::end() const {
-		return _leds.end();
-	}
-	const std::vector<std::pair<point, std::size_t>>& TurtleMapping::leds() const {
-		return _leds;
-	}
-
-	void TurtleMapping::moveTo(point p, std::size_t num_led) {
-		for(std::size_t i = 0; i < num_led; i++) {
+	void TurtleMapping::moveTo(point p, index_t num_led) {
+		for(index_t i = 0; i < num_led; i++) {
 			point led_p1 {
 				turtle_position.x + i * (p.x - turtle_position.x) / (num_led),
 				turtle_position.y + i * (p.y - turtle_position.y) / (num_led)
@@ -88,7 +78,7 @@ namespace pixled { namespace mapping {
 				led_p1.x + (led_p2.x - led_p1.x) / 2,
 				led_p1.y + (led_p2.y - led_p1.y) / 2
 			};
-			_leds.push_back({led_point, current_led_index++});
+			this->push({led_point, current_led_index++});
 		}
 		turtle_position = p;
 	}
@@ -105,11 +95,11 @@ namespace pixled { namespace mapping {
 		return turtle_orientation;
 	}
 
-	std::size_t TurtleMapping::ledIndex() const {
+	index_t TurtleMapping::ledIndex() const {
 		return current_led_index;
 	}
 
-	void TurtleMapping::forward(coordinate distance, std::size_t num_led) {
+	void TurtleMapping::forward(coordinate distance, index_t num_led) {
 		moveTo({
 			turtle_position.x + distance * std::cos(turtle_orientation.toRad()),
 			turtle_position.y + distance * std::sin(turtle_orientation.toRad())
@@ -124,11 +114,11 @@ namespace pixled { namespace mapping {
 		turtle_orientation -= angle;
 	}
 
-	StripMapping::StripMapping(std::size_t num_led) {
-		forward(num_led, num_led);
+	LedStrip::LedStrip(index_t length) : length(length) {
+		forward(length, length);
 	}
 
-	LedPanel::LedPanel(std::size_t width, std::size_t height, PANEL_LINKING linking)
+	LedPanel::LedPanel(index_t width, index_t height, PANEL_LINKING linking)
 		: _width(width), _height(height) {
 		switch(linking) {
 			case LEFT_RIGHT_LEFT_RIGHT_FROM_BOTTOM:
@@ -194,46 +184,46 @@ namespace pixled { namespace mapping {
 		}
 	}
 
-	void LedPanel::drawLeftRightLeftRightFromBottom(std::size_t width, std::size_t height) {
+	void LedPanel::drawLeftRightLeftRightFromBottom(index_t width, index_t height) {
 		// init in (0, 0), angle = 0
-		for(std::size_t h = 0; h < height; h++) {
+		for(index_t h = 0; h < height; h++) {
 			jump(point(0, h));
 			forward(width, width);
 		}
 	}
 	
-	void LedPanel::drawRightLeftRightLeftFromBottom(std::size_t width, std::size_t height) {
+	void LedPanel::drawRightLeftRightLeftFromBottom(index_t width, index_t height) {
 		// init in (0, 0), angle = 0
 		turnLeft(angle::fromDeg(180));
-		for(std::size_t h = 0; h < height; h++) {
+		for(index_t h = 0; h < height; h++) {
 			jump(point(width, h));
 			forward(width, width);
 		}
 	}
 
-	void LedPanel::drawLeftRightLeftRightFromTop(std::size_t width, std::size_t height) {
+	void LedPanel::drawLeftRightLeftRightFromTop(index_t width, index_t height) {
 		// init in (0, 0), angle = 0
-		for(std::size_t h = 1; h <= height; h++) {
+		for(index_t h = 1; h <= height; h++) {
 			jump(point(0, height-h));
 			forward(width, width);
 		}
 	}
 	
-	void LedPanel::drawRightLeftRightLeftFromTop(std::size_t width, std::size_t height) {
+	void LedPanel::drawRightLeftRightLeftFromTop(index_t width, index_t height) {
 		// init in (0, 0), angle = 0
 		turnLeft(angle::fromDeg(180));
-		for(std::size_t h = 1; h <= height; h++) {
+		for(index_t h = 1; h <= height; h++) {
 			jump(point(width, height-h));
 			forward(width, width);
 		}
 	}
 
-	void LedPanel::drawHorizontalSnakeFromBottom(std::size_t width, std::size_t height) {
+	void LedPanel::drawHorizontalSnakeFromBottom(index_t width, index_t height) {
 		bool left_to_right = false;
 		if(cos(orientation()) > 0)
 			left_to_right = true;
 		// init in (0, 0), angle = 0
-		for(std::size_t h = 0; h < height; h++) {
+		for(index_t h = 0; h < height; h++) {
 			forward(width, width);
 			if(left_to_right) {
 				turnLeft(angle::fromDeg(180));
@@ -247,12 +237,12 @@ namespace pixled { namespace mapping {
 		}
 	}
 
-	void LedPanel::drawHorizontalSnakeFromTop(std::size_t width, std::size_t height) {
+	void LedPanel::drawHorizontalSnakeFromTop(index_t width, index_t height) {
 		bool left_to_right = false;
 		if(cos(orientation()) > 0)
 			left_to_right = true;
 		// init in (0, 0), angle = 0
-		for(std::size_t h = 1; h <= height; h++) {
+		for(index_t h = 1; h <= height; h++) {
 			forward(width, width);
 			if(left_to_right) {
 				turnLeft(angle::fromDeg(180));
@@ -266,29 +256,29 @@ namespace pixled { namespace mapping {
 		}
 	}
 
-	void LedPanel::drawTopDownTopDownFromLeft(std::size_t width, std::size_t height) {
+	void LedPanel::drawTopDownTopDownFromLeft(index_t width, index_t height) {
 		// init in (0, 0), angle = 0
 		turnRight(angle::fromDeg(90));
-		for(std::size_t w = 0; w < width; w++) {
+		for(index_t w = 0; w < width; w++) {
 			jump(point(w, height));
 			forward(height, height);
 		}
 	}
 	
-	void LedPanel::drawDownTopDownTopFromLeft(std::size_t width, std::size_t height) {
+	void LedPanel::drawDownTopDownTopFromLeft(index_t width, index_t height) {
 		// init in (0, 0), angle = 0
 		turnLeft(angle::fromDeg(90));
-		for(std::size_t w = 0; w < width; w++) {
+		for(index_t w = 0; w < width; w++) {
 			jump(point(w, 0));
 			forward(height, height);
 		}
 	}
-	void LedPanel::drawVerticalSnakeFromLeft(std::size_t width, std::size_t height) {
+	void LedPanel::drawVerticalSnakeFromLeft(index_t width, index_t height) {
 		bool down_to_top = false;
 		if(sin(orientation()) > 0)
 			down_to_top = true;
 		// init in (0, 0), angle = 0
-		for(std::size_t w = 0; w < width; w++) {
+		for(index_t w = 0; w < width; w++) {
 			forward(height, height);
 			if(down_to_top) {
 				turnLeft(angle::fromDeg(180));
@@ -302,29 +292,29 @@ namespace pixled { namespace mapping {
 		}
 	}
 
-	void LedPanel::drawTopDownTopDownFromRight(std::size_t width, std::size_t height) {
+	void LedPanel::drawTopDownTopDownFromRight(index_t width, index_t height) {
 		// init in (0, 0), angle = 0
 		turnRight(angle::fromDeg(90));
-		for(std::size_t w = 1; w <= width; w++) {
+		for(index_t w = 1; w <= width; w++) {
 			jump(point(width-w, height));
 			forward(height, height);
 		}
 	}
 	
-	void LedPanel::drawDownTopDownTopFromRight(std::size_t width, std::size_t height) {
+	void LedPanel::drawDownTopDownTopFromRight(index_t width, index_t height) {
 		// init in (0, 0), angle = 0
 		turnLeft(angle::fromDeg(90));
-		for(std::size_t w = 1; w <= width; w++) {
+		for(index_t w = 1; w <= width; w++) {
 			jump(point(width-w, 0));
 			forward(height, height);
 		}
 	}
-	void LedPanel::drawVerticalSnakeFromRight(std::size_t width, std::size_t height) {
+	void LedPanel::drawVerticalSnakeFromRight(index_t width, index_t height) {
 		bool down_to_top = false;
 		if(sin(orientation()) > 0)
 			down_to_top = true;
 		// init in (0, 0), angle = 0
-		for(std::size_t w = 1; w <= width; w++) {
+		for(index_t w = 1; w <= width; w++) {
 			forward(height, height);
 			if(down_to_top) {
 				turnLeft(angle::fromDeg(180));
