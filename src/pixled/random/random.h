@@ -95,11 +95,12 @@ namespace pixled { namespace random {
 	class RandomXYT : public base::Function<random_engine>, RandomEngineConfig {
 		private:
 			mutable time current_period = 0;
-			mutable std::minstd_rand rd_seeder;
+			mutable random_engine rd_seeder {this->seed};
 			mutable std::uniform_int_distribution<unsigned long> rd_seed;
 			mutable std::unordered_map<point, random_engine, point_hash, point_equal> rds;
 		public:
 			using RandomEngineConfig::RandomEngineConfig;
+
 			/*
 			 * f = period 
 			 */

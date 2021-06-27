@@ -68,7 +68,7 @@ namespace pixled {
 	/**
 	 * Checks if the specified type T is a pixled::Function.
 	 *
-	 * Can be used to easily generate SFINAE condition for operators
+	 * Can be used to easily generate SFINAE condition for operator
 	 * overloading (see pixled/arithmetic/arithmetic.h).
 	 *
 	 * @tparam T type to check

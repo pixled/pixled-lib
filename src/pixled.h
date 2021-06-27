@@ -14,7 +14,8 @@
 namespace pixled {
 	using namespace chroma;
 	using namespace animation;
-	using namespace arithmetic; using namespace conditional;
+	using namespace arithmetic;
+	using namespace conditional;
 	using namespace geometry;
 	using namespace mapping;
 	using namespace random;

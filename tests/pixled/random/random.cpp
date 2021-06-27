@@ -75,6 +75,24 @@ TEST(RandomT, uniform_float_test) {
 	ASSERT_NEAR(variance(values), std::pow(24, 2) / 12, 5);
 }
 
+TEST(RandomT, auto_seed) {
+	auto random_1 = pixled::random::RandomT(1);
+	auto random_2 = pixled::random::RandomT(1);
+
+	auto dist_1 = pixled::random::UniformDistribution<int>(0, 255, random_1);
+	auto dist_2 = pixled::random::UniformDistribution<int>(0, 255, random_2);
+
+	std::array<int, 1000> values_1;
+	std::array<int, 1000> values_2;
+
+	for(int i = 0; i < 1000; i++) {
+		values_1[i] = dist_1({0, 0}, i);
+		values_2[i] = dist_2({0, 0}, i);
+	}
+
+	ASSERT_THAT(values_1, Not(ElementsAreArray(values_2)));
+}
+
 // For a given t, RandomXYT is supposed to yield independent random value sequences for each point.
 TEST(RandomXYT, uniform_int_test) {
 	pixled::random::RandomXYT engine (10);
@@ -179,4 +197,22 @@ TEST(RandomXYT, normal_float_test) {
 	ASSERT_THAT(p1_values, Not(ElementsAreArray(p2_values)));
 	ASSERT_THAT(p1_values, Not(ElementsAreArray(p3_values)));
 	ASSERT_THAT(p2_values, Not(ElementsAreArray(p3_values)));
+}
+
+TEST(RandomXYT, auto_seed) {
+	auto random_1 = pixled::random::RandomXYT(1);
+	auto random_2 = pixled::random::RandomXYT(1);
+
+	auto dist_1 = pixled::random::UniformDistribution<int>(0, 255, random_1);
+	auto dist_2 = pixled::random::UniformDistribution<int>(0, 255, random_2);
+
+	std::array<int, 1000> values_1;
+	std::array<int, 1000> values_2;
+
+	for(int i = 0; i < 1000; i++) {
+		values_1[i] = dist_1({0, 0}, i);
+		values_2[i] = dist_2({0, 0}, i);
+	}
+
+	ASSERT_THAT(values_1, Not(ElementsAreArray(values_2)));
 }
