@@ -71,3 +71,183 @@ TEST_F(EqualOperator, constant_function) {
 	ASSERT_EQ(if_fct({2, 2}, 0), chroma::BLUE);
 	ASSERT_EQ(if_fct({0, 2}, 0), chroma::RED);
 }
+
+class NotEqualOperator : public OperatorTest {};
+
+TEST_F(NotEqualOperator, two_functions) {
+	auto if_fct = If<color>(
+			geometry::X() != geometry::Y(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({2, 4}, 0), chroma::BLUE);
+}
+
+TEST_F(NotEqualOperator, function_constant) {
+	auto if_fct = If<color>(
+			geometry::X() != 2,
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({0, 2}, 0), chroma::BLUE);
+
+}
+
+TEST_F(NotEqualOperator, constant_function) {
+	auto if_fct = If<color>(
+			2 != geometry::X(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({0, 2}, 0), chroma::BLUE);
+}
+
+class LessThanOperator : public OperatorTest {};
+
+TEST_F(LessThanOperator, two_functions) {
+	auto if_fct = If<color>(
+			geometry::X() < geometry::Y(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({2, 4}, 0), chroma::BLUE);
+}
+
+TEST_F(LessThanOperator, function_constant) {
+	auto if_fct = If<color>(
+			geometry::X() < 2,
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({0, 2}, 0), chroma::BLUE);
+
+}
+
+TEST_F(LessThanOperator, constant_function) {
+	auto if_fct = If<color>(
+			2 < geometry::X(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({4, 2}, 0), chroma::BLUE);
+}
+
+class LessThanOrEqualOperator : public OperatorTest {};
+
+TEST_F(LessThanOrEqualOperator, two_functions) {
+	auto if_fct = If<color>(
+			geometry::X() <= geometry::Y(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::BLUE);
+	ASSERT_EQ(if_fct({5, 4}, 0), chroma::RED);
+}
+
+TEST_F(LessThanOrEqualOperator, function_constant) {
+	auto if_fct = If<color>(
+			geometry::X() <= 2,
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::BLUE);
+	ASSERT_EQ(if_fct({3, 2}, 0), chroma::RED);
+
+}
+
+TEST_F(LessThanOrEqualOperator, constant_function) {
+	auto if_fct = If<color>(
+			2 <= geometry::X(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::BLUE);
+	ASSERT_EQ(if_fct({0, 2}, 0), chroma::RED);
+}
+
+class GreaterThanOperator : public OperatorTest {};
+
+TEST_F(GreaterThanOperator, two_functions) {
+	auto if_fct = If<color>(
+			geometry::X() > geometry::Y(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({4, 2}, 0), chroma::BLUE);
+}
+
+TEST_F(GreaterThanOperator, function_constant) {
+	auto if_fct = If<color>(
+			geometry::X() < 2,
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({0, 2}, 0), chroma::BLUE);
+
+}
+
+TEST_F(GreaterThanOperator, constant_function) {
+	auto if_fct = If<color>(
+			2 > geometry::X(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::RED);
+	ASSERT_EQ(if_fct({1, 4}, 0), chroma::BLUE);
+}
+
+class GreaterThanOrEqualOperator : public OperatorTest {};
+
+TEST_F(GreaterThanOrEqualOperator, two_functions) {
+	auto if_fct = If<color>(
+			geometry::X() >= geometry::Y(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::BLUE);
+	ASSERT_EQ(if_fct({4, 5}, 0), chroma::RED);
+}
+
+TEST_F(GreaterThanOrEqualOperator, function_constant) {
+	auto if_fct = If<color>(
+			geometry::X() >= 2,
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::BLUE);
+	ASSERT_EQ(if_fct({1, 3}, 0), chroma::RED);
+
+}
+
+TEST_F(GreaterThanOrEqualOperator, constant_function) {
+	auto if_fct = If<color>(
+			2 >= geometry::X(),
+			chroma::rgb(0, 0, 255),
+			chroma::rgb(255, 0, 0)
+			);
+
+	ASSERT_EQ(if_fct({2, 2}, 0), chroma::BLUE);
+	ASSERT_EQ(if_fct({3, 0}, 0), chroma::RED);
+}

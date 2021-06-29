@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['sawtooth_293',['Sawtooth',['../classpixled_1_1signal_1_1Sawtooth.html',1,'pixled::signal']]],
-  ['sequence_294',['Sequence',['../classpixled_1_1animation_1_1Sequence.html',1,'pixled::animation']]],
-  ['sequenceitem_295',['SequenceItem',['../structpixled_1_1animation_1_1SequenceItem.html',1,'pixled::animation']]],
-  ['sine_296',['Sine',['../classpixled_1_1signal_1_1Sine.html',1,'pixled::signal']]],
-  ['spiral_297',['spiral',['../classpixled_1_1spiral.html',1,'pixled']]],
-  ['square_298',['Square',['../classpixled_1_1signal_1_1Square.html',1,'pixled::signal']]]
+  ['radialrainbowwave_310',['RadialRainbowWave',['../classpixled_1_1animation_1_1RadialRainbowWave.html',1,'pixled::animation']]],
+  ['radialunitwave_311',['RadialUnitWave',['../classpixled_1_1animation_1_1RadialUnitWave.html',1,'pixled::animation']]],
+  ['rainbow_312',['Rainbow',['../classpixled_1_1animation_1_1Rainbow.html',1,'pixled::animation']]],
+  ['rainbowwave_313',['RainbowWave',['../classpixled_1_1animation_1_1RainbowWave.html',1,'pixled::animation']]],
+  ['randomengineconfig_314',['RandomEngineConfig',['../classpixled_1_1random_1_1RandomEngineConfig.html',1,'pixled::random']]],
+  ['randomt_315',['RandomT',['../classpixled_1_1random_1_1RandomT.html',1,'pixled::random']]],
+  ['randomxyt_316',['RandomXYT',['../classpixled_1_1random_1_1RandomXYT.html',1,'pixled::random']]],
+  ['rgb_317',['rgb',['../classpixled_1_1chroma_1_1rgb.html',1,'pixled::chroma']]],
+  ['runtime_318',['Runtime',['../classpixled_1_1Runtime.html',1,'pixled']]]
 ];

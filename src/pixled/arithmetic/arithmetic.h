@@ -11,6 +11,10 @@ namespace pixled {
 		 * @tparam R operation fundamental result type
 		 * @tparam P1 fundamental left operand type
 		 * @tparam P2 fundamental right operand type
+		 *
+		 * @param P1 left operand
+		 * @param P2 right operand
+		 * @retval R result of the + operation
 		 */
 		template<typename R, typename P1, typename P2>
 			class Plus : public Function<Plus<R, P1, P2>, R, P1, P2> {
@@ -29,8 +33,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` or
-	 * `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` and `Arg2` are pixled functions.
 	 *
 	 * @param f1 left operand: lvalue or rvalue to a \Function
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -62,8 +66,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand fundamental type
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` is
-	 * not arithmetic or if `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg2` is a pixled function and `Arg1` is not
 	 *
 	 * @param c1 left operand: arithmetic constant
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -95,8 +99,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand fundamental type
-	 * @tparam Enable \SFINAE condition: this overload is skipped if Arg1 or
-	 * Arg2 is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` is a pixled function and `Arg2` is not
 	 *
 	 * @param f1 left operand: arithmetic constant
 	 * @param c2 right operand: lvalue or rvalue to a \Function
@@ -129,6 +133,10 @@ namespace pixled {
 		 * @tparam R operation fundamental result type
 		 * @tparam P1 fundamental left operand type
 		 * @tparam P2 fundamental right operand type
+		 *
+		 * @param P1 left operand
+		 * @param P2 right operand
+		 * @retval R result of the - operation
 		 */
 		template<typename R, typename P1, typename P2>
 			class Minus : public Function<Minus<R, P1, P2>, R, P1, P2> {
@@ -147,8 +155,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` or
-	 * `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` and `Arg2` are pixled functions.
 	 *
 	 * @param f1 left operand: lvalue or rvalue to a \Function
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -181,8 +189,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand fundamental type
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` is
-	 * not arithmetic or if `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg2` is a pixled function and `Arg1` is not
 	 *
 	 * @param c1 left operand: arithmetic constant
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -214,8 +222,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand fundamental type
-	 * @tparam Enable \SFINAE condition: this overload is skipped if Arg1 or
-	 * Arg2 is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` is a pixled function and `Arg2` is not
 	 *
 	 * @param f1 left operand: arithmetic constant
 	 * @param c2 right operand: lvalue or rvalue to a \Function
@@ -248,6 +256,10 @@ namespace pixled {
 		 * @tparam R operation fundamental result type
 		 * @tparam P1 fundamental left operand type
 		 * @tparam P2 fundamental right operand type
+		 *
+		 * @param P1 left operand
+		 * @param P2 right operand
+		 * @retval R result of the * operation
 		 */
 		template<typename R, typename P1, typename P2>
 			class Multiplies : public Function<Multiplies<R, P1, P2>, R, P1, P2> {
@@ -265,8 +277,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` or
-	 * `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` and `Arg2` are pixled functions.
 	 *
 	 * @param f1 left operand: lvalue or rvalue to a \Function
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -298,8 +310,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand fundamental type
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` is
-	 * not arithmetic or if `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg2` is a pixled function and `Arg1` is not
 	 *
 	 * @param c1 left operand: arithmetic constant
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -332,8 +344,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand fundamental type
-	 * @tparam Enable \SFINAE condition: this overload is skipped if Arg1 or
-	 * Arg2 is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` is a pixled function and `Arg2` is not
 	 *
 	 * @param f1 left operand: arithmetic constant
 	 * @param c2 right operand: lvalue or rvalue to a \Function
@@ -370,6 +382,10 @@ namespace pixled {
 		 * @tparam R operation fundamental result type
 		 * @tparam P1 fundamental left operand type
 		 * @tparam P2 fundamental right operand type
+		 *
+		 * @param P1 left operand
+		 * @param P2 right operand
+		 * @retval R result of the / operation
 		 */
 		template<typename R, typename P1, typename P2>
 			class Divides : public Function<Divides<R, P1, P2>, R, P1, P2> {
@@ -387,8 +403,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` or
-	 * `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` and `Arg2` are pixled functions.
 	 *
 	 * @param f1 left operand: lvalue or rvalue to a \Function
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -420,8 +436,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand fundamental type
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` is
-	 * not arithmetic or if `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg2` is a pixled function and `Arg1` is not
 	 *
 	 * @param c1 left operand: arithmetic constant
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -453,8 +469,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand fundamental type
-	 * @tparam Enable \SFINAE condition: this overload is skipped if Arg1 or
-	 * Arg2 is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` is a pixled function and `Arg2` is not
 	 *
 	 * @param f1 left operand: arithmetic constant
 	 * @param c2 right operand: lvalue or rvalue to a \Function
@@ -488,6 +504,10 @@ namespace pixled {
 		 * @tparam R operation fundamental integer result type
 		 * @tparam P1 fundamental integer left operand type
 		 * @tparam P2 fundamental integer right operand type
+		 *
+		 * @param P1 left operand
+		 * @param P2 right operand
+		 * @retval R result of the % operation
 		 */
 		template<typename R, typename P1, typename P2>
 			class Modulus : public Function<Modulus<R, P1, P2>, R, P1, P2> {
@@ -505,8 +525,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` or
-	 * `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` and `Arg2` are pixled functions.
 	 *
 	 * @param f1 left operand: lvalue or rvalue to a \Function
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -538,8 +558,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand fundamental type
 	 * @tparam Arg2 automatically deduced right operand type (\Function)
-	 * @tparam Enable \SFINAE condition: this overload is skipped if `Arg1` is
-	 * not arithmetic or if `Arg2` is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg2` is a pixled function and `Arg1` is not
 	 *
 	 * @param c1 left operand: integer constant
 	 * @param f2 right operand: lvalue or rvalue to a \Function
@@ -571,8 +591,8 @@ namespace pixled {
 	 *
 	 * @tparam Arg1 automatically deduced left operand type (\Function)
 	 * @tparam Arg2 automatically deduced right operand fundamental type
-	 * @tparam Enable \SFINAE condition: this overload is skipped if Arg1 or
-	 * Arg2 is an arithmetic type.
+	 * @tparam Enable \SFINAE condition: this overload is considered only if
+	 * `Arg1` is a pixled function and `Arg2` is not
 	 *
 	 * @param f1 left operand: arithmetic constant
 	 * @param c2 right operand: lvalue or rvalue to a \Function

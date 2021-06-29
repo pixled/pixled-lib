@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['t_299',['T',['../classpixled_1_1chrono_1_1T.html',1,'pixled::chrono']]],
-  ['triangle_300',['Triangle',['../classpixled_1_1signal_1_1Triangle.html',1,'pixled::signal']]],
-  ['turtlemapping_301',['TurtleMapping',['../classpixled_1_1mapping_1_1TurtleMapping.html',1,'pixled::mapping']]]
+  ['sawtooth_319',['Sawtooth',['../classpixled_1_1signal_1_1Sawtooth.html',1,'pixled::signal']]],
+  ['sequence_320',['Sequence',['../classpixled_1_1animation_1_1Sequence.html',1,'pixled::animation']]],
+  ['sequenceitem_321',['SequenceItem',['../structpixled_1_1animation_1_1SequenceItem.html',1,'pixled::animation']]],
+  ['sine_322',['Sine',['../classpixled_1_1signal_1_1Sine.html',1,'pixled::signal']]],
+  ['spiral_323',['spiral',['../classpixled_1_1spiral.html',1,'pixled']]],
+  ['square_324',['Square',['../classpixled_1_1signal_1_1Square.html',1,'pixled::signal']]]
 ];

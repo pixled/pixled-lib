@@ -83,6 +83,8 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacepixled_1_1chrono"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled_1_1chrono.html">chrono</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacepixled_1_1conditional"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled_1_1conditional.html">conditional</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacepixled_1_1geometry"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled_1_1geometry.html">geometry</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacepixled_1_1mapping"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled_1_1mapping.html">mapping</a></td></tr>
@@ -189,18 +191,60 @@ Functions</h2></td></tr>
 <tr class="separator:a1e45fd770a6dba06933bd752d63461c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae59af1c42055db877a0dfe61e6334449"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled.html#ae59af1c42055db877a0dfe61e6334449">operator==</a> (const <a class="el" href="classpixled_1_1color.html">color</a> &amp;c1, const <a class="el" href="classpixled_1_1color.html">color</a> &amp;c2)</td></tr>
 <tr class="separator:ae59af1c42055db877a0dfe61e6334449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53c58e1dcebf8c495badb5eee526504d"><td class="memTemplParams" colspan="2"><a id="a53c58e1dcebf8c495badb5eee526504d"></a>
-template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
-<tr class="memitem:a53c58e1dcebf8c495badb5eee526504d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="memitem:a53c58e1dcebf8c495badb5eee526504d"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a53c58e1dcebf8c495badb5eee526504d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a53c58e1dcebf8c495badb5eee526504d">operator==</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:a53c58e1dcebf8c495badb5eee526504d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae459c184b3aad716ee6104a05fe37238"><td class="memTemplParams" colspan="2"><a id="ae459c184b3aad716ee6104a05fe37238"></a>
-template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
-<tr class="memitem:ae459c184b3aad716ee6104a05fe37238"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
-<tr class="separator:ae459c184b3aad716ee6104a05fe37238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c6ff7cce0d2831840417244bce23360"><td class="memTemplParams" colspan="2"><a id="a4c6ff7cce0d2831840417244bce23360"></a>
-template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
-<tr class="memitem:a4c6ff7cce0d2831840417244bce23360"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
-<tr class="separator:a4c6ff7cce0d2831840417244bce23360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9506b081ee327772c427cc957f51ba23"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a9506b081ee327772c427cc957f51ba23"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a9506b081ee327772c427cc957f51ba23">operator==</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
+<tr class="separator:a9506b081ee327772c427cc957f51ba23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a807f80272386f8c62ce251d87f7e34e7"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a807f80272386f8c62ce251d87f7e34e7"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a807f80272386f8c62ce251d87f7e34e7">operator==</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:a807f80272386f8c62ce251d87f7e34e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaff500974857f5f11b1f8ac9bbbdac9"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:abaff500974857f5f11b1f8ac9bbbdac9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1NotEqual.html">conditional::NotEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#abaff500974857f5f11b1f8ac9bbbdac9">operator!=</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:abaff500974857f5f11b1f8ac9bbbdac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb3b687a6fc3716497a90f265065b42b"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:afb3b687a6fc3716497a90f265065b42b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1NotEqual.html">conditional::NotEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#afb3b687a6fc3716497a90f265065b42b">operator!=</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
+<tr class="separator:afb3b687a6fc3716497a90f265065b42b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a353821daa02ca3b58389b95d15cee2f8"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a353821daa02ca3b58389b95d15cee2f8"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1NotEqual.html">conditional::NotEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a353821daa02ca3b58389b95d15cee2f8">operator!=</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:a353821daa02ca3b58389b95d15cee2f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b2e7187c8e7dbc08ff782304dc3558"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a36b2e7187c8e7dbc08ff782304dc3558"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a36b2e7187c8e7dbc08ff782304dc3558">operator&lt;</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:a36b2e7187c8e7dbc08ff782304dc3558"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ed1acfcb4c9127f9cfae2757465933"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:aa8ed1acfcb4c9127f9cfae2757465933"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#aa8ed1acfcb4c9127f9cfae2757465933">operator&lt;</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
+<tr class="separator:aa8ed1acfcb4c9127f9cfae2757465933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc24d79f03aabae5c69b540dd336801"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:aefc24d79f03aabae5c69b540dd336801"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#aefc24d79f03aabae5c69b540dd336801">operator&lt;</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:aefc24d79f03aabae5c69b540dd336801"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa717d947d58956537644767d916a7059"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:aa717d947d58956537644767d916a7059"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#aa717d947d58956537644767d916a7059">operator&lt;=</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:aa717d947d58956537644767d916a7059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee12de7a9e07ba92e39fae35227e20e"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a7ee12de7a9e07ba92e39fae35227e20e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a7ee12de7a9e07ba92e39fae35227e20e">operator&lt;=</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
+<tr class="separator:a7ee12de7a9e07ba92e39fae35227e20e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bf6da69cde9cb31289d5dfa872bf150"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a9bf6da69cde9cb31289d5dfa872bf150"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a9bf6da69cde9cb31289d5dfa872bf150">operator&lt;=</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:a9bf6da69cde9cb31289d5dfa872bf150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7cca5f9a69a2c1773ae25bfab3921be"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:ac7cca5f9a69a2c1773ae25bfab3921be"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#ac7cca5f9a69a2c1773ae25bfab3921be">operator&gt;</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:ac7cca5f9a69a2c1773ae25bfab3921be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdfeb8754ddb1181a78b0eec070c9705"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:afdfeb8754ddb1181a78b0eec070c9705"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#afdfeb8754ddb1181a78b0eec070c9705">operator&gt;</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
+<tr class="separator:afdfeb8754ddb1181a78b0eec070c9705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec8640699cf4a0e3e6fa7d0f2476b42c"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:aec8640699cf4a0e3e6fa7d0f2476b42c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#aec8640699cf4a0e3e6fa7d0f2476b42c">operator&gt;</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:aec8640699cf4a0e3e6fa7d0f2476b42c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e53f7f953e353a76db5fd372b835df8"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a7e53f7f953e353a76db5fd372b835df8"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a7e53f7f953e353a76db5fd372b835df8">operator&gt;=</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:a7e53f7f953e353a76db5fd372b835df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725b1a98d36aa8cb4ad824118fac076e"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:a725b1a98d36aa8cb4ad824118fac076e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type::Type, typename std::remove_reference&lt; Arg2 &gt;::type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a725b1a98d36aa8cb4ad824118fac076e">operator&gt;=</a> (Arg1 &amp;&amp;f1, Arg2 &amp;&amp;c2)</td></tr>
+<tr class="separator:a725b1a98d36aa8cb4ad824118fac076e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee10af2b85b208af9b771d9845df80be"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
+<tr class="memitem:aee10af2b85b208af9b771d9845df80be"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#aee10af2b85b208af9b771d9845df80be">operator&gt;=</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
+<tr class="separator:aee10af2b85b208af9b771d9845df80be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a258781c732db2f7a0a1eca835f353643"><td class="memTemplParams" colspan="2"><a id="a258781c732db2f7a0a1eca835f353643"></a>
 template&lt;typename To , typename From &gt; </td></tr>
 <tr class="memitem:a258781c732db2f7a0a1eca835f353643"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1detail_1_1Cast.html">detail::Cast</a>&lt; To, typename From::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Cast</b> (From &amp;&amp;from)</td></tr>
@@ -343,7 +387,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> or <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
   </table>
   </dd>
 </dl>
@@ -390,7 +434,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixl
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> is not arithmetic or if <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -437,7 +481,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if Arg1 or Arg2 is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -484,7 +528,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> or <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
   </table>
   </dd>
 </dl>
@@ -531,7 +575,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixl
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> is not arithmetic or if <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -578,7 +622,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if Arg1 or Arg2 is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -627,7 +671,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> or <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
   </table>
   </dd>
 </dl>
@@ -676,7 +720,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixl
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> is not arithmetic or if <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -725,7 +769,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if Arg1 or Arg2 is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -772,7 +816,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> or <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
   </table>
   </dd>
 </dl>
@@ -819,7 +863,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixl
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> is not arithmetic or if <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -866,7 +910,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if Arg1 or Arg2 is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -913,7 +957,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> or <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
   </table>
   </dd>
 </dl>
@@ -960,7 +1004,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixl
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if <code>Arg1</code> is not arithmetic or if <code>Arg2</code> is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -1007,7 +1051,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
   <table class="tparams">
     <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
     <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
-    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is skipped if Arg1 or Arg2 is an arithmetic type.</td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
   </table>
   </dd>
 </dl>
@@ -1023,7 +1067,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
 </div>
 </div>
 <a id="ae59af1c42055db877a0dfe61e6334449"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae59af1c42055db877a0dfe61e6334449">&#9670;&nbsp;</a></span>operator==() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae59af1c42055db877a0dfe61e6334449">&#9670;&nbsp;</a></span>operator==() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1049,6 +1093,860 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
 </div><div class="memdoc">
 <p>Checks if the two colors are equal, i.e. if their red / green / blue components are equal.</p>
 <dl class="section return"><dt>Returns</dt><dd>true iff <code>c1</code> == <code>c2</code> </dd></dl>
+
+</div>
+</div>
+<a id="a53c58e1dcebf8c495badb5eee526504d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53c58e1dcebf8c495badb5eee526504d">&#9670;&nbsp;</a></span>operator==() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator== </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>== operator definition, where <code>Arg1</code> and <code>Arg2</code> are <a class="el" href="classpixled_1_1base_1_1Function.html">Functions</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a9506b081ee327772c427cc957f51ba23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9506b081ee327772c427cc957f51ba23">&#9670;&nbsp;</a></span>operator==() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt; pixled::operator== </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>== operator definition, where <code>Arg1</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> and <code>Arg2</code> is a constant.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: arithmetic constant </td></tr>
+    <tr><td class="paramname">c2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a807f80272386f8c62ce251d87f7e34e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a807f80272386f8c62ce251d87f7e34e7">&#9670;&nbsp;</a></span>operator==() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator== </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>== operator definition, where <code>Arg1</code> is a constant and <code>Arg2</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c1</td><td>left operand: integer constant </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="abaff500974857f5f11b1f8ac9bbbdac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaff500974857f5f11b1f8ac9bbbdac9">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1NotEqual.html">conditional::NotEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>!= operator definition, where <code>Arg1</code> and <code>Arg2</code> are <a class="el" href="classpixled_1_1base_1_1Function.html">Functions</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1NotEqual.html">conditional::NotEqual</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="afb3b687a6fc3716497a90f265065b42b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb3b687a6fc3716497a90f265065b42b">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1NotEqual.html">conditional::NotEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt; pixled::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>!= operator definition, where <code>Arg1</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> and <code>Arg2</code> is a constant.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: arithmetic constant </td></tr>
+    <tr><td class="paramname">c2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a353821daa02ca3b58389b95d15cee2f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a353821daa02ca3b58389b95d15cee2f8">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1NotEqual.html">conditional::NotEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>!= operator definition, where <code>Arg1</code> is a constant and <code>Arg2</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c1</td><td>left operand: integer constant </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1Equal.html">conditional::Equal</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a36b2e7187c8e7dbc08ff782304dc3558"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b2e7187c8e7dbc08ff782304dc3558">&#9670;&nbsp;</a></span>operator&lt;() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; operator definition, where <code>Arg1</code> and <code>Arg2</code> are <a class="el" href="classpixled_1_1base_1_1Function.html">Functions</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="aa8ed1acfcb4c9127f9cfae2757465933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ed1acfcb4c9127f9cfae2757465933">&#9670;&nbsp;</a></span>operator&lt;() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt; pixled::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; operator definition, where <code>Arg1</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> and <code>Arg2</code> is a constant.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: arithmetic constant </td></tr>
+    <tr><td class="paramname">c2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="aefc24d79f03aabae5c69b540dd336801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefc24d79f03aabae5c69b540dd336801">&#9670;&nbsp;</a></span>operator&lt;() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; operator definition, where <code>Arg1</code> is a constant and <code>Arg2</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c1</td><td>left operand: integer constant </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1LessThan.html">conditional::LessThan</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="aa717d947d58956537644767d916a7059"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa717d947d58956537644767d916a7059">&#9670;&nbsp;</a></span>operator&lt;=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt;= operator definition, where <code>Arg1</code> and <code>Arg2</code> are <a class="el" href="classpixled_1_1base_1_1Function.html">Functions</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a7ee12de7a9e07ba92e39fae35227e20e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee12de7a9e07ba92e39fae35227e20e">&#9670;&nbsp;</a></span>operator&lt;=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt; pixled::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt;= operator definition, where <code>Arg1</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> and <code>Arg2</code> is a constant.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: arithmetic constant </td></tr>
+    <tr><td class="paramname">c2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a9bf6da69cde9cb31289d5dfa872bf150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bf6da69cde9cb31289d5dfa872bf150">&#9670;&nbsp;</a></span>operator&lt;=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt;= operator definition, where <code>Arg1</code> is a constant and <code>Arg2</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c1</td><td>left operand: integer constant </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1LessThanOrEqual.html">conditional::LessThanOrEqual</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="ac7cca5f9a69a2c1773ae25bfab3921be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7cca5f9a69a2c1773ae25bfab3921be">&#9670;&nbsp;</a></span>operator&gt;() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<blockquote class="doxtable">
+<p>operator definition, where <code>Arg1</code> and <code>Arg2</code> are <a class="el" href="classpixled_1_1base_1_1Function.html">Functions</a>. </p>
+</blockquote>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="afdfeb8754ddb1181a78b0eec070c9705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdfeb8754ddb1181a78b0eec070c9705">&#9670;&nbsp;</a></span>operator&gt;() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt; pixled::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<blockquote class="doxtable">
+<p>operator definition, where <code>Arg1</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> and <code>Arg2</code> is </p>
+</blockquote>
+<p>a constant.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: arithmetic constant </td></tr>
+    <tr><td class="paramname">c2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="aec8640699cf4a0e3e6fa7d0f2476b42c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec8640699cf4a0e3e6fa7d0f2476b42c">&#9670;&nbsp;</a></span>operator&gt;() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<blockquote class="doxtable">
+<p>operator definition, where <code>Arg1</code> is a constant and <code>Arg2</code> is a </p>
+</blockquote>
+<p><a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c1</td><td>left operand: integer constant </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1GreaterThan.html">conditional::GreaterThan</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a7e53f7f953e353a76db5fd372b835df8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e53f7f953e353a76db5fd372b835df8">&#9670;&nbsp;</a></span>operator&gt;=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&gt;= operator definition, where <code>Arg1</code> and <code>Arg2</code> are <a class="el" href="classpixled_1_1base_1_1Function.html">Functions</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> and <code>Arg2</code> are pixled functions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a725b1a98d36aa8cb4ad824118fac076e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a725b1a98d36aa8cb4ad824118fac076e">&#9670;&nbsp;</a></span>operator&gt;=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;!is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type::Type, typename std::remove_reference&lt;Arg2&gt;::type &gt; pixled::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&gt;= operator definition, where <code>Arg1</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a> and <code>Arg2</code> is a constant.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand fundamental type </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg1</code> is a pixled function and <code>Arg2</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f1</td><td>left operand: arithmetic constant </td></tr>
+    <tr><td class="paramname">c2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="aee10af2b85b208af9b771d9845df80be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee10af2b85b208af9b771d9845df80be">&#9670;&nbsp;</a></span>operator&gt;=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a>&lt; typename std::remove_reference&lt;Arg1&gt;::type, typename std::remove_reference&lt;Arg2&gt;::type::Type &gt; pixled::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">Arg1 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>c1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Arg2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&gt;= operator definition, where <code>Arg1</code> is a constant and <code>Arg2</code> is a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg1</td><td>automatically deduced left operand fundamental type </td></tr>
+    <tr><td class="paramname">Arg2</td><td>automatically deduced right operand type (<a class="el" href="classpixled_1_1base_1_1Function.html">Function</a>) </td></tr>
+    <tr><td class="paramname">Enable</td><td><a href="https://en.cppreference.com/w/cpp/language/sfinae">SFINAE</a> condition: this overload is considered only if <code>Arg2</code> is a pixled function and <code>Arg1</code> is not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c1</td><td>left operand: integer constant </td></tr>
+    <tr><td class="paramname">f2</td><td>right operand: lvalue or rvalue to a <a class="el" href="classpixled_1_1base_1_1Function.html">Function</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a> instance </dd></dl>
 
 </div>
 </div>
@@ -1150,7 +2048,7 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; is_pixle
 </div>
 </div>
 <a id="a0364d41a1568cf75b66fb10a4bab7713"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0364d41a1568cf75b66fb10a4bab7713">&#9670;&nbsp;</a></span>operator==() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0364d41a1568cf75b66fb10a4bab7713">&#9670;&nbsp;</a></span>operator==() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

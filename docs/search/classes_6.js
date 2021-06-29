@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hsb_261',['hsb',['../classpixled_1_1chroma_1_1hsb.html',1,'pixled::chroma']]]
+  ['greaterthan_282',['GreaterThan',['../classpixled_1_1conditional_1_1GreaterThan.html',1,'pixled::conditional']]],
+  ['greaterthanorequal_283',['GreaterThanOrEqual',['../classpixled_1_1conditional_1_1GreaterThanOrEqual.html',1,'pixled::conditional']]]
 ];

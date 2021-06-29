@@ -136,4 +136,21 @@ namespace pixled {
 		 *
 		 */
 	}
+
+	/**
+	 * Namespace containing comparison operators and the If statement.
+	 */
+	namespace conditional {
+		/**
+		 * @example pixled/conditional/conditional.cpp
+		 *
+		 * Demonstrates the If statement usage with the == operator.
+		 *
+		 * conditional_eq.gif ||
+		 * -------------------||
+		 * ![Conditionnal Equal](conditional_eq.gif) ||
+		 *
+		 */
+
+	}
 }
