@@ -85,6 +85,8 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacepixled_1_1conditional"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled_1_1conditional.html">conditional</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacepixled_1_1detail"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled_1_1detail.html">detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacepixled_1_1geometry"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled_1_1geometry.html">geometry</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacepixled_1_1mapping"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled_1_1mapping.html">mapping</a></td></tr>
@@ -245,14 +247,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aee10af2b85b208af9b771d9845df80be"><td class="memTemplParams" colspan="2">template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixled_function&lt; Arg1 &gt;::value &amp;&amp;is_pixled_function&lt; Arg2 &gt;::value, bool &gt;::type  = true&gt; </td></tr>
 <tr class="memitem:aee10af2b85b208af9b771d9845df80be"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a>&lt; typename std::remove_reference&lt; Arg1 &gt;::type, typename std::remove_reference&lt; Arg2 &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#aee10af2b85b208af9b771d9845df80be">operator&gt;=</a> (Arg1 &amp;&amp;c1, Arg2 &amp;&amp;f2)</td></tr>
 <tr class="separator:aee10af2b85b208af9b771d9845df80be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a258781c732db2f7a0a1eca835f353643"><td class="memTemplParams" colspan="2"><a id="a258781c732db2f7a0a1eca835f353643"></a>
-template&lt;typename To , typename From &gt; </td></tr>
-<tr class="memitem:a258781c732db2f7a0a1eca835f353643"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1detail_1_1Cast.html">detail::Cast</a>&lt; To, typename From::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Cast</b> (From &amp;&amp;from)</td></tr>
-<tr class="separator:a258781c732db2f7a0a1eca835f353643"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad48e1bffcf666412220199d517cebfff"><td class="memTemplParams" colspan="2"><a id="ad48e1bffcf666412220199d517cebfff"></a>
-template&lt;typename To , typename From &gt; </td></tr>
-<tr class="memitem:ad48e1bffcf666412220199d517cebfff"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1detail_1_1Cast.html">detail::Cast</a>&lt; To, typename From::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Cast</b> (const From &amp;from)</td></tr>
-<tr class="separator:ad48e1bffcf666412220199d517cebfff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f94677af45edd09f3481323dbec0ba7"><td class="memTemplParams" colspan="2">template&lt;typename To , typename From &gt; </td></tr>
+<tr class="memitem:a1f94677af45edd09f3481323dbec0ba7"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1detail_1_1Cast.html">detail::Cast</a>&lt; To, typename std::remove_reference&lt; From &gt;::type::Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a1f94677af45edd09f3481323dbec0ba7">Cast</a> (From &amp;&amp;from)</td></tr>
+<tr class="separator:a1f94677af45edd09f3481323dbec0ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b3c3fa9b7c6df03dc04e2df3111246c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a2b3c3fa9b7c6df03dc04e2df3111246c">distance</a> (const <a class="el" href="structpixled_1_1point.html">point</a> &amp;p1, const <a class="el" href="structpixled_1_1point.html">point</a> &amp;p2)</td></tr>
 <tr class="separator:a2b3c3fa9b7c6df03dc04e2df3111246c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29979b3606a6d00d3594c12f31f4d4cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1angle.html">angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepixled.html#a29979b3606a6d00d3594c12f31f4d4cf">operator+</a> (const <a class="el" href="classpixled_1_1angle.html">angle</a> &amp;a, const <a class="el" href="classpixled_1_1angle.html">angle</a> &amp;b)</td></tr>
@@ -1947,6 +1944,47 @@ template&lt;typename Arg1 , typename Arg2 , typename std::enable_if&lt; !is_pixl
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classpixled_1_1conditional_1_1GreaterThanOrEqual.html">conditional::GreaterThanOrEqual</a> instance </dd></dl>
+
+</div>
+</div>
+<a id="a1f94677af45edd09f3481323dbec0ba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f94677af45edd09f3481323dbec0ba7">&#9670;&nbsp;</a></span>Cast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename To , typename From &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1detail_1_1Cast.html">detail::Cast</a>&lt;To, typename std::remove_reference&lt;From&gt;::type::Type&gt; pixled::Cast </td>
+          <td>(</td>
+          <td class="paramtype">From &amp;&amp;&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cast function, that allows to convert a function with return type <code>From</code> to a function with return type <code>To</code>.</p>
+<p>Only the <code>To</code> template parameter must be provided: <code>From</code> can be automatically deduced.</p>
+<div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacepixled.html">pixled</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">auto</span> float_function = Cast&lt;float&gt;(T());</div>
+<div class="line"><span class="keyword">auto</span> int_function = Cast&lt;int&gt;(X());</div>
+<div class="ttc" id="anamespacepixled_html"><div class="ttname"><a href="namespacepixled.html">pixled</a></div><div class="ttdef"><b>Definition:</b> animation.cpp:3</div></div>
+</div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">To</td><td>return type of the converted function (fundamental type) </td></tr>
+    <tr><td class="paramname">From</td><td>automatically deducible return type of the input function (fundamental type)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td><a class="el" href="classpixled_1_1base_1_1Function.html">base::Function&lt;From&gt;</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classpixled_1_1base_1_1Function.html">base::Function&lt;To&gt;</a> </dd></dl>
 
 </div>
 </div>

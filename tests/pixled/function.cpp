@@ -1,4 +1,6 @@
 #include "../mocks/mock_function.h"
+#include "pixled/chrono/chrono.h"
+#include "pixled/geometry/geometry.h"
 
 using namespace testing;
 
@@ -290,4 +292,17 @@ TEST_F(BinaryTest, nested_lvalue_build) {
 	EXPECT_CALL(*f2_copy_copy, call(c, t));
 	EXPECT_CALL(*f3_copy, call(c, t)).Times(1);
 	mock_2(c, t);
+}
+
+TEST(Cast, lvalue) {
+	const auto& t = pixled::chrono::T();
+	auto function = pixled::Cast<float>(t);
+
+	ASSERT_FLOAT_EQ(function({0, 0}, 10), 10.f);
+}
+
+TEST(Cast, rvalue) {
+	auto function = pixled::Cast<int>(pixled::geometry::X());
+
+	ASSERT_FLOAT_EQ(function({14.5, 0}, 10), 14);
 }

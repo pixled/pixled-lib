@@ -433,15 +433,34 @@ namespace pixled {
 				}
 		};
 
+	/**
+	 * Implementation details, not directly accessible from the pixled
+	 * namespace.
+	 */
 	namespace detail {
+		/**
+		 * Cast implementation.
+		 *
+		 * This class is not supposed to be used directy: use pixled::Cast
+		 * method instead to benefit from automatic template deduction.
+		 *
+		 * @tparam To return type of the converted function (fundamental type)
+		 * @tparam From return type of the input function (fundamental type)
+		 */
 		template<typename To, typename From>
 			class Cast : public base::Function<To> {
 				private:
 					const FctWrapper<From> f;
 
 				public:
+					/**
+					 * lvalue Cast constructor
+					 */
 					Cast(const base::Function<From>& from)
 						: f(from) {}
+					/**
+					 * rvalue Cast constructor
+					 */
 					Cast(base::Function<From>&& from)
 						: f(std::move(from)) {}
 
@@ -455,14 +474,30 @@ namespace pixled {
 			};
 	}
 
+	/**
+	 * Cast function, that allows to convert a function with return type `From`
+	 * to a function with return type `To`.
+	 *
+	 * Only the `To` template parameter must be provided: `From` can be
+	 * automatically deduced.
+	 *
+	 * ```cpp
+	 * using namespace pixled;
+	 *
+	 * auto float_function = Cast<float>(T());
+	 * auto int_function = Cast<int>(X());
+	 * ```
+	 *
+	 * @tparam To return type of the converted function (fundamental type)
+	 * @tparam From automatically deducible return type of the input function
+	 * (fundamental type)
+	 *
+	 * @param from \Function{From}
+	 * @return \Function{To}
+	 */
 	template<typename To, typename From>
-		detail::Cast<To, typename From::Type> Cast(From&& from) {
-			return detail::Cast<To, typename From::Type>(std::move(from));
-		};
-
-	template<typename To, typename From>
-		detail::Cast<To, typename From::Type> Cast(const From& from) {
-			return detail::Cast<To, typename From::Type>(from);
+		detail::Cast<To, typename std::remove_reference<From>::type::Type> Cast(From&& from) {
+			return detail::Cast<To, typename std::remove_reference<From>::type::Type>(std::forward<From>(from));
 		};
 }
 #endif

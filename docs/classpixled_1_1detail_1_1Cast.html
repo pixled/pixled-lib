@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacepixled.html">pixled</a></li><li class="navelem"><b>detail</b></li><li class="navelem"><a class="el" href="classpixled_1_1detail_1_1Cast.html">Cast</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacepixled.html">pixled</a></li><li class="navelem"><a class="el" href="namespacepixled_1_1detail.html">detail</a></li><li class="navelem"><a class="el" href="classpixled_1_1detail_1_1Cast.html">Cast</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -73,6 +73,8 @@ $(function() {
 <div class="title">pixled::detail::Cast&lt; To, From &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="function_8h_source.html">function.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for pixled::detail::Cast&lt; To, From &gt;:</div>
 <div class="dyncontent">
@@ -96,11 +98,9 @@ Collaboration diagram for pixled::detail::Cast&lt; To, From &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b4990f385b18fe90348762705051468"><td class="memItemLeft" align="right" valign="top"><a id="a9b4990f385b18fe90348762705051468"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Cast</b> (const <a class="el" href="classpixled_1_1base_1_1Function.html">base::Function</a>&lt; From &gt; &amp;from)</td></tr>
+<tr class="memitem:a9b4990f385b18fe90348762705051468"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1detail_1_1Cast.html#a9b4990f385b18fe90348762705051468">Cast</a> (const <a class="el" href="classpixled_1_1base_1_1Function.html">base::Function</a>&lt; From &gt; &amp;from)</td></tr>
 <tr class="separator:a9b4990f385b18fe90348762705051468"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52896d8ff2e4f828b13696e7a119e1b8"><td class="memItemLeft" align="right" valign="top"><a id="a52896d8ff2e4f828b13696e7a119e1b8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Cast</b> (<a class="el" href="classpixled_1_1base_1_1Function.html">base::Function</a>&lt; From &gt; &amp;&amp;from)</td></tr>
+<tr class="memitem:a52896d8ff2e4f828b13696e7a119e1b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1detail_1_1Cast.html#a52896d8ff2e4f828b13696e7a119e1b8">Cast</a> (<a class="el" href="classpixled_1_1base_1_1Function.html">base::Function</a>&lt; From &gt; &amp;&amp;from)</td></tr>
 <tr class="separator:a52896d8ff2e4f828b13696e7a119e1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a906d1cedf6d673d11ac82c8c795ee3d9"><td class="memItemLeft" align="right" valign="top">To&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1detail_1_1Cast.html#a906d1cedf6d673d11ac82c8c795ee3d9">operator()</a> (<a class="el" href="structpixled_1_1point.html">point</a> c, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
 <tr class="separator:a906d1cedf6d673d11ac82c8c795ee3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,6 +113,78 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a40d9303274ae43080fb62bfb8557fbde inherit pub_types_classpixled_1_1base_1_1Function"><td class="memItemLeft" align="right" valign="top">typedef To&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1base_1_1Function.html#a40d9303274ae43080fb62bfb8557fbde">Type</a></td></tr>
 <tr class="separator:a40d9303274ae43080fb62bfb8557fbde inherit pub_types_classpixled_1_1base_1_1Function"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename To, typename From&gt;<br />
+class pixled::detail::Cast&lt; To, From &gt;</h3>
+
+<p><a class="el" href="classpixled_1_1detail_1_1Cast.html">Cast</a> implementation.</p>
+<p>This class is not supposed to be used directy: use <a class="el" href="namespacepixled.html#a1f94677af45edd09f3481323dbec0ba7">pixled::Cast</a> method instead to benefit from automatic template deduction.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">To</td><td>return type of the converted function (fundamental type) </td></tr>
+    <tr><td class="paramname">From</td><td>return type of the input function (fundamental type) </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9b4990f385b18fe90348762705051468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b4990f385b18fe90348762705051468">&#9670;&nbsp;</a></span>Cast() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename To , typename From &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1detail_1_1Cast.html">pixled::detail::Cast</a>&lt; To, From &gt;::<a class="el" href="classpixled_1_1detail_1_1Cast.html">Cast</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classpixled_1_1base_1_1Function.html">base::Function</a>&lt; From &gt; &amp;&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>lvalue <a class="el" href="classpixled_1_1detail_1_1Cast.html">Cast</a> constructor </p>
+
+</div>
+</div>
+<a id="a52896d8ff2e4f828b13696e7a119e1b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52896d8ff2e4f828b13696e7a119e1b8">&#9670;&nbsp;</a></span>Cast() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename To , typename From &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpixled_1_1detail_1_1Cast.html">pixled::detail::Cast</a>&lt; To, From &gt;::<a class="el" href="classpixled_1_1detail_1_1Cast.html">Cast</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpixled_1_1base_1_1Function.html">base::Function</a>&lt; From &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>rvalue <a class="el" href="classpixled_1_1detail_1_1Cast.html">Cast</a> constructor </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a906d1cedf6d673d11ac82c8c795ee3d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a906d1cedf6d673d11ac82c8c795ee3d9">&#9670;&nbsp;</a></span>operator()()</h2>
