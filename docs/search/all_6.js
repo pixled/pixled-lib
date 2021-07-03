@@ -41,7 +41,7 @@ var searchData=
   ['function_3c_20random_5fengine_20_3e_75',['Function&lt; random_engine &gt;',['../classpixled_1_1base_1_1Function.html',1,'pixled::base']]],
   ['function_3c_20rgb_2c_20color_2c_20uint8_5ft_2c_20uint8_5ft_2c_20uint8_5ft_20_3e_76',['Function&lt; rgb, color, uint8_t, uint8_t, uint8_t &gt;',['../classpixled_1_1Function.html',1,'pixled']]],
   ['function_3c_20sawtooth_2c_20float_2c_20float_2c_20float_2c_20float_20_3e_77',['Function&lt; Sawtooth, float, float, float, float &gt;',['../classpixled_1_1Function.html',1,'pixled']]],
-  ['function_3c_20sine_2c_20float_2c_20float_2c_20float_2c_20float_20_3e_78',['Function&lt; Sine, float, float, float, float &gt;',['../classpixled_1_1Function.html',1,'pixled']]],
+  ['function_3c_20sine_2c_20float_2c_20float_20_3e_78',['Function&lt; Sine, float, float &gt;',['../classpixled_1_1Function.html',1,'pixled']]],
   ['function_3c_20square_2c_20float_2c_20float_2c_20float_2c_20float_20_3e_79',['Function&lt; Square, float, float, float, float &gt;',['../classpixled_1_1Function.html',1,'pixled']]],
   ['function_3c_20t_20_3e_80',['Function&lt; T &gt;',['../classpixled_1_1base_1_1Function.html',1,'pixled::base']]],
   ['function_3c_20time_20_3e_81',['Function&lt; time &gt;',['../classpixled_1_1base_1_1Function.html',1,'pixled::base']]],

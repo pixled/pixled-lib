@@ -4,14 +4,41 @@
 #include "../function.h"
 
 namespace pixled { namespace signal {
-	class Sine : public Function<Sine, float, float, float, float> {
+	/**
+	 * Sine wave function.
+	 *
+	 * Since the specified parameter is a pixled \Function{float}, many type of
+	 * waves can be defined.
+	 *
+	 * - Time dependent wave: `Sine(T() / period)`
+	 * - Space dependent wave: `Sine(X() / lambda)`
+	 * - Progressive wave: `Sine(X() / lambda - T() / period)`
+	 *
+	 * The spatial parameter X() might be replaced by Y(), or by any other
+	 * coordinate dependent function. For example, to obtain a radial sine wave
+	 * that originates from the point (8, 8):
+	 * ```cpp
+	 * Sine(
+	 *     Distance(Point(X(), Y()), point(8, 8)) / lambda - T() / period
+	 *     )
+	 * ```
+	 *
+	 * See the `pixled/signal/sine.cpp` example below for concrete use cases of each
+	 * wave type.
+	 *
+	 * Notice that, as usual, `lambda` and `period` might themselves by space
+	 * and time dependent \Functions...
+	 *
+	 * @param float sin parameter
+	 * @retval float returns sin(2*PI * this->call<0>(p, t))
+	 */
+	class Sine : public Function<Sine, float, float> {
 		public:
-			using Function<Sine, float, float, float, float>::Function;
+			using Function<Sine, float, float>::Function;
 
 			/*
-			 * f1 : amplitude
-			 * f2 : period
-			 * f3 : param
+			 * f1 : period
+			 * f2 : param
 			 */
 			float operator()(point p, time t) const override;
 	};

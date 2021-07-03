@@ -23,15 +23,15 @@ class SignalTest : public ::testing::Test {
 class SineTest : public SignalTest {};
 
 TEST_F(SineTest, const_params) {
-	pixled::signal::Sine sine(12.4, 12, Cast<float>(pixled::chrono::T() + 2));
+	pixled::signal::Sine sine(Cast<float>(pixled::chrono::T() + 2) / 12);
 
-	ASSERT_FLOAT_EQ(sine(random_point(), 0), 12.4*std::sin(2*PI*2.f/12));
+	ASSERT_FLOAT_EQ(sine(random_point(), 0), std::sin(2*PI*2.f/12));
 
-	ASSERT_NEAR(sine(random_point(), 1), 12.4, .10e-4);
+	ASSERT_NEAR(sine(random_point(), 1), 1, .10e-4);
 	ASSERT_NEAR(sine(random_point(), 4), 0, .10e-4);
-	ASSERT_NEAR(sine(random_point(), 7), -12.4, .10e-4);
+	ASSERT_NEAR(sine(random_point(), 7), -1, .10e-4);
 	ASSERT_NEAR(sine(random_point(), 10), 0, .10e-4);
-	ASSERT_NEAR(sine(random_point(), 13), 12.4, .10e-4);
+	ASSERT_NEAR(sine(random_point(), 13), 1, .10e-4);
 	ASSERT_NEAR(sine(random_point(), 16), 0, .10e-4);
 }
 

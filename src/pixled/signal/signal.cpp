@@ -3,7 +3,7 @@
 namespace pixled { namespace signal {
 
 	float Sine::operator()(point p, time t) const {
-		return this->call<0>(p, t) * std::sin(2*PI * this->call<2>(p, t) / this->call<1>(p, t));
+		return std::sin(2*PI * this->call<0>(p, t));
 	}
 
 	float Square::operator()(point p, time t) const {

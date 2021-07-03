@@ -155,13 +155,30 @@ namespace pixled {
 		/**
 		 * @example pixled/conditional/conditional.cpp
 		 *
-		 * Demonstrates the If statement usage with the == operator.
+		 * Demonstrates the If statement usage.
 		 *
-		 * conditional_eq.gif ||
+		 * conditional_eq.gif | conditional_less_greater.gif |
 		 * -------------------||
-		 * ![Conditionnal Equal](conditional_eq.gif) ||
+		 * ![Conditionnal Equal](conditional_eq.gif) | ![Conditionnal Less
+		 * Greater](conditional_less_greater.gif) |
 		 *
 		 */
 
+	}
+
+	/**
+	 * Namespace containing wave functions.
+	 */
+	namespace signal {
+		/**
+		 * @example pixled/signal/sine.cpp
+		 *
+		 * Demonstrates the pixled::signal::Sine usage.
+		 *
+		 * sine_t.gif | sine_x.gif | sine_x_t.gif | sine_radial_t.gif
+		 * -----------|------------|--------------|------------------
+		 * ![Sine T](sine_t.gif) | ![Sine X](sine_x.gif) | ![Sine X T](sine_x_t.gif) | ![Sine Radial T](sine_radial_t.gif)
+		 *
+		 */
 	}
 }

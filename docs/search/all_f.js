@@ -24,5 +24,6 @@ var searchData=
   ['prev_164',['prev',['../classpixled_1_1Runtime.html#ad6024aded2247c7cbc96ab6c8074915c',1,'pixled::Runtime']]],
   ['purple_165',['PURPLE',['../namespacepixled_1_1chroma.html#a8d5fab7e6fdba0afa244167b3984a65f',1,'pixled::chroma']]],
   ['push_166',['push',['../structpixled_1_1Mapping.html#a1ac9258f1f90e412f511fb709f4bda6b',1,'pixled::Mapping']]],
-  ['random_167',['random',['../namespacepixled_1_1random.html',1,'pixled']]]
+  ['random_167',['random',['../namespacepixled_1_1random.html',1,'pixled']]],
+  ['signal_168',['signal',['../namespacepixled_1_1signal.html',1,'pixled']]]
 ];

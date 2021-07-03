@@ -7,6 +7,7 @@
 #include "../signal/signal.h"
 #include "../geometry/geometry.h"
 #include "../signal/signal.h"
+#include "../arithmetic/arithmetic.h"
 
 namespace pixled { namespace animation {
 
@@ -79,14 +80,16 @@ namespace pixled { namespace animation {
 	};
 
 	/**
-	 * A rainbow hue that depends on time, not on space.
+	 * A rainbow hue that varies between 0 and 360 in time with a sine shape.
 	 *
 	 * @param time rainbow period
 	 * @retval float rainbow hue in `[0, 360]`
 	 */
 	class Rainbow : public Function<Rainbow, float, time> {
 		private:
-			signal::Sine sin {1.f, Cast<float>(this->arg<0>()), Cast<float>(chrono::T())};
+			signal::Sine sin {
+				Cast<float>(chrono::T()) / Cast<float>(this->arg<0>())
+			};
 
 		public:
 			using Function<Rainbow, float, time>::Function;
