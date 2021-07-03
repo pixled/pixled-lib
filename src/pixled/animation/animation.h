@@ -81,8 +81,8 @@ namespace pixled { namespace animation {
 	/**
 	 * A rainbow hue that depends on time, not on space.
 	 *
-	 * @retval float rainbow hue in `[0, 360]`
 	 * @param time rainbow period
+	 * @retval float rainbow hue in `[0, 360]`
 	 */
 	class Rainbow : public Function<Rainbow, float, time> {
 		private:

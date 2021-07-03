@@ -11,42 +11,51 @@ int main(int argc, char** argv) {
 		// The value will be the same for every leds, and will change every 10
 		// frames.
 		pixled::RandomT random_engine(10);
-		// Uniform integer distribution between 30 and 200
-		pixled::UniformDistribution<std::uint8_t> random_red(30, 200, random_engine);
+		// Normal integer distribution centered on 200 with a variation of 20
+		pixled::NormalDistribution<std::uint8_t> random_red(200, 20, random_engine);
 
 		// Animation
-		pixled::rgb color(random_red, 30, 30);
+		pixled::rgb color(random_red, 50, 50);
 
 		pixled::Runtime runtime(panel, out, color);
 		// Writes 100 frames to gif file
-		out.write(runtime, 100, "random_uniform_t.gif");
+		out.write(runtime, 100, "random_normal_t.gif");
 	}
 	{
 		// Random engine that only depends upon time and space.
 		// The value will be different for every leds, and will change every 10
 		// frames.
 		pixled::RandomXYT random_engine(10);
-		// Uniform integer distribution between 30 and 200 (same as above)
-		pixled::UniformDistribution<std::uint8_t> random_red(30, 200, random_engine);
+		// Normal integer distribution centered on 200 with a variation of 20
+		// (same as above)
+		pixled::NormalDistribution<std::uint8_t> random_red(200, 20, random_engine);
 
 		// Animation
-		pixled::rgb color(random_red, 30, 30);
+		pixled::rgb color(random_red, 50, 50);
 
 		pixled::Runtime runtime(panel, out, color);
 		// Writes 100 frames to gif file
-		out.write(runtime, 100, "random_uniform_xy_t.gif");
+		out.write(runtime, 100, "random_normal_xy_t.gif");
 	}
 	{
 		// Same as above
 		pixled::RandomXYT random_engine(10);
-		// An uniformly distributed random float between 0 and 360
-		pixled::UniformDistribution<float> random_hue(0, 360, random_engine);
+		// A random hue with values distributed according to a normal
+		// distribution
+		pixled::NormalDistribution<float> random_hue(
+				// The center of the normal distribution varies from 0 to 360
+				pixled::Rainbow(50),
+				// Variation
+				20,
+				// Random engine
+				random_engine
+				);
 
 		// Animation
 		pixled::hsb color(random_hue, 1.0, 1.0);
 
 		pixled::Runtime runtime(panel, out, color);
 		// Writes 100 frames to gif file
-		out.write(runtime, 100, "random_uniform_xy_t_hue.gif");
+		out.write(runtime, 100, "random_normal_xy_t_hue.gif");
 	}
 }

@@ -130,9 +130,20 @@ namespace pixled {
 		 *
 		 * A pixled::random::UniformDistribution usage example.
 		 *
-		 * uniform_t.gif | uniform_xy_t.gif | uniform_xy_t_hue.gif
+		 * random_uniform_t.gif | random_uniform_xy_t.gif | random_uniform_xy_t_hue.gif
 		 * --------------|------------------|----------------------
-		 *  ![RandomT](uniform_t.gif) | ![RandomXYT](uniform_xy_t.gif) | ![RandoRandomXYT with hue](uniform_xy_t_hue.gif)
+		 *  ![RandomT](random_uniform_t.gif) | ![RandomXYT](random_uniform_xy_t.gif) | ![RandoRandomXYT with hue](random_uniform_xy_t_hue.gif)
+		 *
+		 */
+
+		/**
+		 * @example pixled/random/normal.cpp
+		 *
+		 * A pixled::random::NormalDistribution usage example.
+		 *
+		 * random_normal_t.gif | random_normal_xy_t.gif | random_normal_xy_t_hue.gif
+		 * --------------|------------------|----------------------
+		 *  ![RandomT](random_normal_t.gif) | ![RandomXYT](random_normal_xy_t.gif) | ![RandoRandomXYT with hue](random_normal_xy_t_hue.gif)
 		 *
 		 */
 	}
