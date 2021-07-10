@@ -20,9 +20,7 @@ class SignalTest : public ::testing::Test {
 		}
 };
 
-class SineTest : public SignalTest {};
-
-TEST_F(SineTest, const_params) {
+TEST_F(SignalTest, sine) {
 	pixled::signal::Sine sine(Cast<float>(pixled::chrono::T() + 2) / 12);
 
 	ASSERT_FLOAT_EQ(sine(random_point(), 0), std::sin(2*PI*2.f/12));
@@ -35,30 +33,60 @@ TEST_F(SineTest, const_params) {
 	ASSERT_NEAR(sine(random_point(), 16), 0, .10e-4);
 }
 
-class SquareTest : public SignalTest {};
-
-TEST_F(SquareTest, const_params) {
-	pixled::signal::Square square(12.4, 12, Cast<float>(pixled::chrono::T() + 2));
+TEST_F(SignalTest, square) {
+	pixled::signal::Square square(Cast<float>(pixled::chrono::T() + 2) / 12);
 
 	ASSERT_THAT(
 		square(random_point(), -2),
-		AnyOf(FloatNear(12.4, .10e-4), FloatNear(-12.4, .10e-4)
+		AnyOf(FloatNear(1, .10e-4), FloatNear(-1, .10e-4)
 			));
 
 
 	for(pixled::time t = -1; t < 3; t++)
-		ASSERT_NEAR(square(random_point(), t), 12.4, .10e-4);
+		ASSERT_NEAR(square(random_point(), t), 1, .10e-4);
 
 	ASSERT_THAT(
 		square(random_point(), 4),
-		AnyOf(FloatNear(12.4, .10e-4), FloatNear(-12.4, .10e-4)
+		AnyOf(FloatNear(1, .10e-4), FloatNear(-1, .10e-4)
 			));
 
 	for(pixled::time t = 5; t < 9; t++)
-		ASSERT_NEAR(square(random_point(), t), -12.4, .10e-4);
+		ASSERT_NEAR(square(random_point(), t), -1, .10e-4);
 
 	ASSERT_THAT(
 		square(random_point(), 10),
-		AnyOf(FloatNear(12.4, .10e-4), FloatNear(-12.4, .10e-4)
+		AnyOf(FloatNear(1, .10e-4), FloatNear(-1, .10e-4)
 			));
+}
+
+
+TEST_F(SignalTest, triangle) {
+	pixled::signal::Triangle triangle(Cast<float>(pixled::chrono::T()) / 12);
+
+	ASSERT_NEAR(triangle(random_point(), 0), 0, .10e-4);
+	ASSERT_NEAR(triangle(random_point(), 3), 1, .10e-4);
+	ASSERT_NEAR(triangle(random_point(), 6), 0, .10e-4);
+	ASSERT_NEAR(triangle(random_point(), 9), -1, .10e-4);
+	ASSERT_NEAR(triangle(random_point(), 12), 0, .10e-4);
+}
+
+
+TEST_F(SignalTest, sawtooth) {
+	pixled::signal::Sawtooth sawtooth(Cast<float>(pixled::chrono::T()) / 12);
+
+	ASSERT_NEAR(sawtooth(random_point(), 0), 0, .10e-4);
+
+	ASSERT_THAT(
+		sawtooth(random_point(), 3),
+		AnyOf(FloatNear(1, .10e-4), FloatNear(-1, .10e-4)
+			));
+
+	ASSERT_NEAR(sawtooth(random_point(), 6), 0, .10e-4);
+
+	ASSERT_THAT(
+		sawtooth(random_point(), 9),
+		AnyOf(FloatNear(-1, .10e-4), FloatNear(1, .10e-4)
+			));
+
+	ASSERT_NEAR(sawtooth(random_point(), 12), 0, .10e-4);
 }

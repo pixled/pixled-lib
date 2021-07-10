@@ -127,7 +127,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classpixled_1_1signal_1_1Sine.html">Sine</a> wave function.</p>
-<p>Since the specified parameter is a pixled <a class="el" href="classpixled_1_1base_1_1Function.html">base::Function&lt;float&gt;</a>, many type of waves can be defined.</p>
+<p>Values returned are contained in <code>[-1, 1]</code>.</p>
+<p><img src="sine.png" alt="" class="inline" title="Sine"/></p>
+<p><code>+</code> and <code>*</code> operators can be used to modulate the <a class="el" href="classpixled_1_1signal_1_1Sine.html">Sine</a> wave as required. For example, to obtain values in <code>[0, 16]</code>: </p><div class="fragment"><div class="line">8.f * (1.f + Sine(...))</div>
+</div><!-- fragment --><p>More generally, to obtain values centered around a, with an amplitude of b, i.e. in <code>[a-b, a+b]</code>, so the total variation is <code>2*b</code>, use the following formula: </p><div class="fragment"><div class="line">a + (b * Sine(...))</div>
+</div><!-- fragment --><p>Since the specified parameter is a pixled <a class="el" href="classpixled_1_1base_1_1Function.html">base::Function&lt;float&gt;</a>, many type of waves can be defined.</p>
 <ul>
 <li>Time dependent wave: <code><a class="el" href="classpixled_1_1signal_1_1Sine.html">Sine</a>(T() / period)</code></li>
 <li>Space dependent wave: <code><a class="el" href="classpixled_1_1signal_1_1Sine.html">Sine</a>(X() / lambda)</code></li>
@@ -146,11 +150,11 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">float</td><td>returns sin(2*PI * this-&gt;call&lt;0&gt;(p, t)) </td></tr>
+    <tr><td class="paramname">float</td><td><code>sin(2*PI * this-&gt;call&lt;0&gt;(p, t))</code> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="pixled_2signal_2sine_8cpp-example.html#_a3">pixled/signal/sine.cpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="pixled_2signal_2sine_8cpp-example.html#_a3">pixled/signal/sine.cpp</a>, and <a class="el" href="pixled_2signal_2triangle_8cpp-example.html#_a1">pixled/signal/triangle.cpp</a>.</dd>
 </dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a90c11a25cdecb44e62fa63546a615154"></a>

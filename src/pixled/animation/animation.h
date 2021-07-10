@@ -154,9 +154,8 @@ namespace pixled { namespace animation {
 	class Blink : public Function<Blink, color, color, time> {
 		private:
 			signal::Square square {
-				1.f, // amplitude
-				Cast<float>(this->arg<1>()), // period
 				Cast<float>(chrono::T()) // parameter
+				/ Cast<float>(this->arg<1>()) // period
 			};
 			color black {color::rgb(0, 0, 0)};
 

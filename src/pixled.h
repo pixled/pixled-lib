@@ -180,5 +180,40 @@ namespace pixled {
 		 * ![Sine T](sine_t.gif) | ![Sine X](sine_x.gif) | ![Sine X T](sine_x_t.gif) | ![Sine Radial T](sine_radial_t.gif)
 		 *
 		 */
+
+		/**
+		 * @example pixled/signal/triangle.cpp
+		 *
+		 * A (relatively advanced) pixled::signal::Triangle example. But the
+		 * Triangle function can be used exactly the same way as Sine, so also
+		 * see the pixled/signal/sine.cpp example.
+		 *
+		 * insane_triangle_ratial_t.gif ||
+		 * -----------------------------||
+		 * ![Insane Triangle Ratial T](insane_triangle_radial_t.gif) ||
+		 *
+		 */
+
+		/**
+		 * @example pixled/signal/square.cpp
+		 *
+		 * Demonstrates the pixled::signal::Square usage.
+		 *
+		 * square_t.gif | square_x.gif | square_x_t.gif | square_radial_t.gif
+		 * -----------|------------|--------------|------------------
+		 * ![Square T](square_t.gif) | ![Square X](square_x.gif) | ![Square X T](square_x_t.gif) | ![Square Radial T](square_radial_t.gif)
+		 *
+		 */
+
+		/**
+		 * @example pixled/signal/sawtooth.cpp
+		 *
+		 * Demonstrates the pixled::signal::Sawtooth usage.
+		 *
+		 * sawtooth_t.gif | sawtooth_x.gif | sawtooth_x_t.gif | sawtooth_radial_t.gif
+		 * -----------|------------|--------------|------------------
+		 * ![Sawtooth T](sawtooth_t.gif) | ![Sawtooth X](sawtooth_x.gif) | ![Sawtooth X T](sawtooth_x_t.gif) | ![Sawtooth Radial T](sawtooth_radial_t.gif)
+		 *
+		 */
 	}
 }

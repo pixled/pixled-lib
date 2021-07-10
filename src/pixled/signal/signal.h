@@ -7,6 +7,24 @@ namespace pixled { namespace signal {
 	/**
 	 * Sine wave function.
 	 *
+	 * Values returned are contained in `[-1, 1]`.
+	 *
+	 * ![Sine](sine.png) 
+	 *
+	 * `+` and `*` operators can be
+	 * used to modulate the Sine wave as required.
+	 * For example, to obtain values in `[0, 16]`:
+	 * ```cpp
+	 * 8.f * (1.f + Sine(...))
+	 * ```
+	 *
+	 * More generally, to obtain values centered around a, with an amplitude of
+	 * b, i.e. in `[a-b, a+b]`, so the total variation is `2*b`, use the
+	 * following formula:
+	 * ```cpp
+	 * a + (b * Sine(...))
+	 * ```
+	 *
 	 * Since the specified parameter is a pixled \Function{float}, many type of
 	 * waves can be defined.
 	 *
@@ -30,7 +48,7 @@ namespace pixled { namespace signal {
 	 * and time dependent \Functions...
 	 *
 	 * @param float sin parameter
-	 * @retval float returns sin(2*PI * this->call<0>(p, t))
+	 * @retval float `sin(2*PI * this->call<0>(p, t))`
 	 */
 	class Sine : public Function<Sine, float, float> {
 		public:
@@ -43,23 +61,101 @@ namespace pixled { namespace signal {
 			float operator()(point p, time t) const override;
 	};
 
-	class Square : public Function<Square, float, float, float, float> {
+	/**
+	 * Square wave function.
+	 *
+	 * Values returned are contained in `[-1, 1]`.
+	 *
+	 * ![Square](square.png) 
+	 *
+	 * `+` and `*` operators can be
+	 * used to modulate the Square wave as required.
+	 * For example, to obtain values in `[0, 16]`:
+	 * ```cpp
+	 * 8.f * (1.f + Square(...))
+	 * ```
+	 *
+	 * More generally, to obtain values centered around a, with an amplitude of
+	 * b, i.e. in `[a-b, a+b]`, so the total variation is `2*b`, use the
+	 * following formula:
+	 * ```cpp
+	 * a + (b * Square(...))
+	 * ```
+	 *
+	 * Differrent type of waves can be defined as for the Sine function.
+	 *
+	 * @param float square function parameter
+	 * @retval float `sin(2*PI * this->call<0>(p, t)) > 0 ? 1 : -1`
+	 */
+	class Square : public Function<Square, float, float> {
 		public:
-			using Function<Square, float, float, float, float>::Function;
+			using Function<Square, float, float>::Function;
 
 			float operator()(point p, time t) const override;
 	};
 
-	class Triangle : public Function<Triangle, float, float, time, time> {
+	/**
+	 * Triangle wave function.
+	 *
+	 * Values returned are contained in `[-1, 1]`.
+	 *
+	 * ![Triangle](triangle.png) 
+	 *
+	 * `+` and `*` operators can be
+	 * used to modulate the Square wave as required.
+	 * For example, to obtain values in `[0, 16]`:
+	 * ```cpp
+	 * 8.f * (1.f + Triangle(...))
+	 * ```
+	 *
+	 * More generally, to obtain values centered around a, with an amplitude of
+	 * b, i.e. in `[a-b, a+b]`, so the total variation is `2*b`, use the
+	 * following formula:
+	 * ```cpp
+	 * a + (b * Triangle(...))
+	 * ```
+	 *
+	 * Differrent type of waves can be defined as for the Sine function.
+	 *
+	 * @param float triangle function parameter
+	 * @retval float `2/PI * asin(sin(2*PI * this->call<0>(p, t)))`
+	 */
+	class Triangle : public Function<Triangle, float, float> {
 		public:
-			using Function<Triangle, float, float, time, time>::Function;
+			using Function<Triangle, float, float>::Function;
 
 			float operator()(point p, time t) const override;
 	};
 
-	class Sawtooth : public Function<Sawtooth, float, float, float, float> {
+	/**
+	 * Sawtooth wave function.
+	 *
+	 * Values returned are contained in `[-1, 1]`.
+	 *
+	 * ![Sawtooth](sawtooth.png) 
+	 *
+	 * `+` and `*` operators can be
+	 * used to modulate the Square wave as required.
+	 * For example, to obtain values in `[0, 16]`:
+	 * ```cpp
+	 * 8.f * (1.f + Sawtooth(...))
+	 * ```
+	 *
+	 * More generally, to obtain values centered around a, with an amplitude of
+	 * b, i.e. in `[a-b, a+b]`, so the total variation is `2*b`, use the
+	 * following formula:
+	 * ```cpp
+	 * a + (b * Triangle(...))
+	 * ```
+	 *
+	 * Differrent type of waves can be defined as for the Sine function.
+	 *
+	 * @param float triangle function parameter
+	 * @retval float `2/PI * atan(tan(2*PI * this->call<0>(p, t)))`
+	 */
+	class Sawtooth : public Function<Sawtooth, float, float> {
 		public:
-			using Function<Sawtooth, float, float, float, float>::Function;
+			using Function<Sawtooth, float, float>::Function;
 
 			float operator()(point p, time t) const override;
 	};

@@ -1,6 +1,0 @@
-<map id="pixled::mapping::Mapping" name="pixled::mapping::Mapping">
-<area shape="rect" id="node1" title=" " alt="" coords="105,5,275,32"/>
-<area shape="rect" id="node2" href="$classpixled_1_1mapping_1_1TurtleMapping.html" title=" " alt="" coords="89,80,291,107"/>
-<area shape="rect" id="node3" href="$classpixled_1_1mapping_1_1LedPanel.html" title=" " alt="" coords="5,155,180,181"/>
-<area shape="rect" id="node4" href="$classpixled_1_1mapping_1_1LedStrip.html" title=" " alt="" coords="204,155,373,181"/>
-</map>
