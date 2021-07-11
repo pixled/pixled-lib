@@ -98,8 +98,8 @@ Collaboration diagram for pixled::geometry::Y:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a47d62861b57c819acab9be9da86617e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacepixled.html#a3dcb375bfb7f420cd1528fd5e6493cd3">coordinate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1geometry_1_1Y.html#a47d62861b57c819acab9be9da86617e6">operator()</a> (<a class="el" href="structpixled_1_1point.html">point</a> c, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
-<tr class="separator:a47d62861b57c819acab9be9da86617e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa0dba2ae86affecf033990cff074454"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacepixled.html#a3dcb375bfb7f420cd1528fd5e6493cd3">coordinate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1geometry_1_1Y.html#afa0dba2ae86affecf033990cff074454">operator()</a> (<a class="el" href="structpixled_1_1led.html">led</a> l, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
+<tr class="separator:afa0dba2ae86affecf033990cff074454"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d056d27087f31bac4b2ec5c55febda9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1geometry_1_1Y.html">Y</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1geometry_1_1Y.html#a8d056d27087f31bac4b2ec5c55febda9">copy</a> () const override</td></tr>
 <tr class="separator:a8d056d27087f31bac4b2ec5c55febda9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -120,8 +120,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="pixled_2conditional_2conditional_8cpp-example.html#_a3">pixled/conditional/conditional.cpp</a>, <a class="el" href="pixled_2signal_2sawtooth_8cpp-example.html#_a8">pixled/signal/sawtooth.cpp</a>, <a class="el" href="pixled_2signal_2sine_8cpp-example.html#_a9">pixled/signal/sine.cpp</a>, <a class="el" href="pixled_2signal_2square_8cpp-example.html#_a8">pixled/signal/square.cpp</a>, and <a class="el" href="pixled_2signal_2triangle_8cpp-example.html#_a8">pixled/signal/triangle.cpp</a>.</dd>
 </dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a47d62861b57c819acab9be9da86617e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47d62861b57c819acab9be9da86617e6">&#9670;&nbsp;</a></span>operator()()</h2>
+<a id="afa0dba2ae86affecf033990cff074454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa0dba2ae86affecf033990cff074454">&#9670;&nbsp;</a></span>operator()()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,8 +132,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="namespacepixled.html#a3dcb375bfb7f420cd1528fd5e6493cd3">coordinate</a> pixled::geometry::Y::operator() </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structpixled_1_1point.html">point</a>&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramtype"><a class="el" href="structpixled_1_1led.html">led</a>&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -153,17 +153,17 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="anchor" id="function_call_operator"></a> Computes the value of this <a class="el" href="classpixled_1_1Function.html">Function</a> on point <code>p</code> at time <code>t</code>.</p>
+<p><a class="anchor" id="function_call_operator"></a> Computes the value of this <a class="el" href="classpixled_1_1Function.html">Function</a> for led <code>l</code> at time <code>t</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>point </td></tr>
+    <tr><td class="paramname">l</td><td>led </td></tr>
     <tr><td class="paramname">t</td><td>time </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Result of this <a class="el" href="classpixled_1_1Function.html">Function</a>, evaluated on point <code>p</code> at time <code>t</code>. Notice that evaluating a function usually requires the recursive evaluation of other Functions (that are actually <em>parameters</em> of this function) until a <a class="el" href="classpixled_1_1Constant.html">Constant</a> is reached for example. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of this <a class="el" href="classpixled_1_1Function.html">Function</a>, evaluated on led <code>l</code> at time <code>t</code>. Notice that evaluating a function usually requires the recursive evaluation of other Functions (that are actually <em>parameters</em> of this function) until a <a class="el" href="classpixled_1_1Constant.html">Constant</a> is reached for example. </dd></dl>
 
-<p>Implements <a class="el" href="classpixled_1_1base_1_1Function.html#a23fc10abaae910fae547a5c38a365302">pixled::base::Function&lt; coordinate &gt;</a>.</p>
+<p>Implements <a class="el" href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">pixled::base::Function&lt; coordinate &gt;</a>.</p>
 
 </div>
 </div>

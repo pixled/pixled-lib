@@ -15,7 +15,7 @@ TEST(Constant, build) {
 
 	Constant<double> constant {3.45};
 
-	ASSERT_FLOAT_EQ(constant({2, 4}, 8), 3.45);
+	ASSERT_FLOAT_EQ(constant({{2, 4}, 1}, 8), 3.45);
 }
 
 TEST(Constant, copy) {
@@ -23,12 +23,12 @@ TEST(Constant, copy) {
 	pixled::base::Function<double>* copy = constant.copy();
 
 	ASSERT_THAT(copy, WhenDynamicCastTo<Constant<double>*>(Not(IsNull())));
-	ASSERT_EQ((*copy)({3, 5}, 4), 3.45);
+	ASSERT_EQ((*copy)({{3, 5}, 1}, 4), 3.45);
 
 	delete copy;
 }
 
-class FctWrapperTest : public ::testing::Test {
+class FctWrapperTest : public Test {
 	protected:
 	pixled::MockFunction<float> fct;
 	pixled::MockFunction<float>* copy = new pixled::MockFunction<float>;
@@ -49,7 +49,7 @@ TEST_F(FctWrapperTest, build_from_constant) {
 	FctWrapper<float> w {2.35};
 	try{
 		auto& test = dynamic_cast<const Constant<float>&>(*w);
-		ASSERT_FLOAT_EQ(test({2, 6}, 24), 2.35);
+		ASSERT_FLOAT_EQ(test({{2, 6}, 1}, 24), 2.35);
 	}
 	catch(std::bad_cast&) {
 		FAIL();
@@ -126,6 +126,7 @@ TEST_F(FctWrapperTest, move_assignment) {
 class UnaryTest : public Test {
 	protected:
 		pixled::point c {12, 38};
+		pixled::led l {c, 10};
 		pixled::time t {25};
 
 		StrictMock<pixled::MockFunction<uint8_t>> fct;
@@ -144,10 +145,10 @@ TEST_F(UnaryTest, lvalue_build) {
 
 	pixled::MockUnary<float, uint8_t> unary {fct};
 
-	EXPECT_CALL(unary, call(c, t));
-	EXPECT_CALL(*fct_copy, call(c, t));
+	EXPECT_CALL(unary, call(l, t));
+	EXPECT_CALL(*fct_copy, call(l, t));
 
-	unary(c, t);
+	unary(l, t);
 }
 
 struct MockFunctionCopy : public StrictMock<pixled::MockFunction<uint8_t>> {
@@ -166,17 +167,17 @@ TEST_F(UnaryTest, rvalue_build) {
 	// that it can be safely destroyed at the end of the call.
 	pixled::MockUnary<float, uint8_t> unary {MockFunctionCopy(copy)};
 
-	EXPECT_CALL(unary, call(c, t));
-	EXPECT_CALL(*copy, call(c, t));
+	EXPECT_CALL(unary, call(l, t));
+	EXPECT_CALL(*copy, call(l, t));
 
-	unary(c, t);
+	unary(l, t);
 }
 
 TEST_F(UnaryTest, constant_build) {
 	pixled::MockUnary<float, uint8_t> unary {27};
 
-	EXPECT_CALL(unary, call(c, t));
-	ASSERT_EQ(unary(c, t), 27);
+	EXPECT_CALL(unary, call(l, t));
+	ASSERT_EQ(unary(l, t), 27);
 }
 
 TEST_F(UnaryTest, fct_wrapper) {
@@ -205,16 +206,16 @@ TEST_F(UnaryTest, fct_wrapper) {
 	// Call to unary_copy...
 	EXPECT_CALL(
 			dynamic_cast<const decltype(unary)&>(unary_wrapper.get()),
-			call(c, t)
+			call(l, t)
 			);
 	// ... that itself triggers a call to the last `fct` copy
 	EXPECT_CALL(
 			*fct_copy_copy,
-			call(c, t)
+			call(l, t)
 			);
 
 	// Actual call
-	unary_wrapper.get()(c, t);
+	unary_wrapper.get()(l, t);
 }
 
 /**
@@ -235,11 +236,11 @@ TEST_F(BinaryTest, lvalue_build) {
 	EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
 	StrictMock<MockBinary<float, float, float>> mock {f1, f2};
 
-	EXPECT_CALL(mock, call(c, t));
-	EXPECT_CALL(*f1_copy, call(c, t)).WillOnce(Return(10));
-	EXPECT_CALL(*f2_copy, call(c, t)).WillOnce(Return(14));
+	EXPECT_CALL(mock, call(l, t));
+	EXPECT_CALL(*f1_copy, call(l, t)).WillOnce(Return(10));
+	EXPECT_CALL(*f2_copy, call(l, t)).WillOnce(Return(14));
 
-	mock(c, t);
+	mock(l, t);
 }
 
 TEST_F(BinaryTest, rvalue_build) {
@@ -255,11 +256,11 @@ TEST_F(BinaryTest, rvalue_build) {
 	EXPECT_CALL(f2, copy).WillOnce(Return(f2_copy));
 	StrictMock<MockBinary<float, float, float>> mock {std::move(f1), std::move(f2)};
 
-	EXPECT_CALL(mock, call(c, t));
-	EXPECT_CALL(*f1_copy, call(c, t)).WillOnce(Return(10));
-	EXPECT_CALL(*f2_copy, call(c, t)).WillOnce(Return(14));
+	EXPECT_CALL(mock, call(l, t));
+	EXPECT_CALL(*f1_copy, call(l, t)).WillOnce(Return(10));
+	EXPECT_CALL(*f2_copy, call(l, t)).WillOnce(Return(14));
 
-	mock(c, t);
+	mock(l, t);
 }
 
 TEST_F(BinaryTest, nested_lvalue_build) {
@@ -286,23 +287,23 @@ TEST_F(BinaryTest, nested_lvalue_build) {
 
 	EXPECT_CALL(mock_1, call).Times(0);
 
-	EXPECT_CALL(mock_2, call(c, t));
-	EXPECT_CALL(dynamic_cast<const decltype(mock_1)&>(mock_2.arg<0>()), call(c, t));
-	EXPECT_CALL(*f1_copy_copy, call(c, t));
-	EXPECT_CALL(*f2_copy_copy, call(c, t));
-	EXPECT_CALL(*f3_copy, call(c, t)).Times(1);
-	mock_2(c, t);
+	EXPECT_CALL(mock_2, call(l, t));
+	EXPECT_CALL(dynamic_cast<const decltype(mock_1)&>(mock_2.arg<0>()), call(l, t));
+	EXPECT_CALL(*f1_copy_copy, call(l, t));
+	EXPECT_CALL(*f2_copy_copy, call(l, t));
+	EXPECT_CALL(*f3_copy, call(l, t)).Times(1);
+	mock_2(l, t);
 }
 
 TEST(Cast, lvalue) {
 	const auto& t = pixled::chrono::T();
 	auto function = pixled::Cast<float>(t);
 
-	ASSERT_FLOAT_EQ(function({0, 0}, 10), 10.f);
+	ASSERT_FLOAT_EQ(function({{0, 0}, 1}, 10), 10.f);
 }
 
 TEST(Cast, rvalue) {
 	auto function = pixled::Cast<int>(pixled::geometry::X());
 
-	ASSERT_FLOAT_EQ(function({14.5, 0}, 10), 14);
+	ASSERT_FLOAT_EQ(function({{14.5, 0}, 7}, 10), 14);
 }

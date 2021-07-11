@@ -26,7 +26,7 @@ namespace pixled {
 			public:
 				using Function<hsb, color, float, float, float>::Function;
 
-				color operator()(point c, time t) const override;
+				color operator()(led l, time t) const override;
 		};
 
 		/**
@@ -47,7 +47,7 @@ namespace pixled {
 			public:
 				using Function<rgb, color, uint8_t, uint8_t, uint8_t>::Function;
 
-				color operator()(point c, time t) const override;
+				color operator()(led l, time t) const override;
 		};
 
 		/**

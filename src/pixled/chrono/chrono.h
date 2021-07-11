@@ -13,7 +13,7 @@ namespace pixled {
 		 */
 		class T : public base::Function<time> {
 			public:
-				time operator()(point c, time t) const override {
+				time operator()(led l, time t) const override {
 					return t;
 				}
 

@@ -3,7 +3,7 @@
 namespace pixled {
 	void Runtime::frame(time t) {
 		for(auto led : mapping.leds()) {
-			output.write(animation(led.location, t), led.index);
+			output.write(animation(led, t), led.index);
 		}
 	}
 	void Runtime::prev() {

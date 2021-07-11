@@ -4,7 +4,7 @@
 #include <utility>
 #include "color.h"
 #include "time.h"
-#include "geometry.h"
+#include "mapping.h"
 
 
 namespace pixled {
@@ -40,18 +40,18 @@ namespace pixled {
 					/**
 					 * @anchor function_call_operator
 					 *
-					 * Computes the value of this Function on point `p` at
+					 * Computes the value of this Function for led `l` at
 					 * time `t`.
 					 *
-					 * @param p point
+					 * @param l led
 					 * @param t time
-					 * @return Result of this Function, evaluated on point
-					 * `p` at time `t`. Notice that evaluating a function
+					 * @return Result of this Function, evaluated on led
+					 * `l` at time `t`. Notice that evaluating a function
 					 * usually requires the recursive evaluation of other
 					 * Functions (that are actually _parameters_ of this
 					 * function) until a Constant is reached for example.
 					 */
-					virtual R operator()(point p, time t) const = 0;
+					virtual R operator()(led l, time t) const = 0;
 
 					/**
 					 * Returns a dynamically allocated copy of this
@@ -113,7 +113,7 @@ namespace pixled {
 				 *
 				 * @return constant value
 				 */
-				T operator()(point, time) const override {return _value;};
+				T operator()(led, time) const override {return _value;};
 
 				/**
 				 * Returns a dynamically copy of this Constant, with the
@@ -332,7 +332,7 @@ namespace pixled {
 	 *     F f = build_f();
 	 *
 	 *     // Apply F on p=point(2, 0) at t=10
-	 *     std::cout << f(pixled::point(2, 0), 10) << std::endl;
+	 *     std::cout << f(pixled::led(pixled::point(2, 0), 10), 10) << std::endl;
 	 * }
 	 * ```
 	 *
@@ -412,7 +412,7 @@ namespace pixled {
 				 *
 				 * @tparam i argument index
 				 *
-				 * @param p point
+				 * @param l led
 				 * @param t time
 				 * @return result of the call to functionnal argument at
 				 * position i with the specified parameters
@@ -420,8 +420,8 @@ namespace pixled {
 				 * @see \function_call_operator
 				 */
 				template<std::size_t i>
-					typename std::tuple_element<i, decltype(args)>::type::Type call(point p, time t) const {
-						return (*std::get<i>(args))(p, t);
+					typename std::tuple_element<i, decltype(args)>::type::Type call(led l, time t) const {
+						return (*std::get<i>(args))(l, t);
 					}
 
 			protected:
@@ -464,8 +464,8 @@ namespace pixled {
 					Cast(base::Function<From>&& from)
 						: f(std::move(from)) {}
 
-					To operator()(point c, time t) const override {
-						return (*this->f)(c, t);
+					To operator()(led l, time t) const override {
+						return (*this->f)(l, t);
 					}
 
 					Cast<To, From>* copy() const override {

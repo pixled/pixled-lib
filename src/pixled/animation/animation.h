@@ -31,10 +31,10 @@ namespace pixled { namespace animation {
 			public:
 				using Function<Wave<R>, R, time, R, R>::Function;
 
-				R operator()(point c, time t) const override {
-					return this->template call<1>(c, t)
-						+ this->template call<2>(c, t) * std::sin(
-								2*PI * t / this->template call<0>(c, t)
+				R operator()(led l, time t) const override {
+					return this->template call<1>(l, t)
+						+ this->template call<2>(l, t) * std::sin(
+								2*PI * t / this->template call<0>(l, t)
 								);
 				}
 		};
@@ -56,7 +56,7 @@ namespace pixled { namespace animation {
 			 * f2 : origin line
 			 * f3 : time period
 			 */
-			float operator()(point p, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 
 	/**
@@ -76,7 +76,7 @@ namespace pixled { namespace animation {
 			 * f2 : origin line
 			 * f3 : time period
 			 */
-			float operator()(point p, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 
 	/**
@@ -94,7 +94,7 @@ namespace pixled { namespace animation {
 		public:
 			using Function<Rainbow, float, time>::Function;
 
-			float operator()(point c, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 
 	/**
@@ -109,7 +109,7 @@ namespace pixled { namespace animation {
 		public:
 			using Function<RainbowWave, float, float, time, line>::Function;
 
-			float operator()(point p, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 
 	/**
@@ -124,7 +124,7 @@ namespace pixled { namespace animation {
 		public:
 			using Function<RadialRainbowWave, float, coordinate, time, point>::Function;
 
-			float operator()(point p, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 
 	/**
@@ -140,7 +140,7 @@ namespace pixled { namespace animation {
 		public:
 			using Function<Blooming, color, color, point, coordinate>::Function;
 
-			color operator()(point c, time t) const override;
+			color operator()(led l, time t) const override;
 	};
 
 
@@ -162,7 +162,7 @@ namespace pixled { namespace animation {
 		public:
 			using Function<Blink, color, color, time>::Function;
 
-			color operator()(point p, time t) const override;
+			color operator()(led l, time t) const override;
 	};
 
 	/**
@@ -254,7 +254,7 @@ namespace pixled { namespace animation {
 					return *this;
 				}
 
-			color operator()(point p, time t) const override;
+			color operator()(led l, time t) const override;
 
 			Sequence* copy() const override;
 	};

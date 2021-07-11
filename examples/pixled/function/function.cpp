@@ -25,10 +25,10 @@ class F : public pixled::Function<F, pixled::point, pixled::point, pixled::time,
 		 *
 		 * Operations applied here are completely arbitrary.
 		 */
-		pixled::point operator()(pixled::point p, pixled::time t) const override {
+		pixled::point operator()(pixled::led l, pixled::time t) const override {
 			return pixled::point {
-				this->call<0>(p, t).x * this->call<2>(p, t) + this->call<1>(p, t),
-				this->call<0>(p, t).y
+				this->call<0>(l, t).x * this->call<2>(l, t) + this->call<1>(l, t),
+				this->call<0>(l, t).y
 			};
 		}
 };
@@ -75,5 +75,5 @@ int main(int argc, char** argv) {
 	F f = build_f();
 
 	// Apply F on p=point(2, 0) at t=10
-	std::cout << f(pixled::point(2, 0), 10) << std::endl;
+	std::cout << f(pixled::led(pixled::point(2, 0), 4), 10) << std::endl;
 }

@@ -66,7 +66,7 @@ $(function() {
 <div class="title">pixled/function/function.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<p>A <a class="el" href="classpixled_1_1Function.html">pixled::Function</a> example usage. A <a class="el" href="classpixled_1_1Function.html#afa6212ecd54bb7bc173de6b3300f6c40">pixled::Function::call()</a> helper function example usage is also presented.</p>
+<p>A <a class="el" href="classpixled_1_1Function.html">pixled::Function</a> example usage. A <a class="el" href="classpixled_1_1Function.html#a8034f87e1d3f862dfa7b37a443f0911f">pixled::Function::call()</a> helper function example usage is also presented.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;pixled.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -94,7 +94,7 @@ $(function() {
 <div class="line"><span class="comment">         *</span></div>
 <div class="line"><span class="comment">         * Operations applied here are completely arbitrary.</span></div>
 <div class="line"><span class="comment">         */</span></div>
-<div class="line">        <a name="_a1"></a><a class="code" href="structpixled_1_1point.html">pixled::point</a> <a name="a2"></a><a class="code" href="classpixled_1_1base_1_1Function.html#a23fc10abaae910fae547a5c38a365302">operator()</a>(<a class="code" href="structpixled_1_1point.html">pixled::point</a> p, <a class="code" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">pixled::time</a> t)<span class="keyword"> const override </span>{</div>
+<div class="line">        <a name="_a1"></a><a class="code" href="structpixled_1_1point.html">pixled::point</a> <a name="a2"></a><a class="code" href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">operator()</a>(<a class="code" href="structpixled_1_1point.html">pixled::point</a> p, <a class="code" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">pixled::time</a> t)<span class="keyword"> const override </span>{</div>
 <div class="line">            <span class="keywordflow">return</span> <a class="code" href="structpixled_1_1point.html">pixled::point</a> {</div>
 <div class="line">                this-&gt;call&lt;0&gt;(p, t).<a name="a3"></a><a class="code" href="structpixled_1_1point.html#a4e64146eb6abe055b0ecde418aab1006">x</a> * this-&gt;call&lt;2&gt;(p, t) + this-&gt;call&lt;1&gt;(p, t),</div>
 <div class="line">                this-&gt;call&lt;0&gt;(p, t).y</div>
@@ -147,7 +147,7 @@ $(function() {
 <div class="line">    std::cout &lt;&lt; f(<a class="code" href="structpixled_1_1point.html">pixled::point</a>(2, 0), 10) &lt;&lt; std::endl;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclasspixled_1_1Function_html"><div class="ttname"><a href="classpixled_1_1Function.html">pixled::Function</a></div><div class="ttdef"><b>Definition:</b> function.h:349</div></div>
-<div class="ttc" id="aclasspixled_1_1base_1_1Function_html_a23fc10abaae910fae547a5c38a365302"><div class="ttname"><a href="classpixled_1_1base_1_1Function.html#a23fc10abaae910fae547a5c38a365302">pixled::base::Function::operator()</a></div><div class="ttdeci">virtual R operator()(point p, time t) const =0</div></div>
+<div class="ttc" id="aclasspixled_1_1base_1_1Function_html_afad1160e9d6af20a91651410a6fb51be"><div class="ttname"><a href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">pixled::base::Function::operator()</a></div><div class="ttdeci">virtual R operator()(led l, time t) const =0</div></div>
 <div class="ttc" id="aclasspixled_1_1chrono_1_1T_html"><div class="ttname"><a href="classpixled_1_1chrono_1_1T.html">pixled::chrono::T</a></div><div class="ttdef"><b>Definition:</b> chrono.h:14</div></div>
 <div class="ttc" id="aclasspixled_1_1geometry_1_1X_html"><div class="ttname"><a href="classpixled_1_1geometry_1_1X.html">pixled::geometry::X</a></div><div class="ttdef"><b>Definition:</b> geometry.h:13</div></div>
 <div class="ttc" id="anamespacepixled_html"><div class="ttname"><a href="namespacepixled.html">pixled</a></div><div class="ttdef"><b>Definition:</b> animation.cpp:3</div></div>

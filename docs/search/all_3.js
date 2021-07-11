@@ -1,7 +1,7 @@
 var searchData=
 [
   ['c_22',['c',['../structpixled_1_1line.html#a247133fb6eced3702b2d81111362d41d',1,'pixled::line']]],
-  ['call_23',['call',['../classpixled_1_1Function.html#afa6212ecd54bb7bc173de6b3300f6c40',1,'pixled::Function']]],
+  ['call_23',['call',['../classpixled_1_1Function.html#a8034f87e1d3f862dfa7b37a443f0911f',1,'pixled::Function']]],
   ['cast_24',['Cast',['../classpixled_1_1detail_1_1Cast.html#a9b4990f385b18fe90348762705051468',1,'pixled::detail::Cast::Cast(const base::Function&lt; From &gt; &amp;from)'],['../classpixled_1_1detail_1_1Cast.html#a52896d8ff2e4f828b13696e7a119e1b8',1,'pixled::detail::Cast::Cast(base::Function&lt; From &gt; &amp;&amp;from)'],['../namespacepixled.html#a1f94677af45edd09f3481323dbec0ba7',1,'pixled::Cast()'],['../classpixled_1_1detail_1_1Cast.html',1,'pixled::detail::Cast&lt; To, From &gt;']]],
   ['color_25',['color',['../classpixled_1_1color.html',1,'pixled']]],
   ['constant_26',['Constant',['../classpixled_1_1Constant.html#aaab822c2761a7e475ce5bbb72384014a',1,'pixled::Constant::Constant()'],['../classpixled_1_1Constant.html',1,'pixled::Constant&lt; T &gt;']]],

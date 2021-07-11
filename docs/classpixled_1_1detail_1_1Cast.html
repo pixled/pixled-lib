@@ -102,8 +102,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9b4990f385b18fe90348762705051468"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52896d8ff2e4f828b13696e7a119e1b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1detail_1_1Cast.html#a52896d8ff2e4f828b13696e7a119e1b8">Cast</a> (<a class="el" href="classpixled_1_1base_1_1Function.html">base::Function</a>&lt; From &gt; &amp;&amp;from)</td></tr>
 <tr class="separator:a52896d8ff2e4f828b13696e7a119e1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a906d1cedf6d673d11ac82c8c795ee3d9"><td class="memItemLeft" align="right" valign="top">To&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1detail_1_1Cast.html#a906d1cedf6d673d11ac82c8c795ee3d9">operator()</a> (<a class="el" href="structpixled_1_1point.html">point</a> c, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
-<tr class="separator:a906d1cedf6d673d11ac82c8c795ee3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b46766ff6d99dc18c87387561068db"><td class="memItemLeft" align="right" valign="top">To&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1detail_1_1Cast.html#ac5b46766ff6d99dc18c87387561068db">operator()</a> (<a class="el" href="structpixled_1_1led.html">led</a> l, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
+<tr class="separator:ac5b46766ff6d99dc18c87387561068db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa04ef9b88467cbc93964b1aef9d17aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1detail_1_1Cast.html">Cast</a>&lt; To, From &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1detail_1_1Cast.html#afa04ef9b88467cbc93964b1aef9d17aa">copy</a> () const override</td></tr>
 <tr class="separator:afa04ef9b88467cbc93964b1aef9d17aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -186,8 +186,8 @@ template&lt;typename To , typename From &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a906d1cedf6d673d11ac82c8c795ee3d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a906d1cedf6d673d11ac82c8c795ee3d9">&#9670;&nbsp;</a></span>operator()()</h2>
+<a id="ac5b46766ff6d99dc18c87387561068db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b46766ff6d99dc18c87387561068db">&#9670;&nbsp;</a></span>operator()()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,8 +200,8 @@ template&lt;typename To , typename From &gt; </div>
         <tr>
           <td class="memname">To <a class="el" href="classpixled_1_1detail_1_1Cast.html">pixled::detail::Cast</a>&lt; To, From &gt;::operator() </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structpixled_1_1point.html">point</a>&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramtype"><a class="el" href="structpixled_1_1led.html">led</a>&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -221,17 +221,17 @@ template&lt;typename To , typename From &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="anchor" id="function_call_operator"></a> Computes the value of this <a class="el" href="classpixled_1_1Function.html">Function</a> on point <code>p</code> at time <code>t</code>.</p>
+<p><a class="anchor" id="function_call_operator"></a> Computes the value of this <a class="el" href="classpixled_1_1Function.html">Function</a> for led <code>l</code> at time <code>t</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>point </td></tr>
+    <tr><td class="paramname">l</td><td>led </td></tr>
     <tr><td class="paramname">t</td><td>time </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Result of this <a class="el" href="classpixled_1_1Function.html">Function</a>, evaluated on point <code>p</code> at time <code>t</code>. Notice that evaluating a function usually requires the recursive evaluation of other Functions (that are actually <em>parameters</em> of this function) until a <a class="el" href="classpixled_1_1Constant.html">Constant</a> is reached for example. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of this <a class="el" href="classpixled_1_1Function.html">Function</a>, evaluated on led <code>l</code> at time <code>t</code>. Notice that evaluating a function usually requires the recursive evaluation of other Functions (that are actually <em>parameters</em> of this function) until a <a class="el" href="classpixled_1_1Constant.html">Constant</a> is reached for example. </dd></dl>
 
-<p>Implements <a class="el" href="classpixled_1_1base_1_1Function.html#a23fc10abaae910fae547a5c38a365302">pixled::base::Function&lt; To &gt;</a>.</p>
+<p>Implements <a class="el" href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">pixled::base::Function&lt; To &gt;</a>.</p>
 
 </div>
 </div>

@@ -34,11 +34,11 @@ namespace pixled {
 				public:
 					using Function<If<T>, T, bool, T, T>::Function;
 
-					T operator()(point c, time t) const override {
-						if(this->template call<0>(c, t))
-							return this->template call<1>(c, t);
+					T operator()(led l, time t) const override {
+						if(this->template call<0>(l, t))
+							return this->template call<1>(l, t);
 						else
-							return this->template call<2>(c, t);
+							return this->template call<2>(l, t);
 					}
 			};
 
@@ -57,8 +57,8 @@ namespace pixled {
 				public:
 					using Function<Equal<P1, P2>, bool, P1, P2>::Function;
 
-					bool operator()(point p, time t) const override {
-						return this->template call<0>(p, t) == this->template call<1>(p, t);
+					bool operator()(led l, time t) const override {
+						return this->template call<0>(l, t) == this->template call<1>(l, t);
 					};
 			};
 	}
@@ -162,8 +162,8 @@ namespace pixled {
 				public:
 					using Function<NotEqual<P1, P2>, bool, P1, P2>::Function;
 
-					bool operator()(point p, time t) const override {
-						return this->template call<0>(p, t) != this->template call<1>(p, t);
+					bool operator()(led l, time t) const override {
+						return this->template call<0>(l, t) != this->template call<1>(l, t);
 					};
 			};
 	}
@@ -267,8 +267,8 @@ namespace pixled {
 				public:
 					using Function<LessThan<P1, P2>, bool, P1, P2>::Function;
 
-					bool operator()(point p, time t) const override {
-						return this->template call<0>(p, t) < this->template call<1>(p, t);
+					bool operator()(led l, time t) const override {
+						return this->template call<0>(l, t) < this->template call<1>(l, t);
 					};
 			};
 	}
@@ -372,8 +372,8 @@ namespace pixled {
 				public:
 					using Function<LessThanOrEqual<P1, P2>, bool, P1, P2>::Function;
 
-					bool operator()(point p, time t) const override {
-						return this->template call<0>(p, t) <= this->template call<1>(p, t);
+					bool operator()(led l, time t) const override {
+						return this->template call<0>(l, t) <= this->template call<1>(l, t);
 					};
 			};
 	}
@@ -477,8 +477,8 @@ namespace pixled {
 				public:
 					using Function<GreaterThan<P1, P2>, bool, P1, P2>::Function;
 
-					bool operator()(point p, time t) const override {
-						return this->template call<0>(p, t) > this->template call<1>(p, t);
+					bool operator()(led l, time t) const override {
+						return this->template call<0>(l, t) > this->template call<1>(l, t);
 					};
 			};
 	}
@@ -582,8 +582,8 @@ namespace pixled {
 				public:
 					using Function<GreaterThanOrEqual<P1, P2>, bool, P1, P2>::Function;
 
-					bool operator()(point p, time t) const override {
-						return this->template call<0>(p, t) >= this->template call<1>(p, t);
+					bool operator()(led l, time t) const override {
+						return this->template call<0>(l, t) >= this->template call<1>(l, t);
 					};
 			};
 	}

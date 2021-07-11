@@ -22,8 +22,8 @@ namespace pixled {
 				public:
 					using Function<Plus<R, P1, P2>, R, P1, P2>::Function;
 
-					R operator()(point c, time t) const override {
-						return this->template call<0>(c, t) + this->template call<1>(c, t);
+					R operator()(led l, time t) const override {
+						return this->template call<0>(l, t) + this->template call<1>(l, t);
 					}
 			};
 	}
@@ -144,8 +144,8 @@ namespace pixled {
 				public:
 					using Function<Minus<R, P1, P2>, R, P1, P2>::Function;
 
-					R operator()(point c, time t) const override {
-						return this->template call<0>(c, t) - this->template call<1>(c, t);
+					R operator()(led l, time t) const override {
+						return this->template call<0>(l, t) - this->template call<1>(l, t);
 					}
 			};
 	}
@@ -266,8 +266,8 @@ namespace pixled {
 				public:
 					using Function<Multiplies<R, P1, P2>, R, P1, P2>::Function;
 
-					R operator()(point c, time t) const override {
-						return this->template call<0>(c, t) * this->template call<1>(c, t);
+					R operator()(led l, time t) const override {
+						return this->template call<0>(l, t) * this->template call<1>(l, t);
 					}
 			};
 	}
@@ -392,8 +392,8 @@ namespace pixled {
 				public:
 					using Function<Divides<R, P1, P2>, R, P1, P2>::Function;
 
-					R operator()(point c, time t) const override {
-						return this->template call<0>(c, t) / this->template call<1>(c, t);
+					R operator()(led l, time t) const override {
+						return this->template call<0>(l, t) / this->template call<1>(l, t);
 					}
 			};
 	}
@@ -514,8 +514,8 @@ namespace pixled {
 				public:
 					using Function<Modulus<R, P1, P2>, R, P1, P2>::Function;
 
-					R operator()(point c, time t) const override {
-						return this->template call<0>(c, t) % this->template call<1>(c, t);
+					R operator()(led l, time t) const override {
+						return this->template call<0>(l, t) % this->template call<1>(l, t);
 					}
 			};
 	}

@@ -79,7 +79,7 @@ namespace pixled { namespace random {
 		public:
 			using RandomEngineConfig::RandomEngineConfig;
 
-			random_engine operator()(point p, time t) const override;
+			random_engine operator()(led l, time t) const override;
 
 			RandomT* copy() const override {
 				return new RandomT(period, seed);
@@ -97,14 +97,14 @@ namespace pixled { namespace random {
 			mutable time current_period = 0;
 			mutable random_engine rd_seeder {this->seed};
 			mutable std::uniform_int_distribution<unsigned long> rd_seed;
-			mutable std::unordered_map<point, random_engine, point_hash, point_equal> rds;
+			mutable std::unordered_map<index_t, random_engine> rds;
 		public:
 			using RandomEngineConfig::RandomEngineConfig;
 
 			/*
 			 * f = period 
 			 */
-			random_engine operator()(point p, time t) const override;
+			random_engine operator()(led l, time t) const override;
 
 			RandomXYT* copy() const override {
 				return new RandomXYT(period, seed);
@@ -132,11 +132,11 @@ namespace pixled { namespace random {
 					 * f2 = max
 					 * f3 = random engine
 					 */
-					R operator()(point p, time t) const override {
+					R operator()(led l, time t) const override {
 						std::uniform_real_distribution<float> random_real (
-								this->template call<0>(p, t), this->template call<1>(p, t)
+								this->template call<0>(l, t), this->template call<1>(l, t)
 								);
-						auto engine = this->template call<2>(p, t);
+						auto engine = this->template call<2>(l, t);
 						return random_real(engine);
 					}
 			};
@@ -159,11 +159,11 @@ namespace pixled { namespace random {
 			 * f2 = max
 			 * f3 = random engine
 			 */
-			R operator()(point p, time t) const override {
+			R operator()(led l, time t) const override {
 				std::normal_distribution<float> random_real (
-						this->template call<0>(p, t), this->template call<1>(p, t)
+						this->template call<0>(l, t), this->template call<1>(l, t)
 						);
-				auto engine = this->template call<2>(p, t);
+				auto engine = this->template call<2>(l, t);
 				return random_real(engine);
 			}
 	};

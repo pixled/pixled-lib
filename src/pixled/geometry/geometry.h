@@ -12,8 +12,8 @@ namespace pixled { namespace geometry {
 	 */
 	class X : public base::Function<coordinate> {
 		public:
-			coordinate operator()(point c, time t) const override {
-				return c.x;
+			coordinate operator()(led l, time t) const override {
+				return l.location.x;
 			}
 
 			X* copy() const override {return new X;}
@@ -26,8 +26,8 @@ namespace pixled { namespace geometry {
 	 */
 	class Y : public base::Function<coordinate> {
 		public:
-			coordinate operator()(point c, time t) const override {
-				return c.y;
+			coordinate operator()(led l, time t) const override {
+				return l.location.y;
 			}
 
 			Y* copy() const override {return new Y;}
@@ -44,7 +44,7 @@ namespace pixled { namespace geometry {
 		public:
 			using Function<Distance, coordinate, point, point>::Function;
 
-			coordinate operator()(point c, time t) const override;
+			coordinate operator()(led l, time t) const override;
 	};
 
 	/**
@@ -58,7 +58,7 @@ namespace pixled { namespace geometry {
 		public:
 			using Function<LineDistance, coordinate, line, point>::Function;
 
-			coordinate operator()(point p, time t) const override;
+			coordinate operator()(led l, time t) const override;
 	};
 
 	/**
@@ -78,7 +78,7 @@ namespace pixled { namespace geometry {
 		public:
 			using Function<Point, point, coordinate, coordinate>::Function;
 
-			point operator()(point c, time t) const override;
+			point operator()(led l, time t) const override;
 	};
 
 	/**
@@ -97,7 +97,7 @@ namespace pixled { namespace geometry {
 		public:
 			using Function<AngleDeg, angle, float>::Function;
 
-			angle operator()(point p, time t) const override;
+			angle operator()(led l, time t) const override;
 	};
 
 	/**
@@ -116,7 +116,7 @@ namespace pixled { namespace geometry {
 		public:
 			using Function<AngleRad, angle, float>::Function;
 
-			angle operator()(point p, time t) const override;
+			angle operator()(led l, time t) const override;
 	};
 
 	/**
@@ -137,7 +137,7 @@ namespace pixled { namespace geometry {
 		public:
 		using Function<Line, line, coordinate, coordinate, coordinate>::Function;
 
-		line operator()(point p, time t) const override;
+		line operator()(led l, time t) const override;
 	};
 
 	/**
@@ -150,7 +150,7 @@ namespace pixled { namespace geometry {
 		public:
 		using Function<XLine, line, coordinate>::Function;
 
-		line operator()(point p, time t) const override;
+		line operator()(led l, time t) const override;
 	};
 
 	/**
@@ -163,7 +163,7 @@ namespace pixled { namespace geometry {
 		public:
 		using Function<YLine, line, coordinate>::Function;
 
-		line operator()(point p, time t) const override;
+		line operator()(led l, time t) const override;
 	};
 
 	/**
@@ -177,7 +177,7 @@ namespace pixled { namespace geometry {
 		public:
 			using Function<AlphaLine, line, point, angle>::Function;
 
-			line operator()(point p, time t) const override;
+			line operator()(led l, time t) const override;
 	};
 
 	/**
@@ -191,7 +191,7 @@ namespace pixled { namespace geometry {
 		public:
 			using Function<PointLine, line, point, point>::Function;
 
-			line operator()(point p, time t) const override;
+			line operator()(led l, time t) const override;
 	};
 }}
 #endif

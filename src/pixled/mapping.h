@@ -37,6 +37,26 @@ namespace pixled {
 	};
 
 	/**
+	 * Checks if the two leds are equal, i.e. if their location and index are
+	 * equal.
+	 *
+	 * @return true iff `l1` == `l2`
+	 */
+	bool operator==(const led& l1, const led& l2);
+
+	/**
+	 * A function object that can be used to check led equality.
+	 */
+	struct led_equal {
+		/**
+		 * Checks if the two leds are equal.
+		 *
+		 * @return true iff `l1` == `l2`
+		 */
+		bool operator()(const led& l1, const led& l2) const;
+	};
+
+	/**
 	 * The Mapping is an essential pixled component.
 	 *
 	 * It is used to described all the leds contained in the current system, so

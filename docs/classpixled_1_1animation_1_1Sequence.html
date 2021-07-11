@@ -103,8 +103,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9047c78ef38d2de62d6d75f515cabe2b"><td class="memTemplParams" colspan="2">template&lt;typename Anim &gt; </td></tr>
 <tr class="memitem:a9047c78ef38d2de62d6d75f515cabe2b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1animation_1_1Sequence.html">Sequence</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpixled_1_1animation_1_1Sequence.html#a9047c78ef38d2de62d6d75f515cabe2b">add</a> (Anim &amp;&amp;animation, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> duration)</td></tr>
 <tr class="separator:a9047c78ef38d2de62d6d75f515cabe2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a769e2d69050c540e924a100d23b0d8ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1color.html">color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1animation_1_1Sequence.html#a769e2d69050c540e924a100d23b0d8ff">operator()</a> (<a class="el" href="structpixled_1_1point.html">point</a> p, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
-<tr class="separator:a769e2d69050c540e924a100d23b0d8ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf06722fa30bd51b7726bf180cac42d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1color.html">color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1animation_1_1Sequence.html#aaf06722fa30bd51b7726bf180cac42d0">operator()</a> (<a class="el" href="structpixled_1_1led.html">led</a> l, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
+<tr class="separator:aaf06722fa30bd51b7726bf180cac42d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f0564104082f826bd4edf8075ae379c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1animation_1_1Sequence.html">Sequence</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1animation_1_1Sequence.html#a8f0564104082f826bd4edf8075ae379c">copy</a> () const override</td></tr>
 <tr class="separator:a8f0564104082f826bd4edf8075ae379c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -220,8 +220,8 @@ template&lt;typename Anim &gt; </div>
 
 </div>
 </div>
-<a id="a769e2d69050c540e924a100d23b0d8ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a769e2d69050c540e924a100d23b0d8ff">&#9670;&nbsp;</a></span>operator()()</h2>
+<a id="aaf06722fa30bd51b7726bf180cac42d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf06722fa30bd51b7726bf180cac42d0">&#9670;&nbsp;</a></span>operator()()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -232,8 +232,8 @@ template&lt;typename Anim &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classpixled_1_1color.html">color</a> pixled::animation::Sequence::operator() </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structpixled_1_1point.html">point</a>&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramtype"><a class="el" href="structpixled_1_1led.html">led</a>&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -253,17 +253,17 @@ template&lt;typename Anim &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="anchor" id="function_call_operator"></a> Computes the value of this <a class="el" href="classpixled_1_1Function.html">Function</a> on point <code>p</code> at time <code>t</code>.</p>
+<p><a class="anchor" id="function_call_operator"></a> Computes the value of this <a class="el" href="classpixled_1_1Function.html">Function</a> for led <code>l</code> at time <code>t</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>point </td></tr>
+    <tr><td class="paramname">l</td><td>led </td></tr>
     <tr><td class="paramname">t</td><td>time </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Result of this <a class="el" href="classpixled_1_1Function.html">Function</a>, evaluated on point <code>p</code> at time <code>t</code>. Notice that evaluating a function usually requires the recursive evaluation of other Functions (that are actually <em>parameters</em> of this function) until a <a class="el" href="classpixled_1_1Constant.html">Constant</a> is reached for example. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of this <a class="el" href="classpixled_1_1Function.html">Function</a>, evaluated on led <code>l</code> at time <code>t</code>. Notice that evaluating a function usually requires the recursive evaluation of other Functions (that are actually <em>parameters</em> of this function) until a <a class="el" href="classpixled_1_1Constant.html">Constant</a> is reached for example. </dd></dl>
 
-<p>Implements <a class="el" href="classpixled_1_1base_1_1Function.html#a23fc10abaae910fae547a5c38a365302">pixled::base::Function&lt; color &gt;</a>.</p>
+<p>Implements <a class="el" href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">pixled::base::Function&lt; color &gt;</a>.</p>
 
 </div>
 </div>

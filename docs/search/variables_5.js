@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['green_438',['GREEN',['../namespacepixled_1_1chroma.html#a93bdda7fc0f788564c96a8ad7029009f',1,'pixled::chroma']]]
+  ['green_440',['GREEN',['../namespacepixled_1_1chroma.html#a93bdda7fc0f788564c96a8ad7029009f',1,'pixled::chroma']]]
 ];

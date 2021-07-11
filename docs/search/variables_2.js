@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['b_433',['b',['../structpixled_1_1line.html#a203ff35947c1b5e5f932c62aa200fbb0',1,'pixled::line']]],
-  ['blue_434',['BLUE',['../namespacepixled_1_1chroma.html#a584e356fe997406fc65474f91734167c',1,'pixled::chroma']]]
+  ['b_435',['b',['../structpixled_1_1line.html#a203ff35947c1b5e5f932c62aa200fbb0',1,'pixled::line']]],
+  ['blue_436',['BLUE',['../namespacepixled_1_1chroma.html#a584e356fe997406fc65474f91734167c',1,'pixled::chroma']]]
 ];

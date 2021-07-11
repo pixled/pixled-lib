@@ -29,19 +29,21 @@ float variance(Container& data) {
 TEST(RandomT, uniform_int_test) {
 	pixled::random::RandomT engine (10);
 	pixled::random::UniformDistribution<int> rd(1, 25, engine);
-	std::mt19937 rd_xy;
+	std::mt19937 _rd;
 	std::uniform_real_distribution<float> xy(-10, 10);
+	std::uniform_int_distribution<pixled::index_t> index(0, 100);
 
 	std::array<int, NUM_PERIOD> values;
 
 	// First run from t = 0 to t = 10 * 100
 	for(unsigned long i = 0; i < NUM_PERIOD; i++) {
-		pixled::point p {xy(rd_xy), xy(rd_xy)};
-		int rd_int = rd(p, 10 * i);
+		pixled::point p {xy(_rd), xy(_rd)};
+		pixled::led l {p, index(_rd)};
+		int rd_int = rd(l, 10 * i);
 		values[i] = rd_int;
 		// Since period = 10, the value must keep constant for 10 iterations
 		for(pixled::time t = 10 * i; t < 10 * (i + 1); t++) {
-			int next_rd_int = rd(p, t);
+			int next_rd_int = rd(l, t);
 			ASSERT_EQ(next_rd_int, rd_int);
 		}
 	}
@@ -54,19 +56,21 @@ TEST(RandomT, uniform_int_test) {
 TEST(RandomT, uniform_float_test) {
 	pixled::random::RandomT engine (10);
 	pixled::random::UniformDistribution<int> rd(1, 25, engine);
-	std::mt19937 rd_xy;
+	std::mt19937 _rd;
 	std::uniform_real_distribution<float> xy(-10, 10);
+	std::uniform_int_distribution<pixled::index_t> index(0, 100);
 
 	std::array<float, NUM_PERIOD> values;
 
 	// First run from t = 0 to t = 10 * 100
 	for(unsigned long i = 0; i < NUM_PERIOD; i++) {
-		pixled::point p {xy(rd_xy), xy(rd_xy)};
-		float rd_float = rd(p, 10 * i);
+		pixled::point p {xy(_rd), xy(_rd)};
+		pixled::led l {p, index(_rd)};
+		float rd_float = rd(l, 10 * i);
 		values[i] = rd_float;
 		// Since period = 10, the value must keep constant for 10 iterations
 		for(pixled::time t = 10 * i; t < 10 * (i + 1); t++) {
-			float next_rd_float = rd(p, t);
+			float next_rd_float = rd(l, t);
 			ASSERT_FLOAT_EQ(next_rd_float, rd_float);
 		}
 	}
@@ -86,8 +90,8 @@ TEST(RandomT, auto_seed) {
 	std::array<int, 1000> values_2;
 
 	for(int i = 0; i < 1000; i++) {
-		values_1[i] = dist_1({0, 0}, i);
-		values_2[i] = dist_2({0, 0}, i);
+		values_1[i] = dist_1({{0, 0}, 0}, i);
+		values_2[i] = dist_2({{0, 0}, 0}, i);
 	}
 
 	ASSERT_THAT(values_1, Not(ElementsAreArray(values_2)));
@@ -97,12 +101,16 @@ TEST(RandomT, auto_seed) {
 TEST(RandomXYT, uniform_int_test) {
 	pixled::random::RandomXYT engine (10);
 	pixled::random::UniformDistribution<int> rd(1, 25, engine);
-	std::mt19937 rd_xy;
+	std::mt19937 _rd;
 	std::uniform_real_distribution<float> xy(-10, 10);
+	std::uniform_int_distribution<pixled::index_t> index(0, 100);
 
-	pixled::point p1 {xy(rd_xy), xy(rd_xy)};
-	pixled::point p2 {xy(rd_xy), xy(rd_xy)};
-	pixled::point p3 {xy(rd_xy), xy(rd_xy)};
+	pixled::point p1 {xy(_rd), xy(_rd)};
+	pixled::led l1 {p1, index(_rd)};
+	pixled::point p2 {xy(_rd), xy(_rd)};
+	pixled::led l2 {p2, index(_rd)};
+	pixled::point p3 {xy(_rd), xy(_rd)};
+	pixled::led l3 {p3, index(_rd)};
 	std::array<int, NUM_PERIOD> p1_values;
 	std::array<int, NUM_PERIOD> p2_values;
 	std::array<int, NUM_PERIOD> p3_values;
@@ -110,24 +118,24 @@ TEST(RandomXYT, uniform_int_test) {
 	// First run from t = 0 to t = 10 * 100
 	for(unsigned long i = 0; i < NUM_PERIOD; i++) {
 		// p1
-		int rd_int_1 = rd(p1, 10 * i);
+		int rd_int_1 = rd(l1, 10 * i);
 		p1_values[i] = rd_int_1;
 		// p2
-		int rd_int_2 = rd(p2, 10 * i);
+		int rd_int_2 = rd(l2, 10 * i);
 		p2_values[i] = rd_int_2;
 		// p3
-		int rd_int_3 = rd(p3, 10 * i);
+		int rd_int_3 = rd(l3, 10 * i);
 		p3_values[i] = rd_int_3;
 		// Since period = 10, the value must keep constant for 10 iterations
 		for(pixled::time t = 10 * i; t < 10 * (i + 1); t++) {
 			// p1
-			int next_rd_int_1 = rd(p1, t);
+			int next_rd_int_1 = rd(l1, t);
 			ASSERT_EQ(next_rd_int_1, rd_int_1);
 			// p2
-			int next_rd_int_2 = rd(p2, t);
+			int next_rd_int_2 = rd(l2, t);
 			ASSERT_EQ(next_rd_int_2, rd_int_2);
 			// p3
-			int next_rd_int_3 = rd(p3, t);
+			int next_rd_int_3 = rd(l3, t);
 			ASSERT_EQ(next_rd_int_3, rd_int_3);
 		}
 	}
@@ -150,12 +158,16 @@ TEST(RandomXYT, uniform_int_test) {
 TEST(RandomXYT, normal_float_test) {
 	pixled::random::RandomXYT engine (10);
 	pixled::random::NormalDistribution<float> rd(180, 100, engine);
-	std::mt19937 rd_xy;
+	std::mt19937 _rd;
 	std::uniform_real_distribution<float> xy(-10, 10);
+	std::uniform_int_distribution<pixled::index_t> index(0, 100);
 
-	pixled::point p1 {xy(rd_xy), xy(rd_xy)};
-	pixled::point p2 {xy(rd_xy), xy(rd_xy)};
-	pixled::point p3 {xy(rd_xy), xy(rd_xy)};
+	pixled::point p1 {xy(_rd), xy(_rd)};
+	pixled::led l1 {p1, index(_rd)};
+	pixled::point p2 {xy(_rd), xy(_rd)};
+	pixled::led l2 {p2, index(_rd)};
+	pixled::point p3 {xy(_rd), xy(_rd)};
+	pixled::led l3 {p3, index(_rd)};
 	std::array<int, NUM_PERIOD> p1_values;
 	std::array<int, NUM_PERIOD> p2_values;
 	std::array<int, NUM_PERIOD> p3_values;
@@ -163,24 +175,24 @@ TEST(RandomXYT, normal_float_test) {
 	// First run from t = 0 to t = 10 * 100
 	for(unsigned long i = 0; i < NUM_PERIOD; i++) {
 		// p1
-		int rd_int_1 = rd(p1, 10 * i);
+		int rd_int_1 = rd(l1, 10 * i);
 		p1_values[i] = rd_int_1;
 		// p2
-		int rd_int_2 = rd(p2, 10 * i);
+		int rd_int_2 = rd(l2, 10 * i);
 		p2_values[i] = rd_int_2;
 		// p3
-		int rd_int_3 = rd(p3, 10 * i);
+		int rd_int_3 = rd(l3, 10 * i);
 		p3_values[i] = rd_int_3;
 		// Since period = 10, the value must keep constant for 10 iterations
 		for(pixled::time t = 10 * i; t < 10 * (i + 1); t++) {
 			// p1
-			int next_rd_int_1 = rd(p1, t);
+			int next_rd_int_1 = rd(l1, t);
 			ASSERT_EQ(next_rd_int_1, rd_int_1);
 			// p2
-			int next_rd_int_2 = rd(p2, t);
+			int next_rd_int_2 = rd(l2, t);
 			ASSERT_EQ(next_rd_int_2, rd_int_2);
 			// p3
-			int next_rd_int_3 = rd(p3, t);
+			int next_rd_int_3 = rd(l3, t);
 			ASSERT_EQ(next_rd_int_3, rd_int_3);
 		}
 	}
@@ -210,8 +222,8 @@ TEST(RandomXYT, auto_seed) {
 	std::array<int, 1000> values_2;
 
 	for(int i = 0; i < 1000; i++) {
-		values_1[i] = dist_1({0, 0}, i);
-		values_2[i] = dist_2({0, 0}, i);
+		values_1[i] = dist_1({{0, 0}, 0}, i);
+		values_2[i] = dist_2({{0, 0}, 0}, i);
 	}
 
 	ASSERT_THAT(values_1, Not(ElementsAreArray(values_2)));

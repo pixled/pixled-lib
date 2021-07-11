@@ -58,7 +58,7 @@ namespace pixled { namespace signal {
 			 * f1 : period
 			 * f2 : param
 			 */
-			float operator()(point p, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 
 	/**
@@ -91,7 +91,7 @@ namespace pixled { namespace signal {
 		public:
 			using Function<Square, float, float>::Function;
 
-			float operator()(point p, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 
 	/**
@@ -124,7 +124,7 @@ namespace pixled { namespace signal {
 		public:
 			using Function<Triangle, float, float>::Function;
 
-			float operator()(point p, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 
 	/**
@@ -157,7 +157,7 @@ namespace pixled { namespace signal {
 		public:
 			using Function<Sawtooth, float, float>::Function;
 
-			float operator()(point p, time t) const override;
+			float operator()(led l, time t) const override;
 	};
 }}
 #endif

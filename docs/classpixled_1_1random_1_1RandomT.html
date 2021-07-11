@@ -100,8 +100,8 @@ Collaboration diagram for pixled::random::RandomT:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a71e9ef282d01c2326fb9462033b57b8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacepixled.html#a48d8e43272a28c2c018bbd54539d444c">random_engine</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1random_1_1RandomT.html#a71e9ef282d01c2326fb9462033b57b8b">operator()</a> (<a class="el" href="structpixled_1_1point.html">point</a> p, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
-<tr class="separator:a71e9ef282d01c2326fb9462033b57b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aa01fe8614564b6a88f8a8f0d59a9f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacepixled.html#a48d8e43272a28c2c018bbd54539d444c">random_engine</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1random_1_1RandomT.html#a7aa01fe8614564b6a88f8a8f0d59a9f8">operator()</a> (<a class="el" href="structpixled_1_1led.html">led</a> l, <a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> t) const override</td></tr>
+<tr class="separator:a7aa01fe8614564b6a88f8a8f0d59a9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afae0a519b07f469cd15173598c624b74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpixled_1_1random_1_1RandomT.html">RandomT</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1random_1_1RandomT.html#afae0a519b07f469cd15173598c624b74">copy</a> () const override</td></tr>
 <tr class="separator:afae0a519b07f469cd15173598c624b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe3dd0e76000b27cdfa71149b099d56f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1random_1_1RandomT.html#abe3dd0e76000b27cdfa71149b099d56f">RandomEngineConfig</a> (<a class="el" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">time</a> <a class="el" href="classpixled_1_1random_1_1RandomEngineConfig.html#a1187ff2516da904eaf99ac0c51f41230">period</a>)</td></tr>
@@ -121,8 +121,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="pixled_2random_2normal_8cpp-example.html#_a1">pixled/random/normal.cpp</a>, and <a class="el" href="pixled_2random_2uniform_8cpp-example.html#_a1">pixled/random/uniform.cpp</a>.</dd>
 </dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a71e9ef282d01c2326fb9462033b57b8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71e9ef282d01c2326fb9462033b57b8b">&#9670;&nbsp;</a></span>operator()()</h2>
+<a id="a7aa01fe8614564b6a88f8a8f0d59a9f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa01fe8614564b6a88f8a8f0d59a9f8">&#9670;&nbsp;</a></span>operator()()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -133,8 +133,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">std::minstd_rand pixled::random::RandomT::operator() </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structpixled_1_1point.html">point</a>&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramtype"><a class="el" href="structpixled_1_1led.html">led</a>&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -154,17 +154,17 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="anchor" id="function_call_operator"></a> Computes the value of this <a class="el" href="classpixled_1_1Function.html">Function</a> on point <code>p</code> at time <code>t</code>.</p>
+<p><a class="anchor" id="function_call_operator"></a> Computes the value of this <a class="el" href="classpixled_1_1Function.html">Function</a> for led <code>l</code> at time <code>t</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>point </td></tr>
+    <tr><td class="paramname">l</td><td>led </td></tr>
     <tr><td class="paramname">t</td><td>time </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Result of this <a class="el" href="classpixled_1_1Function.html">Function</a>, evaluated on point <code>p</code> at time <code>t</code>. Notice that evaluating a function usually requires the recursive evaluation of other Functions (that are actually <em>parameters</em> of this function) until a <a class="el" href="classpixled_1_1Constant.html">Constant</a> is reached for example. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of this <a class="el" href="classpixled_1_1Function.html">Function</a>, evaluated on led <code>l</code> at time <code>t</code>. Notice that evaluating a function usually requires the recursive evaluation of other Functions (that are actually <em>parameters</em> of this function) until a <a class="el" href="classpixled_1_1Constant.html">Constant</a> is reached for example. </dd></dl>
 
-<p>Implements <a class="el" href="classpixled_1_1base_1_1Function.html#a23fc10abaae910fae547a5c38a365302">pixled::base::Function&lt; random_engine &gt;</a>.</p>
+<p>Implements <a class="el" href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">pixled::base::Function&lt; random_engine &gt;</a>.</p>
 
 </div>
 </div>

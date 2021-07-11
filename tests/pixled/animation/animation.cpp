@@ -12,27 +12,27 @@ TEST(RainbowTest, test) {
 	pixled::animation::Rainbow h {period};
 	auto r = pixled::chroma::hsb(h, 0.5f, 0.4f);
 
-	auto color = r({0, 0}, 0);
+	auto color = r({{0, 0}, 0}, 0);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
 	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 
-	color = r({2, 8}, 12);
+	color = r({{2, 8}, 1}, 12);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
 	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 
-	color = r({2, 8}, 6);
+	color = r({{2, 8}, 1}, 6);
 	ASSERT_FLOAT_EQ(color.hue(), 180.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
 	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 
-	color = r({2, 8}, 3);
+	color = r({{2, 8}, 1}, 3);
 	ASSERT_FLOAT_EQ(color.hue(), 360.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
 	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
 
-	color = r({2, 8}, 9);
+	color = r({{2, 8}, 1}, 9);
 	ASSERT_FLOAT_EQ(color.hue(), 0.f);
 	ASSERT_FLOAT_EQ(color.saturation(), 0.5f);
 	ASSERT_FLOAT_EQ(color.brightness(), 0.4f);
@@ -55,6 +55,7 @@ class SequenceTest : public ::testing::Test {
 			}
 		};
 		pixled::point fake_point {8, 3};
+		pixled::led fake_led {fake_point, 14};
 
 		void SetUp() override {
 			// Add items using the add function
@@ -65,16 +66,16 @@ class SequenceTest : public ::testing::Test {
 TEST_F(SequenceTest, sequence_test) {
 	for(pixled::time T = 0; T < 10; T++) {
 		for(pixled::time t = T*28; t < T*28 + 10; t++) {
-			EXPECT_CALL(*f1.last_copy, call(fake_point, t));
-			seq(fake_point, t);
+			EXPECT_CALL(*f1.last_copy, call(fake_led, t));
+			seq(fake_led, t);
 		}
 		for(pixled::time t = T*28 + 10; t < T*28 + 15; t++) {
-			EXPECT_CALL(*f2.last_copy, call(fake_point, t));
-			seq(fake_point, t);
+			EXPECT_CALL(*f2.last_copy, call(fake_led, t));
+			seq(fake_led, t);
 		}
 		for(pixled::time t = T*28 + 15; t < (T+1)*28; t++) {
-			EXPECT_CALL(*f3.last_copy, call(fake_point, t));
-			seq(fake_point, t);
+			EXPECT_CALL(*f3.last_copy, call(fake_led, t));
+			seq(fake_led, t);
 		}
 	}
 }
@@ -86,16 +87,16 @@ TEST_F(SequenceTest, copy_test) {
 
 	for(pixled::time T = 0; T < 10; T++) {
 		for(pixled::time t = T*28; t < T*28 + 10; t++) {
-			EXPECT_CALL(*f1.last_copy, call(fake_point, t));
-			(*copy)(fake_point, t);
+			EXPECT_CALL(*f1.last_copy, call(fake_led, t));
+			(*copy)(fake_led, t);
 		}
 		for(pixled::time t = T*28 + 10; t < T*28 + 15; t++) {
-			EXPECT_CALL(*f2.last_copy, call(fake_point, t));
-			(*copy)(fake_point, t);
+			EXPECT_CALL(*f2.last_copy, call(fake_led, t));
+			(*copy)(fake_led, t);
 		}
 		for(pixled::time t = T*28 + 15; t < (T+1)*28; t++) {
-			EXPECT_CALL(*f3.last_copy, call(fake_point, t));
-			(*copy)(fake_point, t);
+			EXPECT_CALL(*f3.last_copy, call(fake_led, t));
+			(*copy)(fake_led, t);
 		}
 	}
 }
@@ -107,6 +108,7 @@ TEST(BlinkTest, test) {
 	NiceMock<pixled::MockFunction<pixled::color>> anim;
 
 	pixled::point p(6, -4);
+	pixled::led l (p, 2);
 	pixled::animation::Blink blink(anim, 12);
 
 	for(pixled::time T = 0; T < 10; T++) {
@@ -114,15 +116,15 @@ TEST(BlinkTest, test) {
 			pixled::color c;
 			c.setRgb(rd_color(rd), rd_color(rd), rd_color(rd));
 
-			EXPECT_CALL(*anim.last_copy, call(p, t))
+			EXPECT_CALL(*anim.last_copy, call(l, t))
 				.WillOnce(Return(c));
-			ASSERT_EQ(blink(p, t), c);
+			ASSERT_EQ(blink(l, t), c);
 		}
 
 		pixled::color black;
 		black.setRgb(0, 0, 0);
 		for(pixled::time t = 12*T + 7; t < 12*T + 12; t++) {
-			ASSERT_EQ(blink(p, t), black);
+			ASSERT_EQ(blink(l, t), black);
 		}
 	}
 }

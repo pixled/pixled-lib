@@ -2,11 +2,11 @@
 
 
 namespace pixled { namespace chroma {
-	color hsb::operator()(point c, time t) const {
-		return color::hsb(this->call<0>(c, t), this->call<1>(c, t), this->call<2>(c, t));
+	color hsb::operator()(led l, time t) const {
+		return color::hsb(this->call<0>(l, t), this->call<1>(l, t), this->call<2>(l, t));
 	}
 
-	color rgb::operator()(point c, time t) const {
-		return color::rgb(this->call<0>(c, t), this->call<1>(c, t), this->call<2>(c, t));
+	color rgb::operator()(led l, time t) const {
+		return color::rgb(this->call<0>(l, t), this->call<1>(l, t), this->call<2>(l, t));
 	}
 }}
