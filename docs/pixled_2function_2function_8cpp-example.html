@@ -94,10 +94,10 @@ $(function() {
 <div class="line"><span class="comment">         *</span></div>
 <div class="line"><span class="comment">         * Operations applied here are completely arbitrary.</span></div>
 <div class="line"><span class="comment">         */</span></div>
-<div class="line">        <a name="_a1"></a><a class="code" href="structpixled_1_1point.html">pixled::point</a> <a name="a2"></a><a class="code" href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">operator()</a>(<a class="code" href="structpixled_1_1point.html">pixled::point</a> p, <a class="code" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">pixled::time</a> t)<span class="keyword"> const override </span>{</div>
+<div class="line">        <a name="_a1"></a><a class="code" href="structpixled_1_1point.html">pixled::point</a> <a name="a2"></a><a class="code" href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">operator()</a>(<a name="_a3"></a><a class="code" href="structpixled_1_1led.html">pixled::led</a> l, <a class="code" href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">pixled::time</a> t)<span class="keyword"> const override </span>{</div>
 <div class="line">            <span class="keywordflow">return</span> <a class="code" href="structpixled_1_1point.html">pixled::point</a> {</div>
-<div class="line">                this-&gt;call&lt;0&gt;(p, t).<a name="a3"></a><a class="code" href="structpixled_1_1point.html#a4e64146eb6abe055b0ecde418aab1006">x</a> * this-&gt;call&lt;2&gt;(p, t) + this-&gt;call&lt;1&gt;(p, t),</div>
-<div class="line">                this-&gt;call&lt;0&gt;(p, t).y</div>
+<div class="line">                this-&gt;call&lt;0&gt;(l, t).<a name="a4"></a><a class="code" href="structpixled_1_1point.html#a4e64146eb6abe055b0ecde418aab1006">x</a> * this-&gt;call&lt;2&gt;(l, t) + this-&gt;call&lt;1&gt;(l, t),</div>
+<div class="line">                this-&gt;call&lt;0&gt;(l, t).y</div>
 <div class="line">            };</div>
 <div class="line">        }</div>
 <div class="line">};</div>
@@ -113,7 +113,7 @@ $(function() {
 <div class="line">    <span class="keyword">using namespace </span><a class="code" href="namespacepixled.html">pixled</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// A function that returns a pixled::time</span></div>
-<div class="line">    <span class="keyword">auto</span> time_fct = 2 * <a name="_a4"></a><a class="code" href="classpixled_1_1chrono_1_1T.html">pixled::chrono::T</a>();</div>
+<div class="line">    <span class="keyword">auto</span> time_fct = 2 * <a name="_a5"></a><a class="code" href="classpixled_1_1chrono_1_1T.html">pixled::chrono::T</a>();</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> F(</div>
 <div class="line">            <span class="comment">// A constant point, passed by r-value</span></div>
@@ -121,7 +121,7 @@ $(function() {
 <div class="line">            <span class="comment">// An function that returns a time, passed by l-value</span></div>
 <div class="line">            time_fct,</div>
 <div class="line">            <span class="comment">// A function that returns a float, passed by r-value</span></div>
-<div class="line">            <a name="_a5"></a><a class="code" href="classpixled_1_1geometry_1_1X.html">pixled::X</a>()</div>
+<div class="line">            <a name="_a6"></a><a class="code" href="classpixled_1_1geometry_1_1X.html">pixled::X</a>()</div>
 <div class="line">            );</div>
 <div class="line">}</div>
 <div class="line"><span class="comment">/*</span></div>
@@ -144,7 +144,7 @@ $(function() {
 <div class="line">    F f = build_f();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Apply F on p=point(2, 0) at t=10</span></div>
-<div class="line">    std::cout &lt;&lt; f(<a class="code" href="structpixled_1_1point.html">pixled::point</a>(2, 0), 10) &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; f(<a class="code" href="structpixled_1_1led.html">pixled::led</a>(<a class="code" href="structpixled_1_1point.html">pixled::point</a>(2, 0), 4), 10) &lt;&lt; std::endl;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclasspixled_1_1Function_html"><div class="ttname"><a href="classpixled_1_1Function.html">pixled::Function</a></div><div class="ttdef"><b>Definition:</b> function.h:349</div></div>
 <div class="ttc" id="aclasspixled_1_1base_1_1Function_html_afad1160e9d6af20a91651410a6fb51be"><div class="ttname"><a href="classpixled_1_1base_1_1Function.html#afad1160e9d6af20a91651410a6fb51be">pixled::base::Function::operator()</a></div><div class="ttdeci">virtual R operator()(led l, time t) const =0</div></div>
@@ -152,6 +152,7 @@ $(function() {
 <div class="ttc" id="aclasspixled_1_1geometry_1_1X_html"><div class="ttname"><a href="classpixled_1_1geometry_1_1X.html">pixled::geometry::X</a></div><div class="ttdef"><b>Definition:</b> geometry.h:13</div></div>
 <div class="ttc" id="anamespacepixled_html"><div class="ttname"><a href="namespacepixled.html">pixled</a></div><div class="ttdef"><b>Definition:</b> animation.cpp:3</div></div>
 <div class="ttc" id="anamespacepixled_html_ac529974dfcef7a752b3b6265e37ae6cc"><div class="ttname"><a href="namespacepixled.html#ac529974dfcef7a752b3b6265e37ae6cc">pixled::time</a></div><div class="ttdeci">unsigned long time</div><div class="ttdef"><b>Definition:</b> time.h:10</div></div>
+<div class="ttc" id="astructpixled_1_1led_html"><div class="ttname"><a href="structpixled_1_1led.html">pixled::led</a></div><div class="ttdef"><b>Definition:</b> mapping.h:19</div></div>
 <div class="ttc" id="astructpixled_1_1point_html"><div class="ttname"><a href="structpixled_1_1point.html">pixled::point</a></div><div class="ttdef"><b>Definition:</b> geometry.h:23</div></div>
 <div class="ttc" id="astructpixled_1_1point_html_a4e64146eb6abe055b0ecde418aab1006"><div class="ttname"><a href="structpixled_1_1point.html#a4e64146eb6abe055b0ecde418aab1006">pixled::point::x</a></div><div class="ttdeci">coordinate x</div><div class="ttdef"><b>Definition:</b> geometry.h:27</div></div>
 </div><!-- fragment --> </div><!-- contents -->

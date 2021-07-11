@@ -10,7 +10,7 @@ namespace pixled {
 	 * Pixled Animation definition.
 	 *
 	 * An animation is simply defined as a base::Function that returns a color
-	 * according to the current time and position in space.
+	 * according to the current time and led.
 	 */
 	typedef base::Function<color> Animation;
 

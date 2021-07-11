@@ -118,7 +118,16 @@ namespace pixled {
 	 * Namesapce containing geometric functions.
 	 */
 	namespace geometry {
-
+		/**
+		 * @example pixled/geometry/index.cpp
+		 *
+		 * A led index based animation example.
+		 *
+		 * index.gif ||
+		 * ----------||
+		 *  ![Index](index.gif) ||
+		 *
+		 */
 	}
 
 	/**

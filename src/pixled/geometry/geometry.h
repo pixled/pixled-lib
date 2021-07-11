@@ -34,6 +34,20 @@ namespace pixled { namespace geometry {
 	};
 
 	/**
+	 * Index of the led on which the \Function is currently evaluated.
+	 *
+	 * @retval current led index
+	 */
+	class I : public base::Function<index_t> {
+		public:
+			index_t operator()(led l, time t) const override {
+				return l.index;
+			}
+
+			I* copy() const override {return new I;}
+	};
+
+	/**
 	 * Computes the euclidian distance between two points.
 	 *
 	 * @param point p1
