@@ -205,6 +205,14 @@ namespace pixled { namespace animation {
 			mutable time cache_time_duration = 0;
 		public:
 			/**
+			 * Initializes an emty Sequence.
+			 *
+			 * Sequence items can be added later using the add() method.
+			 */
+			Sequence() {
+			}
+
+			/**
 			 * Sequence constructor.
 			 *
 			 * The sequence can be conveniently specified using initializer

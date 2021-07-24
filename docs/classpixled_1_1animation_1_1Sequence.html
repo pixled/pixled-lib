@@ -98,6 +98,8 @@ Collaboration diagram for pixled::animation::Sequence:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a72422ccbae4bd7221681882abf938903"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1animation_1_1Sequence.html#a72422ccbae4bd7221681882abf938903">Sequence</a> ()</td></tr>
+<tr class="separator:a72422ccbae4bd7221681882abf938903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0f5bf56aed886276c88cd9d911f645d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpixled_1_1animation_1_1Sequence.html#aa0f5bf56aed886276c88cd9d911f645d">Sequence</a> (std::vector&lt; <a class="el" href="structpixled_1_1animation_1_1SequenceItem.html">SequenceItem</a> &gt; sequence)</td></tr>
 <tr class="separator:aa0f5bf56aed886276c88cd9d911f645d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9047c78ef38d2de62d6d75f515cabe2b"><td class="memTemplParams" colspan="2">template&lt;typename Anim &gt; </td></tr>
@@ -119,8 +121,35 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="pixled_2animation_2sequence_8cpp-example.html#_a5">pixled/animation/sequence.cpp</a>.</dd>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a72422ccbae4bd7221681882abf938903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72422ccbae4bd7221681882abf938903">&#9670;&nbsp;</a></span>Sequence() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pixled::animation::Sequence::Sequence </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initializes an emty <a class="el" href="classpixled_1_1animation_1_1Sequence.html">Sequence</a>.</p>
+<p><a class="el" href="classpixled_1_1animation_1_1Sequence.html">Sequence</a> items can be added later using the <a class="el" href="classpixled_1_1animation_1_1Sequence.html#a9047c78ef38d2de62d6d75f515cabe2b">add()</a> method. </p>
+
+</div>
+</div>
 <a id="aa0f5bf56aed886276c88cd9d911f645d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0f5bf56aed886276c88cd9d911f645d">&#9670;&nbsp;</a></span>Sequence()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0f5bf56aed886276c88cd9d911f645d">&#9670;&nbsp;</a></span>Sequence() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,13 +172,13 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p><a class="el" href="classpixled_1_1animation_1_1Sequence.html">Sequence</a> constructor.</p>
-<p>The sequence can be conveniently specified using initializer lists: </p><div class="fragment"><div class="line"><a class="code" href="classpixled_1_1animation_1_1Sequence.html#aa0f5bf56aed886276c88cd9d911f645d">Sequence</a> seq({</div>
+<p>The sequence can be conveniently specified using initializer lists: </p><div class="fragment"><div class="line"><a class="code" href="classpixled_1_1animation_1_1Sequence.html#a72422ccbae4bd7221681882abf938903">Sequence</a> seq({</div>
 <div class="line">    {anim1, 10},</div>
 <div class="line">    {anim2, 15},</div>
 <div class="line">    {anim1, 10},</div>
 <div class="line">    {anim3, 20}</div>
 <div class="line">    });</div>
-<div class="ttc" id="aclasspixled_1_1animation_1_1Sequence_html_aa0f5bf56aed886276c88cd9d911f645d"><div class="ttname"><a href="classpixled_1_1animation_1_1Sequence.html#aa0f5bf56aed886276c88cd9d911f645d">pixled::animation::Sequence::Sequence</a></div><div class="ttdeci">Sequence(std::vector&lt; SequenceItem &gt; sequence)</div><div class="ttdef"><b>Definition:</b> animation.h:225</div></div>
+<div class="ttc" id="aclasspixled_1_1animation_1_1Sequence_html_a72422ccbae4bd7221681882abf938903"><div class="ttname"><a href="classpixled_1_1animation_1_1Sequence.html#a72422ccbae4bd7221681882abf938903">pixled::animation::Sequence::Sequence</a></div><div class="ttdeci">Sequence()</div><div class="ttdef"><b>Definition:</b> animation.h:212</div></div>
 </div><!-- fragment --><p><a class="el" href="classpixled_1_1animation_1_1Sequence.html">Sequence</a> items can also be added later using the <a class="el" href="classpixled_1_1animation_1_1Sequence.html#a9047c78ef38d2de62d6d75f515cabe2b">add()</a> method.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -197,7 +226,7 @@ template&lt;typename Anim &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Adds an item to the <a class="el" href="classpixled_1_1animation_1_1Sequence.html">Sequence</a>.</p>
-<div class="fragment"><div class="line"><a class="code" href="classpixled_1_1animation_1_1Sequence.html#aa0f5bf56aed886276c88cd9d911f645d">Sequence</a> sequence;</div>
+<div class="fragment"><div class="line"><a class="code" href="classpixled_1_1animation_1_1Sequence.html#a72422ccbae4bd7221681882abf938903">Sequence</a> sequence;</div>
 <div class="line">sequence</div>
 <div class="line">    .add(anim1, 10)</div>
 <div class="line">    .add(anim2, 15)</div>

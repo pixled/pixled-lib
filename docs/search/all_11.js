@@ -3,7 +3,7 @@ var searchData=
   ['saturation_184',['saturation',['../classpixled_1_1color.html#acab81ad36d82fd91fee7fa2b46b86ab0',1,'pixled::color']]],
   ['sawtooth_185',['Sawtooth',['../classpixled_1_1signal_1_1Sawtooth.html',1,'pixled::signal']]],
   ['seed_186',['seed',['../classpixled_1_1random_1_1RandomEngineConfig.html#a8d1a47d168cd9fb6fe6bc9f3858eb844',1,'pixled::random::RandomEngineConfig']]],
-  ['sequence_187',['Sequence',['../classpixled_1_1animation_1_1Sequence.html',1,'pixled::animation::Sequence'],['../classpixled_1_1animation_1_1Sequence.html#aa0f5bf56aed886276c88cd9d911f645d',1,'pixled::animation::Sequence::Sequence()']]],
+  ['sequence_187',['Sequence',['../classpixled_1_1animation_1_1Sequence.html',1,'pixled::animation::Sequence'],['../classpixled_1_1animation_1_1Sequence.html#aa0f5bf56aed886276c88cd9d911f645d',1,'pixled::animation::Sequence::Sequence(std::vector&lt; SequenceItem &gt; sequence)'],['../classpixled_1_1animation_1_1Sequence.html#a72422ccbae4bd7221681882abf938903',1,'pixled::animation::Sequence::Sequence()']]],
   ['sequenceitem_188',['SequenceItem',['../structpixled_1_1animation_1_1SequenceItem.html',1,'pixled::animation::SequenceItem'],['../structpixled_1_1animation_1_1SequenceItem.html#abc318eec710baf8a55c6d215c2030c3b',1,'pixled::animation::SequenceItem::SequenceItem()']]],
   ['setblue_189',['setBlue',['../classpixled_1_1color.html#a1da588b65878ed888baaf4638245d240',1,'pixled::color']]],
   ['setbrightness_190',['setBrightness',['../classpixled_1_1color.html#a968bba36e63f86feaeea6bb1b6d73166',1,'pixled::color']]],

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['saturation_411',['saturation',['../classpixled_1_1color.html#acab81ad36d82fd91fee7fa2b46b86ab0',1,'pixled::color']]],
-  ['sequence_412',['Sequence',['../classpixled_1_1animation_1_1Sequence.html#aa0f5bf56aed886276c88cd9d911f645d',1,'pixled::animation::Sequence']]],
+  ['sequence_412',['Sequence',['../classpixled_1_1animation_1_1Sequence.html#a72422ccbae4bd7221681882abf938903',1,'pixled::animation::Sequence::Sequence()'],['../classpixled_1_1animation_1_1Sequence.html#aa0f5bf56aed886276c88cd9d911f645d',1,'pixled::animation::Sequence::Sequence(std::vector&lt; SequenceItem &gt; sequence)']]],
   ['sequenceitem_413',['SequenceItem',['../structpixled_1_1animation_1_1SequenceItem.html#abc318eec710baf8a55c6d215c2030c3b',1,'pixled::animation::SequenceItem']]],
   ['setblue_414',['setBlue',['../classpixled_1_1color.html#a1da588b65878ed888baaf4638245d240',1,'pixled::color']]],
   ['setbrightness_415',['setBrightness',['../classpixled_1_1color.html#a968bba36e63f86feaeea6bb1b6d73166',1,'pixled::color']]],
