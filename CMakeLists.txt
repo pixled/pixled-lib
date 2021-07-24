@@ -55,6 +55,16 @@ if(NOT ESP_PLATFORM)
 	endif()
 else()
 	idf_component_register(
-		SRC_DIRS "src/pixled"
+		SRCS
+		"src/pixled/color.cpp"
+		"src/pixled/runtime.cpp"
+		"src/pixled/geometry.cpp"
+		"src/pixled/mapping.cpp"
+		"src/pixled/mapping/mapping.cpp"
+		"src/pixled/chroma/chroma.cpp"
+		"src/pixled/animation/animation.cpp"
+		"src/pixled/geometry/geometry.cpp"
+		"src/pixled/signal/signal.cpp"
+		"src/pixled/random/random.cpp"
 		INCLUDE_DIRS "src")
 endif()
