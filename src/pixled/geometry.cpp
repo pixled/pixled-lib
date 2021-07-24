@@ -21,7 +21,8 @@ namespace pixled {
 	}
 
 	line::line(point p, angle alpha)
-		: b(1), a(-tan(alpha)), c(-p.y + p.x * tan(alpha)) {}
+		: a(-tan(alpha)), b(1), c(-p.y + p.x * tan(alpha)) {}
+
 	line::line(point p0, point p1) {
 		if(p0.x != p1.x) {
 			b = 1;

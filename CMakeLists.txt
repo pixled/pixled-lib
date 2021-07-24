@@ -6,7 +6,7 @@ if(NOT ESP_PLATFORM)
 	set(CMAKE_CXX_STANDARD 11)
 	set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0 -Wall -Wpedantic")
+	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0 -Wall -Wpedantic -Werror")
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
 
 	add_subdirectory(src)
@@ -55,6 +55,6 @@ if(NOT ESP_PLATFORM)
 	endif()
 else()
 	idf_component_register(
-		SRC_DIRS "src/pixled" "src/pixled/api"
+		SRC_DIRS "src/pixled"
 		INCLUDE_DIRS "src")
 endif()

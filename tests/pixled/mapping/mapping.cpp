@@ -16,7 +16,7 @@ MATCHER_P(PointEq, p, "") {
 		&& Matches(FloatNear(p.y, .10e-5))(arg.y);
 }
 MATCHER_P2(LedEq, location, index, "") {
-	return Matches(PointEq(location))(arg.location) && index == arg.index;
+	return Matches(PointEq(location))(arg.location) && (pixled::index_t) index == arg.index;
 }
 
 class MappingTest : public Test {
