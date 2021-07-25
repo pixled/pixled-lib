@@ -226,3 +226,22 @@ namespace pixled {
 		 */
 	}
 }
+
+/**
+ * @mainpage pixled-lib API documentation
+ *
+ * Pixled is a generic, modern and cross-platform C++11 led animation
+ * generation library based on functionnal programming language concepts.
+ *
+ * This documentation describes detailed and low-level features of the
+ * pixled-lib API. In order to get started, you might have a look to the
+ * [pixled wiki](https://github.com/pixled/pixled-lib/wiki).
+ *
+ * This documentation is however a good complement to the wiki, due to the
+ * numerous examples referenced for many features, especially for items in the
+ * pixled::animation and pixled::geometry namespaces.
+ *
+ * ![Sine Radial T](sine_radial_t.gif) ![Square Radial T](square_radial_t.gif) ![Insane Triangle](insane_triangle_radial_t.gif)
+ *
+ * ![Random Normal Hue](random_normal_xy_t_hue.gif) ![Sine XT](sine_x_t.gif) ![Sine T](sine_t.gif)
+ */

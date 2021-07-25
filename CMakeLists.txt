@@ -1,7 +1,7 @@
 if(NOT ESP_PLATFORM)
 	cmake_minimum_required(VERSION 3.14)
 
-	project(pixled-lib VERSION 0.1)
+	project(pixled-lib VERSION 1.0)
 
 	set(CMAKE_CXX_STANDARD 11)
 	set(CMAKE_CXX_STANDARD_REQUIRED True)

@@ -7,7 +7,8 @@ var indexSectionsWithContent =
   4: "_abcdgilmprsvxy",
   5: "acirt",
   6: "p",
-  7: "o"
+  7: "o",
+  8: "p"
 };
 
 var indexSectionNames =
@@ -19,7 +20,8 @@ var indexSectionNames =
   4: "variables",
   5: "typedefs",
   6: "enums",
-  7: "related"
+  7: "related",
+  8: "pages"
 };
 
 var indexSectionLabels =
@@ -31,6 +33,7 @@ var indexSectionLabels =
   4: "Variables",
   5: "Typedefs",
   6: "Enumerations",
-  7: "Friends"
+  7: "Friends",
+  8: "Pages"
 };
 
