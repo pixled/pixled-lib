@@ -1,4 +1,13 @@
-add_subdirectory(gtest)
+# Gets googletest from GitHub
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/96f4ce02a3a78d63981c67acbd368945d11d7d70.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
@@ -16,5 +25,3 @@ add_executable(test
 	main.cpp
 	)
 target_link_libraries(test gtest_main gmock_main pixled)
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS YES)

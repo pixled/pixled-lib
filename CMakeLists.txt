@@ -1,5 +1,5 @@
 if(NOT ESP_PLATFORM)
-	cmake_minimum_required(VERSION 3.10)
+	cmake_minimum_required(VERSION 3.14)
 
 	project(pixled-lib VERSION 0.1)
 
@@ -11,7 +11,6 @@ if(NOT ESP_PLATFORM)
 
 	add_subdirectory(src)
 	add_subdirectory(tests)
-	#add_subdirectory(examples EXCLUDE_FROM_ALL)
 
 	include(CMakePackageConfigHelpers)
 	write_basic_package_version_file(
